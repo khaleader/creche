@@ -142,6 +142,9 @@ class ChildrenController extends Controller
         {
             $filename = asset('images/avatar4.jpg');
             dd($filename);
+        }else{
+            $filename = $image->getClientOriginalName();
+            dd($filename);
         }
 
 
