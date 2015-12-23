@@ -189,10 +189,15 @@ class ChildrenController extends Controller
             $child->user_id = \Auth::user()->id;
 
             $image = Input::file('photo');
-            $filename =$image->getClientOriginalName();
-            $path = public_path('uploads/' .$filename);
-            if(Image::make($image->getRealPath())->resize(313,300)->save($path))
+            if(!$image && empty($image))
             {
+                $filename = '';
+
+            }else{
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+            }
                 $child->photo = $filename;
                 $child->family_id = $request->pere;
                  $resp = Family::findOrFail($request->pere);
@@ -226,7 +231,7 @@ class ChildrenController extends Controller
                        $bill->save();
                    }
                }
-            }
+
 
         return redirect()->back()->with('success',"l'enfant a bien été ajouté! ");
         }

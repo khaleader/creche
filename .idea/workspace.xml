@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/show.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,28 +24,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ChildrenController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ChildrenController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.677966">
-              <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.55403346">
+              <caret line="199" column="13" selection-start-line="199" selection-start-column="13" selection-end-line="199" selection-end-column="13" />
               <folding>
-                <marker date="1450858144372" expanded="true" signature="8870:10111" placeholder="..." />
-                <marker date="1450858144372" expanded="true" signature="8903:9193" placeholder="..." />
-                <marker date="1450858144372" expanded="true" signature="8935:9188" placeholder="..." />
-                <marker date="1450858144372" expanded="true" signature="9001:9149" placeholder="..." />
-                <marker date="1450858144372" expanded="true" signature="9595:9936" placeholder="..." />
-                <marker date="1450858144372" expanded="true" signature="9675:9757" placeholder="..." />
-                <marker date="1450858144372" expanded="true" signature="9824:9902" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="8976:10217" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="9009:9299" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="9041:9294" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="9107:9255" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="9701:10042" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="9781:9863" placeholder="..." />
+                <marker date="1450858746635" expanded="true" signature="9930:10008" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/children/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.42274052">
+            <state vertical-scroll-proportion="-3.8666666">
               <caret line="10" column="120" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
               <folding />
             </state>
@@ -132,8 +132,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/children/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
         <option value="$PROJECT_DIR$/resources/views/children/show.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
       </list>
     </option>
   </component>
@@ -832,27 +832,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/children/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.677966">
-          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
-          <folding>
-            <marker date="1450858144372" expanded="true" signature="8870:10111" placeholder="..." />
-            <marker date="1450858144372" expanded="true" signature="8903:9193" placeholder="..." />
-            <marker date="1450858144372" expanded="true" signature="8935:9188" placeholder="..." />
-            <marker date="1450858144372" expanded="true" signature="9001:9149" placeholder="..." />
-            <marker date="1450858144372" expanded="true" signature="9595:9936" placeholder="..." />
-            <marker date="1450858144372" expanded="true" signature="9675:9757" placeholder="..." />
-            <marker date="1450858144372" expanded="true" signature="9824:9902" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="-3.8666666">
+          <caret line="10" column="120" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/children/show.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42274052">
-          <caret line="10" column="120" selection-start-line="10" selection-start-column="120" selection-end-line="10" selection-end-column="120" />
-          <folding />
+        <state vertical-scroll-proportion="0.55403346">
+          <caret line="199" column="13" selection-start-line="199" selection-start-column="13" selection-end-line="199" selection-end-column="13" />
+          <folding>
+            <marker date="1450858746635" expanded="true" signature="8976:10217" placeholder="..." />
+            <marker date="1450858746635" expanded="true" signature="9009:9299" placeholder="..." />
+            <marker date="1450858746635" expanded="true" signature="9041:9294" placeholder="..." />
+            <marker date="1450858746635" expanded="true" signature="9107:9255" placeholder="..." />
+            <marker date="1450858746635" expanded="true" signature="9701:10042" placeholder="..." />
+            <marker date="1450858746635" expanded="true" signature="9781:9863" placeholder="..." />
+            <marker date="1450858746635" expanded="true" signature="9930:10008" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
