@@ -29,10 +29,7 @@ class SendEmailToRespAfterRegistrationEventListener implements ShouldQueue
     public function handle(SendEmailToRespAfterRegistrationEvent $event)
     {
         $this->release(10);
-        if($this->attempts() > 10)
-        {
-            $this->job->delete();
-        }
+         $this->delete();
 
 
 
