@@ -227,7 +227,13 @@ class BillsController extends Controller
             if ($status == 0) {
                 $bills = Bill::where('status', 0)->where('user_id',\Auth::user()->id)->get();
                 foreach ($bills as $bill) {
-                    $photo = asset('uploads/'.$bill->child->photo);
+                      if($bill->child->photo)
+                      {
+                          $photo = asset('uploads/'.$bill->child->photo);
+                      }else{
+                          $photo = asset('images/'.'avatar4.jpg');
+                      }
+
                     echo '  <tr>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
@@ -343,7 +349,10 @@ class BillsController extends Controller
                     $class = "label-success";
                     $message = "réglée";
                 }
-                $photo = asset('uploads/'.$bill->child->photo);
+                if($bill->child->photo)
+                 $photo = asset('uploads/'.$bill->child->photo);
+                else
+                    $photo = asset('images/no_avatar.jpg');
 
                 echo '  <tr>
                             <td>  ' . $bill->id . '</td>
