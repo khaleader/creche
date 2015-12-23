@@ -256,6 +256,11 @@ class ChildrenController extends Controller
                     else
                        $class = 'label-danger';
                 }
+                if($enfant->photo)
+                   $photo =  asset('uploads/'.$enfant->photo);
+                else
+                    $photo =  asset('images/avatar4.jpg');
+                
                 echo ' <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
@@ -263,7 +268,7 @@ class ChildrenController extends Controller
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src=" '.asset('uploads/'.$enfant->photo.'').' "></td>
+                            <td><img class="avatar" src=" '. $photo .' "></td>
                             <td>'. $enfant->nom_enfant .'</td>
                             <td>'.  $enfant->date_naissance->format('d-m-Y') .' </td>
                             <td><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
