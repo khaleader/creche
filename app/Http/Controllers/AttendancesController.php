@@ -43,6 +43,10 @@ class AttendancesController extends Controller
             $enfants =   Child::where('nom_enfant', 'LIKE', $caracter .'%')->where('user_id',\Auth::user()->id)->get();
             foreach($enfants as $enfant)
             {
+                if($enfant->photo)
+                    $photo = asset('uploads/'.$enfant->photo);
+                else
+                    $photo = asset('images/avatar4.jpg');
                 echo '   <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
@@ -50,7 +54,7 @@ class AttendancesController extends Controller
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src=" '. asset('uploads/'.$enfant->photo) .'"></td>
+                            <td><img class="avatar" src=" '. $photo .'"></td>
                             <td>'.  $enfant->nom_enfant .'</td>
                             <td>15-09-2015 </td>
                             <td>

@@ -260,7 +260,7 @@ class ChildrenController extends Controller
                    $photo =  asset('uploads/'.$enfant->photo);
                 else
                     $photo =  asset('images/avatar4.jpg');
-                
+
                 echo ' <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">

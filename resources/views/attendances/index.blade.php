@@ -102,7 +102,7 @@
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src="{{  asset('uploads/'.$child->photo) }}"></td>
+                            <td><img class="avatar" src="{{ $child->photo?  asset('uploads/'.$child->photo) : asset('images/avatar4.jpg') }}"></td>
                             <td>{{  $child->nom_enfant }}</td>
 
                             <td>
