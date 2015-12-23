@@ -87,13 +87,14 @@ class ChildrenController extends Controller
             $image = Input::file('photo');
             if(!$image && empty($image))
             {
-                $filename = 'avatar4.jpg';
-                $path = public_path('images/' . $filename);
+                $filename = public_path('images/'.'avatar4.jpg');
+
             }else{
                 $filename = $image->getClientOriginalName();
                 $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
               }
-            if (Image::make($image->getRealPath())->resize(313, 300)->save($path)) {
+
                 $child->photo = $filename;
                 $child->family_id = $family->id;
                 $child->save();
@@ -135,9 +136,9 @@ class ChildrenController extends Controller
                         str_random(6)
                     ));
                 }
-            }
+
         }
-      
+
 
        return redirect()->back()->with('success', "l'enfant et les parents ont bien été ajoutés! ");
     }
