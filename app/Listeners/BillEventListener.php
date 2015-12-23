@@ -28,5 +28,6 @@ class BillEventListener implements ShouldQueue
     public function handle(BillEvent $event)
     {
         $this->release(15);
+        $this->delete();
     }
 }

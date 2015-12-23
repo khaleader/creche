@@ -28,5 +28,6 @@ class ReglerBillEventListener implements ShouldQueue
     public function handle(ReglerBillEvent $event)
     {
       $this->release(10);
+        $this->delete();
     }
 }

@@ -28,6 +28,7 @@ class SchoolSendEmailListener implements ShouldQueue
      */
     public function handle(SchoolSendEmailEvent $event)
     {
-        //
+        $this->release(10);
+        $this->delete();
     }
 }
