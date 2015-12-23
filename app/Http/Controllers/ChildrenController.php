@@ -62,7 +62,7 @@ class ChildrenController extends Controller
     public function store(Requests\FormValidationChildFamilyRequest $request)
     {
         // famille for family profile
-    /*    $family = new Family();
+     /*  $family = new Family();
         $family->nom_pere = ucfirst($request->nom_pere);
         $family->nom_mere = ucfirst($request->nom_mere);
         $family->email_responsable = $request->email_responsable;
@@ -83,8 +83,15 @@ class ChildrenController extends Controller
             $child->nom_enfant = ucfirst($request->nom_enfant);
             $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
             $child->user_id = \Auth::user()->id;
+
             $image = Input::file('photo');
-            $filename = $image->getClientOriginalName();
+            if(!$image && empty($image))
+            {
+                $filename = asset('images/avatar4.jpg');
+            }else{
+                $filename = $image->getClientOriginalName();
+              }
+
             $path = public_path('uploads/' . $filename);
             if (Image::make($image->getRealPath())->resize(313, 300)->save($path)) {
                 $child->photo = $filename;
@@ -129,12 +136,14 @@ class ChildrenController extends Controller
                     ));
                 }
             }
-        } */
+        }*/
         $image = Input::file('photo');
-          if(!$image && empty($image))
-          {
-              dd('hello');
-          }
+        if(!$image && empty($image))
+        {
+            $filename = asset('images/avatar4.jpg');
+            dd($filename);
+        }
+
 
        // return redirect()->back()->with('success', "l'enfant et les parents ont bien été ajoutés! ");
     }
