@@ -65,7 +65,7 @@
                             @unless($bill->child->deleted_at)
                         <tr>
                             <td>{{  $bill->id  }}</td>
-                            <td><img class="avatar" src="{{  asset('uploads/'.$bill->child->photo) }}"></td>
+                            <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
                             <td>{{ $bill->child->nom_enfant  }}</td>
                             <td>{{  $bill->start->format('d-m-Y') }}</td>
                             <td>{{  $bill->somme  }} Dhs</td>
