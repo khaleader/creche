@@ -244,9 +244,9 @@ class BillsController extends Controller
                                Non réglée </span>
                             </td>
                             <td>
-                                <a  href="' . action('BillsController@delete', [$bill->id]) . '" class="actions_icons delete-bill">
+                                <a  href="' . '#'. '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-bill" href="' . action('BillsController@archive', [$bill->id]) . '"><i class="fa fa-archive liste_icons"></i>
+                                <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
 
@@ -364,9 +364,9 @@ class BillsController extends Controller
                                ' . $message . ' </span>
                             </td>
                             <td>
-                                <a  href="' . action('BillsController@delete', [$bill->id]) . '" class="actions_icons delete-bill">
+                                <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-bill" href="' . action('BillsController@archive', [$bill->id]) . '"><i class="fa fa-archive liste_icons"></i>
+                                <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
 
