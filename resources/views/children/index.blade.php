@@ -105,7 +105,13 @@
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src=" {{ asset('uploads/'.$child->photo)  }}"></td>
+                            <td>
+                                @if(!empty($child->photo))
+                                <img class="avatar" src=" {{ asset('uploads/'.$child->photo)  }}">
+                                @else
+                                    <img class="avatar" src=" {{ asset('images/'.'avatar4.jpg')  }}">
+                                @endif
+                            </td>
 
                             <td>{{  ucwords($child->nom_enfant) }}</td>
                             <td>{{  \Carbon\Carbon::parse($child->created_at)->format('d-m-Y')  }} </td>

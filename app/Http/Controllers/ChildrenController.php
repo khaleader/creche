@@ -87,7 +87,7 @@ class ChildrenController extends Controller
             $image = Input::file('photo');
             if(!$image && empty($image))
             {
-                $filename = public_path('images/'.'avatar4.jpg');
+                $filename = '';
 
             }else{
                 $filename = $image->getClientOriginalName();

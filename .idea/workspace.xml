@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/index.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,16 +28,29 @@
       <file leaf-file-name="ChildrenController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2891933">
-              <caret line="89" column="65" selection-start-line="89" selection-start-column="65" selection-end-line="89" selection-end-column="65" />
+            <state vertical-scroll-proportion="0.5098935">
+              <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
               <folding>
-                <marker date="1450856388367" expanded="true" signature="8904:10145" placeholder="..." />
-                <marker date="1450856388367" expanded="true" signature="8937:9227" placeholder="..." />
-                <marker date="1450856388367" expanded="true" signature="8969:9222" placeholder="..." />
-                <marker date="1450856388367" expanded="true" signature="9035:9183" placeholder="..." />
-                <marker date="1450856388367" expanded="true" signature="9629:9970" placeholder="..." />
-                <marker date="1450856388367" expanded="true" signature="9709:9791" placeholder="..." />
-                <marker date="1450856388367" expanded="true" signature="9858:9936" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="8870:10111" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="8903:9193" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="8935:9188" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="9001:9149" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="9595:9936" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="9675:9757" placeholder="..." />
+                <marker date="1450858144372" expanded="true" signature="9824:9902" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.266666">
+              <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+              <folding>
+                <element signature="e#7084#7106#0#HTML" expanded="true" />
+                <element signature="e#7144#7166#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -60,7 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/AppData/Local/Temp/scp46254/home/obliviushc/petite-enfance/app/Http/Controllers/HomeController.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/scp50413/home/obliviushc/petite-enfance/app/Http/Controllers/SchoolsController.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/scp48997/home/obliviushc/petite-enfance/resources/views/schools/boite.blade.php" />
         <option value="$USER_HOME$/AppData/Local/Temp/scp47374/home/obliviushc/petite-enfance/resources/views/index.blade.php" />
@@ -110,6 +123,7 @@
         <option value="$USER_HOME$/Desktop/Nouveau dossier/creche/public/css/style.css" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/resources/views/children/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
       </list>
     </option>
@@ -176,6 +190,60 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="children" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,13 +444,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.52259886">
-          <caret line="68" column="71" selection-start-line="68" selection-start-column="71" selection-end-line="68" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -758,18 +819,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.266666">
+          <caret line="107" column="32" selection-start-line="107" selection-start-column="32" selection-end-line="107" selection-end-column="32" />
+          <folding>
+            <element signature="e#7084#7106#0#HTML" expanded="true" />
+            <element signature="e#7144#7166#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2891933">
-          <caret line="89" column="65" selection-start-line="89" selection-start-column="65" selection-end-line="89" selection-end-column="65" />
+        <state vertical-scroll-proportion="0.5098935">
+          <caret line="91" column="18" selection-start-line="91" selection-start-column="18" selection-end-line="91" selection-end-column="18" />
           <folding>
-            <marker date="1450856388367" expanded="true" signature="8904:10145" placeholder="..." />
-            <marker date="1450856388367" expanded="true" signature="8937:9227" placeholder="..." />
-            <marker date="1450856388367" expanded="true" signature="8969:9222" placeholder="..." />
-            <marker date="1450856388367" expanded="true" signature="9035:9183" placeholder="..." />
-            <marker date="1450856388367" expanded="true" signature="9629:9970" placeholder="..." />
-            <marker date="1450856388367" expanded="true" signature="9709:9791" placeholder="..." />
-            <marker date="1450856388367" expanded="true" signature="9858:9936" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="8870:10111" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="8903:9193" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="8935:9188" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="9001:9149" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="9595:9936" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="9675:9757" placeholder="..." />
+            <marker date="1450858144372" expanded="true" signature="9824:9902" placeholder="..." />
           </folding>
         </state>
       </provider>
