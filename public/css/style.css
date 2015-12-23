@@ -30,7 +30,7 @@ html {
 
 body {
     color:#687b8c;
-    background:#edf2f6;
+    background:#edf2f6; /* defult color*/
     font-family:'Open Sans',sans-serif;
     padding:0px !important;
     margin:0px !important;
