@@ -505,7 +505,7 @@ class BillsController extends Controller
                           }   else{
                               $photo = asset('images/avatar4.jpg');
                           }
-                          
+
                           echo '  <tr>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>

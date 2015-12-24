@@ -32,7 +32,7 @@
                         @foreach($child as $c)
 
                             <tr id="{{  ucwords($c->nom_enfant) }}">
-                                <td><img class="avatar" src=" {{ $c->photo ? asset('uploads/'.$c->photo):'images/avatar4.jpg'  }}"></td>
+                                <td><img class="avatar" src=" {{ $c->photo ? asset('uploads/'.$c->photo): asset('images/avatar4.jpg')  }}"></td>
 
                                 <td>{{  ucwords($c->nom_enfant) }}</td>
                                 <td>{{  \Carbon\Carbon::parse($c->created_at)->format('d-m-Y')  }} </td>
