@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BillsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BillsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BillsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.597561">
+            <state vertical-scroll-proportion="-6.644068">
               <caret line="464" column="61" selection-start-line="464" selection-start-column="61" selection-end-line="464" selection-end-column="61" />
               <folding>
                 <marker date="1450921760871" expanded="true" signature="3849:5137" placeholder="..." />
@@ -130,6 +129,16 @@
                 <marker date="1450921760871" expanded="true" signature="19007:19089" placeholder="..." />
                 <marker date="1450921760871" expanded="true" signature="19208:19286" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16223776">
+              <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -204,7 +213,6 @@
         <option value="$USER_HOME$/AppData/Local/Temp/scp05449/home/forge/default/public/css/style.css" />
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$USER_HOME$/Desktop/Nouveau dossier/creche/public/css/style.css" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/children/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/children/show.blade.php" />
@@ -217,6 +225,7 @@
         <option value="$PROJECT_DIR$/resources/views/attendances/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -599,13 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12626995">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://O:/lab/creche/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.766667">
@@ -777,7 +779,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BillsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.597561">
+        <state vertical-scroll-proportion="-6.644068">
           <caret line="464" column="61" selection-start-line="464" selection-start-column="61" selection-end-line="464" selection-end-column="61" />
           <folding>
             <marker date="1450921760871" expanded="true" signature="3849:5137" placeholder="..." />
@@ -847,6 +849,14 @@
             <marker date="1450921760871" expanded="true" signature="19007:19089" placeholder="..." />
             <marker date="1450921760871" expanded="true" signature="19208:19286" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16223776">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
