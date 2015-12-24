@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
             }
         });*/
        // $schedule->command('inspire') ->hourly();
-         $schedule->command('log:demo')->monthly();
+         //$schedule->command('log:demo')->monthly();
 
     }
 }
