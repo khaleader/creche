@@ -28,12 +28,12 @@ class Kernel extends ConsoleKernel
     {
 
 
-     $schedule->command('log:demo')->monthly()->when(function(){
+    /* $schedule->command('log:demo')->isDue()->when(function(){
             if(Carbon::now()->toDateString() == Carbon::now()->startOfMonth()->toDateString())
             {
                 return true;
             }
-        });
+        });*/
 
        /*$schedule->command('log:demo')->everyMinute()->when(function(){
             if(Carbon::now()->toDateString() == Carbon::now()->toDateString())
@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
             }
         });*/
        // $schedule->command('inspire') ->hourly();
-         //$schedule->command('log:demo')->everyMinute();
+         $schedule->command('log:demo')->monthly();
 
     }
 }

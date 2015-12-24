@@ -69,9 +69,6 @@ class SendEmailToRespAfterRegistrationEvent extends Event
            $child = Child::findOrFail($this->child_id);
             $child->f_id =$user->id;
             $child->save();
-
-
-
                 $info = [
                     'responsable' => $this->nom_responsable,
                     'nom_enfant' => $this->nom_enfant,
