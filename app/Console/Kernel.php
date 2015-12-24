@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
     {
 
 
-    /* $schedule->command('log:demo')->isDue()->when(function(){
+    /* $schedule->command('log:demo')->daily()->when(function(){
             if(Carbon::now()->toDateString() == Carbon::now()->startOfMonth()->toDateString())
             {
                 return true;

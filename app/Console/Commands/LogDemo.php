@@ -48,6 +48,8 @@ class LogDemo extends Command
 
     public function handle()
     {
+        if(Carbon::now()->toDateString() == Carbon::now()->startOfMonth()->toDateString())
+        {
        $enfants =  Child::has('bills')->get();
         foreach($enfants as $e)
         {
@@ -66,6 +68,7 @@ class LogDemo extends Command
 
 
             }
+        }
         }
        // Log::info('hello world je suis khalid bouslami');
 
