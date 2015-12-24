@@ -459,10 +459,12 @@ class BillsController extends Controller
                           $class = 'label-success';
                           $message = 'Réglée';
                       }
-                      if($bill->child->photo)
-                      $photo = asset('uploads/'.$bill->child->photo);
-                      else
-                        $photo = asset('images/'.'avatar4.jpg');
+                      if(!empty($bill->child->photo))
+                      {
+                          $photo = asset('uploads/'.$bill->child->photo);
+                      }   else{
+                          $photo = asset('images/avatar4.jpg');
+                      }
                       echo '  <tr>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
