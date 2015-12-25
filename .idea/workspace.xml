@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/schools/editef.blade.php" afterPath="$PROJECT_DIR$/resources/views/schools/editef.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -48,10 +48,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editef.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="editef.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/schools/editef.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16934307">
+            <state vertical-scroll-proportion="-3.8666666">
               <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
               <folding />
             </state>
@@ -91,19 +91,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SchoolsController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SchoolsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.59322">
-              <caret line="27" column="129" selection-start-line="27" selection-start-column="129" selection-end-line="27" selection-end-column="129" />
+            <state vertical-scroll-proportion="0.46493903">
+              <caret line="355" column="51" selection-start-line="355" selection-start-column="51" selection-end-line="355" selection-end-column="51" />
               <folding>
-                <marker date="1451076426907" expanded="true" signature="1884:2969" placeholder="..." />
-                <marker date="1451076426907" expanded="true" signature="1917:2209" placeholder="..." />
-                <marker date="1451076426907" expanded="true" signature="1949:2204" placeholder="..." />
-                <marker date="1451076426907" expanded="true" signature="2015:2165" placeholder="..." />
-                <marker date="1451076426907" expanded="true" signature="2491:2797" placeholder="..." />
-                <marker date="1451076426907" expanded="true" signature="2558:2640" placeholder="..." />
-                <marker date="1451076426907" expanded="true" signature="2685:2763" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="1884:2969" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="1917:2209" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="1949:2204" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="2015:2165" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="2491:2797" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="2558:2640" placeholder="..." />
+                <marker date="1451076911083" expanded="true" signature="2685:2763" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -171,8 +171,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
         <option value="$PROJECT_DIR$/resources/views/schools/editef.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
       </list>
     </option>
   </component>
@@ -1082,22 +1082,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.59322">
-          <caret line="27" column="129" selection-start-line="27" selection-start-column="129" selection-end-line="27" selection-end-column="129" />
-          <folding>
-            <marker date="1451076426907" expanded="true" signature="1884:2969" placeholder="..." />
-            <marker date="1451076426907" expanded="true" signature="1917:2209" placeholder="..." />
-            <marker date="1451076426907" expanded="true" signature="1949:2204" placeholder="..." />
-            <marker date="1451076426907" expanded="true" signature="2015:2165" placeholder="..." />
-            <marker date="1451076426907" expanded="true" signature="2491:2797" placeholder="..." />
-            <marker date="1451076426907" expanded="true" signature="2558:2640" placeholder="..." />
-            <marker date="1451076426907" expanded="true" signature="2685:2763" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.1864405">
@@ -1136,9 +1120,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/schools/editef.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16934307">
+        <state vertical-scroll-proportion="-3.8666666">
           <caret line="4" column="38" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46493903">
+          <caret line="355" column="51" selection-start-line="355" selection-start-column="51" selection-end-line="355" selection-end-column="51" />
+          <folding>
+            <marker date="1451076911083" expanded="true" signature="1884:2969" placeholder="..." />
+            <marker date="1451076911083" expanded="true" signature="1917:2209" placeholder="..." />
+            <marker date="1451076911083" expanded="true" signature="1949:2204" placeholder="..." />
+            <marker date="1451076911083" expanded="true" signature="2015:2165" placeholder="..." />
+            <marker date="1451076911083" expanded="true" signature="2491:2797" placeholder="..." />
+            <marker date="1451076911083" expanded="true" signature="2558:2640" placeholder="..." />
+            <marker date="1451076911083" expanded="true" signature="2685:2763" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
