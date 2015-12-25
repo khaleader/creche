@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/showef.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/showef.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,79 +24,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BillsController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/BillsController.php">
+      <file leaf-file-name="showef.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/children/showef.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.86737806">
-              <caret line="520" column="68" selection-start-line="520" selection-start-column="68" selection-end-line="520" selection-end-column="68" />
-              <folding>
-                <marker date="1451012564039" expanded="true" signature="3849:5137" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="3882:4176" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="3914:4171" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="3980:4132" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="4406:4568" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="4480:4534" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="4601:4960" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="4689:4771" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="4848:4926" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="5537:6908" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="5570:5864" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="5602:5859" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="5668:5820" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="6094:6252" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="6168:6218" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="6285:6731" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="6417:6499" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="6619:6697" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="7597:8671" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="7974:8102" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="8018:8068" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="8135:8494" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="8224:8306" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="8382:8460" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="8952:10110" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="9329:9455" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="9374:9421" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="9488:9933" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="9620:9702" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="9821:9899" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="10883:12157" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="10916:11206" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="10948:11201" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11014:11162" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11424:11593" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11499:11559" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11626:11859" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11626:11863" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11626:11984" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11714:11796" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="11872:11950" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13023:13124" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13023:14106" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13400:13536" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13446:13502" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13569:13611" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13569:13622" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13569:13929" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13659:13741" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="13817:13895" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="16486:16587" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="16486:17569" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="16863:16999" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="16909:16965" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="17032:17074" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="17032:17392" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="17122:17204" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="17280:17358" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="18534:18635" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="18534:19573" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="18911:19047" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="18957:19013" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="19080:19122" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="19080:19439" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="19170:19252" placeholder="..." />
-                <marker date="1451012564039" expanded="true" signature="19327:19405" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="0.3810219">
+              <caret line="9" column="125" selection-start-line="9" selection-start-column="125" selection-end-line="9" selection-end-column="125" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,7 +47,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/bills/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php" />
@@ -165,6 +97,7 @@
         <option value="$PROJECT_DIR$/app/Console/Kernel.php" />
         <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/children/showef.blade.php" />
       </list>
     </option>
   </component>
@@ -270,6 +203,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="families" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="children" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -524,13 +479,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.966666">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/schools/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="14.5">
@@ -738,14 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16223776">
-          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/bills/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.6832116">
@@ -768,14 +708,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32447553">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1001,6 +933,30 @@
             <marker date="1451012564039" expanded="true" signature="19170:19252" placeholder="..." />
             <marker date="1451012564039" expanded="true" signature="19327:19405" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.32447553">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2027972">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/showef.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3810219">
+          <caret line="9" column="125" selection-start-line="9" selection-start-column="125" selection-end-line="9" selection-end-column="125" />
+          <folding />
         </state>
       </provider>
     </entry>
