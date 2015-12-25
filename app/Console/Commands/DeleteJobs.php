@@ -38,6 +38,6 @@ class DeleteJobs extends Command
      */
     public function handle()
     {
-       DB::table('jobs')->delete();
+       DB::table('jobs')->truncate();
     }
 }
