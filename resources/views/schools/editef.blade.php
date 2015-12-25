@@ -30,6 +30,8 @@
             </section>
 
         </div>
+        @include('partials.alert-errors')
+        @include('partials.alert-success')
         <div class="col-sm-9">
             <section class="panel">
 
