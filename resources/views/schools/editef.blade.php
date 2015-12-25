@@ -35,7 +35,7 @@
 
                 <header class="panel-heading tab-bg-dark-navy-blue">
                     <ul class="nav nav-tabs nav-justified ">
-                        <li class="active">
+                        <li>
                             <a data-toggle="tab" href="#password">
                                 Changer le mot de passe
                             </a>
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <button class="btn_form" type="submit">Enregistrer</button>
-                            {{-- Form::close() --}}
+                            {!! Form::close() !!}
                         </div>
 
                     </div>
