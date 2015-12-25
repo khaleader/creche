@@ -24,8 +24,9 @@ class SchoolsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills','editef']]);
         $this->middleware('Famille',['only'=> 'editef']);
+        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills']]);
+
 
     }
 
