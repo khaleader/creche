@@ -11,14 +11,14 @@
 
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div class="fileupload-new  Photo_profile" >
-                                <img class="pdp" src="{{--  $school->photo ? asset('uploads/'.$school->photo) :asset('images/no_avatar.jpg') --}}" alt="" />
+                                <img class="pdp" src="{{ asset('images/no_avatar.jpg') }}" alt="" />
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
                             <div class="btn_upload">
                                                    <span class="btn btn-white btn-file">
                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
-                                                   <input type="file" class="default" name="photo" />
+                                                   <input type="file" class="default" name="photo" disabled />
                                                    </span>
 
                             </div>
@@ -35,7 +35,7 @@
 
                 <header class="panel-heading tab-bg-dark-navy-blue">
                     <ul class="nav nav-tabs nav-justified ">
-                        <li>
+                        <li class="active">
                             <a data-toggle="tab" href="#password">
                                 Changer le mot de passe
                             </a>

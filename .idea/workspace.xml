@@ -27,7 +27,7 @@
       <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/schools/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.6949153">
+            <state vertical-scroll-proportion="-56.77966">
               <caret line="145" column="88" selection-start-line="145" selection-start-column="78" selection-end-line="145" selection-end-column="88" />
               <folding>
                 <marker date="1450823895338" expanded="true" signature="5512:5662" placeholder="..." />
@@ -41,8 +41,8 @@
       <file leaf-file-name="editef.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/schools/editef.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.4554745">
-              <caret line="13" column="143" selection-start-line="13" selection-start-column="143" selection-end-line="13" selection-end-column="143" />
+            <state vertical-scroll-proportion="0.28029197">
+              <caret line="36" column="51" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -642,6 +642,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33236152">
           <caret line="32" column="41" selection-start-line="32" selection-start-column="41" selection-end-line="32" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,18 +1054,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/schools/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.6949153">
-          <caret line="145" column="88" selection-start-line="145" selection-start-column="78" selection-end-line="145" selection-end-column="88" />
-          <folding>
-            <marker date="1450823895338" expanded="true" signature="5512:5662" placeholder="..." />
-            <marker date="1450823895338" expanded="true" signature="5524:5660" placeholder="..." />
-            <marker date="1450823895338" expanded="true" signature="5538:5659" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.6949153">
@@ -1089,10 +1078,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/schools/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-56.77966">
+          <caret line="145" column="88" selection-start-line="145" selection-start-column="78" selection-end-line="145" selection-end-column="88" />
+          <folding>
+            <marker date="1450823895338" expanded="true" signature="5512:5662" placeholder="..." />
+            <marker date="1450823895338" expanded="true" signature="5524:5660" placeholder="..." />
+            <marker date="1450823895338" expanded="true" signature="5538:5659" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/schools/editef.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.4554745">
-          <caret line="13" column="143" selection-start-line="13" selection-start-column="143" selection-end-line="13" selection-end-column="143" />
+        <state vertical-scroll-proportion="0.28029197">
+          <caret line="36" column="51" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
           <folding />
         </state>
       </provider>
