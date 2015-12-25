@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/schools/editef.blade.php" afterPath="$PROJECT_DIR$/resources/views/schools/editef.blade.php" />
     </list>
     <ignored path="creche.iws" />
@@ -43,8 +41,8 @@
       <file leaf-file-name="editef.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/schools/editef.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.44233575">
-              <caret line="48" column="91" selection-start-line="48" selection-start-column="91" selection-end-line="48" selection-end-column="91" />
+            <state vertical-scroll-proportion="-1.4554745">
+              <caret line="13" column="143" selection-start-line="13" selection-start-column="143" selection-end-line="13" selection-end-column="143" />
               <folding />
             </state>
           </provider>
@@ -153,8 +151,8 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/schools/editef.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/schools/editef.blade.php" />
       </list>
     </option>
   </component>
@@ -1093,8 +1091,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/schools/editef.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.44233575">
-          <caret line="48" column="91" selection-start-line="48" selection-start-column="91" selection-end-line="48" selection-end-column="91" />
+        <state vertical-scroll-proportion="-1.4554745">
+          <caret line="13" column="143" selection-start-line="13" selection-start-column="143" selection-end-line="13" selection-end-column="143" />
           <folding />
         </state>
       </provider>

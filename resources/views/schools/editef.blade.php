@@ -1,18 +1,17 @@
 @extends('layouts.default')
 
-
 @section('content')
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
                 <div class="panel-body">
                     <div class="form-group last">
-                        {!! Form::model($school,['url'=>action('SchoolsController@update',[\Auth::user()->id]),'method'=>'put','files'=>true]) !!}
+                        {{-- Form::model($school,['url'=>action('SchoolsController@update',[\Auth::user()->id]),'method'=>'put','files'=>true]) --}}
 
 
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div class="fileupload-new  Photo_profile" >
-                                <img class="pdp" src="{{  $school->photo ? asset('uploads/'.$school->photo) :asset('images/no_avatar.jpg') }}" alt="" />
+                                <img class="pdp" src="{{--  $school->photo ? asset('uploads/'.$school->photo) :asset('images/no_avatar.jpg') --}}" alt="" />
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
                             <div class="btn_upload">
@@ -73,7 +72,7 @@
                                 </div>
                             </div>
                             <button class="btn_form" type="submit">Enregistrer</button>
-                            {!! Form::close() !!}
+                            {{-- Form::close() --}}
                         </div>
 
                     </div>
