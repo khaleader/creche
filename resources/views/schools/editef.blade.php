@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
+    @include('partials.alert-errors')
+    @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
@@ -30,9 +32,9 @@
             </section>
 
         </div>
-        @include('partials.alert-errors')
-        @include('partials.alert-success')
+
         <div class="col-sm-9">
+
             <section class="panel">
 
                 <header class="panel-heading tab-bg-dark-navy-blue">
