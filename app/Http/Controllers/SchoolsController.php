@@ -24,8 +24,8 @@ class SchoolsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('Famille',['only'=> 'editef']);
-        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills','editef']]);
+        $this->middleware('Famille',['only'=> 'editef','updatepassef']);
+        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills','editef','updatepassef']]);
 
 
     }
@@ -293,7 +293,7 @@ class SchoolsController extends Controller
                 $newcat->save();
 
             }
-            return redirect()->to('/')->with('success','Bien Enregistré dans la base de données');
+            return redirect()->back()->with('success','Bien Enregistré dans la base de données');
         }else{
             return redirect()->back()->withErrors($validator);
         }
