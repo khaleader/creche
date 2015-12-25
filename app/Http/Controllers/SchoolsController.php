@@ -168,8 +168,7 @@ class SchoolsController extends Controller
             'tel_fixe' => 'required',
             'tel_portable'=> 'required',
             'adresse'=> 'required',
-            'ville'=> 'required',
-            'pays'=> 'required',
+            'ville'=> 'required'
         ]);
         if($validator->passes())
         {
