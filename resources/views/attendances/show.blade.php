@@ -120,7 +120,7 @@
 
                    type: 'post',
                    success: function (response) {
-                       alert('well added');
+                       alert("Succès de l'opération");
                    }
                });
 
@@ -156,7 +156,7 @@
                    data: {'id': calEvent._id, '_token': CSRF_TOKEN},
                    method: 'post',
                    success:function(json){
-                        alert('just removed');
+                        alert('Bien enlevé');
                    }
 
 
