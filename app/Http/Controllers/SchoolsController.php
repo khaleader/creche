@@ -293,7 +293,7 @@ class SchoolsController extends Controller
                 $newcat->save();
 
             }
-            return redirect()->back()->with('success','Bien Enregistré dans la base de données');
+            return redirect()->to('/')->with('success','Bien Enregistré dans la base de données');
         }else{
             return redirect()->back()->withErrors($validator);
         }
@@ -358,7 +358,7 @@ class SchoolsController extends Controller
                 $user =  User::findOrFail(\Auth::user()->id);
                 $user->password =  \Hash::make($request->password);
                 $user->save();
-                return redirect()->back()->with('success','Le Mot De pass a bien été modifié');
+                return redirect()->to('/')->with('success','Le Mot De pass a bien été modifié');
             }else{
                 return redirect()->back()->withErrors([
                     'Le Mot de pass Actuel est incorrect'
