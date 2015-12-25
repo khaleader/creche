@@ -29,7 +29,7 @@
                         @foreach(Auth::user()->enfants as $child)
 
                             <tr id="{{  ucwords($child->nom_enfant) }}">
-                                <td><img class="avatar" src=" {{ $child->photo ? asset('uploads/'.$child->photo):'images/avatar4.jpg'  }}"></td>
+                                <td><img class="avatar" src=" {{ $child->photo ? asset('uploads/'.$child->photo):asset('images/avatar4.jpg')  }}"></td>
 
                                 <td>{{  ucwords($child->nom_enfant) }}</td>
                                 <td>{{  \Carbon\Carbon::parse($child->created_at)->format('d-m-Y')  }} </td>

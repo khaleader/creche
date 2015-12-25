@@ -88,7 +88,7 @@
                 droppable: false ,// this allows things to be dropped onto the calendar
                 events : <?php echo ($resultat) ? $resultat: "" ?>,
 
-          
+
 
 
             });
