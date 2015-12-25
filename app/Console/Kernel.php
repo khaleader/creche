@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\LogDemo::class,
+        \App\Console\Commands\DeleteJobs::class,
     ];
 
     /**
@@ -26,6 +27,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+        $schedule->command('delete:jobs')->dailyAt('23:00');
 
 
     /* $schedule->command('log:demo')->daily()->when(function(){
