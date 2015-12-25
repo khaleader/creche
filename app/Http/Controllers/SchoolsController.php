@@ -336,8 +336,8 @@ class SchoolsController extends Controller
     {
       if(\Auth::user() && \Auth::user()->isFamily())
       {
-         $famille = User::findOrFail($id);
-          return view('schools.editef',$famille);
+         $school = User::findOrFail($id);
+          return view('schools.editef',$school);
       }
     }
 
