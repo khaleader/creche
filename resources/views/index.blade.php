@@ -33,7 +33,7 @@ session_start();
             <div class="col-md-4">
                 <section class="panel bloc">
                     <div class="panel-body">
-                        <a href="enfants.html">
+                        <a href="{{ action('Childrecontroller@indexef') }}">
                             <div class="bloc_info"><img src="images/enfants.png" ><span class="count">
                                     {{  App\Child::where('f_id',\Auth::user()->id)->count() }}
                                 </span><p>Enfants inscrits</p></div>
