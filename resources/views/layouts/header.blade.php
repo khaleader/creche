@@ -21,7 +21,7 @@
          @if(\Auth::user() && Auth::user()->isAdmin())
             <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">
           @elseif(\Auth::user() && Auth::user()->isFamily())
-            <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">
+            <a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">
            @endif
 
 
