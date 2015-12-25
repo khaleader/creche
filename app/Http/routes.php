@@ -107,6 +107,7 @@ Route::match(['get','post'],'instantsearch','BillsController@searchinst');
 // showef famille bills (account Family)
 Route::get('bills/showef/{id}','BillsController@showef');
 Route::get('schools/editef/{id}','SchoolsController@editef');
+Route::post('schools/updatepassef','SchoolsController@updatepassef');
 
 
 
