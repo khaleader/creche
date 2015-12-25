@@ -18,8 +18,14 @@
     </ul>
     <div class="account" id="account">
 
+         @if(\Auth::user() && Auth::user()->isAdmin())
+            <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">
+          @elseif(\Auth::user() && Auth::user()->isFamily())
+            <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">
+           @endif
 
-        <a href="{{ \Auth::user()->isAdmin() ? action('SchoolsController@edit',[\Auth::user()->id]): '' }}">
+
+
          @if(Auth::user() && Auth::user()->isFamily())
                 <?php
 

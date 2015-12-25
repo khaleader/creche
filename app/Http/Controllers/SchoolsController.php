@@ -24,7 +24,8 @@ class SchoolsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills']]);
+        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills','editef']]);
+        $this->middleware('Famille',['only'=> 'editef']);
 
     }
 
@@ -328,6 +329,15 @@ class SchoolsController extends Controller
             }
 
         }
+    }
+
+    public function editef($id)
+    {
+      if(\Auth::user() && \Auth::user()->isFamily())
+      {
+         $famille = User::findOrFail($id);
+          return view('schools.editef',$famille);
+      }
     }
 
 
