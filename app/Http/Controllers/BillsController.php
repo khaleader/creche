@@ -518,7 +518,7 @@ class BillsController extends Controller
                             <td>
                                 <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-bill" href="' . action('BillsController@archive', [$bill->id]) . '"><i class="fa fa-archive liste_icons"></i>
+                                <a class="archive-bill" href="' . '#'. '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
 
