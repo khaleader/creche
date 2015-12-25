@@ -48,7 +48,7 @@ class LogDemo extends Command
 
     public function handle()
     {
-        if(Carbon::now()->toDateString() == Carbon::now()->startOfMonth()->toDateString())
+        if(Carbon::now()->toDateString() == Carbon::now()->endOfMonth()->toDateString())
         {
        $enfants =  Child::has('bills')->get();
         foreach($enfants as $e)
