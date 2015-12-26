@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/reglement.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/reglement.blade.php" />
     </list>
     <ignored path="creche.iws" />
@@ -54,8 +53,8 @@
       <file leaf-file-name="reglement.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/emails/reglement.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16642335">
-              <caret line="316" column="25" selection-start-line="316" selection-start-column="25" selection-end-line="316" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.4627737">
+              <caret line="323" column="447" selection-start-line="323" selection-start-column="447" selection-end-line="323" selection-end-column="447" />
               <folding />
             </state>
           </provider>
@@ -972,8 +971,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/emails/reglement.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16642335">
-          <caret line="316" column="25" selection-start-line="316" selection-start-column="25" selection-end-line="316" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.4627737">
+          <caret line="323" column="447" selection-start-line="323" selection-start-column="447" selection-end-line="323" selection-end-column="447" />
           <folding />
         </state>
       </provider>
