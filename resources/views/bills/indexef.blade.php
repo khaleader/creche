@@ -45,7 +45,7 @@
                                     </td>
                                     <td>   {{ $bills->child->nom_enfant  }}</td>
 
-                                    <td><a href="{{  action('BillsController@showef',[$bills->id]) }}"><div  class="btn_details">Détails</div></a></td>
+                                    <td><a href="{{  action('BillsController@showef',[$bills->child_id]) }}"><div  class="btn_details">Détails</div></a></td>
                                 </tr>
 
                             @endforeach
