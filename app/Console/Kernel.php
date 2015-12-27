@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\LogDemo::class,
         \App\Console\Commands\DeleteJobs::class,
+        \App\Console\Commands\TruncateJobs::class,
     ];
 
     /**
@@ -29,6 +30,7 @@ class Kernel extends ConsoleKernel
     {
 
        $schedule->command('delete:jobs')->hourly();
+        $schedule->command('truncate:jobs')->dailyAt('23:00');
 
 
 
