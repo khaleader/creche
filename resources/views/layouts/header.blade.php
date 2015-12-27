@@ -69,7 +69,7 @@
         @elseif(Route::current()->getUri() == 'families' or Request::is('families/*') )
             <h2>{{  "familles" }}</h2>
         @elseif(Route::current()->getUri() == 'teachers'   or Request::is('teachers/*'))
-            <h2>{{  "professeur" }}</h2>
+            <h2>{{  "Professeurs et RH" }}</h2>
         @elseif(Route::current()->getUri() == 'attendances' or Request::is('attendances/*'))
             <h2>{{  "pointages" }}</h2>
         @elseif(Route::current()->getUri() == 'bills' or Request::is('bills/*') )

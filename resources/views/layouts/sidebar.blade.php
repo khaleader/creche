@@ -21,7 +21,7 @@
                 <li>
                     <a href="{{ action('TeachersController@index') }}">
                         <img src="{{ asset('images/professeurs.png') }}" class="sidebar_icons">
-                        <span>Professeurs</span>
+                        <span>Professeurs et RH</span>
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
                 </li>

@@ -38,11 +38,11 @@
                          @unless($status->deleted_at)
                         @if($status->status == 1)
                             <div class="panel-body paimenent_fiche_enfant">
-                                <i class="fa fa-money"></i><span>Paiement effectué ({{ $child->nom_enfant }})</span>
+                                <i class="fa fa-money"></i><span>Paiement effectué </span>
                             </div>
                             @else
                             <div class="panel-body paimenent_fiche_enfant" style="background-color:#d3423e">
-                                <i class="fa fa-money"></i><span>Paiement effectué ({{ $child->nom_enfant }})</span>
+                                <i class="fa fa-money"></i><span>Paiement non effectué</span>
                             </div>
                          @endif
                           @endunless

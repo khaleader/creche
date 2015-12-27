@@ -33,7 +33,7 @@
                 </div>
                 @else
                       <div class="panel-body paimenent_fiche_enfant" style="background-color:#d3423e">
-                          <i class="fa fa-money"></i><span>Paiement effectué</span>
+                          <i class="fa fa-money"></i><span>Paiement non effectué</span>
                       </div>
 
                 @endif

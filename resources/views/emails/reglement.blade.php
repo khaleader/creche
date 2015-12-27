@@ -333,9 +333,9 @@
 <table class="container" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 650px; margin: 0 auto; padding: 0;">
     <thead>
     <tr style="vertical-align: top; text-align: left; padding: 0 ;background-color:#dce7ea; " align="left">
-        <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: left; line-height: 22px; padding: 6px 0 0 5px;width=191px;" align="left">Enfant</th>
-        <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: left; line-height: 22px;padding: 6px 0 0 5px;width=150px; " align="left">Date</th>
-        <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: left; line-height: 22px; padding: 6px 0 0 5px;with=140px;" align="left">Référence</th>
+        <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: center; line-height: 22px; padding: 6px 0 0 5px;width:191px;" align="left">Enfant</th>
+        <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: center; line-height: 22px;padding: 6px 0 0 5px;width:150px; " align="left">Date</th>
+        <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: center; line-height: 22px; padding: 6px 0 0 5px;with:140px;" align="left">Référence</th>
         <th style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: bold; text-align: center; line-height: 22px; margin: 0 0 10px;padding: 6px 0 0 5px; " align="right">Montant DH TCC </th>
     </tr></thead>
     <tbody>
@@ -368,7 +368,7 @@
                     </td><td style="text-align: right; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; display: inline-block; width: 325px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 30px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"> <!-- Make sure the tags are directly next to each other -->
 
                         <a href="#" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #687b8c; text-decoration: underline;">oblivius.contact@gmail.com</a>
-                        <a href="#" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #687b8c; text-decoration: underline; display: inline-block; margin-left: 6px;">www.obilivius.fr</a>
+                        <a href="http://www.oblivius.fr" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #687b8c; text-decoration: underline; display: inline-block; margin-left: 6px;">www.oblivius.fr</a>
 
                     </td>
                 </tr></table></td>
