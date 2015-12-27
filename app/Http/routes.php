@@ -77,7 +77,7 @@ Route::resource('families','FamiliesController');
 
 
 
-
+Route::get('attendances/indexef','AttendancesController@indexef');
 Route::get('attendances/showef/{id}','AttendancesController@showef');
 Route::match(['get','post'],'delatt','AttendancesController@delatt');
 Route::match(['get','post'],'attbyalph','AttendancesController@attbyalph');

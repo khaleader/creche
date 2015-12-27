@@ -18,8 +18,8 @@ class AttendancesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('Famille',['only'=> ['showef']]);
-        $this->middleware('admin',['except'=> ['showef']]);
+        $this->middleware('Famille',['only'=> ['showef','indexef']]);
+        $this->middleware('admin',['except'=> ['showef','indexef']]);
 
     }
 
@@ -120,6 +120,12 @@ class AttendancesController extends Controller
 
 
 
+    }
+
+    public function indexef()
+    {
+       $children = Child::where('f_id',\Auth::user()->id)->get();
+        return view('attendances.indexef',compact('children'));
     }
 
 

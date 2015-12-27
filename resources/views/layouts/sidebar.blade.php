@@ -83,7 +83,7 @@
                         </a>
                     </li>
                       <li>
-                          <a href="{{  '#' }}">
+                          <a href="{{  action('AttendancesController@indexef') }}">
                               <img src=" {{ asset('images/pointages.png')  }}" class="sidebar_icons">
                               <span>absences</span>
                               <img src=" {{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">

@@ -27,7 +27,7 @@
                             <th>Date</th>
                             <th>Montant</th>
                             <th>Statut</th>
-                            <th>Actions</th>
+                            <th>Nom Enfant</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -43,7 +43,7 @@
                                     <td><span class="label {{ $bills->status == 0 ? 'label-danger' : 'label-success'  }} label-mini">
                                    {{ $bills->status == 0 ? 'Non Réglée ' : 'Réglée'  }}   </span>
                                     </td>
-                                    <td></td>
+                                    <td>   {{ $bills->child->nom_enfant  }}</td>
 
                                     <td><a href="{{  action('BillsController@showef',[$bills->id]) }}"><div  class="btn_details">Détails</div></a></td>
                                 </tr>

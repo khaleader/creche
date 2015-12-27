@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Bill;
 use App\Child;
 use App\Events\Event;
 use App\User;
@@ -69,7 +70,9 @@ class SendEmailToRespAfterRegistrationEvent extends Event
            $child = Child::findOrFail($this->child_id);
             $child->f_id =$user->id;
             $child->save();
-
+            $bill =  Bill::where('child_id',$this->child_id)->first();
+            $bill->f_id = $user->id;
+            $bill->save();
 
 
                 $info = [

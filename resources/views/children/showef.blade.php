@@ -21,12 +21,31 @@
                 </div>
             </section>
 
+
+
+
+
             <section class="panel">
+
                 <a href="{{  action('BillsController@showef',[$child->id]) }}">
+                    <?php  $status =  App\Bill::where('child_id',$child->id)->first();  ?>
+                    @if($status->status ==  1)
                     <div class="panel-body paimenent_fiche_enfant">
                         <i class="fa fa-money"></i><span>Paiement effectué</span>
-                    </div></a>
+                    </div>
+                    @else
+                        <div class="panel-body paimenent_fiche_enfant" style="background-color:#d3423e">
+                            <i class="fa fa-money"></i><span>Paiement non effectué</span>
+                        </div>
+                    @endif
+                </a>
             </section>
+
+
+
+
+
+
             <section class="panel">
                 <a href="{{  action('AttendancesController@showef',[$child->id]) }}">
                     <div class="panel-body absence_fiche_enfant">

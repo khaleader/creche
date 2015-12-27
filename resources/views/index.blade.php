@@ -43,12 +43,20 @@ session_start();
             <div class="col-md-4">
                 <section class="panel bloc">
                     <div class="panel-body">
-                        <a href="factures.html">
-                            <div class="bloc_info"><img src="images/factures.png" ><span class="count">11</span><p>Factures non réglées</p></div>
+                        <a href="{{ action('BillsController@indexef') }}">
+
+
+                          <div class="bloc_info"><img src="images/factures.png" >
+                              <span class="count">
+                                      <?php
+                                        echo   App\Bill::where('f_id',\Auth::user()->id)->where('status',0)->count();
+                                  ?>
+                              </span><p>Factures non réglées</p></div>
                         </a>
                     </div>
                 </section>
             </div>
+
         @endif
 
 

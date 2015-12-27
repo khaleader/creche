@@ -227,6 +227,7 @@ class ChildrenController extends Controller
                        }
 
                        $bill->child_id =$child->id;
+                       $bill->f_id = $user->id;
                        $bill->user_id = \Auth::user()->id;
                        $bill->save();
                    }
