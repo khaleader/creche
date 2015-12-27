@@ -63,6 +63,7 @@ class LogDemo extends Command
                $bill->user_id = $d->user_id;
                $bill->somme =  $d->somme;
                $bill->child_id =$d->child_id;
+                $bill->f_id = $d->f_id;
                 $bill->save();
                 break;
 
