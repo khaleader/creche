@@ -4,23 +4,35 @@
     @include('partials.alert-errors')
     @include('partials.alert-success')
     <div class="row">
+        {!! Form::open(['url' => action('SchoolsController@updatepassef'),'files'=>true]) !!}
         <div class="col-sm-3">
             <section class="panel">
                 <div class="panel-body">
+
                     <div class="form-group last">
-                        {{-- Form::model($school,['url'=>action('SchoolsController@update',[\Auth::user()->id]),'method'=>'put','files'=>true]) --}}
-
-
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div class="fileupload-new  Photo_profile" >
-                                <img class="pdp" src="{{ asset('images/no_avatar.jpg') }}" alt="" />
+                                <div class="pdp"></div>
+                                <?php
+                              $user =  \App\User::where('id',\Auth::user()->id)->where('type','famille')->first();
+                                if($user->photo)
+                                   {
+                                    $img =  asset('uploads/'.$user->photo);
+                                   } else{
+                                    $img =  asset('images/no_avatar.jpg');
+                                }
+
+                                ?>
+                                <img class="pdp" src="{{ $img }}" alt="" />
+
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
                             <div class="btn_upload">
+
                                                    <span class="btn btn-white btn-file">
                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
-                                                   <input type="file" class="default" name="photo" disabled />
+                                                   <input type="file" class="default" name="photo" id="uploadFile" />
                                                    </span>
 
                             </div>
@@ -37,19 +49,11 @@
 
             <section class="panel">
 
-                <header class="panel-heading tab-bg-dark-navy-blue">
-                    <ul class="nav nav-tabs nav-justified ">
-                        <li>
-                            <a data-toggle="tab" href="#password">
-                                Changer le mot de passe
-                            </a>
-                        </li>
-                    </ul>
-                </header>
+
                 <div class="panel-body">
-                    <div class="tab-content tasi-tab">
+                    <div>
                         <div id="password" class="tab-pane">
-                            {!! Form::open(['url' => action('SchoolsController@updatepassef')]) !!}
+
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Mot de passe actuel</label>
                                 <div class="form_ajout">
@@ -76,7 +80,7 @@
                                 </div>
                             </div>
                             <button class="btn_form" type="submit">Enregistrer</button>
-                            {!! Form::close() !!}
+
                         </div>
 
                     </div>
@@ -84,8 +88,37 @@
             </section>
             </tbody>
         </div>
-
+        {!! Form::close() !!}
     </div>
 
 
 @endsection
+
+
+@section('jquery')
+    <script>
+        $('div.pdp').hide();
+        $('#uploadFile').on('change',function(){
+            $('img.pdp').hide();
+            $('div.pdp').show();
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return;
+            if (/^image/.test( files[0].type)){ // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+
+                reader.onloadend = function(){ // set image data as background of div
+                    $('.pdp').attr('src','');
+                    $(".pdp").css({ "background-image":"url("+this.result+")",});
+                   $('span.fileupload-new').text('changer la photo');
+                }
+
+            }
+        });
+
+
+
+    </script>
+
+
+@stop

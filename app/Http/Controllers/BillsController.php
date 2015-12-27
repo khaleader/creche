@@ -23,9 +23,9 @@ class BillsController extends Controller
 
     public function __construct()
     {
-       $this->middleware('Famille',['only'=>['showef']]);
+       $this->middleware('Famille',['only'=>['showef','indexef']]);
         $this->middleware('auth');
-        $this->middleware('admin',['except'=>['showef']]);
+        $this->middleware('admin',['except'=>['showef','indexef']]);
 
     }
 
@@ -558,6 +558,28 @@ class BillsController extends Controller
             }
         }
         return  response('Unauthorized.', 401);
+    }
+
+
+
+    public function indexef()
+    {
+        $data='';
+        foreach(Auth::user()->enfants as $enfant)
+        {
+            $data .=$enfant->id.',';
+        }
+        $data = explode(',',substr($data,0,-1));
+       $enfant = Child::where('f_id',\Auth::user()->id)->get();
+        return view('bills.indexef',compact('enfant'));
+       /* foreach($data as $d)
+        {
+
+                $child = Child::where('id',$d)->get();
+
+
+        }
+        return  response('Unauthorized.', 401);*/
     }
 
 }

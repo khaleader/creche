@@ -342,22 +342,43 @@ class SchoolsController extends Controller
 
     public function updatepassef(Request $request)
     {
+
         $validator = Validator::make($request->all(),[
             'actualpass' => 'required|min:6',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed',
+            'photo'=>  'image'
         ],[
             'actualpass.required'=>'Le champ Mot de Pass actuel est Requis',
             'actualpass.min' => 'Le password doit avoir au minimum 6 caractères',
-            'password.min' => 'Le Nouveau mot de pass  doit avoir au minimum 6 caractères'
+            'password.min' => 'Le Nouveau mot de pass  doit avoir au minimum 6 caractères',
+            'photo.image' => "le type de l'image doit etre valide JPEG\PNG"
         ]);
         if($validator->passes())
         {
+            $image = $request->photo;
+            if(isset($image) && !empty($image))
+            {
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+            }else{
+                $pic = User::where('id',\Auth::user()->id)->where('type','famille')->first();
+                if(isset($pic->photo))
+                {
+                    $filename = $pic->photo;
+                }else{
+                    $filename = null;
+                }
+            }
+
+
             if(\Hash::check($request->actualpass ,\Auth::user()->getAuthPassword()))
             {
                 $user =  User::findOrFail(\Auth::user()->id);
                 $user->password =  \Hash::make($request->password);
+                $user->photo = $filename;
                 $user->save();
-                return redirect()->back()->with('success','Le Mot De pass a bien été modifié');
+                return redirect()->back()->with('success','Modifications réussies');
             }else{
                 return redirect()->back()->withErrors([
                     'Le Mot de pass Actuel est incorrect'

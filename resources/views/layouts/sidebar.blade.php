@@ -82,6 +82,21 @@
                             <img src="{{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">
                         </a>
                     </li>
+                      <li>
+                          <a href="{{  '#' }}">
+                              <img src=" {{ asset('images/pointages.png')  }}" class="sidebar_icons">
+                              <span>absences</span>
+                              <img src=" {{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">
+                          </a>
+                      </li>
+                      <li>
+                          <a href="{{  action('BillsController@indexef') }}">
+                              <img src="{{  asset('images/factures.png') }}" class="sidebar_icons">
+                              <span>Factures</span>
+                              <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
+                          </a>
+
+                      </li>
                 @endif
 
 
