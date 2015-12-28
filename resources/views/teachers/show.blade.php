@@ -7,7 +7,7 @@
             <section class="panel">
                 <div class="panel-body">
                     <div class="Photo_profile" >
-                        <img class="pdp" src="{{ asset('images/avatar5.jpg') }}" alt=""/>
+                        <img class="pdp" src="{{ $teacher->photo ? asset('uploads/'.$teacher->photo) : asset('images/no_avatar.jpg') }}" alt=""/>
                     </div>
                     <div class="nom">
                         <span>{{  $teacher->nom_teacher }}</span>
