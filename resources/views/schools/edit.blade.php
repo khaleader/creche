@@ -16,6 +16,7 @@
 
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div class="fileupload-new  Photo_profile" >
+                                <div class="pdp"></div>
                                 <img class="pdp" src="{{  $school->photo ? asset('uploads/'.$school->photo) :asset('images/no_avatar.jpg') }}" alt="" />
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
@@ -23,7 +24,7 @@
                                                    <span class="btn btn-white btn-file">
                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
-                                                   <input type="file" class="default" name="photo" />
+                                                   <input type="file" class="default" name="photo" id="uploadFile" />
                                                    </span>
 
                             </div>
@@ -251,6 +252,26 @@
 @section('jquery')
     <script>
         $(document).ready(function(){
+            $('div.pdp').hide();
+            $('#uploadFile').on('change',function(){
+                $('img.pdp').hide();
+                $('div.pdp').show();
+                var files = !!this.files ? this.files : [];
+                if (!files.length || !window.FileReader) return;
+                if (/^image/.test( files[0].type)){ // only image file
+                    var reader = new FileReader(); // instance of the FileReader
+                    reader.readAsDataURL(files[0]); // read the local file
+
+                    reader.onloadend = function(){ // set image data as background of div
+                        $('.pdp').attr('src','');
+                        $(".pdp").css({ "background-image":"url("+this.result+")",});
+                        $('span.fileupload-new').text('changer la photo');
+                    }
+
+                }
+            });
+
+
             $('#loader-to').hide();
             $('#submit').click(function(){
                 $('#loader-to').show();
