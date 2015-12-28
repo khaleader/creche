@@ -110,7 +110,7 @@
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Date de naissance</label>
                                 <div class="form_ajout">
-                                    <input value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
+                                    <input id="date_birth_child" value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
                                     <div class="icone_input"><i class="fa fa-"></i></div>
 
                                 </div>
@@ -344,7 +344,7 @@
               });
 
 
-              $('input[type="date"]').blur(function () {
+              $('#date_birth_child').blur(function () {
                   var inputDate = new Date(this.value);
                   var inputDate = inputDate.toLocaleDateString();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

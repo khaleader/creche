@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
+use Intervention\Image\Facades\Image;
+use Validator;
 
 class TeachersController extends Controller
 {
@@ -84,7 +86,13 @@ class TeachersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $teacher = Teacher::findOrFail($id);
+        if(\Auth::user()->id  == $teacher->user_id)
+        {
+            return view('teachers.edit',compact('teacher'));
+        }else{
+            return response("Vous n'etes pas autorisé à voir cette page");
+        }
     }
 
     /**
@@ -96,7 +104,60 @@ class TeachersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make([
+            $request->all(),
+            'num_fix' =>$request->num_fix,
+            'num_portable' =>$request->num_portable,
+            'adresse' => $request->adresse,
+            'photo' => $request->photo
+
+        ],[
+            'num_fix' => 'required',
+            'num_portable'=> 'required',
+            'adresse'=> 'required',
+            'photo' => 'image'
+        ],
+            [
+                'num_fix.required' => "Le tel fixe est requis",
+                'num_portable.required' => "Le tel portable est requis",
+                'adresse.required' => "L'adresse est requis",
+                'photo.image' => "L'image doit etre de type valide JPEG\PNG"
+
+            ]);
+         if($validator->passes())
+         {
+             $image = $request->photo;
+             if(isset($image) && !empty($image))
+             {
+                 $filename = $image->getClientOriginalName();
+                 $path = public_path('uploads/' . $filename);
+                 Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                 $teacher =  Teacher::findOrFail($id);
+                 $teacher->photo = $filename;
+                 $teacher->num_fix =$request->num_fix;
+                 $teacher->num_portable =$request->num_portable;
+                 $teacher->adresse =$request->adresse;
+                 $teacher->save();
+             }else{
+                 $teacher = Family::findOrFail($id);
+                 if(isset($teacher->photo))
+                 {
+                     $filename = $teacher->photo;
+                 }else{
+                     $filename = null;
+                 }
+                 $teacher->num_fix =$request->num_fix;
+                 $teacher->num_portable =$request->num_portable;
+                 $teacher->adresse =$request->adresse;
+                 $teacher->photo = $filename;
+                 $teacher->save();
+             }
+             return redirect()->back()->with('success','Modifications réussies !');
+
+         }else{
+             return redirect()->back()->withErrors($validator);
+         }
+
     }
 
     /**

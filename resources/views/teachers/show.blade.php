@@ -42,6 +42,8 @@
                     </h4>
                     <a href="{{ action('TeachersController@delete',[$teacher]) }}"><div class="btn_supprimer">Supprimer</div></a>
                     <a href="{{ action('TeachersController@archive',[$teacher]) }}"><div class="btn_archiver">Archiver</div></a>
+                    <a href="{{ action('TeachersController@edit',[$teacher->id]) }}"><div class="btn_archiver">modifier</div></a>
+
                 </header>
                 <div class="panel-body informations_general">
                     <table class="table  table-hover general-table table_informations ">
