@@ -10,6 +10,7 @@ class Family extends Model
 
 protected  $dates = ['deleted_at'];
 
+
 use SoftDeletes;
 
 

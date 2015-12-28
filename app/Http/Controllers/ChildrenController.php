@@ -322,7 +322,13 @@ class ChildrenController extends Controller
      */
     public function edit($id)
     {
-        //
+       $child = Child::findOrFail($id);
+        if(\Auth::user()->id  == $child->user_id)
+        {
+            return view('children.edit',compact('child'));
+        }else{
+            return response("Vous n'etes pas autorisé à voir cette page");
+        }
     }
 
     /**
@@ -334,7 +340,94 @@ class ChildrenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $validator = Validator::make([
+               $request->all(),
+           'numero_fixe' =>$request->numero_fixe,
+           'numero_portable' =>$request->numero_portable,
+           'adresse' => $request->adresse,
+           'photo' => $request->photo
+
+        ],[
+             'numero_fixe' => 'required',
+             'numero_portable'=> 'required',
+             'adresse'=> 'required',
+             'photo' => 'image'
+        ],
+            [
+                'numero_fixe.required' => "Le tel fixe est requis",
+                'numero_portable.required' => "Le tel portable est requis",
+                'adresse.required' => "L'adresse est requis",
+                'photo.image' => "L'image doit etre de type valide JPEG\PNG"
+
+            ]);
+           if($validator->passes())
+            {
+               if($request->transport == 1)
+               {
+                 if(Transport::where('user_id',\Auth::user()->id)->first()->somme > 0)
+                 {
+                  $child = Child::findOrFail($id);
+                   if($child->transport == 0)
+                   {
+                    $bill = Bill::where('child_id',$child->id)->orderBy('id','desc')->first();
+                       $bill->somme = ($bill->somme) + (Transport::where('user_id',\Auth::user()->id)->first()->somme);
+                       $bill->save();
+                       $child->transport = 1;
+                       $child->save();
+                    }
+                   }else{
+                       return redirect()->back()->withErrors(["Vous n'avez pas encore précisé un prix pour le transport"]);
+                   }
+               }elseif($request->transport == 0)
+               {
+                   $child = Child::findOrFail($id);
+                   if($child->transport == 1)
+                   {
+                       // anuuler le transport
+                       $bill = Bill::where('child_id',$child->id)->orderBy('id','desc')->first();
+                       $bill->somme = ($bill->somme) - (Transport::where('user_id',\Auth::user()->id)->first()->somme);
+                       $bill->save();
+                       $child->transport = 0;
+                       $child->save();
+                   }
+               }
+
+               $family = Family::where('email_responsable',$request->em)->first();
+                $family->adresse = $request->adresse;
+                $family->numero_fixe  =$request->numero_fixe;
+                $family->numero_portable = $request->numero_portable;
+                $family->save();
+
+                $image = $request->photo;
+                if(isset($image) && !empty($image))
+                {
+                    $filename = $image->getClientOriginalName();
+                    $path = public_path('uploads/' . $filename);
+                    Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                 $child =   Child::findOrFail($id);
+                    $child->photo = $filename;
+                    $child->save();
+                }else{
+                    $pic = Child::findOrFail($id);
+                    if(isset($pic->photo))
+                    {
+                        $filename = $pic->photo;
+                    }else{
+                        $filename = null;
+                    }
+                    $pic->photo = $filename;
+                    $pic->save();
+                }
+
+
+
+            return redirect()->back()->with('success','Modifications réussies !');
+            }else{
+                return redirect()->back()->withErrors($validator);
+            }
+
+
+
     }
 
     /**
