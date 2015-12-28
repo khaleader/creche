@@ -36,7 +36,12 @@
 
                                 <td>{{  ucwords($c->nom_enfant) }}</td>
                                 <td>{{  \Carbon\Carbon::parse($c->created_at)->format('d-m-Y')  }} </td>
-                                <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
+                                <td>
+                                    <?php  $counter =  App\Bill::where('child_id',$c->id)->where('status',0)->count(); ?>
+                                      <span class="label {{ $counter == 0 ? 'label-success' : 'label-danger' }} label-mini">
+                                    <i class="fa fa-money"></i></span>
+
+                                </td>
                                 <td>
                                     <a  class="delete-child"   href="{{ action('ChildrenController@delete',[$c->id]) }}" class="actions_icons">
                                         <i class="fa fa-trash-o liste_icons"></i></a>
@@ -79,7 +84,7 @@
                         @foreach($family as $f)
                             <tr>
 
-                                <td><img class="avatar" src="{{  asset('images/avatar6.jpg') }}"></td>
+                                <td><img class="avatar" src="{{ $f->photo ?  asset('uploads/'.$f->photo) : asset('images/no_avatar.jpg') }}"></td>
                                 <td>
                                     @if($f->responsable == 0)
                                         {{  $f->nom_mere }}
@@ -88,7 +93,28 @@
                                     @endif
                                 </td>
                                 <td> {{  $f->children->count() }}</td>
-                                <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
+
+                                <td>
+                                    <?php
+                                    foreach ($f->children as $c )
+                                    {
+                                        foreach($c->bills as $b)
+                                        {
+                                            if($b->status == 0)
+                                            {
+                                                echo  '<span class="label label-danger label-mini"><i class="fa fa-money"></i></span>';
+                                                break;
+                                            }
+                                            else
+                                            {
+                                                echo  '<span class="label label-success label-mini"><i class="fa fa-money"></i></span>';
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    ?>
+                                </td>
+
                                 <td>
                                     <a  href="{{  action('FamiliesController@delete',[$f->id]) }}" class="actions_icons delete-family">
                                         <i class="fa fa-trash-o liste_icons"></i></a>

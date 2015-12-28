@@ -9,7 +9,7 @@
             <section class="panel">
                 <div class="panel-body">
                     <div class="Photo_profile">
-                        <img class="pdp" src="{{ asset('images/avatar6.jpg') }}" alt=""/>
+                        <img class="pdp" src="{{  $family->photo? asset('uploads/'.$family->photo):asset('images/no_avatar.jpg')  }}" alt=""/>
                     </div>
                     <div class="nom">
                         @if($family->responsable == 0)
@@ -63,6 +63,8 @@
                     </h4>
                     <a href="{{ action('FamiliesController@delete',[$family->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
                     <a href="{{ action('FamiliesController@archive',[$family->id]) }}"><div class="btn_archiver">Archiver</div></a>
+                    <a href="{{ action('FamiliesController@edit',[$family->id]) }}"><div class="btn_archiver">modifier</div></a>
+
                 </header>
                 <div class="panel-body informations_general">
                     <table class="table  table-hover general-table table_informations ">

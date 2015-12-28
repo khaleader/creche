@@ -101,7 +101,13 @@
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src="images/avatar6.jpg"></td>
+                            <td>
+                                @if(!empty($family->photo))
+                                    <img class="avatar" src=" {{ asset('uploads/'.$family->photo)  }}">
+                                @else
+                                    <img class="avatar" src=" {{ asset('images/'.'no_avatar.jpg')  }}">
+                                @endif
+                            </td>
                             <td>
                             @if($family->responsable == 0)
                                 {{  $family->nom_mere }}

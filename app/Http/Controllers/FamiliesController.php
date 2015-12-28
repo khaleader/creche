@@ -9,6 +9,8 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
+use Validator;
 
 class FamiliesController extends Controller
 {
@@ -135,7 +137,13 @@ class FamiliesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $family = Family::findOrFail($id);
+        if(\Auth::user()->id  == $family->user_id)
+        {
+            return view('families.edit',compact('family'));
+        }else{
+            return response("Vous n'etes pas autorisé à voir cette page");
+        }
     }
 
     /**
@@ -147,7 +155,65 @@ class FamiliesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+          $validator = Validator::make([
+            $request->all(),
+            'numero_fixe' =>$request->numero_fixe,
+            'numero_portable' =>$request->numero_portable,
+            'adresse' => $request->adresse,
+            'photo' => $request->photo
+
+        ],[
+            'numero_fixe' => 'required',
+            'numero_portable'=> 'required',
+            'adresse'=> 'required',
+            'photo' => 'image'
+        ],
+            [
+                'numero_fixe.required' => "Le tel fixe est requis",
+                'numero_portable.required' => "Le tel portable est requis",
+                'adresse.required' => "L'adresse est requis",
+                'photo.image' => "L'image doit etre de type valide JPEG\PNG"
+
+            ]);
+          if($validator->passes())
+          {
+
+
+
+              $image = $request->photo;
+              if(isset($image) && !empty($image))
+              {
+                  $filename = $image->getClientOriginalName();
+                  $path = public_path('uploads/' . $filename);
+                  Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                  $family =   Family::findOrFail($id);
+                  $family->photo = $filename;
+                  $family->numero_fixe =$request->numero_fixe;
+                  $family->numero_portable =$request->numero_portable;
+                  $family->adresse =$request->adresse;
+                  $family->save();
+              }else{
+                  $family = Family::findOrFail($id);
+                  if(isset($family->photo))
+                  {
+                      $filename = $family->photo;
+                  }else{
+                      $filename = null;
+                  }
+                  $family->numero_fixe =$request->numero_fixe;
+                  $family->numero_portable =$request->numero_portable;
+                  $family->adresse =$request->adresse;
+                  $family->photo = $filename;
+                  $family->save();
+              }
+
+              return redirect()->back()->with('success','Modifications réussies !');
+          }else{
+              return redirect()->back()->withErrors($validator);
+          }
+
+
+
     }
 
     /**
