@@ -38,6 +38,15 @@
                         </ul>
                     </div>
                 </div>
+                <ul class="unstyled inbox-pagination liste_arrow">
+
+                    <li>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$bills->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
+                    </li>
+                    <li>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$bills->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
+                    </li>
+                </ul>
                 <div class="search-form">
                     <form action="#">
                         <input id="bill-search-inst" type="text" name="search" class="search-input" placeholder="Cherchez un enfant...">
@@ -46,6 +55,7 @@
                         </button>
                     </form>
                 </div>
+
                 <div class="panel-body">
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
