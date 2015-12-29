@@ -1,4 +1,14 @@
 @extends('layouts.default')
+@section('css')
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/completer/completer.css') }}"/>
+    <script src="{{  asset('css/completer/completer.js') }}"></script>
+
+
+@endsection
+
+
+
 @section('content')
         @include('partials.alert-success')
         @include('partials.alert-errors')
@@ -30,7 +40,7 @@
 
   <!--  3 links nav -->
             <section class="panel">
-                <a href="enfants.html">
+                <a href="{{ action('ChildrenController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{ asset('images/enfants.png') }}" >
                         <span class="count"> &nbsp;{{   App\Child::where('user_id',\Auth::user()->id)->count() }}
@@ -39,7 +49,7 @@
                 </a>
             </section>
             <section class="panel">
-                <a href="familles.html">
+                <a href="{{ action('FamiliesController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{  asset('images/familles.png') }}" ><span class="count">&nbsp;
                              {{  App\Family::where('user_id',\Auth::user()->id)->count() }}
@@ -49,7 +59,7 @@
             </section>
 
             <section class="panel">
-                <a href="professeurs.html">
+                <a href="{{   action('TeachersController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{  asset('images/professeurs.png') }}" >
                         <span class="count">{{  App\Teacher::where('user_id',\Auth::user()->id)->count()  }}</span>
@@ -110,23 +120,57 @@
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Date de naissance</label>
                                 <div class="form_ajout">
-                                    <input id="date_birth_child" value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
+                                    <input id="date_birth_child"  value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" >
                                     <div class="icone_input"><i class="fa fa-"></i></div>
 
                                 </div>
                             </div>
 
+                        <div class="form_champ">
+                            <label for="cname" class="control-label col-lg-3">Le Sexe</label>
+                            <div class="form_ajout">
+                                <select name="sexe" class="form_ajout_input" >
+                                    <option value="garcon">Garcon</option>
+                                    <option value="fille">Fille</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Nom du pére</label>
                                 <div class="form_ajout">
-                                    <input value="{{ Request::old('nom_pere')?:'' }}" type="text" name="nom_pere" class="form_ajout_input" placeholder="Entrez le nom du père">
+                                    <?php
+                                    $array =  App\Family::where('user_id',\Auth::user()->id)->lists('nom_pere','nom_pere')->toArray();
+                                    $out = array_values($array);
+                                    $out = json_encode($out);
+                                    ?>
+                                    <input id="nom_pere"  completer data-suggest="true"
+                                           data-source='<?php echo $out  ?>'
+                                           value="{{ Request::old('nom_pere')?:'' }}"
+                                           type="text" name="nom_pere" class="form_ajout_input"
+                                           placeholder="Entrez le nom du père">
 
                                 </div>
                             </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Nom de la mère</label>
                                 <div class="form_ajout">
-                                    <input value="{{ Request::old('nom_mere')?:'' }}" type="text" name="nom_mere" class="form_ajout_input" placeholder="Entrez le nom de la mère">
+                                    <?php
+                                    $array =  App\Family::where('user_id',\Auth::user()->id)->lists('nom_mere','nom_mere')->toArray();
+                                    $out = array_values($array);
+                                    $out = json_encode($out);
+                                     ?>
+                                    <input value="{{ Request::old('nom_mere')?:'' }}"  completer data-suggest="true"
+                                           data-source='<?php echo $out  ?>'
+                                           type="text" name="nom_mere"
+                                           class="form_ajout_input" placeholder="Entrez le nom de la mère">
 
                                 </div>
                             </div>
@@ -136,9 +180,7 @@
                                     <select name="responsable" class="form_ajout_input" placeholder="Choisissez le responsable">
                                         <option value="1">Père</option>
                                         <option value="0">Mère</option>
-
                                     </select>
-
                                 </div>
                             </div>
                         <div class="form_champ">
@@ -312,7 +354,8 @@
 
     </div>
         <span id="prices" style="display: none;"></span>
-    <div class="row"></div>
+    <div class="row">
+    </div>
     @endsection
 
 @section('jquery')
@@ -320,6 +363,14 @@
           $(document).ready(function() {
               $('#loader-to').hide();
               $('div.pdp').hide();
+
+
+
+
+
+
+
+
               $('#submit').click(function () {
                   $('#loader-to').show();
               });
@@ -436,6 +487,12 @@
 
                   }
               });
+
+
+
+
+
+
           });
 
     </script>

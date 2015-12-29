@@ -112,8 +112,32 @@
                     $(".pdp").css({ "background-image":"url("+this.result+")",});
                    $('span.fileupload-new').text('changer la photo');
                 }
-
             }
+
+         /*   var image = $('#uploadFile');
+            var formData = new FormData();
+            formData.append('photo', image[0].files[0]);
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('SchoolsController@upimage')}}',
+                headers: {
+                    'X-CSRF-TOKEN': CSRF_TOKEN
+                },
+                data: 'image=' + formData,
+                type: 'post',
+                dataType: 'json',
+                contentType: 'multipart/form-data',
+                processData: false,
+                success: function (data) {
+                    if(data)
+                    {
+                         console.log(data);
+                    }
+                }
+            });*/
+
+
+
         });
 
 

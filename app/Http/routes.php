@@ -26,6 +26,7 @@ Route::post('schools/updatepass','SchoolsController@updatepass');
 Route::post('schools/category','SchoolsController@category');
 Route::match(['get','post'],'schools/fillcatbills','SchoolsController@show_cat_bills');
 Route::match(['get','post'],'schools/schoolbyalph','SchoolsController@schoolbyalph');
+Route::post('schools/upimage','SchoolsController@upimage');
 
   /*
    * connexion login

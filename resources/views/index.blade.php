@@ -112,7 +112,7 @@ session_start();
                 ?>
                 <h2 id="horloge_jour"><?php echo $day[$date[0]].' '.$date[1] ;   ?></h2>
                 <h3 id="horloge_mois"><?php echo ucfirst($month[$date[2]-1]).' '.ucfirst(strftime('%Y'));   ?></h3>
-                <span id="horloge_time"><?php echo strftime('%H %M');   ?></span>
+                <span id="horloge_time"><?php echo strftime('%H : %M');   ?></span>
             </div>
         </section>
     </div>

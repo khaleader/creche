@@ -36,8 +36,6 @@
                         }else{
                         echo 'Bienvenue '.$resp->nom_pere;
                     }
-
-
                   ?>
              @else
 
@@ -46,9 +44,9 @@
 
             @endif
         </a>
-       <img src="{{  asset('images/user.png') }}" alt="user">
+       <img src="{{ \Auth::user()->photo ? asset('uploads/'.\Auth::user()->photo ):asset('images/user.png') }}" alt="user">
 
-
+</a>
     </div>
     <a class="deconnect" href="{{  action('Auth\AuthController@getLogout') }}"><img src="{{  asset('images/logout.png') }}"></a>
 </div>

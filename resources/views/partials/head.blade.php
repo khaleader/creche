@@ -35,10 +35,7 @@
     <!--/************** alertify alert ***********/-->
 
 
-
-
-
-
+    @yield('css')
 
 
     <link href=" {{  asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">

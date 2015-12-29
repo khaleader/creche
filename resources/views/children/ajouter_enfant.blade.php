@@ -72,12 +72,21 @@
                             </div>
                         </div>
                         <div class="form_champ">
+                            <label for="cname" class="control-label col-lg-3">Le Sexe</label>
+                            <div class="form_ajout">
+                                <select name="sexe" class="form_ajout_input">
+                                    <option value="garcon">Garcon</option>
+                                    <option value="fille">Fille</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Le Transport</label>
                             <div class="form_ajout">
                                 <select name="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option selected value="0">Non</option>
                                     <option value="1">Oui</option>
-
                                 </select>
 
                             </div>

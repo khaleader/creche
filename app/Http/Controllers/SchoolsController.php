@@ -24,8 +24,9 @@ class SchoolsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('Famille',['only'=> 'editef','updatepassef']);
-        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_cat_bills','editef','updatepassef']]);
+        $this->middleware('Famille',['only'=> 'editef','updatepassef','upimage']);
+        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category',
+            'show_cat_bills','editef','updatepassef','upimage']]);
 
 
     }
@@ -388,6 +389,15 @@ class SchoolsController extends Controller
             return redirect()->back()->withErrors($validator);
         }
     }
+
+    // upload image compte famille with ajax
+    public function upimage(Request $request)
+    {
+
+
+    }
+
+
 
 
 
