@@ -142,3 +142,16 @@ Route::match(['get','post'],'teachers/archiver','TeachersController@archiver');
 Route::match(['get'],'teachers/delete/{id}','TeachersController@delete');
 Route::match(['get'],'teachers/archive/{id}','TeachersController@archive');
 
+
+
+/* statistics*/
+Route::get('statistics/mb','StatisticsController@monthly_bills');
+Route::get('statistics/mabs','StatisticsController@monthly_absence'); // index attendances statistics
+Route::post('statistics/absence_raison','StatisticsController@absence_raison'); // trier en ajax normale ou maladie
+Route::match(['get','post'],'statistics/supprimer_att','StatisticsController@supprimer_att'); // supprimer att en ajax
+Route::match(['get','post'],'statistics/archiver_att','StatisticsController@archiver_att'); //archiver att en ajax
+Route::get('statistics/delete_att/{id}','StatisticsController@delete_att');
+Route::get('statistics/archive_att/{id}','StatisticsController@archive_att');
+Route::get('statistics/newsbsc','StatisticsController@new_subscribers');
+
+Route::resource('statistics','StatisticsController');

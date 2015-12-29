@@ -463,6 +463,7 @@ class ChildrenController extends Controller
                 {
                    $c=  Child::onlyTrashed()->findOrFail($id);
                     $c->bills()->forceDelete();
+                    $c->attendances()->forceDelete();
                     $c->forceDelete();
 
                 }
@@ -482,6 +483,7 @@ class ChildrenController extends Controller
             {
                 $child = Child::findOrFail($id);
                 $child->bills()->delete();
+                $child->attendances()->delete();
                 $child->delete();
                 if($child->trashed())
                 {
@@ -505,6 +507,7 @@ class ChildrenController extends Controller
         {
            $c = Child::onlyTrashed()->findOrFail($id);
             $c->bills()->forceDelete();
+            $c->attendances()->forceDelete();
             $c->forceDelete();
         }
         return redirect('children')->with('success',"L'enfant a bien été supprimé");
@@ -514,6 +517,7 @@ class ChildrenController extends Controller
     {
         $child =Child::findOrFail($id);
         $child->bills()->delete();
+        $child->attendances()->delete();
         $child->delete();
 
         if($child->trashed())

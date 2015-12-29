@@ -26,7 +26,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/alertify/alertify.css') }}"/>
     <!-- Default theme -->
-   <!-- <link rel="stylesheet" href="{{ asset('css/alertify/default.css') }}"/> -->
+    <link rel="stylesheet" href="{{ asset('css/alertify/default.css') }}"/> 
   <!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.5.0/css/themes/default.min.css"/> -->
     <!-- Semantic UI theme -->
     <link rel="stylesheet" href="{{ asset('css/alertify/semantic.css') }}"/>

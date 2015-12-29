@@ -3,15 +3,22 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Attendance extends Model
 {
+use SoftDeletes;
 
-protected $dates = ['start'];
+protected $dates = ['start','deleted_at'];
 
 
     public function child()
     {
-        return $this->belongsTo('App\Child');
+        return $this->belongsTo('App\Child')->withTrashed();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

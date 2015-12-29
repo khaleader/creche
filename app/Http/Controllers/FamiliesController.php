@@ -252,6 +252,7 @@ class FamiliesController extends Controller
                 foreach($onlyTrashed->children as $c)
                 {
                     $c->bills()->forceDelete();
+                    $c->attendances()->forceDelete();
                 }
                $onlyTrashed->children()->forceDelete();
                 $onlyTrashed->forceDelete();
@@ -274,6 +275,7 @@ class FamiliesController extends Controller
                 foreach($family->children as $child)
                 {
                     $child->bills()->delete();
+                    $child->attendances()->delete();
                 }
                 $family->children()->delete();
                 $family->delete();
@@ -293,6 +295,7 @@ class FamiliesController extends Controller
           foreach($family->children as $child)
           {
               $child->bills()->delete();
+              $child->attendances()->delete();
           }
           $family->children()->delete();
           $family->delete();
@@ -301,7 +304,7 @@ class FamiliesController extends Controller
           foreach($f->children as $child)
           {
               $child->bills()->forceDelete();
-              $child->attendances()->delete();
+              $child->attendances()->forceDelete();
           }
           $f->children()->forceDelete();
           $f->forceDelete();

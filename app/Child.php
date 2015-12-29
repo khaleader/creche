@@ -25,7 +25,7 @@ protected $dates = ['date_naissance','deleted_at'];
 
     public function attendances()
     {
-        return $this->hasMany('App\Attendance');
+        return $this->hasMany('App\Attendance')->withTrashed();
     }
 
     public function user()

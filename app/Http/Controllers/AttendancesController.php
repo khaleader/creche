@@ -180,6 +180,7 @@ class AttendancesController extends Controller
             $event->color = $color;
             $event->allDay = $allDay;
             $event->child_id = $child_id;
+            $event->user_id = \Auth::user()->id;
             $event->save();
 
             $child =Child::findOrFail($child_id);

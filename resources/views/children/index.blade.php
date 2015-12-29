@@ -165,7 +165,6 @@
             });
 
             $('#delete-children').click(function(){
-
                 var boxes;
                 var status;
                 $("input[name='select[]']").each(function(){
@@ -192,8 +191,6 @@
                        console.log(data);
                     }
                 });
-
-
             });
 
 

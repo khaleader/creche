@@ -48,7 +48,7 @@
 
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{  action('StatisticsController@index') }}">
                         <img src="{{  asset('images/statistiques.png') }}" class="sidebar_icons">
                         <span>Statistiques</span>
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">

@@ -6583,7 +6583,62 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
 }
 
 
+/*--------------------------------------------*/
+/*---------Statistiques----------------------*/
+/*-----------------------------------------*/
 
+.bloc_statistique span{
+    display: inline-block;
+    margin-top: 2px;
+    font-family: open sans;
+    font-size: 42px;
+    color: #39546c;
+    font-weight: normal;
+    position: relative;
+    margin-left: 5px;
+}
+.bloc_statistique p{
+    font-weight: normal;
+    font-size: 16px;
+    color: #687b8c;
+    font-family: open sans;
+    margin-top: -20px;
+    margin-left: 57px;
+}
+
+.bloc_statistique_details span{
+    display: inline-block;
+    margin-top: -4px;
+    font-family: open sans;
+    font-size: 18px;
+    color: #39546c;
+    font-weight: 700px;
+    position: relative;
+    float: left;
+    margin-right: 5px;
+}
+.bloc_statistique_details p{
+    font-weight: normal;
+    font-size: 14px;
+    color: #687b8c;
+    font-family: open sans;
+    margin-left: 18px;
+}
+.bloc_statistique_d1{
+    display: inline-block;
+    float: left;
+    width: 150px;
+}
+.bloc_statistique_d2{
+    display: inline-block;
+
+    width: 150px;
+}
+.bloc_statistique_details{
+    margin-top: 20px;
+    border-top: 1px solid #dce7ea;
+    padding-top: 15px;
+}
 
 
 

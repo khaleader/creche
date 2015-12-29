@@ -115,13 +115,6 @@
                                      $last =  substr($gather,0,-1);
                                    $dates = explode(',',$last);
                                     echo max($dates);
-
-
-
-
-
-
-
                                ?>
                             </td>
 
