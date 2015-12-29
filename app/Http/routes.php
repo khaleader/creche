@@ -123,6 +123,7 @@ Route::get('bills/delete/{id}','BillsController@delete');
 // for bills details and print
 Route::get('bills/imprimer/{id}','BillsController@imprimer');
 Route::get('bills/details/{id}','BillsController@details');
+Route::get('bills/detailsef/{id}','BillsController@detailsef');
 Route::resource('bills','BillsController');
 
 

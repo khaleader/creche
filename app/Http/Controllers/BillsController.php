@@ -23,9 +23,9 @@ class BillsController extends Controller
 
     public function __construct()
     {
-       $this->middleware('Famille',['only'=>['showef','indexef']]);
+       $this->middleware('Famille',['only'=>['showef','indexef','detailsef']]);
         $this->middleware('auth');
-        $this->middleware('admin',['except'=>['showef','indexef']]);
+        $this->middleware('admin',['except'=>['showef','indexef','detailsef']]);
 
     }
 
@@ -84,8 +84,14 @@ class BillsController extends Controller
     // factures details
     public function details($id)
     {
-        $bill = Bill::findOrFail($id);
+        $bill = Bill::where('user_id',\Auth::user()->id)->where('id',$id)->first();
         return view('bills.details', compact('bill'));
+    }
+
+    public function detailsef($id)
+    {
+        $bill = Bill::where('f_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('bills.detailsef', compact('bill'));
     }
 
     // factures print

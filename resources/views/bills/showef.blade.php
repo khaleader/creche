@@ -45,7 +45,7 @@
                                     </td>
                                     <td></td>
 
-                                    <td><a href="#"><div  class="btn_details">Détails</div></a></td>
+                                    <td><a href="{{ action('BillsController@detailsef',[$bills->id]) }}"><div  class="btn_details">Détails</div></a></td>
                                 </tr>
                             @endunless
                         @endforeach
