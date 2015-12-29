@@ -72,8 +72,10 @@
             <h2>{{  "pointages" }}</h2>
         @elseif(Route::current()->getUri() == 'bills' or Request::is('bills/*') )
             <h2>{{  "factures" }}</h2>
+        @elseif(Route::current()->getUri() == 'statistics' or Request::is('statistics/*') )
+            <h2>{{ 'statistiques' }}</h2>
         @else
-            <h2>{{ 'unknown' }}</h2>
+           <h2>{{  'inconnu' }}</h2>
         @endif
 
         <div class="sidebar-toggle-box">
