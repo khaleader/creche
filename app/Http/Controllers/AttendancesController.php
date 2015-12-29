@@ -227,5 +227,10 @@ class AttendancesController extends Controller
         $tab =  \Input::all();
         $obj = Attendance::findOrFail($tab['id']);
         $obj->delete();
+        if($obj->trashed())
+        {
+          $att =  Attendance::onlyTrashed()->findOrFail($tab['id']);
+            $att->forceDelete();
+        }
     }
 }
