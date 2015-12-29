@@ -27,7 +27,7 @@
           <aside class="col-lg-3">
                     <h4 class="drg-event-title">Les raisons d'absence</h4>
                     <div id='external-events'>
-                        <div class='external-event label label-primary'>Absence</div>
+                        <div class='external-event label label-primary'>Normale</div>
                         <div class='external-event label label-info'>Maladie</div>
 
                     </div>
@@ -104,7 +104,7 @@
                var child_id = '{{  $child->id }}';
                var title =  copiedEventObject.title;
                var color;
-               if(title == 'Absence')
+               if(title == 'Normale')
                {
                    color = '#7f64b5';
                }else{
