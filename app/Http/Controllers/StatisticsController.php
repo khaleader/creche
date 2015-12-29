@@ -176,9 +176,9 @@ class StatisticsController extends Controller
                                 <td><span class="label '.$class.' label-mini">'.$text.'</span></td>
 
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="'.action('StatisticsController@delete_att',[$t]).'" class="actions_icons">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                <a href="'.action('StatisticsController@archive_att',[$t]).'"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
 
