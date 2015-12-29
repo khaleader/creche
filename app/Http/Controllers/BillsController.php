@@ -202,9 +202,9 @@ class BillsController extends Controller
                                    Réglée </span>
                             </td>
                             <td>
-                                <a href="' . action('BillsController@delete', [$bills->id]) . '" class="actions_icons delete-bill">
+                                <a href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-bill" href="' . action('BillsController@archive', [$bills->id]) . '"><i class="fa fa-archive liste_icons"></i>
+                                <a class="archive-bill" href="' . '#'. '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
                             <td><a href="' . action('BillsController@details', [$bills->id]) . '"><div  class="btn_details">Détails</div></a></td>
