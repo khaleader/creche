@@ -60,9 +60,19 @@
                         <div class="form_ajout">
                             <input disabled value="{{ \Carbon\Carbon::parse($child->date_naissance)->toDateString() }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
                             <div class="icone_input"><i class="fa fa-"></i></div>
+                        </div>
+                    </div>
+                    <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Le Sexe</label>
+                        <div class="form_ajout">
+                            <input type="text" disabled value="{{ $child->sexe }}" name="sexe" class="form_ajout_input">
 
                         </div>
                     </div>
+
+
+
+
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Le Transport</label>
                         <div class="form_ajout">

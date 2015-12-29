@@ -80,6 +80,7 @@ class ChildrenController extends Controller
             $child = new Child();
             $child->date_naissance = Carbon::parse($request->date_naissance);
             $child->transport = $request->transport;
+            $child->sexe = $request->sexe;
             $child->nom_enfant = ucfirst($request->nom_enfant);
             $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
             $child->user_id = \Auth::user()->id;
@@ -183,6 +184,7 @@ class ChildrenController extends Controller
             $child = new Child();
             $child->date_naissance = Carbon::parse($request->date_naissance);
             $child->nom_enfant = $request->nom_enfant ;
+            $child->sexe = $request->sexe;
             $child->age_enfant =$child->date_naissance->diffInYears(Carbon::now());
 
             $child->transport = $request->transport;
