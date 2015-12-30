@@ -2,7 +2,7 @@
 
 
 @section('content')
-
+    @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-12">
             <section class="panel">
@@ -251,6 +251,9 @@
                         $('tbody').append(data);
                     }
                 });
+            });
+            $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
+                $(".alert-success").alert('close');
             });
 
         });
