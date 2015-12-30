@@ -102,15 +102,17 @@ class AttendancesController extends Controller
     public function show($id)
     {
 
-        $child = Child::findOrFail($id);
+        $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
         if(!empty($child))
         {
             if($child->user_id == \Auth::user()->id)
             {
-                // $events = Attendance::where('child_id','=',$child->id)->get();
-                $events =  $child->attendances;
-                $resultat = json_encode($events);
-                $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
+                $events = Attendance::where('child_id',$child->id)->get();
+              //  $events =  $child->attendances;//->whereLoose('deleted_at',null);
+                    $resultat = json_encode($events);
+                    $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
+
+
                 return view('attendances.show')->with(['child'=>$child,'resultat'=>$resultat]);
             }
         }else{
@@ -225,12 +227,15 @@ class AttendancesController extends Controller
     public function delatt()
     {
         $tab =  \Input::all();
-        $obj = Attendance::findOrFail($tab['id']);
-        $obj->delete();
-        if($obj->trashed())
-        {
-          $att =  Attendance::onlyTrashed()->findOrFail($tab['id']);
-            $att->forceDelete();
-        }
-    }
+           $obj = Attendance::findOrFail($tab['id']);
+           $obj->delete();
+           if($obj->trashed())
+           {
+               $att =  Attendance::onlyTrashed()->findOrFail($tab['id']);
+               $att->forceDelete();
+           }
+       }
+
+
+
 }

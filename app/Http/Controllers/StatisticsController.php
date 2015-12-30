@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\Child;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,21 @@ class StatisticsController extends Controller
             ->where('user_id',\Auth::user()->id)
             ->count();
 
+        /* statistics new subscribers */
+        $ns_number = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
+            ->where('user_id',\Auth::user()->id)
+            ->count();
+        $garcons = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
+            ->where('user_id',\Auth::user()->id)
+            ->where('sexe','garcon')
+            ->count();
+        $filles = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
+            ->where('user_id',\Auth::user()->id)
+            ->where('sexe','fille')
+            ->count();
+
+
+
 
 
 
@@ -44,7 +60,11 @@ class StatisticsController extends Controller
             [
                 'count_absence'=>$count_absence,
                 'count_abs_normale' => $count_abs_normale,
-                'count_abs_maladie' => $count_abs_maladie
+                'count_abs_maladie' => $count_abs_maladie,
+                'ns_number' =>$ns_number,
+                'garcons' => $garcons,
+                'filles' => $filles
+
 
             ]
         );
@@ -261,10 +281,69 @@ class StatisticsController extends Controller
     }
 
 
-    public function new_subscribers()
+
+
+    /*          new subscribers             */
+    public function new_subscribers() // index new subscribers
     {
-        return view('statistics.new_subscribers');
+       $children = Child::where('user_id',\Auth::user()->id)->orderBy('created_at','desc')->paginate(10);
+        return view('statistics.new_subscribers',compact('children'));
     }
+
+
+    public function trier_sexe()
+    {
+        if(\Request::ajax())
+        {
+            $sexe = \Input::get('sexe');
+            $enfants = Child::where('user_id',\Auth::user()->id)
+                ->where('sexe',$sexe)
+                ->orderBy('created_at','desc')->get();
+
+            foreach($enfants as $enfant)
+            {
+                foreach($enfant->bills as $e)
+                {
+                    if($e->status == 1)
+                        $class = 'label-success';
+                    else
+                        $class = 'label-danger';
+                }
+                if($enfant->photo)
+                    $photo =  asset('uploads/'.$enfant->photo);
+                else
+                    $photo =  asset('images/no_avatar.jpg');
+
+                echo ' <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input type="checkbox" name="select[]" value="'.$enfant->id.'">
+
+                                    </div>
+                                </div></td>
+                            <td><img class="avatar" src=" '. $photo .' "></td>
+                            <td>'. $enfant->nom_enfant .'</td>
+                            <td>'.  $enfant->date_naissance->format('d-m-Y') .' </td>
+                            <td><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
+                            <td>
+                                <a href=" '.action('ChildrenController@delete',[$enfant]).' " class="actions_icons delete-child">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a class="archive-child" href="'.action('ChildrenController@archive',[$enfant]).'"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+
+                            <td><a href="'. action('ChildrenController@show',[$enfant->id]).'"><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+            }
+
+
+
+
+        }
+    }
+
+
+
 
 
 }

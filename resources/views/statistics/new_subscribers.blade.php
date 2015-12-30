@@ -13,7 +13,7 @@
                 <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
-                            <input type="checkbox" class="">
+                            <input type="checkbox" class="select-all">
                         </div>
 
                         <div class="btn-group">
@@ -32,8 +32,8 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                            <li><a id="delete-children" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
+                            <li><a id="archive-children" href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
                     </div>
                     <div class="btn-group hidden-phone">
@@ -42,8 +42,8 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a href="#">Garçons</a></li>
-                            <li><a href="#">Filles</a></li>
+                            <li><a class="sexe" href="#">Garcon</a></li>
+                            <li><a class="sexe" href="#">Fille</a></li>
                         </ul>
                     </div>
 
@@ -54,10 +54,10 @@
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$children->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$children->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -75,133 +75,189 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
+                         @foreach($children as $child)
+                        <tr id="{{  ucwords($child->nom_enfant) }}">
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
-                                        <input type="checkbox" >
+                                        <input type="checkbox" value="{{ $child->id  }}"  name="select[]">
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src="images/avatar1.jpg"></td>
-                            <td>Amine rihani</td>
-                            <td>15-09-2015 </td>
-                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></td>
                             <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                @if(!empty($child->photo))
+                                    <img class="avatar" src=" {{ asset('uploads/'.$child->photo)  }}">
+                                @else
+                                    <img class="avatar" src=" {{ asset('images/'.'avatar4.jpg')  }}">
+                                @endif
                             </td>
 
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
+                            <td>{{  ucwords($child->nom_enfant) }}</td>
+                            <td>{{  \Carbon\Carbon::parse($child->created_at)->format('d-m-Y')  }} </td>
+                            <?php
 
-                                    </div>
-                                </div></td>
-                            <td><img class="avatar" src="images/avatar2.jpg"></td>
-                            <td>Salma briki</td>
-                            <td>15-09-2015 </td>
-                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
+                            $counter =  App\Bill::where('child_id',$child->id)->where('status',0)->count(); ?>
+
                             <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href="Fiche enfant.html"><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td><img class="avatar" src="images/avatar3.jpg"></td>
-                            <td>karim mrini</td>
-                            <td>15-09-2015 </td>
-                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td><img class="avatar" src="images/avatar4.jpg"></td>
-                            <td>Jihad ismaili</td>
-                            <td>15-09-2015 </td>
-                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td><img class="avatar" src="images/avatar3.jpg"></td>
-                            <td>Othman zitouni</td>
-                            <td>15-09-2015 </td>
-                            <td><span class="label label-danger label-mini"><i class="fa fa-money"></i></span></td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td><img class="avatar" src="images/avatar2.jpg"></td>
-                            <td>Hind souadi</td>
-                            <td>15-09-2015 </td>
-                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                @if(App\Bill::all()->count() == 0)
+                                    {{ 'pas de factures'  }}
+                                @else
+                                    <span class="label {{ $counter == 0 ? 'label-success' : 'label-danger' }} label-mini">
+                                    <i class="fa fa-money"></i>
+                                </span>
+                                @endif
 
                             </td>
 
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
+                            <td>
+                                <a  class="delete-child actions_icons"   href="{{ action('ChildrenController@delete',[$child->id]) }}">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a class="archive-child" href="{{  action('ChildrenController@archive',[$child->id]) }}"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+
+                            <td><a href="{{ action('ChildrenController@show',[$child->id])  }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
+                             @endforeach
+
+
+
+
                         </tbody>
                     </table>
                 </div>
             </section>
         </div>
     </div>
+    <span id="boxes" style="display: none;"></span>
+    <span id="boxesarchives" style="display: none;"></span>
 
 
 @endsection
+
+@section('jquery')
+    <script>
+        $(function(){
+
+
+        $('.select-all').click(function(){
+            var status = this.checked;
+            $("input[name='select[]']").each(function(){
+                this.checked = status;
+            });
+        });
+
+        $('body').on('click','.delete-child',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+
+        $('body').on('click','.archive-child',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment archiver ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien archivé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Archivé :)');
+                        }
+                    }).show();
+
+        });
+
+
+            $('#delete-children').click(function(){
+                var boxes;
+                var status;
+                $("input[name='select[]']").each(function(){
+                    if($(this).is(':checked'))
+                    {
+                        status = true;
+                        var valeur = $(this).val();
+                        $(this).val(valeur).closest('tr').fadeOut();
+                        boxes = $(this).val() + ',';
+                        $('#boxes').append(boxes);
+                    }
+                });
+                if($('#boxes').text() ===  null)
+                {
+                    alert('check please');
+                    return false;
+                }
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ChildrenController@supprimer')}}',
+                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+            });
+            $('#archive-children').click(function(){
+                var boxes;
+                var status;
+                $("input[name='select[]']").each(function(){
+                    if($(this).is(':checked'))
+                    {
+                        status = true;
+                        var valeur = $(this).val();
+                        $(this).val(valeur).closest('tr').fadeOut();
+                        boxes = $(this).val() + ',';
+                        $('#boxesarchives').append(boxes);
+                    }
+                });
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ChildrenController@archiver')}}',
+                    data: 'boxesarchives=' + $('#boxesarchives').text() + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+
+            $('.sexe').click(function(e){
+                $('tbody').empty();
+                var sCurrentLetter = $(this).text().toLowerCase();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('StatisticsController@trier_sexe')}}',
+                    data: 'sexe=' + sCurrentLetter + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+
+        });
+
+
+
+    </script>
+
+
+@stop

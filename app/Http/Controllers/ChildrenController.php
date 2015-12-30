@@ -276,9 +276,9 @@ class ChildrenController extends Controller
                             <td>'.  $enfant->date_naissance->format('d-m-Y') .' </td>
                             <td><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
-                                <a href="#" class="actions_icons delete-child">
+                                <a href="'.action('ChildrenController@delete',[$enfant]).'" class="actions_icons delete-child">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-child" href="#"><i class="fa fa-archive liste_icons"></i>
+                                <a class="archive-child" href="'.action('ChildrenController@archive',[$enfant]).'"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
 

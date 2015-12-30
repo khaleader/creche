@@ -28,15 +28,14 @@
             <section class="panel bloc">
                 <div class="panel-body">
                     <a href="{{ action('StatisticsController@new_subscribers') }}">
-                        <div class="bloc_statistique"><img src="images/inscription.png" ><span class="count">24</span><p>Nouvelles inscriptions ce mois</p></div>
+                        <div class="bloc_statistique"><img src="images/inscription.png" ><span class="count">{{ $ns_number }}</span><p>Nouvelles inscriptions ce mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
-                                <span class="count">9</span><p>Garçons</p>
+                                <span class="count">{{ $garcons }}</span><p>Garçons</p>
                             </div>
                             <div class="bloc_statistique_d2">
-                                <span class="count">15</span><p>Filles</p>
+                                <span class="count">{{ $filles }}</span><p>Filles</p>
                             </div>
-
                         </div>
                     </a>
 
