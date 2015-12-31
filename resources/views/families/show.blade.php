@@ -33,7 +33,9 @@
             <section class="panel" >
                 <a href="{{  action('BillsController@show',[$child->id]) }}" >
                     <?php
-                   $status = App\Bill::where('child_id',$child->id)->first();
+                   $status = App\Bill::where('child_id',$child->id)
+                           ->where('user_id',\Auth::user()->id)
+                           ->first();
                         ?>
                          @unless($status->deleted_at)
                         @if($status->status == 1)

@@ -8,7 +8,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-                83 Factures générées ce mois
+                {{ $count }} Factures générées ce mois
 
             </header>
             <div class="liste_actions">
@@ -19,8 +19,8 @@
                         <i class="fa fa-angle-down "></i>
                     </a>
                     <ul class="dropdown-menu menu_actions">
-                        <li><a href="#">Réglées</a></li>
-                        <li><a href="#">Non Réglées</a></li>
+                        <li><a id="status-regler" href="#">Réglées</a></li>
+                        <li><a id="status-non-regler" href="#">Non Réglées</a></li>
                     </ul>
                 </div>
                 <div class="btn-group hidden-phone">
@@ -28,13 +28,17 @@
                         Mois
                         <i class="fa fa-angle-down "></i>
                     </a>
-                    <ul class="dropdown-menu menu_actions">
-                        <li><a href="#">Janvier</a></li>
-                        <li><a href="#">Féverier</a></li>
-                        <li><a href="#">Mars</a></li>
-                        <li><a href="#">Avril</a></li>
-                        <li><a href="#">Mai</a></li>
-                        <li><a href="#">Juin</a></li>
+                    <ul class="dropdown-menu menu_actions bill-months">
+                        <li><a valeur="9" href="#">Septembre</a></li>
+                        <li><a  valeur="10" href="#">Octobre</a></li>
+                        <li><a valeur="11" href="#">Novembre</a></li>
+                        <li><a valeur="12" href="#">Decembre</a></li>
+                        <li><a valeur="1" href="#">Janvier</a></li>
+                        <li><a valeur="2" href="#">Février</a></li>
+                        <li><a valeur="3" href="#">Mars</a></li>
+                        <li><a valeur="4" href="#">Avril</a></li>
+                        <li><a valeur="5" href="#">Mai</a></li>
+                        <li><a valeur="6" href="#">Juin</a></li>
                     </ul>
                 </div>
 
@@ -45,10 +49,10 @@
             <ul class="unstyled inbox-pagination liste_arrow">
 
                 <li>
-                    <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                    <a class="np-btn" href="{{  str_replace('/?','?',$bills->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                 </li>
                 <li>
-                    <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                    <a class="np-btn" href="{{   str_replace('/?','?',$bills->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                 </li>
             </ul>
             <div class="panel-body">
@@ -66,103 +70,33 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>A0001</td>
-                        <td><img class="avatar" src="images/avatar1.jpg"></td>
-                        <td>Amine Daoudi</td>
-                        <td>15-09-2015 </td>
-                        <td>250 Dhs</td>
-                        <td><span class="label label-success label-mini">réglée</span></td>
-                        <td>
-                            <a href="#" class="actions_icons">
-                                <i class="fa fa-trash-o liste_icons"></i></a>
-                            <a href="#"><i class="fa fa-archive liste_icons"></i>
-                            </a>
-                        </td>
 
-                        <td><a href="facture détails.html"><div  class="btn_details">Détails</div></a></td>
-                    </tr>
-                    <tr>
-                        <td>A0002</td>
-                        <td><img class="avatar" src="images/avatar2.jpg"></td>
-                        <td>Salma briki</td>
-                        <td>15-09-2015 </td>
-                        <td>300 Dhs</td>
-                        <td><span class="label label-success label-mini">Réglée</span></td>
-                        <td>
-                            <a href="#" class="actions_icons">
-                                <i class="fa fa-trash-o liste_icons"></i></a>
-                            <a href="#"><i class="fa fa-archive liste_icons"></i>
-                            </a>
-                        </td>
 
-                        <td><a href="Fiche enfant.html"><div  class="btn_details">Détails</div></a></td>
-                    </tr>
-                    <tr>
-                        <td>A0003</td>
-                        <td><img class="avatar" src="images/avatar3.jpg"></td>
-                        <td>karim mrini</td>
-                        <td>15-09-2015 </td>
-                        <td>250 Dhs</td>
-                        <td><span class="label label-success label-mini">Réglée</span></td>
-                        <td>
-                            <a href="#" class="actions_icons">
-                                <i class="fa fa-trash-o liste_icons"></i></a>
-                            <a href="#"><i class="fa fa-archive liste_icons"></i>
-                            </a>
-                        </td>
+                    @foreach($bills as $bill)
+                        @unless($bill->child->deleted_at)
+                            <tr>
+                                <td>{{  $bill->id  }}</td>
+                                <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
+                                <td>{{ $bill->child->nom_enfant  }}</td>
+                                <td>{{  $bill->start->format('d-m-Y') }}</td>
+                                <td>{{  $bill->somme  }} Dhs</td>
+                                <td><span class="label {{  $bill->status == 0 ? 'label-danger': 'label-success'  }}  label-mini">
+                                   {{  $bill->status == 0 ? 'Non réglée': 'réglée' }} </span>
+                                </td>
+                                <td>
+                                    <a  href="{{--  action('BillsController@delete',[$bill->id]) --}}" class="actions_icons delete-bill">
+                                        <i class="fa fa-trash-o liste_icons"></i></a>
+                                    <a class="archive-bill" href="{{--  action('BillsController@archive',[$bill->id]) --}}"><i class="fa fa-archive liste_icons"></i>
+                                    </a>
+                                </td>
 
-                        <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                    </tr>
-                    <tr>
-                        <td>A0004</td>
-                        <td><img class="avatar" src="images/avatar4.jpg"></td>
-                        <td>Jihad ismaili</td>
-                        <td>15-09-2015 </td>
-                        <td>250 Dhs</td>
-                        <td><span class="label label-success label-mini">Réglée</span></td>
-                        <td>
-                            <a href="#" class="actions_icons">
-                                <i class="fa fa-trash-o liste_icons"></i></a>
-                            <a href="#"><i class="fa fa-archive liste_icons"></i>
-                            </a>
-                        </td>
+                                <td><a href="{{  action('BillsController@details',[$bill->id]) }}"><div  class="btn_details">Détails</div></a></td>
+                            </tr>
+                        @endunless
+                    @endforeach
 
-                        <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                    </tr>
-                    <tr>
-                        <td>A0005</td>
-                        <td><img class="avatar" src="images/avatar3.jpg"></td>
-                        <td>Othman zitouni</td>
-                        <td>15-09-2015 </td>
-                        <td>250 Dhs</td>
-                        <td><span class="label label-danger label-mini">Non réglée</span></td>
-                        <td>
-                            <a href="#" class="actions_icons">
-                                <i class="fa fa-trash-o liste_icons"></i></a>
-                            <a href="#"><i class="fa fa-archive liste_icons"></i>
-                            </a>
-                        </td>
 
-                        <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                    </tr>
-                    <tr>
-                        <td>A0006</td>
-                        <td><img class="avatar" src="images/avatar2.jpg"></td>
-                        <td>Hind souadi</td>
-                        <td>15-09-2015 </td>
-                        <td>250 Dhs</td>
-                        <td><span class="label label-success label-mini">Réglée</span></td>
-                        <td>
-                            <a href="#" class="actions_icons">
-                                <i class="fa fa-trash-o liste_icons"></i></a>
-                            <a href="#"><i class="fa fa-archive liste_icons"></i>
-                            </a>
 
-                        </td>
-
-                        <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                    </tr>
 
                     </tbody>
 
@@ -173,3 +107,58 @@
 </div>
 
 @endsection
+
+@section('jquery')
+    <script>
+        $(function(){
+            $('.bill-months a').click(function(){
+                $('tbody').empty();
+
+                var month =$(this).attr('valeur');
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('BillsController@monthindex')}}',
+                    data: 'month=' + month +  '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+
+            $('#status-regler').click(function(){
+                $('tbody').empty();
+                var status = 1;
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('BillsController@statusindex')}}',
+                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+            $('#status-non-regler').click(function(){
+                $('tbody').empty();
+                var status =0;
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('BillsController@statusindex')}}',
+                    data: 'status=' + status  +  '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+
+
+
+        });
+
+
+
+    </script>
+
+@stop

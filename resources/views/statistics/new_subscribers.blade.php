@@ -7,7 +7,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    24 nouvelles inscriptions ce mois
+                    {{ $count }} nouvelles inscriptions ce mois
 
                 </header>
                 <div class="liste_actions">

@@ -159,8 +159,12 @@ class StatisticsController extends Controller
 
     public function monthly_bills()
     {
+      $bills =  Bill::where('user_id',\Auth::user()->id)->orderBy('start','asc')->paginate(10);
 
-        return view('statistics.monthly_bills');
+        $count = Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+            ->where('user_id',\Auth::user()->id)
+            ->count();
+        return view('statistics.monthly_bills',compact('bills','count'));
     }
 
 
@@ -306,8 +310,10 @@ class StatisticsController extends Controller
     /*          new subscribers             */
     public function new_subscribers() // index new subscribers
     {
+        $count = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
+            ->where('user_id',\Auth::user()->id)->count();
        $children = Child::where('user_id',\Auth::user()->id)->orderBy('created_at','desc')->paginate(10);
-        return view('statistics.new_subscribers',compact('children'));
+        return view('statistics.new_subscribers',compact('children','count'));
     }
 
 
