@@ -58,6 +58,12 @@ class FamiliesController extends Controller
                        $resp = $family->nom_mere;
                    else
                        $resp = $family->nom_pere;
+                   if($family->photo)
+                   {
+                       $photo = asset('uploads/'.$family->photo);
+                   }else{
+                       $photo = asset('images/no_avatar.jpg');
+                   }
                    echo '<tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
@@ -65,15 +71,15 @@ class FamiliesController extends Controller
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src="images/avatar6.jpg"></td>
+                            <td><img class="avatar" src="'.$photo.'"></td>
                             <td>'. $resp .' </td>
 
                             <td>'.  $family->children->count() .'</td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
-                                <a href="#" class="actions_icons delete-family">
+                                <a href="'.action('FamiliesController@delete',[$family]).'" class="actions_icons delete-family">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-family" href="#"><i class="fa fa-archive liste_icons"></i>
+                                <a class="archive-family" href="'.action('FamiliesController@archive',[$family]).'"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
 
