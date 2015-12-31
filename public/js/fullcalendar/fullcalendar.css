@@ -625,7 +625,11 @@ be a descendant of the grid when it is being dragged.
 	white-space: nowrap;
 	overflow: hidden;
 	margin-right:50px;
+	<<<<<<< HEAD
 	float: left;
+=======
+float: left;
+>>>>>>> 75aec1793756ed38d0364910a5b74dd59c1e7f42
 }
 
 .fc-day-grid-event .fc-time {
