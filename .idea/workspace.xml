@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/bs3/css/bootstrap.css" afterPath="$PROJECT_DIR$/public/bs3/css/bootstrap.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style-login.css" afterPath="$PROJECT_DIR$/public/css/style-login.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/fullcalendar/fullcalendar.css" afterPath="$PROJECT_DIR$/public/js/fullcalendar/fullcalendar.css" />
     </list>
     <ignored path="creche.iws" />
@@ -24,11 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/bs3/css/bootstrap.css">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/scp15067/home/forge/petite-enfance/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23795621">
-              <caret line="5814" column="34" selection-start-line="5814" selection-start-column="34" selection-end-line="5814" selection-end-column="34" />
+            <state vertical-scroll-proportion="-6.766667">
+              <caret line="7" column="51" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bootstrap.css" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/scp17658/home/forge/petite-enfance/public/bs3/css/bootstrap.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.042335767">
+              <caret line="2329" column="1" selection-start-line="2329" selection-start-column="1" selection-end-line="2329" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -47,8 +61,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/families/edit.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2015_12_28_144128_add_photo_to_family.php" />
         <option value="$PROJECT_DIR$/resources/views/families/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/families/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/families/search.blade.php" />
@@ -98,6 +110,8 @@
         <option value="$PROJECT_DIR$/public/font-awesome/css/font-awesome.css" />
         <option value="$PROJECT_DIR$/public/js/fullcalendar/fullcalendar.css" />
         <option value="$PROJECT_DIR$/public/bs3/css/bootstrap.css" />
+        <option value="$USER_HOME$/AppData/Local/Temp/scp15067/home/forge/petite-enfance/public/css/style.css" />
+        <option value="$USER_HOME$/AppData/Local/Temp/scp17658/home/forge/petite-enfance/public/bs3/css/bootstrap.css" />
       </list>
     </option>
   </component>
@@ -928,14 +942,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp15067/home/forge/petite-enfance/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.733333">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/fullcalendar/fullcalendar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.91532844">
@@ -952,18 +958,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp17658/home/forge/petite-enfance/public/bs3/css/bootstrap.css">
+    <entry file="file://$PROJECT_DIR$/public/bs3/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29635036">
-          <caret line="7" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="5830" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.21167883">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/bs3/css/bootstrap.css">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp15067/home/forge/petite-enfance/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23795621">
-          <caret line="5814" column="34" selection-start-line="5814" selection-start-column="34" selection-end-line="5814" selection-end-column="34" />
+        <state vertical-scroll-proportion="-6.766667">
+          <caret line="7" column="51" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/scp17658/home/forge/petite-enfance/public/bs3/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.042335767">
+          <caret line="2329" column="1" selection-start-line="2329" selection-start-column="1" selection-end-line="2329" selection-end-column="1" />
           <folding />
         </state>
       </provider>
