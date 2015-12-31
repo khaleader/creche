@@ -54,7 +54,7 @@ class StatisticsController extends Controller
 
 
 
-            $count_bills =  Bill::whereRaw('EXTRACT(month from end) = ?', [Carbon::now()->month])
+            $count_bills =  Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
                   ->where('user_id',\Auth::user()->id)
                   ->count();
 
