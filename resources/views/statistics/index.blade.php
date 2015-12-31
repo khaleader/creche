@@ -71,13 +71,13 @@
             <section class="panel bloc">
                 <div class="panel-body">
                     <a href="factures statistiques.html">
-                        <div class="bloc_statistique"><img src="images/statistiques.png" ><span class="count">5000 </span><p>Dhs total estimé ce mois</p></div>
+                        <div class="bloc_statistique"><img src="images/statistiques.png" ><span class="count">{{ $somme }} </span><p>Dhs total estimé ce mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
-                                <span class="count">3200 </span><p>Dhs encaissé</p>
+                                <span class="count">{{ $encaisse }} </span><p>Dhs encaissé</p>
                             </div>
                             <div class="bloc_statistique_d2">
-                                <span class="count">1800 </span><p>Dhs qui reste</p>
+                                <span class="count">{{ $reste }} </span><p>Dhs qui reste</p>
                             </div>
 
                         </div>

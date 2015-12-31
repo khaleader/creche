@@ -52,7 +52,7 @@ class StatisticsController extends Controller
             ->where('sexe','fille')
             ->count();
 
-
+        /* bills */
 
             $count_bills =  Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
                   ->where('user_id',\Auth::user()->id)
@@ -67,6 +67,17 @@ class StatisticsController extends Controller
             ->count();
 
 
+            $somme =  Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+             ->where('user_id',\Auth::user()->id)
+              ->sum('somme');
+           $encaisse =  Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+            ->where('user_id',\Auth::user()->id)
+               ->where('status',1)
+                ->sum('somme');
+           $reste =  Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+               ->where('user_id',\Auth::user()->id)
+               ->where('status',0)
+               ->sum('somme');
 
 
 
@@ -81,7 +92,10 @@ class StatisticsController extends Controller
                 'filles' => $filles,
                 'count_bills' => $count_bills,
                 'regled_bills' => $regled_bills,
-                'non_regled_bills' => $non_regled_bills
+                'non_regled_bills' => $non_regled_bills,
+                'somme' =>$somme,
+                'encaisse' =>$encaisse,
+                'reste' =>$reste
 
 
 
