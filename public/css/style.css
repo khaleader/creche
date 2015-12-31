@@ -8,18 +8,18 @@ html {
     -webkit-font-smoothing: antialiased !important;
 }
 
-/*
 
+.foronlydate::-webkit-datetime-edit { padding: 1em; }
 .foronlydate::-webkit-datetime-edit-fields-wrapper { background: #F6F9FA; }
 .foronlydate::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
 .foronlydate::-webkit-datetime-edit-month-field { color: blue; }
 .foronlydate::-webkit-datetime-edit-day-field { color: blue; }
 .foronlydate::-webkit-datetime-edit-year-field { color: blue; }
-
-.foronlydate::-webkit-calendar-picker-indicator { background: #F6F9FA; }
-*/
-.foronlydate::-webkit-datetime-edit { padding: 1em; }
 .foronlydate::-webkit-inner-spin-button { display: none; }
+.foronlydate::-webkit-calendar-picker-indicator { background: #F6F9FA; }
+
+
+
 
 
 
@@ -30,7 +30,7 @@ html {
 
 body {
     color:#687b8c;
-    background:#edf2f6; /* defult color*/
+    background:#edf2f6; /* defult color okkkkkkkkkkk*/
     font-family:'Open Sans',sans-serif;
     padding:0px !important;
     margin:0px !important;
@@ -204,7 +204,7 @@ a,a:hover,a:focus {
 }
 
 .menu_header{
-    margin-left: 120px;
+    margin-left: 50px;
     display: inline-block ! important;
     float: left;
 }
@@ -590,8 +590,8 @@ a.logo span {
     color: #FF6C60;
 }
 .logo{
-    margin-top: 15px;
-    margin-left: 50px;
+    margin-top: 6px;
+    margin-left: 10px;
     display: inline-block;
     float: left;
 }
@@ -3296,7 +3296,7 @@ ul.amounts li {
     color:#898989;
 }
 .panel-heading .nav>li.active>a,.panel-heading .nav>li>a:hover {
-    color:#1fb5ad;
+    color:#687b8c;
     background:#fff;
 }
 .panel-heading .nav>li:first-child.active>a,.panel-heading .nav>li:first-child>a:hover {
@@ -6145,7 +6145,7 @@ div.tagsinput span.tag {
 
 }
 .label-mini {
-    margin-left: 50px;
+    margin-left: 0px;
 }
 .actions_icons {
     margin-left: 10px;
@@ -6293,9 +6293,6 @@ div.tagsinput span.tag {
     border-radius: 25px;
     background-color: #f1c435;
     color: #fff;
-
-    padding-top: 2px;
-    margin-top: 5px;
     margin-bottom: 10px;
     float: right;
     transition:background-color 0.25s ease 0s;
@@ -6312,8 +6309,6 @@ div.tagsinput span.tag {
     border-radius: 25px;
     background-color: #e2ac00;
     color: #fff;
-
-    padding-top: 2px;
     float: right;
     transition:background-color 0.25s ease 0s;
     -moz-transition:background-color 0.25s ease 0s;
@@ -6560,7 +6555,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     margin-top: 10px;
     margin-left: 7%;
     color: #6c549e;
-    font-size: 18px;
+    font-size: 14px;
 
 }
 .categorie_label strong{
@@ -6569,8 +6564,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     height: 25px;
     border-radius: 50% ;
     text-align: center;
-    background-color: #CED7DE;
-    color: #000000;
+    color: #6c549e;
 }
 
 .form_paiement_sep {
@@ -6639,6 +6633,7 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     border-top: 1px solid #dce7ea;
     padding-top: 15px;
 }
+
 
 
 

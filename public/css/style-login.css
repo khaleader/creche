@@ -18,7 +18,7 @@
     margin: 0 auto;
     width: 473px;
     height: 404px;
-    top: 25%;
+    top: 16%;
     border: 10px solid rgba(255, 255, 255, 0.28);
     -moz-border-radius: 30px;
     -webkit-border-radius: 30px;
@@ -42,7 +42,8 @@
     text-align: center;
     margin: 0 auto;
     width: 214px;
-    height: 37px;
+    height: 44px;
+    padding-top: 3px;
     border: 5px solid #f1af27;
     -moz-border-radius: 20px;
     -webkit-border-radius: 20px;
@@ -239,9 +240,9 @@
     right: 220px;
     position: relative;
     width: 194px;
-    height: 50px;
+    height: 44px;
     line-height: 50px;
-    opacity: .36; /* layer alpha */
+    opacity: .46; /* layer alpha */
     -moz-border-radius: 23px;
     -webkit-border-radius: 23px;
     border-radius: 23px; /* border radius */
@@ -255,7 +256,7 @@
     display: inline-block;
     width: 36px;
     height:36px;
-    top: 6px;
+    top: 4px;
     left: 6px;
     -moz-border-radius: 18px;
     -webkit-border-radius: 18px;
@@ -267,15 +268,16 @@
 }
 #phone-number span i{
     position: absolute;
-    top: 5px;
-    left: 9px;
+    top: 8px;
+    left: 10px;
 }
 #phone-number strong{
     position: absolute;
-    right: 12px;
+    right: 21px;
     color: black; /* text color */
     font-family: "OpenSans", sans-serif;
     font-size: 18px;
     font-weight: bold;
+    margin-top: -3px;
 
 }
