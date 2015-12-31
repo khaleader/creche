@@ -10,11 +10,11 @@ html {
 
 
 .foronlydate::-webkit-datetime-edit { padding: 1em; }
-.foronlydate::-webkit-datetime-edit-fields-wrapper { background: #F6F9FA; }
+/*.foronlydate::-webkit-datetime-edit-fields-wrapper { background: #F6F9FA; }
 .foronlydate::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
 .foronlydate::-webkit-datetime-edit-month-field { color: blue; }
 .foronlydate::-webkit-datetime-edit-day-field { color: blue; }
-.foronlydate::-webkit-datetime-edit-year-field { color: blue; }
+.foronlydate::-webkit-datetime-edit-year-field { color: blue; }*/
 .foronlydate::-webkit-inner-spin-button { display: none; }
 .foronlydate::-webkit-calendar-picker-indicator { background: #F6F9FA; }
 
