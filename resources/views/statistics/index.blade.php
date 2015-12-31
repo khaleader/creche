@@ -50,10 +50,10 @@
                         <div class="bloc_statistique"><img src="images/factures.png" ><span class="count">{{ $count_bills }}</span><p>Factures générées ce mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
-                                <span class="count">46</span><p>Réglées</p>
+                                <span class="count">{{  $regled_bills }}</span><p>Réglées</p>
                             </div>
                             <div class="bloc_statistique_d2">
-                                <span class="count">37</span><p>Non réglées</p>
+                                <span class="count">{{ $non_regled_bills }}</span><p>Non réglées</p>
                             </div>
 
                         </div>
