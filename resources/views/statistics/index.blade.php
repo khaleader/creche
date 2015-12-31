@@ -47,7 +47,7 @@
             <section class="panel bloc">
                 <div class="panel-body">
                     <a href="{{ action('StatisticsController@monthly_bills') }}">
-                        <div class="bloc_statistique"><img src="images/factures.png" ><span class="count">83</span><p>Factures générées ce mois</p></div>
+                        <div class="bloc_statistique"><img src="images/factures.png" ><span class="count">{{ $count_bills }}</span><p>Factures générées ce mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
                                 <span class="count">46</span><p>Réglées</p>

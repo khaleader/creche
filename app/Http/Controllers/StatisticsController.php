@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\Bill;
 use App\Child;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,6 +54,11 @@ class StatisticsController extends Controller
 
 
 
+            $count_bills =  Bill::whereRaw('EXTRACT(month from end) = ?', [Carbon::now()->month])
+                  ->where('user_id',\Auth::user()->id)
+                  ->count();
+
+
 
 
 
@@ -63,7 +69,8 @@ class StatisticsController extends Controller
                 'count_abs_maladie' => $count_abs_maladie,
                 'ns_number' =>$ns_number,
                 'garcons' => $garcons,
-                'filles' => $filles
+                'filles' => $filles,
+                'count_bills' => $count_bills
 
 
             ]
