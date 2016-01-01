@@ -271,20 +271,37 @@
                 }
             });
 
+            if(localStorage.tab == 'pass')
+            {
+              //  $('a[href="#password"]').parent('li').addClass('active');
+
+            }else if(localStorage.tab == 'paiem')
+            {
+              //  $('a[href="#paiement"]').parent('li').addClass('active');
+
+
+            }else{
+
+            }
+
+
 
             $('#loader-to').hide();
             $('#submit').click(function(){
                 $('#loader-to').show();
             });
         $('a[href="#paiement"]').on('click',function(){
+            localStorage.tab = 'paiem';
                 $('#categorie1').hide();
                 $('input[type="file"]').prop('disabled',true);
             });
             $('a[href="#password"]').on('click',function(){
+                localStorage.tab = 'pass';
                 $('input[type="file"]').prop('disabled',true);
 
             });
             $('a[href="#informations"]').on('click',function(){
+                localStorage.tab = 'info';
                 $('input[type="file"]').prop('disabled',false);
             });
         $('#categories').on('change',function(){

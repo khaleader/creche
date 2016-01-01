@@ -83,7 +83,7 @@ session_start();
                            $c = App\Child::where('user_id',\Auth::user()->id)->get();
                             if(!$c->isEmpty())
                                 {
-                                    echo  App\Attendance::where('title','Absence')->whereRaw('EXTRACT(DAY FROM start) = ?',[\Carbon\Carbon::now()->day])
+                                    echo  App\Attendance::whereIn('title',['normale','maladie'])->whereRaw('EXTRACT(DAY FROM start) = ?',[\Carbon\Carbon::now()->day])
                                             ->whereRaw('EXTRACT(YEAR FROM start) = ?',[\Carbon\Carbon::now()->year])->count();
                                 }
 

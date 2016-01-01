@@ -9,6 +9,7 @@ use App\Events\SendEmailToRespAfterRegistrationEvent;
 use App\Family;
 use App\Child;
 use App\Http\Requests\ajouterEnfantRequest;
+use App\Http\Requests\FormValidationChildFamilyRequest;
 use App\Transport;
 use App\User;
 use Carbon\Carbon;
@@ -59,7 +60,7 @@ class ChildrenController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\FormValidationChildFamilyRequest $request)
+    public function store(FormValidationChildFamilyRequest $request)
     {
         // famille for family profile
        $family = new Family();

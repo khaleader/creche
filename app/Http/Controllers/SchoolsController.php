@@ -243,8 +243,8 @@ class SchoolsController extends Controller
     public function  category(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'age_de' => 'required|integer',
-            'age_a' => 'required|integer',
+            'age_de' => 'required|integer|min:0',
+            'age_a' => 'required|integer|greater_than_field:age_de',
             'prix' => 'required',
             'categories' => 'required|integer'
         ],[
@@ -254,6 +254,7 @@ class SchoolsController extends Controller
             'prix.required'=>"Le prix de Catégorie est requis",
             'categories.required' => 'Vous devez choisir une Catégorie',
             'categories.integer' => 'Vous devez choisir une Catégorie',
+            'age_a.greater_than_field' => "le champ Age de doit etre strictement Inférieur à Age A "
         ]);
         if($validator->passes())
         {
