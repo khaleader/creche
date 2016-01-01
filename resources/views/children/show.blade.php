@@ -63,32 +63,32 @@
 
                     <tbody>
                     <tr>
-                        <td><i class="fa fa-male"></i></td>
-                        <td><span><strong>Nom Père :</strong> {{  $child->family->nom_pere }} </span></td>
+                      <!--  <td><i class="fa fa-male"></i></td>
+         -->               <td><span><strong>Nom Père :</strong> {{  $child->family->nom_pere }} </span></td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-female"></i></td>
-                        <td><span><strong>Nom Mère :</strong> {{  $child->family->nom_mere }} </span></td>
+                     <!--   <td><i class="fa fa-female"></i></td>
+      -->                  <td><span><strong>Nom Mère :</strong> {{  $child->family->nom_mere }} </span></td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-envelope"></i></td>
-                        <td><span><strong>Email :</strong> {{ $child->family->email_responsable  }} </span></td>
+                    <!--    <td><i class="fa fa-envelope"></i></td>
+   -->                     <td><span><strong>Email :</strong> {{ $child->family->email_responsable  }} </span></td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-phone"></i></td>
-                        <td><span><strong>Num fix :</strong> {{ $child->family->numero_fixe }}</span></td>
+                    <!--    <td><i class="fa fa-phone"></i></td>
+      -->                  <td><span><strong>Num fix :</strong> {{ $child->family->numero_fixe }}</span></td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-mobile"></i></td>
-                        <td><span><strong>Num portable :</strong> {{ $child->family->numero_portable }} </span></td>
+                      <!--  <td><i class="fa fa-mobile"></i></td>
+       -->                 <td><span><strong>Num portable :</strong> {{ $child->family->numero_portable }} </span></td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-map-marker"></i></td>
-                        <td><span><strong>Adresse :</strong> {{ $child->family->adresse }} </span></td>
+                     <!--   <td><i class="fa fa-map-marker"></i></td>
+  -->                      <td><span><strong>Adresse :</strong> {{ $child->family->adresse }} </span></td>
                     </tr>
                     <tr>
-                        <td><i class="fa fa-credit-card"></i></td>
-                        <td><span><strong>CIN Père:</strong> {{  strtoupper($child->family->cin) }} </span></td>
+                    <!--    <td><i class="fa fa-credit-card"></i></td>
+-->                        <td><span><strong>CIN Père:</strong> {{  strtoupper($child->family->cin) }} </span></td>
                     </tr>
                     </tbody>
                 </table>

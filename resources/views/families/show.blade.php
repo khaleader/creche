@@ -75,32 +75,32 @@
                         <tbody>
                         <tr>
                             @if($family->responsable == 0)
-                            <td><i class="fa fa-female"></i></td>
+                          <!--  <td><i class="fa fa-female"></i></td> -->
                             <td><span><strong>Nom de la femme (responsable) :</strong> {{ $family->nom_mere }}</span></td>
 
                             @else
-                                <td><i class="fa fa-male"></i></td>
+                             <!--   <td><i class="fa fa-male"></i></td> -->
                                 <td><span><strong>Nom de l'homme (responsable) :</strong> {{ $family->nom_pere }}</span></td>
 
                              @endif
                         </tr>
                         <tr>
                             @if($family->responsable == 0)
-                                <td><i class="fa fa-male"></i></td>
+                              <!--  <td><i class="fa fa-male"></i></td>  -->
                                 <td><span><strong>Nom de l'homme : </strong> {{ $family->nom_pere }}</span></td>
                             @else
-                                <td><i class="fa fa-female"></i></td>
+                             <!--   <td><i class="fa fa-female"></i></td> -->
                                 <td><span><strong>Nom de la femme :</strong> {{ $family->nom_mere }}</span></td>
                             @endif
                         </tr>
 
 
                         <tr>
-                            <td><i class="fa fa-group"></i></td>
+                          <!--  <td><i class="fa fa-group"></i></td> -->
                             <td><span><strong>Nombre d'enfants inscrits : </strong> {{ $family->children->count() }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-group"></i></td>
+                          <!--  <td><i class="fa fa-group"></i></td> -->
                             <td>
                                 <span><strong>Nom des enfants inscrits :</strong></span>
                                     @foreach($family->children as $child)
@@ -113,27 +113,27 @@
                             </td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-envelope"></i></td>
+                      <!--      <td><i class="fa fa-envelope"></i></td> -->
                             <td><span><strong>Email :</strong> {{ $family->email_responsable }}</span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-phone"></i></td>
+                          <!--  <td><i class="fa fa-phone"></i></td> -->
                             <td><span><strong>Num fix :</strong> {{ $family->numero_fixe }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-mobile"></i></td>
+                          <!--  <td><i class="fa fa-mobile"></i></td> -->
                             <td><span><strong>Num portable :</strong> {{ $family->numero_portable }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-map-marker"></i></td>
+                         <!--   <td><i class="fa fa-map-marker"></i></td> -->
                             <td><span><strong>Adresse :</strong> {{  $family->adresse }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-credit-card"></i></td>
+                       <!--    <td><i class="fa fa-credit-card"></i></td> -->
                             <td><span><strong>CIN :</strong> {{ strtoupper($family->cin)  }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-calendar-o"></i></td>
+                          <!--  <td><i class="fa fa-calendar-o"></i></td> -->
                             <td><span><strong>Date d'inscription :</strong> {{  $family->created_at->format('d-m-Y') }} </span></td>
                         </tr>
                         </tbody>
