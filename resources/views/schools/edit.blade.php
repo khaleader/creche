@@ -271,19 +271,22 @@
                 }
             });
 
-            if(localStorage.tab == 'pass')
-            {
-              //  $('a[href="#password"]').parent('li').addClass('active');
 
-            }else if(localStorage.tab == 'paiem')
-            {
-              //  $('a[href="#paiement"]').parent('li').addClass('active');
+            $('.nav-tabs  a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+            $("ul.nav-tabs > li > a").on("shown.bs.tab", function (e) {
+                var id = $(e.target).attr("href");
+                localStorage.setItem('selectedTab', id)
+            });
+            var selectedTab = localStorage.getItem('selectedTab');
+            $('.nav-tabs a[href="' + selectedTab + '"]').tab('show');
+
+// store the currently selected tab in the hash value
 
 
-            }else{
-
-            }
-
+            // on load of the page: switch to the currently selected tab
 
 
             $('#loader-to').hide();
@@ -355,6 +358,12 @@
               $('#prix').val(0);
           }
         });
+            $(".alert-danger").fadeTo(15000, 500).slideUp(500, function(){
+                $(".alert-danger").alert('close');
+            });
+
+
+
         });
     </script>
     @stop
