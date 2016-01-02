@@ -680,6 +680,8 @@ a.fc-more:hover {
 .fc-toolbar {
 	text-align: center;
 	margin-bottom: 1em;
+	height: 40px;
+
 }
 
 .fc-toolbar .fc-left {
@@ -748,6 +750,7 @@ a.fc-more:hover {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
+	clear: both;
 }
 
 .fc-view, /* scope positioning and z-index's for everything within the view */
