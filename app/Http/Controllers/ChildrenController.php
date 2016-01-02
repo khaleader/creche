@@ -601,4 +601,31 @@ class ChildrenController extends Controller
 
 
 
+    public function checkiffamily()
+    {
+        if(\Request::ajax())
+        {
+          $nom =  \Input::get('nom');
+
+
+         $family =   Family::where('nom_pere','LIKE',$nom.'%')
+              ->where('user_id',\Auth::user()->id)->first();
+            if($family)
+            {
+                $count =  $family->children()->count();
+                echo  $family->nom_pere .' qui a '.$count. ' enfant(s)';
+
+                foreach($family->children as $enfant)
+                {
+                    echo ' ('.$enfant->nom_enfant.') ';
+                }
+                die();
+
+            }
+
+        }
+    }
+
+
+
 }

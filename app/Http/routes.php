@@ -58,6 +58,7 @@ Route::get('children/showef/{id}','ChildrenController@showef');
 Route::post('children/getageandprice','ChildrenController@getage');
 Route::post('children/total','ChildrenController@total');
 Route::post('children/checktransport','ChildrenController@checktransport');
+Route::match(['get','post'],'children/checkiffamily','ChildrenController@checkiffamily'); // check if family exists ajax
 
 Route::resource('children','ChildrenController');
 

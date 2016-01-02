@@ -501,7 +501,36 @@
 
 
 
+           $('#nom_pere').blur(function(){
+             var nom =  $(this).val();
+               var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+               $.ajax({
+                   url : '{{ URL::action('ChildrenController@checkiffamily')  }}',
+                   data: 'nom=' + nom + '&_token=' + CSRF_TOKEN,
+                   type :'post',
+                   success:function(data){
+                       if(data)
+                       {
+                           alertify.set('notifier', 'position', 'bottom-right');
+                           alertify.set('notifier', 'delay', 60);
+                           var notification =   alertify.error("si le parent son nom est " + data +
+                                   " veuillez vous rediriger vers ajouter un enfant en cliquant ici ");
 
+                       }
+                       var canDismiss = false;
+                       notification.ondismiss = function(){
+                           var href = '{{ URL::action('ChildrenController@create_enfant')  }}';
+                           window.location.href = href;
+                           return canDismiss;
+                       };
+                       setTimeout(function(){
+                           canDismiss = true;
+                       }, 1000);
+
+
+                   }
+               });
+           });
 
 
           });
