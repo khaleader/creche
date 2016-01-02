@@ -51,35 +51,35 @@
 
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-book"></i></td>
+                          <!--  <td><i class="fa fa-book"></i></td> -->
                             <td><span><strong>Matière :</strong> {{ $teacher->poste }}</span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-group"></i></td>
+                         <!--   <td><i class="fa fa-group"></i></td> -->
                             <td><span><strong>Nombre de classe :</strong> 4 </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-envelope"></i></td>
+                           <!-- <td><i class="fa fa-envelope"></i></td>-->
                             <td><span><strong>Email :</strong> {{ $teacher->email }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-phone"></i></td>
+                         <!--   <td><i class="fa fa-phone"></i></td> -->
                             <td><span><strong>Num fix :</strong> {{ $teacher->num_fix }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-mobile"></i></td>
+                            <!--<td><i class="fa fa-mobile"></i></td>-->
                             <td><span><strong>Num portable :</strong> {{ $teacher->num_portable }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-map-marker"></i></td>
+                          <!--  <td><i class="fa fa-map-marker"></i></td>-->
                             <td><span><strong>Adresse :</strong> {{ $teacher->adresse }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-credit-card"></i></td>
+                           <!-- <td><i class="fa fa-credit-card"></i></td>-->
                             <td><span><strong>CIN :</strong> {{ $teacher->cin }} </span></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-dollar"></i></td>
+                          <!--  <td><i class="fa fa-dollar"></i></td>-->
                             <td><span><strong>Salaire:</strong> {{ $teacher->salaire }} Dhs</span></td>
                         </tr>
                         </tbody>
