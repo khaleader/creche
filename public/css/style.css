@@ -6285,7 +6285,7 @@ div.tagsinput span.tag {
 
     font-size: 14px;
 
-    margin-left: -30px;
+   /* margin-left: -30px;*/
 }
 .btn_form{
     width: 100px;
