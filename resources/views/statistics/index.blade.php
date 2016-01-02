@@ -70,7 +70,7 @@
         <div class="col-md-4">
             <section class="panel bloc">
                 <div class="panel-body">
-                    <a href="factures statistiques.html">
+                    <a href="#">
                         <div class="bloc_statistique"><img src="images/statistiques.png" ><span class="count">{{ $somme }} </span><p>Dhs total estimé ce mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
