@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/create.blade.php" />
-    </list>
+    <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'" />
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -65,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ChildrenController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ChildrenController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6618076">
-              <caret line="619" column="53" selection-start-line="619" selection-start-column="53" selection-end-line="619" selection-end-column="53" />
+            <state vertical-scroll-proportion="-9.333333">
+              <caret line="607" column="37" selection-start-line="607" selection-start-column="37" selection-end-line="607" selection-end-column="37" />
               <folding>
                 <marker date="1451773439810" expanded="true" signature="9336:9719" placeholder="..." />
                 <marker date="1451773439810" expanded="true" signature="9336:10647" placeholder="..." />
@@ -83,6 +79,34 @@
                 <marker date="1451773439810" expanded="true" signature="10162:10244" placeholder="..." />
                 <marker date="1451773439810" expanded="true" signature="10360:10438" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttendancesController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="19.881355">
+              <caret line="104" column="25" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="25" />
+              <folding>
+                <marker date="1451434017911" expanded="true" signature="1254:2275" placeholder="..." />
+                <marker date="1451434017911" expanded="true" signature="1287:1564" placeholder="..." />
+                <marker date="1451434017911" expanded="true" signature="1319:1559" placeholder="..." />
+                <marker date="1451434017911" expanded="true" signature="1385:1520" placeholder="..." />
+                <marker date="1451434017911" expanded="true" signature="1788:2094" placeholder="..." />
+                <marker date="1451434017911" expanded="true" signature="1855:1937" placeholder="..." />
+                <marker date="1451434017911" expanded="true" signature="1982:2060" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3090379">
+              <caret line="79" column="71" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -630,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24963504">
-          <caret line="92" column="10" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/statistics/monthly_absence.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="10.441691">
@@ -760,14 +777,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="241" column="9" selection-start-line="241" selection-start-column="1" selection-end-line="241" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29591838">
-          <caret line="79" column="71" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
           <folding />
         </state>
       </provider>
@@ -1071,8 +1080,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6618076">
-          <caret line="619" column="53" selection-start-line="619" selection-start-column="53" selection-end-line="619" selection-end-column="53" />
+        <state vertical-scroll-proportion="-9.333333">
+          <caret line="607" column="37" selection-start-line="607" selection-start-column="37" selection-end-line="607" selection-end-column="37" />
           <folding>
             <marker date="1451773439810" expanded="true" signature="9336:9719" placeholder="..." />
             <marker date="1451773439810" expanded="true" signature="9336:10647" placeholder="..." />
@@ -1086,6 +1095,30 @@
             <marker date="1451773439810" expanded="true" signature="10162:10244" placeholder="..." />
             <marker date="1451773439810" expanded="true" signature="10360:10438" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="19.881355">
+          <caret line="104" column="25" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="25" />
+          <folding>
+            <marker date="1451434017911" expanded="true" signature="1254:2275" placeholder="..." />
+            <marker date="1451434017911" expanded="true" signature="1287:1564" placeholder="..." />
+            <marker date="1451434017911" expanded="true" signature="1319:1559" placeholder="..." />
+            <marker date="1451434017911" expanded="true" signature="1385:1520" placeholder="..." />
+            <marker date="1451434017911" expanded="true" signature="1788:2094" placeholder="..." />
+            <marker date="1451434017911" expanded="true" signature="1855:1937" placeholder="..." />
+            <marker date="1451434017911" expanded="true" signature="1982:2060" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3090379">
+          <caret line="79" column="71" selection-start-line="79" selection-start-column="71" selection-end-line="79" selection-end-column="71" />
+          <folding />
         </state>
       </provider>
     </entry>
