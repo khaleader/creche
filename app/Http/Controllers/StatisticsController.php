@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use App\Attendance;
 use App\Bill;
 use App\Child;
+use App\Family;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Mail;
 
 class StatisticsController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('guest',['forgetpass']);
+        $this->middleware('auth',['except'=>'forgetpass']);
+        $this->middleware('admin',['except'=> 'forgetpass']);
     }
 
     /**
@@ -383,6 +387,80 @@ class StatisticsController extends Controller
     }
 
 
+    // forget pass login page
+
+    public function forgetpass()
+    {
+        if(\Request::ajax())
+        {
+
+            $cin =  \Input::get('cin');
+            if(isset($cin) && !empty($cin))
+            {
+              $lacarte =  Family::where('cin',$cin)->first();
+                if($lacarte)
+                {
+                    $pass_without =  str_random(6);
+                     $user =   User::where('email',$lacarte->email_responsable)->first();
+                    $user->password = \Hash::make($pass_without);
+                    $user->save();
+                    $info = [
+                        'email' => $user->email,
+                        'new_password'=> $pass_without
+
+                    ];
+                    Mail::queue('emails.forgetpass',$info,function($message) use ($info){
+
+                        $message->to($info['email'],'ok')->from('creche@gmail.com')->subject('Bienvenue  !');
+
+                    });
+                    echo 'Votre Nouveau mot de pass a bien été envoyé à votre email';
+                   }else{
+                    echo 'Le Numéro de Cin fourni est Incorrect';
+                    }
+
+
+
+            }else{
+
+             $email = \Input::get('email');
+              $email = User::where('email',$email)->whereIn('type',['famille','ecole'])->first();
+             if($email)
+             {
+                if($email->type == 'famille')
+                {
+                    echo 'famille';
+                }elseif($email->type == 'ecole'){
+                   $utilisateur = User::where('email',$email->email)->where('type','ecole')->first();
+                    $pass_without =  str_random(6);
+                    $utilisateur->password = \Hash::make($pass_without);
+                    $utilisateur->save();
+                    $infor = [
+                        'email' => $utilisateur->email,
+                        'new_password'=> $pass_without
+
+                    ];
+                    Mail::queue('emails.forgetpass',$infor,function($message) use ($infor){
+
+                        $message->to($infor['email'],'ok')->from('creche@gmail.com')->subject('Bienvenue  !');
+
+                    });
+                    echo 'Votre Nouveau mot de pass a bien été envoyé à votre email';
+
+                }
+
+              /*  Mail::send('emails.school',$info,function($message){
+
+                    $message->to($this->email,'ok')->from('creche@gmail.com')->subject('Bienvenue  !');
+
+                });*/
+            }else{
+                       echo 'cet Email est incorrect';
+            }
+
+            }
+        }
+    }
 
 
 

@@ -155,6 +155,7 @@ Route::get('statistics/delete_att/{id}','StatisticsController@delete_att');
 Route::get('statistics/archive_att/{id}','StatisticsController@archive_att');
 Route::get('statistics/newsbsc','StatisticsController@new_subscribers');
 Route::post('statistics/trier_sexe','StatisticsController@trier_sexe'); // trier en ajax sexe garcon ou fille
+Route::post('forgetpass','StatisticsController@forgetpass'); // forget pass ajax login
 Route::resource('statistics','StatisticsController');
 
 

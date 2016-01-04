@@ -13,6 +13,16 @@
     <script src="{{ asset('bs3/js/bootstrap.js') }}"></script>
 
   <!--  <script src="{{ asset('js/bootbox.min.js') }}"></script> -->
+
+    <script src="{{ asset('js/alertify/alertify.min.js') }}"></script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('css/alertify/alertify.css') }}"/>
+    <!-- Default theme -->
+    <link rel="stylesheet" href="{{ asset('css/alertify/default.css') }}"/>
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="{{ asset('css/alertify/semantic.css') }}"/>
+
+
 </head>
 <body id="body-login-page">
 
@@ -47,7 +57,7 @@
         <button type="submit">Connexion</button>
         {!! Form::close() !!}
         <p class="mot-oulie">
-            <a href="#">Mot de passe oublie ?</a>
+            <a id="mot-de-pass-oublie" href="#">Mot de passe oublie ?</a>
         </p>
 
     </div>
@@ -56,8 +66,9 @@
 </div>
 
 <script>
-   /* $(document).ready(function(){
-        $('.mot-oulie a').on('click',function(e){
+   $(document).ready(function(){
+
+      /*  $('.mot-oulie a').on('click',function(e){
             bootbox.prompt("Entrez Votre Email", function(result) {
                 if (result === null) {
 
@@ -65,9 +76,51 @@
                     alert(result);
                 }
             });
-        });
+        });*/
+       $('#mot-de-pass-oublie').click(function(){
+           alertify.prompt('Tapez Votre Email', '',
+                   function(evt, value)
+                   {
+                       var email = value;
+                       var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                       $.ajax({
+                           url: '{{  URL::action('StatisticsController@forgetpass')}}',
+                           data: 'email=' + email + '&_token=' + CSRF_TOKEN,
+                           type: 'post',
+                           success: function(data){
+                               if(data == 'famille')
+                               {
+                                   alertify.prompt('Tapez Votre Numero de CIN pour confirmer votre identité', '',
+                                           function(evt, value)
+                                           {
+                                               var cin  = value;
+                                               $.ajax({
+                                                   url: '{{  URL::action('StatisticsController@forgetpass')}}',
+                                                   data: 'cin=' + cin + '&_token=' + CSRF_TOKEN,
+                                                   type: 'post',
+                                                   success: function (data) {
+                                                       alertify.message(data);
+                                                   }
+                                               });
+                                           }
+                                   );
 
-    });*/
+                               }else{
+                                   alertify.message(data);
+
+                               }
+
+                           }
+                       });
+
+                      // alertify.message('You entered: ' + value);
+                   }
+           );
+
+
+       });
+
+    });
 
 
 
