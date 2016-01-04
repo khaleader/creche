@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,15 +24,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.2638484">
+            <state vertical-scroll-proportion="6.0333333">
               <caret line="503" column="41" selection-start-line="503" selection-start-column="41" selection-end-line="503" selection-end-column="41" />
               <folding>
                 <element signature="e#21086#23524#0#HTML" expanded="false" />
                 <element signature="e#24074#24886#0#HTML" expanded="false" />
                 <marker date="1451905189296" expanded="true" signature="12936:13374" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttendancesController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6864536">
+              <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+              <folding>
+                <marker date="1451905634270" expanded="true" signature="1254:2275" placeholder="..." />
+                <marker date="1451905634270" expanded="true" signature="1287:1564" placeholder="..." />
+                <marker date="1451905634270" expanded="true" signature="1319:1559" placeholder="..." />
+                <marker date="1451905634270" expanded="true" signature="1385:1520" placeholder="..." />
+                <marker date="1451905634270" expanded="true" signature="1788:2094" placeholder="..." />
+                <marker date="1451905634270" expanded="true" signature="1855:1937" placeholder="..." />
+                <marker date="1451905634270" expanded="true" signature="1982:2060" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -78,7 +91,6 @@
         <option value="$PROJECT_DIR$/resources/views/statistics/monthly_absence.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/head.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
         <option value="$PROJECT_DIR$/public/css/style-login.css" />
         <option value="$PROJECT_DIR$/public/font-awesome/css/font-awesome.css" />
         <option value="$PROJECT_DIR$/public/bs3/css/bootstrap.css" />
@@ -107,6 +119,7 @@
         <option value="$PROJECT_DIR$/resources/views/auth/login.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
         <option value="$PROJECT_DIR$/resources/views/children/create.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
       </list>
     </option>
   </component>
@@ -289,6 +302,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -788,22 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="104" column="25" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="25" />
-          <folding>
-            <marker date="1451434017911" expanded="true" signature="1254:2275" placeholder="..." />
-            <marker date="1451434017911" expanded="true" signature="1287:1564" placeholder="..." />
-            <marker date="1451434017911" expanded="true" signature="1319:1559" placeholder="..." />
-            <marker date="1451434017911" expanded="true" signature="1385:1520" placeholder="..." />
-            <marker date="1451434017911" expanded="true" signature="1788:2094" placeholder="..." />
-            <marker date="1451434017911" expanded="true" signature="1855:1937" placeholder="..." />
-            <marker date="1451434017911" expanded="true" signature="1982:2060" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/FormValidationChildFamilyRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.81778425">
@@ -825,7 +844,7 @@
         <state vertical-scroll-proportion="0.5585997">
           <caret line="157" column="86" selection-start-line="157" selection-start-column="86" selection-end-line="157" selection-end-column="86" />
           <folding>
-            <element signature="e#8#393#0#PHP" expanded="true" />
+            <element signature="e#8#393#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -928,12 +947,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.2638484">
+        <state vertical-scroll-proportion="6.0333333">
           <caret line="503" column="41" selection-start-line="503" selection-start-column="41" selection-end-line="503" selection-end-column="41" />
           <folding>
             <element signature="e#21086#23524#0#HTML" expanded="false" />
             <element signature="e#24074#24886#0#HTML" expanded="false" />
             <marker date="1451905189296" expanded="true" signature="12936:13374" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6864536">
+          <caret line="149" column="16" selection-start-line="149" selection-start-column="16" selection-end-line="149" selection-end-column="16" />
+          <folding>
+            <marker date="1451905634270" expanded="true" signature="1254:2275" placeholder="..." />
+            <marker date="1451905634270" expanded="true" signature="1287:1564" placeholder="..." />
+            <marker date="1451905634270" expanded="true" signature="1319:1559" placeholder="..." />
+            <marker date="1451905634270" expanded="true" signature="1385:1520" placeholder="..." />
+            <marker date="1451905634270" expanded="true" signature="1788:2094" placeholder="..." />
+            <marker date="1451905634270" expanded="true" signature="1855:1937" placeholder="..." />
+            <marker date="1451905634270" expanded="true" signature="1982:2060" placeholder="..." />
           </folding>
         </state>
       </provider>

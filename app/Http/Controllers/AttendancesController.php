@@ -146,7 +146,8 @@ class AttendancesController extends Controller
             if($d == $id)
             {
                 $child = Child::findOrFail($id);
-                $events =  $child->attendances;
+                $events = Attendance::where('child_id',$child->id)->get();
+              //  $events =  $child->attendances;
                 $resultat = json_encode($events);
                 $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
                 return view('attendances.showef')->with(['child'=>$child,'resultat'=>$resultat]);
