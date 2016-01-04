@@ -19,7 +19,7 @@ class StatisticsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('guest',['forgetpass']);
+        $this->middleware('guest',['only'=>'forgetpass']);
         $this->middleware('auth',['except'=>'forgetpass']);
         $this->middleware('admin',['except'=> 'forgetpass']);
     }
