@@ -4,7 +4,7 @@
     @include('partials.alert-errors')
     @include('partials.alert-success')
     <div class="row">
-        {!! Form::open(['url' => action('SchoolsController@updatepassef'),'files'=>true]) !!}
+
         <div class="col-sm-3">
             <section class="panel">
                 <div class="panel-body">
@@ -26,16 +26,33 @@
                                 <img class="pdp" src="{{ $img }}" alt="" />
 
                             </div>
+
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
+                            {!! Form::open(['url' => action('SchoolsController@upimage'),'files' => true]) !!}
+                            @if($user->photo)
                             <div class="btn_upload">
-
-                                                   <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
-                                                   <input type="file" class="default" name="photo" id="uploadFile" />
-                                                   </span>
-
+                           <span class="btn btn-white btn-file">
+                           <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Modifier La Photo</span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input type="file" class="default" name="photo" id="uploadFile" />
+                           </span>
                             </div>
+                                @else
+                                <div class="btn_upload">
+
+                           <span class="btn btn-white btn-file">
+                           <span class="fileupload-new"><i class="fa fa-paper-clip"></i>  Selectionner une image</span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input type="file" class="default" name="photo" id="uploadFile" />
+                           </span>
+                                </div>
+                                @endif
+
+                            <button style="float:none; margin-left:33%" class="btn_form"
+                                    type="submit"  id="onlyphoto">Enregistrer</button>
+                            {!! Form::close() !!}
+
+
                         </div>
 
 
@@ -44,7 +61,7 @@
             </section>
 
         </div>
-
+        {!! Form::open(['url' => action('SchoolsController@updatepassef'),'files'=>true]) !!}
         <div class="col-sm-9">
 
             <section class="panel">
@@ -114,7 +131,10 @@
                 }
             }
 
-         /*   var image = $('#uploadFile');
+
+
+
+           /* var image = $('#uploadFile');
             var formData = new FormData();
             formData.append('photo', image[0].files[0]);
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -139,6 +159,26 @@
 
 
         });
+
+       /* $('#onlyphoto').click(function(e){
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('SchoolsController@upimage')}}',
+                headers: {
+                    'X-CSRF-TOKEN': CSRF_TOKEN
+                },
+                data: 'image=' + new FormData($("#upload_form")[0]),
+                type: 'post',
+                success: function (data) {
+                    if(data)
+                    {
+                        console.log(data);
+                    }
+                }
+            });
+
+
+        });*/
 
 
 

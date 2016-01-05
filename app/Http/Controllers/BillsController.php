@@ -241,6 +241,11 @@ class BillsController extends Controller
                       }
 
                     echo '  <tr>
+                             <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="'. $bill->id .'" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>
@@ -263,8 +268,16 @@ class BillsController extends Controller
             } else {
                 $bills = Bill::where('status', 1)->where('user_id',\Auth::user()->id)->get();
                 foreach ($bills as $bill) {
-                    $photo = asset('uploads/'.$bill->child->photo);
+                    if($bill->child->photo)
+                        $photo =asset('uploads/'.$bill->child->photo);
+                    else
+                    $photo = asset('images/no_avatar.jpg');
                     echo '  <tr>
+                                <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="'. $bill->id .'" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>
@@ -361,6 +374,11 @@ class BillsController extends Controller
                     $photo = asset('images/no_avatar.jpg');
 
                 echo '  <tr>
+                                <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="'. $bill->id .'" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>
@@ -472,6 +490,11 @@ class BillsController extends Controller
                           $photo = asset('images/avatar4.jpg');
                       }
                       echo '  <tr>
+                                <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="'. $bill->id .'" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>
@@ -513,6 +536,11 @@ class BillsController extends Controller
                           }
 
                           echo '  <tr>
+                                   <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="'. $bill->id .'" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>

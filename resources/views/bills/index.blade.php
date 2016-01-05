@@ -8,6 +8,32 @@
 
                 </header>
                 <div class="liste_actions">
+                    <div class="chk-all">
+                        <div class="pull-left mail-checkbox ">
+                            <input type="checkbox" class="select-all">
+                        </div>
+
+                        <div class="btn-group">
+                            <a data-toggle="dropdown" href="#" class="btn mini all  ">
+                                Tous
+
+                            </a>
+
+                        </div>
+                    </div>
+
+
+                    <div class="btn-group hidden-phone">
+                        <a data-toggle="dropdown" href="#" class="btn mini blue">
+                            Actions
+                            <i class="fa fa-angle-down "></i>
+                        </a>
+                        <ul class="dropdown-menu menu_actions">
+                            <li><a id="regler-bills" href="#">Réglée</a></li>
+                            <li><a id="non-regler-bills" href="#">Non Réglée</a></li>
+                        </ul>
+                    </div>
+
                     <span>Trier par :</span>
                     <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
@@ -60,6 +86,7 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
+                            <th></th>
                             <th>N° Facture </th>
                             <th></th>
                             <th> Nom complet</th>
@@ -74,6 +101,11 @@
                         @foreach($bills as $bill)
                             @unless($bill->child->deleted_at)
                         <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="{{ $bill->id }}" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
                             <td>{{  $bill->id  }}</td>
                             <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
                             <td>{{ $bill->child->nom_enfant  }}</td>
@@ -99,10 +131,64 @@
             </section>
         </div>
     </div>
+    <span id="boxesregler" style="display: none"></span>
+    <span id="boxesnonregler" style="display: none"></span>
+    <span id="childid" style="display: none;">{{--  $child->id --}}</span>
 @endsection
 @section('jquery')
     <script>
         $(document).ready(function(){
+            $('.select-all').click(function(){
+                var status = this.checked;
+                $("input[name='select[]']").each(function(){
+                    this.checked = status;
+                });
+            });
+
+            $('#regler-bills').click(function(){
+                var boxes;
+                $("input[name='select[]']").each(function(){
+                    if($(this).is(':checked'))
+                    {
+                        var valeur = $(this).val();
+                        // $(this).val(valeur).closest('tr').fadeOut();
+                        boxes = $(this).val() + ',';
+                        $('#boxesregler').append(boxes);
+                    }
+                });
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('BillsController@regler')}}',
+                    data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        location.reload();
+                        // console.log(data);
+                    }
+                });
+            });
+            $('#non-regler-bills').click(function () {
+                var boxes;
+                $("input[name='select[]']").each(function(){
+                    if($(this).is(':checked'))
+                    {
+                        var valeur = $(this).val();
+                        // $(this).val(valeur).closest('tr').fadeOut();
+                        boxes = $(this).val() + ',';
+                        $('#boxesnonregler').append(boxes);
+                    }
+                });
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('BillsController@nonregler')}}',
+                    data: 'nonregler=' + $('#boxesnonregler').text() + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
+            });
+
         $('#status-regler').click(function(){
             $('tbody').empty();
             var status = 1;

@@ -11,7 +11,7 @@
             <section class="panel">
                 <div class="panel-body">
                     <div class="form-group last">
-                        {!! Form::model($school,['url'=>action('SchoolsController@update',[\Auth::user()->id]),'method'=>'put','files'=>true]) !!}
+
 
 
                         <div class="fileupload fileupload-new" data-provides="fileupload">
@@ -20,14 +20,29 @@
                                 <img class="pdp" src="{{  $school->photo ? asset('uploads/'.$school->photo) :asset('images/no_avatar.jpg') }}" alt="" />
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
-                            <div class="btn_upload">
-                                                   <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
-                                                   <input type="file" class="default" name="photo" id="uploadFile" />
-                                                   </span>
 
+                            {!! Form::open(['url' => action('SchoolsController@upimageecole'),'files' => true]) !!}
+                        @if($school->photo)
+                            <div class="btn_upload">
+                           <span class="btn btn-white btn-file">
+                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>  Modifier La Photo</span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input type="file" class="default" name="photo" id="uploadFile" />
+                           </span>
                             </div>
+                            @else
+                                <div class="btn_upload">
+                           <span class="btn btn-white btn-file">
+                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>   Selectionner une image </span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input type="file" class="default" name="photo" id="uploadFile" />
+                           </span>
+                                </div>
+                            @endif
+                            <button style="float:none; margin-left:33%" class="btn_form"
+                                    type="submit"  id="onlyphoto">Enregistrer</button>
+                            {!! Form::close() !!}
+
                         </div>
 
 
@@ -64,8 +79,9 @@
                             <div class="row">
                                 <tbody>
 
-                                <div >
-                                        <div style="display: none;" class="form_champ">
+                                      <div>
+                                          {!! Form::model($school,['url'=>action('SchoolsController@update',[\Auth::user()->id]),'method'=>'put','files'=>true]) !!}
+                                          <div style="display: none;" class="form_champ">
                                             <label for="cname" class="control-label col-lg-3">Nom de l'école</label>
                                             <div class="form_ajout">
                                                 <input   value="{{ $school->name }}"

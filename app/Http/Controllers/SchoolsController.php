@@ -26,7 +26,7 @@ class SchoolsController extends Controller
         $this->middleware('auth');
         $this->middleware('Famille',['only'=> 'editef','updatepassef','upimage']);
         $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category',
-            'show_cat_bills','editef','updatepassef','upimage']]);
+            'show_cat_bills','editef','updatepassef','upimage','upimageecole']]);
 
 
     }
@@ -173,7 +173,7 @@ class SchoolsController extends Controller
         ]);
         if($validator->passes())
         {
-            $image = $request->photo;
+          /*  $image = $request->photo;
             if(isset($image))
             {
                 $filename = $image->getClientOriginalName();
@@ -187,7 +187,7 @@ class SchoolsController extends Controller
                 }else{
                     $filename = null;
                 }
-            }
+            }*/
             $check = User::where('id',\Auth::user()->id)->first();
             if($check)
             {
@@ -199,7 +199,6 @@ class SchoolsController extends Controller
                 $user->email = $request->email;
                 $user->adresse = $request->adresse;
                 $user->ville = $request->ville;
-                $user->photo = $filename;
                 $user->save();
                 return redirect()->back()->with('success','Les Informations Ont bien été Enregistrés');
             }
@@ -209,6 +208,33 @@ class SchoolsController extends Controller
 
 
 
+    }
+
+    public function upimageecole(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'photo' => 'image|required',
+        ],      [
+            'photo.required'=>'Vous devez insérer une image',
+            'photo.image' => "le type de l'image doit etre valide JPEG\PNG"
+        ]);
+
+        if($validator->passes())
+        {
+            $image = $request->photo;
+            if(isset($image) && !empty($image))
+            {
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                $user =  User::findOrFail(\Auth::user()->id);
+                $user->photo = $filename;
+                $user->save();
+                return redirect()->back()->with('success','L\'Image a bien été Modifée');
+            }
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
     }
 
     public function updatepass(Request $request)
@@ -348,37 +374,18 @@ class SchoolsController extends Controller
         $validator = Validator::make($request->all(),[
             'actualpass' => 'required|min:6',
             'password' => 'required|min:6|confirmed',
-            'photo'=>  'image'
         ],[
             'actualpass.required'=>'Le champ Mot de Pass actuel est Requis',
             'actualpass.min' => 'Le password doit avoir au minimum 6 caractères',
             'password.min' => 'Le Nouveau mot de pass  doit avoir au minimum 6 caractères',
-            'photo.image' => "le type de l'image doit etre valide JPEG\PNG"
         ]);
         if($validator->passes())
         {
-            $image = $request->photo;
-            if(isset($image) && !empty($image))
-            {
-                $filename = $image->getClientOriginalName();
-                $path = public_path('uploads/' . $filename);
-                Image::make($image->getRealPath())->resize(313, 300)->save($path);
-            }else{
-                $pic = User::where('id',\Auth::user()->id)->where('type','famille')->first();
-                if(isset($pic->photo))
-                {
-                    $filename = $pic->photo;
-                }else{
-                    $filename = null;
-                }
-            }
-
 
             if(\Hash::check($request->actualpass ,\Auth::user()->getAuthPassword()))
             {
                 $user =  User::findOrFail(\Auth::user()->id);
                 $user->password =  \Hash::make($request->password);
-                $user->photo = $filename;
                 $user->save();
                 return redirect()->back()->with('success','Modifications réussies');
             }else{
@@ -394,7 +401,43 @@ class SchoolsController extends Controller
     // upload image compte famille with ajax
     public function upimage(Request $request)
     {
+     $validator = Validator::make($request->all(),
+        ['photo'=>'image|required'],
+            [
+                'photo.required'=>'Vous devez insérer une image',
+                'photo.image' => "le type de l'image doit etre valide JPEG\PNG"
+            ]
+            );
+        if($validator->passes())
+        {
+            $image = $request->photo;
+            if(isset($image) && !empty($image))
+            {
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                $user =  User::findOrFail(\Auth::user()->id);
+                $user->photo = $filename;
+                $user->save();
+                return redirect()->back()->with('success','L\'Image a bien été Modifée');
+            }/*else{
+                $pic = User::where('id',\Auth::user()->id)->where('type','famille')->first();
+                if(isset($pic->photo))
+                {
+                    $filename = $pic->photo;
+                }else{
+                    $filename = null;
+                }
+            }*/
 
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
+
+
+
+      // dd($request->all());
+       // return redirect()->back();
 
     }
 
