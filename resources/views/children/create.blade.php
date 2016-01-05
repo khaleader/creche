@@ -422,6 +422,35 @@
                   });
               });
 
+              $('input[name=cin]').keyup(function(){
+                  var cin = $(this).val();
+                 var email_resp = $('input[name=email_responsable]').val();
+                  var fix = $('input[name=numero_fixe]').val();
+                  var portable = $('input[name=numero_portable]').val();
+                  var nom_pere = $('input[name=nom_pere]').val();
+                  var nom_mere = $('input[name=nom_mere]').val();
+
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.ajax({
+                     url :'{{ URL::action('ChildrenController@checktoreturn')  }}',
+                      data : 'email_resp=' + email_resp + '&fix=' + fix + '&portable=' +portable + '&nom_pere=' + nom_pere
+                               + '&nom_mere=' + nom_mere + '&cin=' + cin + '&_token=' + CSRF_TOKEN,
+                      type: 'post',
+                      success : function(data){
+                             if(data ==  'here')
+                             {
+                                 var href = '{{ URL::action('ChildrenController@create_enfant')  }}';
+                                 window.location.href = href;
+                             }
+                      }
+
+                  });
+
+
+
+
+              });
+
 
               $('#transport').change(function () {
                   var trans = $(this).val();
@@ -512,7 +541,7 @@
                        if(data)
                        {
                            alertify.set('notifier', 'position', 'bottom-right');
-                           alertify.set('notifier', 'delay', 60);
+                           alertify.set('notifier', 'delay', 20);
                            var notification =   alertify.error("si le parent son nom est " + data +
                                    " veuillez vous rediriger vers ajouter un enfant en cliquant ici ");
 

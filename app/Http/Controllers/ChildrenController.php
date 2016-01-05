@@ -626,6 +626,44 @@ class ChildrenController extends Controller
         }
     }
 
+    public function checktoreturn(Request $request)
+    {
+             /* "email_resp" => "morethanchatter@gmail.com"
+          "fix" => "0537451258"
+          "portable" => "0663083611"
+          "nom_pere" => "Hamid bouslami"
+          "nom_mere" => "Samar fati"*/
+         if(\Request::ajax())
+         {
+             $count = 0;
+            $fix = Family::where('numero_fixe',$request->fix)->where('user_id',\Auth::user()->id)->first();
+             if($fix)
+                $count++;
+             $portable = Family::where('numero_portable',$request->portable)->where('user_id',\Auth::user()->id)->first();
+             if($portable)
+                 $count++;
+             $email = Family::where('email_responsable',$request->email_resp)->where('user_id',\Auth::user()->id)->first();
+             if($email)
+                 $count++;
+             $pere = Family::where('nom_pere',$request->nom_pere)->where('user_id',\Auth::user()->id)->first();
+             if($pere)
+                 $count++;
+             $mere = Family::where('nom_mere',$request->nom_mere)->where('user_id',\Auth::user()->id)->first();
+             if($mere)
+                 $count++;
+             $cin = Family::where('cin','LIKE',$request->cin.'%')->where('user_id',\Auth::user()->id)->first();
+               if($cin)
+              $count++;
+             if($count >=3)
+             {
+                 echo 'here';
+             }
+
+
+
+         }
+    }
+
 
 
 }
