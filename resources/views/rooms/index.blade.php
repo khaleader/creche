@@ -100,6 +100,9 @@
             </section>
         </div>
     </div>
+
+    <span id="boxes" style="display: none;"></span>
+
 @endsection
 
 @section('jquery')

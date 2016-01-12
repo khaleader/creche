@@ -168,13 +168,19 @@ Route::resource('statistics','StatisticsController');
 /***********************       branches and rooms and matters and classrooms  *********/
 /* *********************                       *******************/
 Route::get('branches/delete/{id}','BranchesController@delete'); // delete a branch by click
+Route::post('branches/supprimer','BranchesController@supprimer'); // suppression ajax
 Route::resource('branches','BranchesController');
+Route::post('rooms/supprimer','RoomsController@supprimer'); //suppression ajax
 Route::get('rooms/delete/{id}','RoomsController@delete'); // delete a room by click
 Route::resource('rooms','RoomsController');
 
 
+
+Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax
 Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete classe by click
 Route::resource('classrooms','ClassroomsController');
+
+Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax
 Route::get('matters/delete/{id}','MattersController@delete'); // delete a matter  by click
 
 Route::resource('matters','MattersController');

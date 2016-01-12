@@ -122,4 +122,19 @@ class BranchesController extends Controller
         $cr->delete();
         return redirect('branches')->with('success',"la branche a bien été supprimé");
     }
+
+    public function supprimer()
+    {
+        if(\Request::ajax())
+        {
+            $numbers = substr( \Input::get('boxes'),0,-1);
+            $ids = explode(',',$numbers);
+            $ids = array_unique($ids);
+            foreach($ids as $id)
+            {
+
+
+            }
+        }
+    }
 }

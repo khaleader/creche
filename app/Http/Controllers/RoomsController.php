@@ -125,4 +125,18 @@ class RoomsController extends Controller
         return redirect('rooms')->with('success',"la salle a bien été supprimé");
     }
 
+    public function supprimer()
+    {
+        if(\Request::ajax())
+        {
+            $numbers = substr( \Input::get('boxes'),0,-1);
+            $ids = explode(',',$numbers);
+            $ids = array_unique($ids);
+            foreach($ids as $id)
+            {
+
+            }
+        }
+    }
+
 }

@@ -149,4 +149,19 @@ class ClassroomsController extends Controller
         $cr->delete();
         return redirect('classrooms')->with('success',"la classe a bien été supprimé");
     }
+
+    public function supprimer()
+    {
+        if(\Request::ajax())
+        {
+            $numbers = substr( \Input::get('boxes'),0,-1);
+            $ids = explode(',',$numbers);
+            $ids = array_unique($ids);
+            foreach($ids as $id)
+            {
+
+
+            }
+        }
+    }
 }
