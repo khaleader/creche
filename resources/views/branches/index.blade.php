@@ -20,7 +20,7 @@
                 <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
-                            <input type="checkbox" class="">
+                            <input type="checkbox" class="select-all">
                         </div>
 
                         <div class="btn-group">
@@ -43,20 +43,14 @@
                             <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
                     </div>
-
-
-
-
                 </div>
-
-
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$branches->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$branches->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -72,82 +66,26 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                        @foreach($branches as $branch)
+
                         <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
-                                        <input type="checkbox" >
+                                        <input type="checkbox" value="{{ $branch->id }}" name="select[]" >
 
                                     </div>
                                 </div></td>
-                            <td>Science de la matière physique</td>
-                            <td>SMP</td>
+                            <td>{{  $branch->nom_branche }}</td>
+                            <td>{{  $branch->code_branche }}</td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>
-
-
                         </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>Science de la matière physique</td>
-                            <td>SMP</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>Science de la matière physique</td>
-                            <td>SMP</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>Science de la matière physique</td>
-                            <td>SMP</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-
-                        </tr>
-
-
-
-
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -157,3 +95,41 @@
 
 
 @endsection
+
+
+@section('jquery')
+
+    <script>
+        $('.select-all').click(function(){
+            var status = this.checked;
+            $("input[name='select[]']").each(function(){
+                this.checked = status;
+            });
+        });
+
+        $('body').on('click','.delete-branch',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+
+
+
+    </script>
+
+
+@stop

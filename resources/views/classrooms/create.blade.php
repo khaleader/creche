@@ -1,7 +1,8 @@
 @extends('layouts.default')
 
 @section('content')
-
+    @include('partials.alert-errors')
+    @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
@@ -13,57 +14,18 @@
 
                     <table class="table  table-hover general-table">
 
-
+                        {!!  Form::open(['url'=> action('ClassroomsController@store')]) !!}
                         <tbody>
+                        @foreach($matieres as $mat)
                         <tr>
 
                             <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
+                                    <input name="select[]" type="checkbox"  value="{{  $mat->id }}">
                                 </div>
-                                <span><strong>SVT</strong></span></td>
+                                <span><strong>{{ $mat->nom_matiere }}</strong></span></td>
                         </tr>
-                        <tr>
+                        @endforeach
 
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Mathématique</strong></span></td>
-                        </tr>
-                        <tr>
-
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Physique</strong></span></td>
-                        </tr>
-                        <tr>
-
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Arabe</strong></span></td>
-                        </tr>
-                        <tr>
-
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Français</strong></span></td>
-                        </tr>
-                        <tr>
-
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Histoire géographie</strong></span></td>
-                        </tr>
-                        <tr>
-
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Sport</strong></span></td>
-                        </tr>
-                        <tr>
-
-                            <td><div class="checkbox_liste2 ">
-                                    <input type="checkbox" >
-                                </div><span><strong>Anglais</strong></span></td>
-                        </tr>
                         </tbody>
                     </table>
 
@@ -90,18 +52,18 @@
 
                 </header>
                 <div class="panel-body informations_general">
-                    <form action="#" >
+
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Nom de la classe</label>
                             <div class="form_ajout">
-                                <input type="text" name="search" class="form_ajout_input" placeholder="Entrez le nom de la classe">
+                                <input type="text" name="nom_classe" class="form_ajout_input" placeholder="Entrez le nom de la classe">
 
                             </div>
                         </div>
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Code de la classe</label>
                             <div class="form_ajout">
-                                <input type="text" name="search" class="form_ajout_input" placeholder="Entrez le code de la classe">
+                                <input type="text" name="code_classe" class="form_ajout_input" placeholder="Entrez le code de la classe">
 
                             </div>
                         </div>
@@ -109,7 +71,7 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Capacité de salle</label>
                             <div class="form_ajout">
-                                <input type="text" name="search" class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
+                                <input type="text" name="capacite_classe" class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
 
                             </div>
                         </div>
@@ -117,7 +79,7 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Niveau</label>
                             <div class="form_ajout">
-                                <select class="form_ajout_input" placeholder="Choisissez le responsable">
+                                <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option>1 ère année bac</option>
                                     <option>2 ème année bac</option>
 
@@ -128,18 +90,22 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Branche</label>
                             <div class="form_ajout">
-                                <select class="form_ajout_input" placeholder="Choisissez le responsable">
+                               <!-- <select class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option>Science physique</option>
                                     <option>littéraire</option>
 
-                                </select>
+                                </select>-->
+
+                                                {!!  Form::select('branche',
+                 App\Branch::where('user_id',\Auth::user()->id)->
+                 lists('nom_branche','id') ,null,['class'=>'form_ajout_input']) !!}
 
                             </div>
                         </div>
 
 
                         <button class="btn_form" type="submit">Enregistrer</button>
-                    </form>
+                    {!!  Form::close() !!}
                 </div>
 
             </section>

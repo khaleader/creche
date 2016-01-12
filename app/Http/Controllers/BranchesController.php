@@ -18,7 +18,8 @@ class BranchesController extends Controller
      */
     public function index()
     {
-        return view('branches.index');
+       $branches = Branch::where('user_id',\Auth::user()->id)->paginate(10);
+        return view('branches.index',compact('branches'));
     }
 
     /**
@@ -113,5 +114,12 @@ class BranchesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+        $cr = Branch::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $cr->delete();
+        return redirect('branches')->with('success',"la branche a bien été supprimé");
     }
 }

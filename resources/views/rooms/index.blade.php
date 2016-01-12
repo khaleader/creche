@@ -21,7 +21,7 @@
                 <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
-                            <input type="checkbox" class="">
+                            <input type="checkbox" class="select-all">
                         </div>
 
                         <div class="btn-group">
@@ -54,10 +54,10 @@
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$rooms->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$rooms->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -73,17 +73,18 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($rooms as $room)
                         <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
-                                        <input type="checkbox" >
+                                        <input type="checkbox" name="select[]" value="{{ $room->id }}" >
 
                                     </div>
                                 </div></td>
-                            <td>Salle 1</td>
-                            <td>35 élèves</td>
+                            <td>{{  $room->nom_salle }}</td>
+                            <td>{{ $room->capacite_salle }} élèves</td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="{{ action('RoomsController@delete',[$room]) }}" class="actions_icons delete-room">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
@@ -91,63 +92,7 @@
 
 
                         </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>Salle 2</td>
-                            <td>25 élèves</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>Salle 3</td>
-                            <td>30 élèves</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>Salle 4</td>
-                            <td>35 élèves</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-
-                        </tr>
-
-
-
+                            @endforeach
 
                         </tbody>
                     </table>
@@ -155,15 +100,40 @@
             </section>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 @endsection
+
+@section('jquery')
+    <script>
+        $('.select-all').click(function(){
+            var status = this.checked;
+            $("input[name='select[]']").each(function(){
+                this.checked = status;
+            });
+        });
+        $('body').on('click','.delete-room',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+
+
+    </script>
+
+
+
+@stop
+

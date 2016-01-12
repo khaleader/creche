@@ -20,7 +20,7 @@
                 <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
-                            <input type="checkbox" class="">
+                            <input type="checkbox" class="select-all">
                         </div>
 
                         <div class="btn-group">
@@ -62,10 +62,10 @@
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$classrooms->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$classrooms->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -84,20 +84,23 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($classrooms as $cr)
                         <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
-                                        <input type="checkbox" >
+                                        <input type="checkbox"  value="{{ $cr->id }}" name="select[]">
 
                                     </div>
                                 </div></td>
-                            <td>1ére année littéraire 1</td>
-                            <td>1L1</td>
-                            <td>35 élèves</td>
-                            <td>1ére année Bac</td>
-                            <td>Littéraire</td>
+                            <td>{{  $cr->nom_classe }}</td>
+                            <td>{{  $cr->code_classe }}</td>
+                            <td>{{ $cr->capacite_classe }} élèves</td>
+                            <td>{{  $cr->niveau }}</td>
+                            <td>{{  App\Branch::where('user_id',\Auth::user()->id)
+                                      ->where('id',$cr->branche)->first()->nom_branche
+                            }}</td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="{{  action('ClassroomsController@delete',[$cr]) }}" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
@@ -105,95 +108,7 @@
 
                             <td><a href=""><div  class="btn_details">Détails</div></a></td>
                         </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>1ére année littéraire 1</td>
-                            <td>1L1</td>
-                            <td>35 élèves</td>
-                            <td>1ére année Bac</td>
-                            <td>Littéraire</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>1ére année littéraire 1</td>
-                            <td>1L1</td>
-                            <td>35 élèves</td>
-                            <td>1ére année Bac</td>
-                            <td>Littéraire</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>1ére année littéraire 1</td>
-                            <td>1L1</td>
-                            <td>35 élèves</td>
-                            <td>1ére année Bac</td>
-                            <td>Littéraire</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste ">
-                                        <input type="checkbox" >
-
-                                    </div>
-                                </div></td>
-                            <td>1ére année littéraire 1</td>
-                            <td>1L1</td>
-                            <td>35 élèves</td>
-                            <td>1ére année Bac</td>
-                            <td>Littéraire</td>
-                            <td>
-                                <a href="#" class="actions_icons">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
-                            </td>
-
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
-                        </tr>
-
-
-
-
-
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -201,16 +116,40 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
+
+@section('jquery')
+    <script>
+        $('.select-all').click(function(){
+            var status = this.checked;
+            $("input[name='select[]']").each(function(){
+                this.checked = status;
+            });
+        });
+
+        $('body').on('click','.delete-classe',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+
+
+    </script>
+
+
+
+@stop

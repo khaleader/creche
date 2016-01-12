@@ -14,4 +14,9 @@ class Matter extends Model
         $this->belongsTo('App\User');
     }
 
+    public function classrooms()
+    {
+        return $this->belongsToMany('App\Classroom');
+    }
+
 }

@@ -18,7 +18,8 @@ class RoomsController extends Controller
      */
     public function index()
     {
-       return view('rooms.index');
+       $rooms = Room::where('user_id',\Auth::user()->id)->paginate(10);
+       return view('rooms.index',compact('rooms'));
     }
 
     /**
@@ -115,4 +116,13 @@ class RoomsController extends Controller
     {
         //
     }
+
+
+    public function delete($id)
+    {
+        $cr = Room::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $cr->delete();
+        return redirect('rooms')->with('success',"la salle a bien été supprimé");
+    }
+
 }

@@ -18,7 +18,8 @@ class MattersController extends Controller
      */
     public function index()
     {
-       return view('matters.index');
+        $matters = Matter::where('user_id',\Auth::user()->id)->paginate(10);
+       return view('matters.index',compact('matters'));
     }
 
     /**
@@ -114,5 +115,12 @@ class MattersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function delete($id)
+    {
+        $cr = Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $cr->delete();
+        return redirect('matters')->with('success',"la Matière a bien été supprimé");
     }
 }
