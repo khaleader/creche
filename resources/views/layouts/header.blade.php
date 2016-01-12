@@ -94,9 +94,9 @@
     @endif
 
   @if(Auth::user() && Auth::user()->isAdmin())
-    <a class="bt_ajouter" href="{{  action('ChildrenController@create_enfant') }}">
+    <a class="bt_ajouter" href="{{  action('ChildrenController@create') }}">
         <img src="{{  asset('images/plus.png') }}" id="icon_plus">
-        <span>Ajouter un enfant</span>
+        <span>Inscription</span>
     </a>
     <div class="search-form">
        {!! Form::open(['url' => action('FamiliesController@search'),'method'=> 'get']) !!}

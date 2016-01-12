@@ -160,6 +160,7 @@ Route::get('statistics/archive_att/{id}','StatisticsController@archive_att');
 Route::get('statistics/newsbsc','StatisticsController@new_subscribers');
 Route::post('statistics/trier_sexe','StatisticsController@trier_sexe'); // trier en ajax sexe garcon ou fille
 Route::post('forgetpass','StatisticsController@forgetpass'); // forget pass ajax login
+Route::get('gestion','StatisticsController@gestion');
 Route::resource('statistics','StatisticsController');
 
 

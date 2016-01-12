@@ -6,9 +6,6 @@
 
 
 @endsection
-
-
-
 @section('content')
         @include('partials.alert-success')
         @include('partials.alert-errors')
@@ -135,14 +132,6 @@
                                 </select>
                             </div>
                         </div>
-
-
-
-
-
-
-
-
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Nom du pére</label>
                                 <div class="form_ajout">
@@ -363,14 +352,6 @@
           $(document).ready(function() {
               $('#loader-to').hide();
               $('div.pdp').hide();
-
-
-
-
-
-
-
-
               $('#submit').click(function () {
                   $('#loader-to').show();
               });
@@ -393,8 +374,6 @@
                   $('input[type="file"]').prop('disabled', false);
                   $('#image-h').show();
               });
-
-
               $('#date_birth_child').blur(function () {
                   var inputDate = new Date(this.value);
                   var inputDate = inputDate.toLocaleDateString();
@@ -417,7 +396,6 @@
                               $('#prices').empty();
                               $('#prices').append(data);
                           }
-
                       }
                   });
               });
@@ -443,15 +421,8 @@
                                  window.location.href = href;
                              }
                       }
-
                   });
-
-
-
-
               });
-
-
               $('#transport').change(function () {
                   var trans = $(this).val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -498,7 +469,6 @@
 
                   }
               });
-
               $('.nav-tabs  a').click(function (e) {
                   e.preventDefault();
                   $(this).tab('show');
@@ -555,18 +525,9 @@
                        setTimeout(function(){
                            canDismiss = true;
                        }, 1000);
-
-
                    }
                });
            });
-
-
-
-
           });
-
     </script>
-
-
 @stop

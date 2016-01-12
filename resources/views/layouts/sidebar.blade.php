@@ -26,9 +26,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{  action('ChildrenController@create') }}">
+                    <a href="{{  action('StatisticsController@gestion') }}">
                         <img src="{{  asset('images/inscription.png') }}" class="sidebar_icons">
-                        <span>Inscription</span>
+                        <span>Gestion</span>
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
                 </li>

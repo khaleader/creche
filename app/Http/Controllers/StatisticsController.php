@@ -108,6 +108,11 @@ class StatisticsController extends Controller
         );
     }
 
+
+    public function gestion()
+    {
+        return view('statistics.gestion');
+    }
     /**
      * Show the form for creating a new resource.
      *

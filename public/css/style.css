@@ -6634,7 +6634,337 @@ margin-right: 5px;
     padding-top: 15px;
 }
 
+/*-----------------------------------------*/
+/*------Partie Gestion---------------------*/
+/*-----------------------------------------*/
 
+.bloc_info2 img{
+    float: left;
+    margin-left: 0px;
+    margin-top: 9px;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+}
+
+.bloc_info2 p{
+    font-weight: normal;
+    font-size: 18px;
+    color: #687b8c;
+    font-family: open sans;
+    margin-top: 16px;
+    display: inline-block;
+}
+.btn_add{
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #dce7ea;
+    color: #687b8c;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: -11px;
+    float: right;
+    transition:background-color 0.25s ease 0s;
+    -moz-transition:background-color 0.25s ease 0s;
+    -webkit-transition:background-color 0.25s ease 0s;
+}
+.btn_add:hover{
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #b5c9ce;
+    color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: -11px;
+    float: right;
+    transition:background-color 0.25s ease 0s;
+    -moz-transition:background-color 0.25s ease 0s;
+    -webkit-transition:background-color 0.25s ease 0s;
+}
+.btn2{
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #dce7ea;
+    color: #687b8c;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 5px;
+    margin-left: 8px;
+    float: right;
+    transition:background-color 0.25s ease 0s;
+    -moz-transition:background-color 0.25s ease 0s;
+    -webkit-transition:background-color 0.25s ease 0s;
+}
+.btn2:hover{
+    padding-right: 20px;
+    padding-left: 20px;
+    height: 40px;
+    border-radius: 25px;
+    background-color: #b5c9ce;
+    color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 5px;
+    margin-left: 8px;
+    float: right;
+    transition:background-color 0.25s ease 0s;
+    -moz-transition:background-color 0.25s ease 0s;
+    -webkit-transition:background-color 0.25s ease 0s;
+}
+
+.planning {
+    width: 880px;
+    border: 1px solid #ddd;
+}
+.planning td{
+    border: 1px solid #ddd;
+}
+.planning tr{
+    height: 20px;
+}
+.matieres{
+    width:77px;
+    float:left;
+}
+.matieres table{
+
+}
+.matieres td{
+    background:#eee;
+    margin-bottom: 10px;
+}
+.matieres tr{
+    margin-bottom: 10px;
+    display: inline-block;
+}
+.right{
+    float:right;
+    width:570px;
+}
+.right table{
+    background:#ddd;
+}
+.planning_table td{
+    background:#fafafa;
+    color:#444;
+    text-align:center;
+    padding:2px;
+}
+.planning_table{
+    display: inline-block;
+    width: 60%;
+}
+.planning_table td{
+    background:#eeeeee;
+}
+.planning_table td.drop{
+    background:#fafafa;
+    width:20px;
+}
+.planning_table td.over{
+    background:#cdc6f1;
+}
+
+.item{
+    text-align:center;
+    background:#fafafa;
+    color:#fff;
+    width:70px;
+    border-radius: 3px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.item2{
+    text-align:center;
+    background:#eeeeee;
+    color:#646464;
+    width:70px;
+    border-radius: 3px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.english{
+    text-align:center;
+    background:#59ace2;
+    color:#fff;
+
+
+}
+.science{
+    text-align:center;
+    background:#A9D86E;
+    color:#fff;
+
+
+}
+.arabe{
+    text-align:center;
+    background:#8175c7;
+    color:#fff;
+
+
+}
+.history{
+    text-align:center;
+    background:#344860;
+    color:#fff;
+
+
+}
+.computer{
+    text-align:center;
+    background:#FCB322;
+    color:#fff;
+
+
+}
+.mathematics{
+    text-align:center;
+    background:#FF6C60;
+    color:#fff;
+
+
+}
+.arts{
+    text-align:center;
+    background:#a1a1a1;
+    color:#fff;
+
+}
+.ethics{
+    text-align:center;
+    background:#1FB5AD;
+    color:#fff;
+
+}
+.assigned{
+    display: inline-block;
+    margin-top: 10px;
+}
+.trash{
+    background-color:red;
+}
+.time{
+    width: 8%;
+    height: 60px;
+    background-color: #e4e4e4;
+}
+.title{
+    height: 50px;
+    width: 8%;
+}
+td.drop.droppable{
+    width: 10%;
+}
+.salles{
+    display: inline-block;
+}
+.salles td{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.left_info{
+    display: inline-block;
+    float: left;
+    margin-right: 15px;
+}
+
+.bloc_setting{
+    height: 50px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+}
+.bloc2{
+    height: 100px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+}
+.liste_setting {
+    display:inline-block;
+    margin-bottom:0px;
+    float: left;
+    margin-top: -5px;
+    margin-left: 0px;
+}
+.liste_setting .chk-all,.liste_setting .btn-group {
+    margin-right:5px;
+}
+.liste_setting .chk-all,.liste_setting .btn-group a.btn {
+    border:1px solid #dce7ea;
+    padding:5px 10px;
+    display:inline-block;
+    background:#f6f9fa;
+    color:#687b8c;
+    border-radius:3px !important;
+    -webkit-border-radius:3px !important;
+}
+
+.liste_setting .chk-all input[type=checkbox] {
+    margin-top:0;
+}
+.liste_setting .btn-group a.all {
+    padding:0;
+    border:none;
+}
+.actions_btn{
+    float: right;
+    display: inline-block;
+    margin-top: -3px;
+}
+.actions_btn li{
+    display: inline-block;
+    background-color: #8c97b1;
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 25px;
+    margin-left: 5px;
+    padding-top: 2px;
+    transition:background-color 0.25s ease 0s;
+    -moz-transition:background-color 0.25s ease 0s;
+    -webkit-transition:background-color 0.25s ease 0s;
+
+}
+.actions_btn li:hover{
+    display: inline-block;
+    background-color: #9eaac5;
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 25px;
+    margin-left: 5px;
+    padding-top: 2px;
+    transition:background-color 0.25s ease 0s;
+    -moz-transition:background-color 0.25s ease 0s;
+    -webkit-transition:background-color 0.25s ease 0s;
+
+}
+.actions_btn li a{
+
+    text-transform: capitalize;
+    font-size: 12px;
+    font-family: open Sans;
+    color: #fff;
+
+}
+.actions_btn li img{
+    margin-right: 5px;
+    margin-left: -5px;
+
+}
+#exporter{
+    margin-top: 0px;
+}
+.checkbox_liste2{
+    height: 21px;
+    width: 21px;
+    display: inline-block;
+    float: left;
+}
 
 
 
