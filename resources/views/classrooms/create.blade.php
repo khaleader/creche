@@ -98,7 +98,7 @@
 
                                                 {!!  Form::select('branche',
                  App\Branch::where('user_id',\Auth::user()->id)->
-                 lists('nom_branche','id') ,null,['class'=>'form_ajout_input']) !!}
+                 lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) !!}
 
                             </div>
                         </div>

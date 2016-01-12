@@ -96,9 +96,8 @@
                             <td>{{  $cr->code_classe }}</td>
                             <td>{{ $cr->capacite_classe }} élèves</td>
                             <td>{{  $cr->niveau }}</td>
-                            <td>{{  App\Branch::where('user_id',\Auth::user()->id)
-                                      ->where('id',$cr->branche)->first()->nom_branche
-                            }}</td>
+                            <td>{{  $cr->branche    }}</td>
+
                             <td>
                                 <a href="{{  action('ClassroomsController@delete',[$cr]) }}" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>

@@ -159,7 +159,8 @@ class ClassroomsController extends Controller
             $ids = array_unique($ids);
             foreach($ids as $id)
             {
-
+                $b =   Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $b->delete();
 
             }
         }

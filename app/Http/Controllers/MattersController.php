@@ -132,7 +132,8 @@ class MattersController extends Controller
             $ids = array_unique($ids);
             foreach($ids as $id)
             {
-
+                $b =   Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $b->delete();
             }
         }
     }

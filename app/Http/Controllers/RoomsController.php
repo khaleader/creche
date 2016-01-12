@@ -134,7 +134,8 @@ class RoomsController extends Controller
             $ids = array_unique($ids);
             foreach($ids as $id)
             {
-
+                $b =   Room::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $b->delete();
             }
         }
     }
