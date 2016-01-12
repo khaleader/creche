@@ -6968,3 +6968,146 @@ td.drop.droppable{
 
 
 
+
+/*      emploi du temps      */
+/*     debut        */
+.planning {
+    width: 1000px;
+}
+.left{
+    width:120px;
+    float:left;
+}
+.left table{
+
+}
+.left td{
+    background:#eee;
+}
+.right{
+    float:right;
+    width:570px;
+}
+.right table{
+    background:#ddd;
+}
+.right td{
+    background:#fafafa;
+    color:#444;
+    text-align:center;
+    padding:2px;
+}
+.right td{
+    background:#eeeeee;
+}
+.right td.drop{
+    background:#fafafa;
+    width:100px;
+}
+.right td.over{
+    background:#cdc6f1;
+}
+.item{
+    text-align:center;
+    background:#fafafa;
+    color:#fff;
+    width:100px;
+    border-radius: 3px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.item2{
+    text-align:center;
+    background:#eeeeee;
+    color:#646464;
+    width:100px;
+    border-radius: 3px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.english{
+    text-align:center;
+    background:#59ace2;
+    color:#fff;
+    width:100px;
+
+}
+.francais{
+    text-align:center;
+    background:darkblue;
+    color:#fff;
+    width:100px;
+
+}
+.science{
+    text-align:center;
+    background:#A9D86E;
+    color:#fff;
+    width:100px;
+
+}
+.music{
+    text-align:center;
+    background:#8175c7;
+    color:#fff;
+    width:100px;
+
+}
+.history{
+    text-align:center;
+    background:#344860;
+    color:#fff;
+    width:100px;
+
+}
+.computer{
+    text-align:center;
+    background:#FCB322;
+    color:#fff;
+    width:100px;
+
+}
+.mathematics{
+    text-align:center;
+    background:#FF6C60;
+    color:#fff;
+    width:100px;
+
+}
+.arts{
+    text-align:center;
+    background:#a1a1a1;
+    color:#fff;
+    width:100px;
+}
+.ethics{
+    text-align:center;
+    background:#1FB5AD;
+    color:#fff;
+    width:100px;
+}
+.assigned{
+    display: inline-block;
+    margin-top: 10px;
+}
+.trash{
+    background-color:red;
+}
+.time{
+    width: 170px;
+    height: 70px;
+    background-color: #e4e4e4;
+}
+.title{
+    height: 50px;
+    width: 170px;
+}
+td.drop.droppable{
+    width: 170px;
+}
+.classes{
+    margin-top: 50px;
+}
+/*                fin          */
+/*      emploi du temps      */
+

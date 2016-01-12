@@ -13,4 +13,9 @@ protected $fillable = ['nom_branche','code_branche','user_id'];
     {
         $this->belongsTo('App\User');
     }
+
+    public function matters()
+    {
+        return $this->hasMany('App\Matter');
+    }
 }

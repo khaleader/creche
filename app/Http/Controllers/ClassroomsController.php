@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Branch;
 use App\Classroom;
 use App\Matter;
 use Illuminate\Http\Request;
@@ -20,7 +21,11 @@ class ClassroomsController extends Controller
     public function index()
     {
         $classrooms = Classroom::where('user_id',\Auth::user()->id)->paginate(10);
-        return view('classrooms.index',compact('classrooms'));
+        $branches = Branch::where('user_id',\Auth::user()->id)->get();
+        return view('classrooms.index')->with([
+            'classrooms' => $classrooms,
+            'branches' => $branches
+        ]);
     }
 
     /**

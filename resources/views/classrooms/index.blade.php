@@ -49,8 +49,9 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a href="#">Littéraire</a></li>
-                            <li><a href="#">Sciences</a></li>
+                            @foreach($branches as $b)
+                            <li><a href="#">{{ $b->nom_branche }}</a></li>
+                                @endforeach
                         </ul>
                     </div>
 
