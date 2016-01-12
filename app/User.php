@@ -113,4 +113,23 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\Transport');
     }
 
+
+    public function matters()
+    {
+        return $this->hasMany('App\Matter.php');
+    }
+
+    public function branches()
+    {
+        return $this->hasMany('App\Branch.php');
+    }
+    public function rooms()
+    {
+        return $this->hasMany('App\Room.php');
+    }
+    public function classrooms()
+    {
+        return $this->hasMany('App\Classroom.php');
+    }
+
 }

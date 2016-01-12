@@ -19,6 +19,7 @@ class CreateClassroomsTable extends Migration
             $table->integer('capacite_classe');
             $table->string('niveau',255);
             $table->string('branche',255);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

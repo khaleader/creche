@@ -16,7 +16,7 @@ class ClassroomsController extends Controller
      */
     public function index()
     {
-        //
+        return view('classrooms.index');
     }
 
     /**
@@ -26,7 +26,7 @@ class ClassroomsController extends Controller
      */
     public function create()
     {
-        //
+        return view('classrooms.create');
     }
 
     /**

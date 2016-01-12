@@ -164,3 +164,11 @@ Route::get('gestion','StatisticsController@gestion');
 Route::resource('statistics','StatisticsController');
 
 
+/* *********************                       *******************/
+/***********************       branches and rooms and matters and classrooms  *********/
+/* *********************                       *******************/
+
+Route::resource('branches','BranchesController');
+Route::resource('rooms','RoomsController');
+Route::resource('classrooms','ClassroomsController');
+Route::resource('matters','MattersController');

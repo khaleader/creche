@@ -16,6 +16,7 @@ class CreateMattersTable extends Migration
             $table->increments('id');
             $table->string('nom_matiere',255);
             $table->string('code_matiere',255);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

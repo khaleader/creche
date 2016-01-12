@@ -16,6 +16,7 @@ class CreateBranchesTable extends Migration
             $table->increments('id');
             $table->string('nom_branche',255);
             $table->string('code_branche',255);
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

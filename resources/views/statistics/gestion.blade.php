@@ -7,7 +7,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="enfants.html">
+                    <a href="{{ action('ClassroomsController@index') }}">
                         <div class="bloc_info2"><img src="images/classes.png" ><p>Classes</p></div>
                     </a></div>
             </section>
@@ -15,7 +15,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="pointages.html">
+                    <a href="{{  action('MattersController@index') }}">
                         <div class="bloc_info2"><img src="images/matieres.png" ><p>Matières</p></div></a>
                 </div>
             </section>
@@ -23,7 +23,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="enfants.html">
+                    <a href="{{  action('BranchesController@index') }}">
                         <div class="bloc_info2"><img src="images/branches.png" ><p>Branches</p></div>
                     </a></div>
             </section>
@@ -31,7 +31,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="pointages.html">
+                    <a href="{{  action('RoomsController@index') }}">
                         <div class="bloc_info2"><img src="images/salles.png" ><p>Salles</p></div></a>
                 </div>
             </section>
@@ -42,7 +42,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="pointages.html">
+                    <a href="">
                         <div class="bloc_info2"><img src="images/emplois.png" ><p>Emplois du temps</p></div></a>
                 </div>
             </section>
@@ -50,7 +50,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="pointages.html">
+                    <a href="">
                         <div class="bloc_info2"><img src="images/repartitions.png" ><p>Répartition </br>enseignants</p></div></a>
                 </div>
             </section>
