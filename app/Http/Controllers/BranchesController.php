@@ -132,8 +132,8 @@ class BranchesController extends Controller
             $ids = array_unique($ids);
             foreach($ids as $id)
             {
-
-
+           $b =   Branch::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $b->delete();
             }
         }
     }

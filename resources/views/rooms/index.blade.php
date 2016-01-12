@@ -40,7 +40,7 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
+                            <li><a id="delete-rooms" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
                             <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
                     </div>
@@ -130,6 +130,35 @@
                         }
                     }).show();
 
+        });
+
+        $('#delete-rooms').click(function(){
+            var boxes;
+            var status;
+            $("input[name='select[]']").each(function(){
+                if($(this).is(':checked'))
+                {
+                    status = true;
+                    var valeur = $(this).val();
+                    $(this).val(valeur).closest('tr').fadeOut();
+                    boxes = $(this).val() + ',';
+                    $('#boxes').append(boxes);
+                }
+            });
+            if($('#boxes').text() ===  null)
+            {
+                alert('check please');
+                return false;
+            }
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('RoomsController@supprimer')}}',
+                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+                    console.log(data);
+                }
+            });
         });
 
 
