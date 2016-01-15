@@ -40,17 +40,21 @@ class MattersController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make([
-            $request->all(),
+
             'nom_matiere' =>$request->nom_matiere,
-            'code_matiere' =>$request->code_matiere
+            'code_matiere' =>$request->code_matiere,
+             'color' => '#'.$request->color
         ],[
             'nom_matiere' => 'required',
-            'code_matiere'=> 'required'
+            'code_matiere'=> 'required',
+            'color' => 'required'
         ],
             [
                 'nom_matiere.required' => "le nom de la matière est requis",
                 'code_matiere.required' => "le Code de la matière est requis",
+                'color.required' => 'la couleur de la matière est requis'
             ]);
 
 
@@ -60,6 +64,7 @@ class MattersController extends Controller
             Matter::create([
                 'nom_matiere'=> $request->nom_matiere,
                 'code_matiere' => $request->code_matiere,
+                'color' => '#'.$request->color,
                 'user_id'=>\Auth::user()->id
             ]);
 

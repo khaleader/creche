@@ -11,7 +11,7 @@ class Classroom extends Model
 
     public function user()
     {
-        $this->belongsTo('App\User');
+       return $this->belongsTo('App\User');
     }
 
 
@@ -19,4 +19,20 @@ class Classroom extends Model
     {
         return $this->belongsToMany('App\Matter');
     }
+
+    public function timesheets()
+    {
+        return $this->hasMany('App\Timesheet');
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

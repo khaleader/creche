@@ -1,15 +1,21 @@
 @extends('layouts.default')
 
+
+
+<script  src="{{ asset('js/jscolor.js') }}"></script>
+
 @section('content')
     @include('partials.alert-errors')
     @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
-                <a href="liste matières.html">
+                <a href="{{ action('MattersController@index') }}">
                     <div class="panel-body bloc_informations">
 
-                        <img src="{{ asset('images/matieres.png') }}" ><span class="count">13</span><p>Matières</p>
+                        <img src="{{ asset('images/matieres.png') }}" >
+                        <span class="count">{{ \App\Matter::where('user_id',\Auth::user()->id)->count() }}</span>
+                        <p>Matières</p>
                     </div></a>
             </section>
         </div>
@@ -45,6 +51,13 @@
 
                             </div>
                         </div>
+                    <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Couleur de la matière</label>
+                        <div class="form_ajout">
+                            <input id="color"  name="color" class="form_ajout_input jscolor" placeholder="Entrez le code de la matière">
+
+                        </div>
+                    </div>
                         <button class="btn_form" type="submit">Enregistrer</button>
                     {!! Form::close() !!}
                 </div>
@@ -72,6 +85,7 @@
             $(".alert-success").alert('close');
 
         });
+
 
     </script>
 

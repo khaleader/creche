@@ -21,6 +21,7 @@ class CreateTimesheetsTable extends Migration
             $table->string('vendredi',20);
             $table->string('samedi',20);
             $table->time('time');
+            $table->string('matiere',50);
             $table->integer('user_id')->unsigned();
             $table->integer('classroom_id')->unsigned();
             $table->timestamps();

@@ -8,6 +8,7 @@
     <title>Oblivius Petite Enfance </title>
     <!--Core CSS -->
     <link rel="shortcut icon" type="image/png"  href="{{ asset('favicon.png') }}">
+    @yield('css')
     <link href=" {{  asset('bs3/css/bootstrap.css') }}" rel="stylesheet">
     <script src="{{  asset('js/moment.min.js') }}"></script>
     <link href="{{  asset('js/jquery-ui/jquery-ui-1.10.1.custom.min.css') }}" rel="stylesheet">
@@ -34,8 +35,6 @@
    <!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.5.0/css/themes/bootstrap.min.css"/> -->
     <!--/************** alertify alert ***********/-->
 
-
-    @yield('css')
 
 
     <link href=" {{  asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">

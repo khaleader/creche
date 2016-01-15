@@ -184,3 +184,10 @@ Route::post('matters/supprimer','MattersController@supprimer'); //suppression aj
 Route::get('matters/delete/{id}','MattersController@delete'); // delete a matter  by click
 
 Route::resource('matters','MattersController');
+
+
+
+/*  timesheets */
+Route::post('ts/enre','TimesheetsController@enregistrer');
+Route::post('ts/del','TimesheetsController@del');
+Route::resource('timesheets','TimesheetsController');

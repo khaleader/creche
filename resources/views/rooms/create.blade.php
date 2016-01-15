@@ -7,10 +7,11 @@
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
-                <a href="liste matières.html">
+                <a href="{{ action('RoomsController@index') }}">
                     <div class="panel-body bloc_informations">
 
-                        <img src="{{ asset('images/salles.png') }}" ><span class="count">16</span><p>Salles</p>
+                        <img src="{{ asset('images/salles.png') }}" ><span class="count">
+                            {{ \App\Room::where('user_id',\Auth::user()->id)->count() }}</span><p>Salles</p>
                     </div></a>
             </section>
         </div>

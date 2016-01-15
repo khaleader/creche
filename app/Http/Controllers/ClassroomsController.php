@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Classroom;
 use App\Matter;
+use App\Timesheet;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -83,6 +84,10 @@ class ClassroomsController extends Controller
             $cr->user_id = \Auth::user()->id;
             $cr->save();
 
+           $ts = new Timesheet();
+            $ts->user_id = \Auth::user()->id;
+            $ts->classroom_id  = $cr->id;
+            $ts->save();
 
            if($cr)
             {
