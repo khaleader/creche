@@ -175,7 +175,7 @@ Route::get('rooms/delete/{id}','RoomsController@delete'); // delete a room by cl
 Route::resource('rooms','RoomsController');
 
 
-
+Route::post('classrooms/trierparbranche','ClassroomsController@trierparbranche'); //trier par branche  ajax
 Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax
 Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete classe by click
 Route::resource('classrooms','ClassroomsController');
@@ -191,3 +191,9 @@ Route::resource('matters','MattersController');
 Route::post('ts/enre','TimesheetsController@enregistrer');
 Route::post('ts/del','TimesheetsController@del');
 Route::resource('timesheets','TimesheetsController');
+
+
+/* levels */
+Route::post('levels/supprimer','LevelsController@supprimer');
+Route::get('levels/delete/{id}','LevelsController@delete'); // supprimer un niveau by click
+Route::resource('levels','LevelsController');

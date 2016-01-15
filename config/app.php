@@ -143,6 +143,7 @@ return [
         Creativeorange\Gravatar\GravatarServiceProvider::class,
         PulkitJalan\Google\GoogleServiceProvider::class,
         Morrislaptop\LaravelQueueClear\LaravelQueueClearServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
 
 
@@ -208,7 +209,8 @@ return [
         'HTML'      => Illuminate\Html\HtmlFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
-        'Google'   => PulkitJalan\Google\Facades\Google::class
+        'Google'   => PulkitJalan\Google\Facades\Google::class,
+        'Excel' =>    Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

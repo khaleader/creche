@@ -74,6 +74,19 @@
             <h2>{{  "factures" }}</h2>
         @elseif(Route::current()->getUri() == 'statistics' or Request::is('statistics/*') )
             <h2>{{ 'statistiques' }}</h2>
+        @elseif(Route::current()->getUri() == 'timesheets' or Request::is('timesheets/*') )
+            <h2>{{ 'Emploi Du Temps' }}</h2>
+        @elseif(Route::current()->getUri() == 'gestion' or Request::is('gestion/*') )
+            <h2>{{ 'Gestion' }}</h2>
+        @elseif(Route::current()->getUri() == 'classrooms' or Request::is('classrooms/*') )
+            <h2>{{ 'Classes' }}</h2>
+        @elseif(Route::current()->getUri() == 'matters' or Request::is('matters/*') )
+            <h2>{{ 'matières' }}</h2>
+        @elseif(Route::current()->getUri() == 'branches' or Request::is('branches/*') )
+            <h2>{{ 'branches' }}</h2>
+        @elseif(Route::current()->getUri() == 'rooms' or Request::is('rooms/*') )
+            <h2>{{ 'salles' }}</h2>
+
         @else
            <h2>{{  'inconnu' }}</h2>
         @endif

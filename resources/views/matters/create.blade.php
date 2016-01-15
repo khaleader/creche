@@ -54,7 +54,7 @@
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Couleur de la matière</label>
                         <div class="form_ajout">
-                            <input id="color"  name="color" class="form_ajout_input jscolor" placeholder="Entrez le code de la matière">
+                            <input id="color"  name="color" class="form_ajout_input jscolor" placeholder="choisissez le couleur de la matière">
 
                         </div>
                     </div>
@@ -76,15 +76,18 @@
 @endsection
 @section('jquery')
     <script>
+     $(function(){
+         $('#color').val('');
+         $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){
+             $(".alert-danger").alert('close');
+             $('#loader-to').hide();
+         });
+         $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
+             $(".alert-success").alert('close');
 
-        $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){
-            $(".alert-danger").alert('close');
-            $('#loader-to').hide();
-        });
-        $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
-            $(".alert-success").alert('close');
+         });
+     });
 
-        });
 
 
     </script>

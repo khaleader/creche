@@ -48,7 +48,7 @@
                             Trier par branche
                             <i class="fa fa-angle-down "></i>
                         </a>
-                        <ul class="dropdown-menu menu_actions">
+                        <ul class="dropdown-menu menu_actions br-action">
                             @foreach($branches as $b)
                             <li><a href="#">{{ $b->nom_branche }}</a></li>
                                 @endforeach
@@ -174,6 +174,21 @@
                     console.log(data);
                 }
             });
+        });
+
+        $('.br-action a').click(function(){
+            $('tbody').empty();
+            var branche = $(this).text();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('ClassroomsController@trierparbranche')}}',
+                data: 'branche=' + branche + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+                    $('tbody').append(data);
+                }
+            });
+
         });
 
 

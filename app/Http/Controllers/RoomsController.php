@@ -63,6 +63,7 @@ class RoomsController extends Controller
             Room::create([
                'nom_salle'=> $request->nom_salle,
                 'capacite_salle' => $request->capacite_salle,
+                'color' => '#525252',
                 'user_id'=>\Auth::user()->id
             ]);
 

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColorToRooms extends Migration
+class CreateLevelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,11 @@ class AddColorToRooms extends Migration
      */
     public function up()
     {
-        Schema::table('rooms', function (Blueprint $table) {
-           $table->string('color',20);
+        Schema::create('levels', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('niveau',200);
+            $table->integer('user_id')->unsigned();
+
         });
     }
 
@@ -24,8 +27,6 @@ class AddColorToRooms extends Migration
      */
     public function down()
     {
-        Schema::table('rooms', function (Blueprint $table) {
-            Schema::drop('rooms');
-        });
+        Schema::drop('levels');
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Matter;
+use App\Level;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 
-class MattersController extends Controller
+class LevelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class MattersController extends Controller
      */
     public function index()
     {
-        $matters = Matter::where('user_id',\Auth::user()->id)->paginate(10);
-       return view('matters.index',compact('matters'));
+      $levels = Level::where('user_id',\Auth::user()->id)->paginate(10);
+        return view('levels.index',compact('levels'));
     }
 
     /**
@@ -29,7 +29,7 @@ class MattersController extends Controller
      */
     public function create()
     {
-        return view('matters.create');
+        return view('levels.create');
     }
 
     /**
@@ -40,41 +40,27 @@ class MattersController extends Controller
      */
     public function store(Request $request)
     {
-
         $validator = Validator::make([
-
-            'nom_matiere' =>$request->nom_matiere,
-            'code_matiere' =>$request->code_matiere,
-             'color' => $request->color
+            $request->all(),
+            'niveau' =>$request->niveau,
         ],[
-            'nom_matiere' => 'required',
-            'code_matiere'=> 'required',
-            'color' => 'required'
+            'niveau' => 'required',
         ],
             [
-                'nom_matiere.required' => "le nom de la matière est requis",
-                'code_matiere.required' => "le Code de la matière est requis",
-                'color.required' => 'la couleur de la matière est requis'
+                'niveau.required' => "le nom du niveau est requis"
             ]);
 
 
         if($validator->passes())
         {
-
-            Matter::create([
-                'nom_matiere'=> $request->nom_matiere,
-                'code_matiere' => $request->code_matiere,
-                'color' => '#'.$request->color,
-                'user_id'=>\Auth::user()->id
-            ]);
-
-            return redirect()->back()->with('success','Informations bien enregistrées');
+            $level = new Level();
+            $level->niveau = $request->niveau;
+            $level->user_id = \Auth::user()->id;
+            $level->save();
+            return redirect()->back()->with('success','Bien Enregistré');
         }else{
             return redirect()->back()->withErrors($validator);
         }
-
-
-
     }
 
     /**
@@ -124,10 +110,11 @@ class MattersController extends Controller
 
     public function delete($id)
     {
-        $cr = Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-        $cr->delete();
-        return redirect('matters')->with('success',"la Matière a bien été supprimé");
+       $lev = Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $lev->delete();
+        return redirect('levels')->with('success',"le niveau a bien été supprimé");
     }
+
     public function supprimer()
     {
         if(\Request::ajax())
@@ -137,7 +124,7 @@ class MattersController extends Controller
             $ids = array_unique($ids);
             foreach($ids as $id)
             {
-                $b =   Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $b =   Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                 $b->delete();
             }
         }

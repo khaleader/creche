@@ -42,6 +42,14 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
+                    <a href="{{  action('LevelsController@index') }}">
+                        <div class="bloc_info2"><img src="images/salles.png" ><p>Niveaux</p></div></a>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-3">
+            <section class="panel bloc2">
+                <div class="panel-body">
                     <a href="{{  action('TimesheetsController@index') }}">
                         <div class="bloc_info2"><img src="images/emplois.png" ><p>Emplois du temps</p></div></a>
                 </div>

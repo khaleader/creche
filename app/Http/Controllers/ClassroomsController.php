@@ -175,4 +175,39 @@ class ClassroomsController extends Controller
             }
         }
     }
+
+    public function trierparbranche()
+    {
+        if(\Request::ajax())
+        {
+          $br =  \Input::get('branche');
+           $branches = Classroom::where('user_id',\Auth::user()->id)->where('branche',$br)->get();
+            foreach ($branches as $branch) {
+                echo '         <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input type="checkbox"  value="'.$branch->id.' " name="select[]">
+
+                                    </div>
+                                </div></td>
+                            <td> '.$branch->nom_classe.' </td>
+                            <td> '. $branch->code_classe .'</td>
+                            <td> '. $branch->capacite_classe.'  élèves</td>
+                            <td> '. $branch->niveau .'</td>
+                            <td>'. $branch->branche .'</td>
+
+                            <td>
+                                <a href="'.  action('ClassroomsController@delete',[$branch]) .'" class="actions_icons delete-classe">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+
+                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+            }
+        }
+    }
+
+
 }

@@ -7,15 +7,6 @@
             <section class="panel">
                 <header class="panel-heading">
                     Liste des emplois du temps
-                    <div class="actions_btn">
-                        <ul>
-                            <li><a href="#"><img id="ajouter" src="images/ajouter.png">Ajouter</a></li>
-                            <li><a href="#"><img id="exporter" src="images/exporter.png">Exporter</a></li>
-                            <li><a href="#"><img id="imprimer" src="images/imprimer.png">Imprimer</a></li>
-                            <li><a href="#"><img id="actuel" src="images/actuel.png">Actuel</a></li>
-                            <li><a href="#"><img id="archive" src="images/archive.png">Archive</a></li>
-                        </ul>
-                    </div>
                 </header>
                 <div class="liste_actions">
                     <div class="chk-all">
