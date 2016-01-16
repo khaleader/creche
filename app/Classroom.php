@@ -25,6 +25,11 @@ class Classroom extends Model
         return $this->hasMany('App\Timesheet');
     }
 
+    public function child()
+    {
+        return $this->belongsTo('App\Child');
+    }
+
 
 
 

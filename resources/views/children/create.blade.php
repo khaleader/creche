@@ -183,6 +183,17 @@
 
                             </div>
                         </div>
+                        <div class="form_champ">
+                            <label for="cname" class="control-label col-lg-3">La Classe</label>
+                            <div class="form_ajout">
+
+                                {!!  Form::select('classe',
+                      App\Classroom::where('user_id',\Auth::user()->id)->
+                      lists('nom_classe','id') ,null,['class'=>'form_ajout_input','id'=>'classe']) !!}
+                            </div>
+                        </div>
+
+
 
 
 
@@ -273,7 +284,10 @@
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Poste</label>
                                 <div class="form_ajout">
-                                    <input type="text" name="poste" class="form_ajout_input" placeholder="Entrez le poste ">
+                                  <!--  <input type="text" name="poste" class="form_ajout_input" placeholder="Entrez le poste "> -->
+                                                    {!!  Form::select('poste',
+                       App\Matter::where('user_id',\Auth::user()->id)->
+                       lists('nom_matiere','id') ,null,['class'=>'form_ajout_input']) !!}
 
                                 </div>
                             </div>

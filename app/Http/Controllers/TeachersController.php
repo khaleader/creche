@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TeacherRequest;
+use App\Matter;
 use App\Teacher;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -45,7 +46,8 @@ class TeachersController extends Controller
         $teacher = new Teacher();
         $teacher->nom_teacher = $request->nom_teacher;
         $teacher->date_naissance = $request->date_naissance;
-        $teacher->poste = $request->poste;
+
+        $teacher->poste = Matter::where('user_id',\Auth::user()->id)->where('id',$request->poste)->first()->nom_matiere;
         $teacher->sexe = $request->sexe;
         $teacher->email = $request->email;
         $teacher->num_fix = $request->num_fix;
@@ -55,6 +57,10 @@ class TeachersController extends Controller
         $teacher->salaire = $request->salaire;
         $teacher->user_id =  \Auth::user()->id;
         $teacher->save();
+        if($teacher)
+        {
+            $teacher->matters()->sync([$request->poste]);
+        }
         return redirect()->back()->with('success',"Les Informations Ont Bien été Enregistrés ! ");
     }
 

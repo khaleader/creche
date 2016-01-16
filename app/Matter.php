@@ -24,4 +24,9 @@ class Matter extends Model
         return $this->belongsTo('App\Branch');
     }
 
+    public function teachers()
+    {
+        return $this->belongsToMany('App\Teacher');
+    }
+
 }

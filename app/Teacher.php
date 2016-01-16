@@ -11,4 +11,10 @@ use SoftDeletes;
 
     protected $dates = ['date_naissance','deleted_at'];
 
+
+    public function matters()
+    {
+        return $this->belongsToMany('App\Matter');
+    }
+
 }

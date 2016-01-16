@@ -42,4 +42,9 @@ protected $dates = ['date_naissance','deleted_at'];
     {
         return $this->belongsTo('App\User');
     }
+
+    public function classe()
+    {
+        return $this->hasOne('App\Classroom');
+    }
 }

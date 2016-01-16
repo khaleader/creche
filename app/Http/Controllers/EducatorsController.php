@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classroom;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +17,7 @@ class EducatorsController extends Controller
      */
     public function index()
     {
-        //
+     return view('educators.index');
     }
 
     /**
@@ -84,4 +85,37 @@ class EducatorsController extends Controller
     {
         //
     }
+
+
+    public function getmatieres()
+    {
+        if(\Request::ajax())
+        {
+          $value =  \Input::get('value');
+           $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$value)->first();
+            foreach($cr->matters as $m)
+            {
+   echo '   <div class="form_champ">
+                    <label for="cname" class="control-label col-lg-3">'.$m->nom_matiere.'</label>
+                    <div class="form_ajout">
+                        <select class="form_ajout_input" placeholder="Choisissez un professeur">
+                        ';
+                           foreach($m->teachers as $t)
+                           {
+                               echo '<option>'.$t->nom_teacher.'</option>';
+                           }
+
+
+                 echo  '</select>
+
+                    </div>
+                </div>';
+            }
+
+
+
+        }
+    }
+
+
 }

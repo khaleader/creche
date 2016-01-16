@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Bill;
 use App\CategoryBill;
+use App\Classroom;
 use App\Events\BillEvent;
 use App\Events\SendEmailToRespAfterRegistrationEvent;
 use App\Family;
@@ -82,6 +83,8 @@ class ChildrenController extends Controller
             $child->date_naissance = Carbon::parse($request->date_naissance);
             $child->transport = $request->transport;
             $child->sexe = $request->sexe;
+
+
             $child->nom_enfant = ucfirst($request->nom_enfant);
             $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
             $child->user_id = \Auth::user()->id;
@@ -101,6 +104,10 @@ class ChildrenController extends Controller
                 $child->family_id = $family->id;
                 $child->save();
                 if($child->id) {
+                    //classe
+                    $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
+                    $cr->child_id = $child->id;
+                    $cr->save();
                    $bill = new Bill();
                     $bill->start = Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();

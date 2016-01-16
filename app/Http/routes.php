@@ -200,3 +200,7 @@ Route::resource('timesheets','TimesheetsController');
 Route::post('levels/supprimer','LevelsController@supprimer');
 Route::get('levels/delete/{id}','LevelsController@delete'); // supprimer un niveau by click
 Route::resource('levels','LevelsController');
+
+
+Route::post('educators/getmatieres','EducatorsController@getmatieres');
+Route::resource('educators','EducatorsController');

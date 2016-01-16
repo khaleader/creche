@@ -58,7 +58,7 @@
         <div class="col-md-3">
             <section class="panel bloc2">
                 <div class="panel-body">
-                    <a href="">
+                    <a href="{{ action('EducatorsController@index') }}">
                         <div class="bloc_info2"><img src="images/repartitions.png" ><p>Répartition </br>enseignants</p></div></a>
                 </div>
             </section>
