@@ -16,6 +16,13 @@ class LevelsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     public function index()
     {
       $levels = Level::where('user_id',\Auth::user()->id)->paginate(10);
@@ -71,7 +78,8 @@ class LevelsController extends Controller
      */
     public function show($id)
     {
-        //
+        $level = Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('levels.show',compact('level'));
     }
 
     /**

@@ -188,8 +188,11 @@ Route::resource('matters','MattersController');
 
 
 /*  timesheets */
+Route::post('timesheets/trierparbranche','TimesheetsController@trierparbranche'); //trier par branche  ajax
 Route::post('ts/enre','TimesheetsController@enregistrer');
 Route::post('ts/del','TimesheetsController@del');
+Route::post('timesheets/supprimer','TimesheetsController@supprimer');
+Route::get('timesheets/delete/{id}','TimesheetsController@delete'); // supprimer un niveau by click
 Route::resource('timesheets','TimesheetsController');
 
 

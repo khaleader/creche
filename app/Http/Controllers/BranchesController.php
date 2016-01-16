@@ -16,6 +16,13 @@ class BranchesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     public function index()
     {
        $branches = Branch::where('user_id',\Auth::user()->id)->paginate(10);
@@ -79,7 +86,8 @@ class BranchesController extends Controller
      */
     public function show($id)
     {
-        //
+        $branch = Branch::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('branches.show',compact('branch'));
     }
 
     /**

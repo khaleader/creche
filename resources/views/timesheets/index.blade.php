@@ -11,7 +11,7 @@
                 <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
-                            <input type="checkbox" class="">
+                            <input type="checkbox" class="select-all">
                         </div>
 
                         <div class="btn-group">
@@ -30,7 +30,7 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
+                            <li><a id="delete-ts" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
                             <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
                     </div>
@@ -39,9 +39,11 @@
                             Trier par branche
                             <i class="fa fa-angle-down "></i>
                         </a>
-                        <ul class="dropdown-menu menu_actions">
-                            <li><a href="#">Littéraire</a></li>
-                            <li><a href="#">Sciences</a></li>
+                        <ul class="br-action dropdown-menu menu_actions">
+                            <?php  $branches = \App\Branch::where('user_id',\Auth::user()->id)->get();?>
+                            @foreach($branches as $b)
+                                <li><a href="#">{{ $b->nom_branche }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -77,14 +79,14 @@
                         <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
-                                        <input type="checkbox" >
+                                        <input type="checkbox"  value="{{ $ts->id }}" name="select[]">
 
                                     </div>
                                 </div></td>
                             <td>{{ $ts->nom_classe }}</td>
                             <td>{{ $ts->branche }}</td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="{{ action('TimesheetsController@delete',[$ts]) }}" class="actions_icons delete-ts">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
@@ -100,6 +102,101 @@
             </section>
         </div>
     </div>
-
+    <span id="boxes" style="display: none;"></span>
 
 @endsection
+
+
+
+@section('jquery')
+    <script>
+        $(function(){
+            $('.select-all').click(function(){
+                var status = this.checked;
+                $("input[name='select[]']").each(function(){
+                    this.checked = status;
+                });
+            });
+
+            $('body').on('click','.delete-ts',function(e){
+                e.preventDefault();
+                var href = this.href;
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'voulez vous vraiment supprimer la classe et l\'emploi du temps associé ? ',
+                            'transition': 'fade',
+                            'onok': function(){
+                                window.location.href = href;
+                                alertify.success('bien Supprimé!');
+                            },
+                            'oncancel': function(){
+                                alertify.error('Pas Supprimé :)');
+                            }
+                        }).show();
+
+            });
+
+
+            $('#delete-ts').click(function(){
+                var boxes;
+                var status;
+                $("input[name='select[]']").each(function(){
+                    if($(this).is(':checked'))
+                    {
+                        status = true;
+                        var valeur = $(this).val();
+                        $(this).val(valeur).closest('tr').fadeOut();
+                        boxes = $(this).val() + ',';
+                        $('#boxes').append(boxes);
+                    }
+                });
+                if($('#boxes').text() ===  null)
+                {
+                    alert('check please');
+                    return false;
+                }
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('TimesheetsController@supprimer')}}',
+                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+            });
+
+
+            $('.br-action a').click(function(){
+                $('tbody').empty();
+                var branche = $(this).text();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('TimesheetsController@trierparbranche')}}',
+                    data: 'branche=' + branche + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+
+            });
+
+
+
+        });
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+    @stop

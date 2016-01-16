@@ -98,7 +98,7 @@
                                 </a>
                             </td>
 
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
+                            <td><a href="{{ action('MattersController@show',[$matter]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endforeach
 

@@ -19,6 +19,13 @@ class ClassroomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
     public function index()
     {
         $classrooms = Classroom::where('user_id',\Auth::user()->id)->paginate(10);
@@ -115,7 +122,8 @@ class ClassroomsController extends Controller
      */
     public function show($id)
     {
-        //
+        $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('classrooms.show',compact('cr'));
     }
 
     /**

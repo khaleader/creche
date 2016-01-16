@@ -16,6 +16,14 @@ class RoomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+
     public function index()
     {
        $rooms = Room::where('user_id',\Auth::user()->id)->paginate(10);
@@ -81,7 +89,8 @@ class RoomsController extends Controller
      */
     public function show($id)
     {
-        //
+       $room = Room::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('rooms.show',compact('room'));
     }
 
     /**

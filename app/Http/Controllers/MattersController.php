@@ -16,6 +16,15 @@ class MattersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+
+
     public function index()
     {
         $matters = Matter::where('user_id',\Auth::user()->id)->paginate(10);
@@ -85,7 +94,8 @@ class MattersController extends Controller
      */
     public function show($id)
     {
-        //
+        $matiere = Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('matters.show',compact('matiere'));
     }
 
     /**

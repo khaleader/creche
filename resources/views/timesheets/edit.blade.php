@@ -14,7 +14,24 @@
   @stop
 
 @section('content')
+<?php
 
+/*
+\Maatwebsite\Excel\Facades\Excel::create('ok',function($excel){
+    $excel->sheet('sheetname',function($sheet){
+        $sheet->setPageMargin(array(
+                0.25, 0.30, 0.25, 0.30
+        ));
+     $data =  \App\Classroom::all();
+        $model = new \App\Classroom();
+
+      // $data = array_push($data);
+      $sheet->fromModel(\App\Classroom::all());
+
+    });
+})->download('csv');
+*/
+        ?>
 
     <div style="width:700px;" >
         <div class="left">

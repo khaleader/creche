@@ -48,7 +48,7 @@
 
                     </h4>
 
-                    <a href=""><div class="btn2">Emploi du temps</div></a>
+                    <a href="{{ action('TimesheetsController@index') }}"><div class="btn2">Emploi du temps</div></a>
 
                 </header>
                 <div class="panel-body informations_general">
@@ -79,11 +79,14 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Niveau</label>
                             <div class="form_ajout">
-                                <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
+                                {!!  Form::select('niveau',
+           App\Level::where('user_id',\Auth::user()->id)->
+           lists('niveau','niveau') ,null,['class'=>'form_ajout_input']) !!}
+                           <!--     <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option>1 ère année bac</option>
                                     <option>2 ème année bac</option>
 
-                                </select>
+                                </select>-->
 
                             </div>
                         </div>

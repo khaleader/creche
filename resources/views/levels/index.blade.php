@@ -79,6 +79,8 @@
                                     <a href="#"><i class="fa fa-archive liste_icons"></i>
                                     </a>
                                 </td>
+                                <td><a href="{{ action('LevelsController@show',[$l]) }}"><div  class="btn_details">Détails</div></a></td>
+
                             </tr>
                         @endforeach
                         </tbody>

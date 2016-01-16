@@ -12,7 +12,11 @@ use App\Http\Controllers\Controller;
 class TimesheetsController extends Controller
 {
 
-
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
 
     public function index()
     {
@@ -111,6 +115,62 @@ class TimesheetsController extends Controller
           $id =   \Input::get('id');
            $ok = Timesheet::where('user_id',\Auth::user()->id)->where('id',$id)->first();
             $ok->delete();
+        }
+    }
+
+    public function delete($id)
+    {
+        $lev = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $lev->timesheets()->delete();
+        $lev->delete();
+        return redirect('timesheets')->with('success',"la classe et l'mploi du temps ont bien été supprimé");
+    }
+
+    public function supprimer()
+    {
+        if(\Request::ajax())
+        {
+            $numbers = substr( \Input::get('boxes'),0,-1);
+            $ids = explode(',',$numbers);
+            $ids = array_unique($ids);
+            foreach($ids as $id)
+            {
+                $b =   Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $b->timesheets()->delete();
+                $b->delete();
+
+            }
+        }
+    }
+
+
+    public function trierparbranche()
+    {
+        if(\Request::ajax())
+        {
+            $br = \Input::get('branche');
+            $branches = Classroom::where('user_id', \Auth::user()->id)->where('branche', $br)->get();
+            foreach ($branches as $ts) {
+          echo '   <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input type="checkbox"  value="'. $ts->id .'" name="select[]">
+
+                                    </div>
+                                </div></td>
+                            <td>'. $ts->nom_classe .'</td>
+                            <td>'. $ts->branche .'</td>
+                            <td>
+                                <a href="'. action('TimesheetsController@delete',[$ts]) .'" class="actions_icons delete-ts">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+                            <td><a href="'. action('TimesheetsController@edit',[$ts]) .'">
+                                    <div  class="btn_details">Détails</div></a></td>
+
+                        </tr>';
+            }
         }
     }
 
