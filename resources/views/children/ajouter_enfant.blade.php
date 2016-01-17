@@ -91,6 +91,15 @@
 
                             </div>
                         </div>
+                        <div class="form_champ">
+                            <label for="cname" class="control-label col-lg-3">La Classe</label>
+                            <div class="form_ajout">
+
+                                {!!  Form::select('classe',
+                      App\Classroom::where('user_id',\Auth::user()->id)->
+                      lists('nom_classe','id') ,null,['class'=>'form_ajout_input','id'=>'classe']) !!}
+                            </div>
+                        </div>
 
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Nom du pére</label>

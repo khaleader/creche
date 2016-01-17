@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classroom;
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,6 +18,17 @@ class EducatorsController extends Controller
      */
     public function index()
     {
+       $cr = Classroom::find(8);
+      /*  DB::table('classroom_matter_teacher')->insert([
+           'classroom_id'=> 8,
+            'matter_id' => 12,
+            'teacher_id' => 3
+
+        ]);
+        foreach($cr->teachers as $mat)
+        {
+            dd($mat->nom_teacher);
+        }*/
      return view('educators.index');
     }
 
@@ -38,7 +50,31 @@ class EducatorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // 1 of teacher
+        // 2 of matiere
+        foreach($request->teacher as $t)
+        {
+          $array =  explode(',',$t);
+          $check =  DB::table('classroom_matter_teacher')
+                ->where('classroom_id',$request->classe)
+                ->where('teacher_id',$array[0])
+                ->where('matter_id',$array[1])
+                ->first();
+            if(!$check)
+            {
+                DB::table('classroom_matter_teacher')->insert([
+                    'classroom_id'=> $request->classe,
+                    'teacher_id' => $array[0],
+                    'matter_id' => $array[1]
+
+                ]);
+            }
+
+        }
+        return redirect()->back();
+
+
+
     }
 
     /**
@@ -97,12 +133,13 @@ class EducatorsController extends Controller
             {
    echo '   <div class="form_champ">
                     <label for="cname" class="control-label col-lg-3">'.$m->nom_matiere.'</label>
+                    <input type="hidden" value="'.$m->id.'" name="matiere[]">
                     <div class="form_ajout">
-                        <select class="form_ajout_input" placeholder="Choisissez un professeur">
+                        <select name="teacher[]" class="form_ajout_input">
                         ';
                            foreach($m->teachers as $t)
                            {
-                               echo '<option>'.$t->nom_teacher.'</option>';
+                               echo '<option value="'.$t->id.','.$m->id.'">'.$t->nom_teacher.'</option>';
                            }
 
 

@@ -30,6 +30,21 @@ class Classroom extends Model
         return $this->belongsTo('App\Child');
     }
 
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class,'classroom_matter_teacher');
+    }
+    public function matieres()
+    {
+        return $this->belongsToMany(Matter::class,'classroom_matter_teacher');
+    }
+
+    public function children()
+    {
+        return $this->belongsToMany(Child::class);
+    }
+
+
 
 
 

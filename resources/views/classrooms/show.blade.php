@@ -16,38 +16,24 @@
 
 
                         <tbody>
+                        @foreach($cr->matieres as $m)
+
                         <tr>
 
-                            <td><span><strong>SVT : </strong>Slimani Hamid</span></td>
-                        </tr>
-                        <tr>
+                            <td><span><strong>{{ $m->nom_matiere }}  : </strong>
+                                 <?php
+                                   $ok =  DB::table('classroom_matter_teacher')
+                                         ->where('classroom_id',$cr->id)
+                                         ->where('matter_id',$m->id)
+                                         ->first();
+                                  $teacher =  App\Teacher::where('user_id',\Auth::user()->id)->where('id',$ok->teacher_id)->first();
+                                       echo  $teacher->nom_teacher;
 
-                            <td><span><strong>Math : </strong>Slimani Hamid</span></td>
-                        </tr>
-                        <tr>
+                                   ?>
+                                </span></td>
 
-                            <td><span><strong>Phy : </strong>Slimani Hamid</span></td>
                         </tr>
-                        <tr>
-
-                            <td><span><strong>Ar : </strong>Slimani Hamid</span></td>
-                        </tr>
-                        <tr>
-
-                            <td><span><strong>Fr : </strong>Slimani Hamid</span></td>
-                        </tr>
-                        <tr>
-
-                            <td><span><strong>HG : </strong>Slimani Hamid</span></td>
-                        </tr>
-                        <tr>
-
-                            <td><span><strong>Sport : </strong>Slimani Hamid</span></td>
-                        </tr>
-                        <tr>
-
-                            <td><span><strong>Ang : </strong>Slimani Hamid</span></td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -70,7 +56,7 @@
 
                     </h4>
                     <a href="{{ action('ClassroomsController@delete',[$cr]) }}"><div class="btn2">Supprimer</div></a>
-                    <a href=""><div class="btn2">Modifier</div></a>
+                    <a href="{{ action('ClassroomsController@edit',[$cr]) }}"><div class="btn2">Modifier</div></a>
                     <a href="{{ action('TimesheetsController@edit',[$cr]) }}"><div class="btn2">Emploi du temps</div></a>
 
                 </header>

@@ -43,8 +43,9 @@ protected $dates = ['date_naissance','deleted_at'];
         return $this->belongsTo('App\User');
     }
 
-    public function classe()
+
+    public function classrooms()
     {
-        return $this->hasOne('App\Classroom');
+        return $this->belongsToMany(Classroom::class);
     }
 }

@@ -6,7 +6,6 @@ session_start();
 @section('content')
         <!--mini statistics start-->
 <div class="row">
-    {{ str_plural('educator') }}
     @if(Auth::user() && Auth::user()->isOblivius())
         <div class="col-md-4">
             <section class="panel bloc">

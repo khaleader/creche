@@ -106,8 +106,7 @@ class ChildrenController extends Controller
                 if($child->id) {
                     //classe
                     $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
-                    $cr->child_id = $child->id;
-                    $cr->save();
+                    $cr->children()->sync([$child->id]);
                    $bill = new Bill();
                     $bill->start = Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();
@@ -218,6 +217,9 @@ class ChildrenController extends Controller
                   $child->save();
                    if($child->id)
                    {
+                       $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
+                       $cr->children()->sync([$child->id]);
+
                        $bill  = new Bill();
                        $bill->start =Carbon::now()->toDateString();
                        $bill->end = Carbon::now()->addMonth()->toDateString();

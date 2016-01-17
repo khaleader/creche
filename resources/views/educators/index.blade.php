@@ -30,12 +30,13 @@
 
 
                 </header>
+               {!! Form::open(['url'=>action('EducatorsController@store')]) !!}
                 <div class="panel-body informations_general">
                     <table class="table  table-hover general-table table_informations ">
 
 
 
-                        <form action="#">
+
                         <tbody>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Nom de la classe</label>
@@ -49,19 +50,13 @@
                                 </div>
                             </div>
 
-
-
-
-
-
                         </tbody>
-                        </form>
-
-
 
                     </table>
                     <button class="btn_form" type="submit">Enregistrer</button>
+
                 </div>
+        {!!  Form::close() !!}
             </section>
         </div>
     </div>
