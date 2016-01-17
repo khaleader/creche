@@ -98,7 +98,8 @@ class BranchesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $branch =  Branch::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('branches.edit',compact('branch'));
     }
 
     /**
@@ -110,7 +111,31 @@ class BranchesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make([
+            $request->all(),
+            'nom_branche' =>$request->nom_branche,
+            'code_branche' =>$request->code_branche
+
+
+        ],[
+            'nom_branche' => 'required',
+            'code_branche'=> 'required'
+        ],
+            [
+                'nom_branche.required' => "le nom de la branche est requis",
+                'code_branche.required' => "le Code de la branche est requis",
+            ]);
+        if($validator->passes())
+        {
+
+            $l =  Branch::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $l->nom_branche = $request->nom_branche;
+            $l->code_branche = $request->code_branche;
+            $l->save();
+            return redirect()->back()->with('success','Les Informations Ont bien été Enregistrés');
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
     }
 
     /**

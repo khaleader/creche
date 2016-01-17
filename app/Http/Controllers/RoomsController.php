@@ -101,7 +101,8 @@ class RoomsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room =  Room::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('rooms.edit',compact('room'));
     }
 
     /**
@@ -113,7 +114,32 @@ class RoomsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make([
+            $request->all(),
+            'nom_salle' =>$request->nom_salle,
+            'capacite_salle' =>$request->capacite_salle
+
+
+        ],[
+            'nom_salle' => 'required',
+            'capacite_salle'=> 'required|integer'
+        ],
+            [
+                'nom_salle.required' => "le nom de la salle est requis",
+                'capacite_salle.required' => "la capacité de salle est requis",
+                'capacite_salle.integer' => "le nombre doit etre un entier",
+            ]);
+        if($validator->passes())
+        {
+
+            $l =  Room::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $l->nom_salle = $request->nom_salle;
+            $l->capacite_salle = $request->capacite_salle;
+            $l->save();
+            return redirect()->back()->with('success','Les Informations Ont bien été Enregistrés');
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
     }
 
     /**

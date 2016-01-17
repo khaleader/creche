@@ -28,7 +28,7 @@
 
                     </h4>
                     <a href="{{ action('BranchesController@delete',[$branch]) }}"><div class="btn2">Supprimer</div></a>
-                    <a href=""><div class="btn2">Modifier</div></a>
+                    <a href="{{ action('BranchesController@edit',[$branch]) }}"><div class="btn2">Modifier</div></a>
 
                 </header>
                 <div class="panel-body informations_general">

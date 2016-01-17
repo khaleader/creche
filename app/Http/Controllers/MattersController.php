@@ -9,8 +9,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Validator;
 
+
 class MattersController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -106,7 +108,8 @@ class MattersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $matter =  Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('matters.edit',compact('matter'));
     }
 
     /**
@@ -118,7 +121,31 @@ class MattersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'nom_matiere' => 'required',
+            'code_matiere'=> 'required',
+            'color' => 'required'
+        ],
+            [
+                'nom_matiere.required' => "le nom de la matière est requis",
+                'code_matiere.required' => "le Code de la matière est requis",
+                'color.required' => 'la couleur de la matière est requis'
+            ]
+            );
+        if($validator->passes())
+        {
+
+            $l =  Matter::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $l->nom_matiere = $request->nom_matiere;
+                $l->code_matiere = $request->code_matiere;
+                $l->color = '#'.$request->color;
+                $l->user_id =\Auth::user()->id;
+                 $l->save();
+            $l->save();
+            return redirect()->back()->with('success','Les Informations Ont bien été Enregistrés');
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
     }
 
     /**

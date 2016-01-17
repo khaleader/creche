@@ -90,7 +90,8 @@ class LevelsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $level =  Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('levels.edit',compact('level'));
     }
 
     /**
@@ -102,7 +103,20 @@ class LevelsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(),[
+            'niveau' => 'required',
+
+        ]);
+        if($validator->passes())
+        {
+
+            $l =  Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $l->niveau = $request->niveau;
+             $l->save();
+              return redirect()->back()->with('success','Les Informations Ont bien été Enregistrés');
+        }else{
+            return redirect()->back()->withErrors($validator);
+        }
     }
 
     /**
