@@ -1,13 +1,3 @@
-<h1>Oblivius Petite Enfance</h1>
-<strong>Vous avez oublié votre Mot de Pass ?</strong> <br>
-<h2>Nous avons recu un email de demande d'un nouveau Mot de Pass </h2>
-<h3>Vous pouvez Vous connecter en utilisant les identifiants suivants :</h3>
-<h3> {{  ' Email  :'. $email }}</h3>
-<h2>Votre Nouveau Mot De pass est : {{ $new_password }} </h2>
-<h3>N'oubliez pas de changer le mot de pass dès que vous connectez Pour ne pas l'oublier en cliquant sur votre Profile</h3>
-
-<a href="http://petite-enfance.oblivius.fr/">Connectez vous en cliquant ici</a>
-
 <!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml">
