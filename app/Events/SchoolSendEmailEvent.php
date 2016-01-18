@@ -61,7 +61,8 @@ class SchoolSendEmailEvent extends Event
                 'nom_resp' => $this->nomResponsable,
                 'nom_ecole' =>$this->ecoleNom,
                 'email' => $this->email,
-                'pass' => $this->password
+                'pass' => $this->password,
+                'date' =>$user->created_at
             ];
 
             Mail::send('emails.school',$info,function($message){

@@ -411,7 +411,10 @@ class StatisticsController extends Controller
                     $user->save();
                     $info = [
                         'email' => $user->email,
-                        'new_password'=> $pass_without
+                        'new_password'=> $pass_without,
+                        'name' => $user->nom_responsable,
+                        'ecole' => $user->name,
+                        'date' => Carbon::now()->toDateString()
 
                     ];
                     Mail::queue('emails.forgetpass',$info,function($message) use ($info){
@@ -442,7 +445,10 @@ class StatisticsController extends Controller
                     $utilisateur->save();
                     $infor = [
                         'email' => $utilisateur->email,
-                        'new_password'=> $pass_without
+                        'new_password'=> $pass_without,
+                        'name' => $utilisateur->nom_responsable,
+                        'ecole' => $utilisateur->name,
+                        'date' => Carbon::now()->toDateString()
 
                     ];
                     Mail::queue('emails.forgetpass',$infor,function($message) use ($infor){
