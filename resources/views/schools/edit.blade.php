@@ -15,7 +15,7 @@
 
 
                         <div class="fileupload fileupload-new" data-provides="fileupload">
-                            <div class="fileupload-new  Photo_profile" >
+                            <div class="fileupload-new  Photo_profile">
                                 <div class="pdp"></div>
                                 <img class="pdp" src="{{  $school->photo ? asset('uploads/'.$school->photo) :asset('images/no_avatar.jpg') }}" alt="" />
                             </div>

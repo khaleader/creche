@@ -19,16 +19,15 @@
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div class="fileupload-new  Photo_profile">
                                 <div class="pdp"></div>
-                                <img class="pdp" src="{{  asset('images/no_avatar.jpg') }}" alt="">
+                                <img class="pdp justhideit" src="{{  asset('images/no_avatar.jpg') }}" alt="">
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail "></div>
                             <div class="btn_upload">
-                                <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
-                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
-                                                   {{-- Form::file('photo',null,['class'=>'default','id'=>'uploadFile']) --}}
-                                                 <input type="file" name="photo"  class="default" id="uploadFile">
-                              </span>
+                           <span class="btn btn-white btn-file">
+                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>   Selectionner une image </span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input type="file" class="default" name="photo" id="uploadFile" />
+                           </span>
                             </div>
                         </div>
                     </div>
@@ -495,7 +494,7 @@
               $('.nav-tabs a[href="' + selectedTab + '"]').tab('show');
 
               $('#uploadFile').on('change',function(){
-                  $('img.pdp').hide();
+                  $('img.pdp.justhideit').hide();
                   $('div.pdp').show();
                   var files = !!this.files ? this.files : [];
                   if (!files.length || !window.FileReader) return;
@@ -504,8 +503,8 @@
                       reader.readAsDataURL(files[0]); // read the local file
 
                       reader.onloadend = function(){ // set image data as background of div
-                          $('.pdp').attr('src','');
-                          $(".pdp").css({ "background-image":"url("+this.result+")",});
+                          $('img.pdp').attr('src','');
+                          $("div.pdp").css({ "background-image":"url("+this.result+")",});
                           $('span.fileupload-new').text('changer la photo');
                       }
 
