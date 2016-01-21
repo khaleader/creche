@@ -69,21 +69,21 @@ session_start();
                 <a href="{{ action('ChildrenController@index') }}">
                     <div class="bloc_info"><img src="{{  asset('images/enfants.png') }}" ><span class="count">
                             {{   App\Child::where('user_id',\Auth::user()->id)->count() }}
-                        </span><p>Enfants inscrits</p></div>
+                        </span><p>Elèves inscrits</p></div>
                 </a></div>
         </section>
     </div>
     <div class="col-md-4">
         <section class="panel bloc">
             <div class="panel-body">
-                <a href="{{ action('AttendancesController@index') }}">
-                    <div class="bloc_info"><img src="images/pointages.png" ><span class="count">
+                <a href="{{ action('AttendancesController@absenceToday') }}">
+                    <div class="bloc_info"><img src="{{ asset('images/pointages.png') }}" ><span class="count">
 
                          <?php
                            $c = App\Child::where('user_id',\Auth::user()->id)->get();
                             if(!$c->isEmpty())
                                 {
-                                    echo  App\Attendance::whereIn('title',['normale','maladie'])->whereRaw('EXTRACT(DAY FROM start) = ?',[\Carbon\Carbon::now()->day])
+                                    echo  App\Attendance::whereIn('title',['normal','maladie'])->whereRaw('EXTRACT(DAY FROM start) = ?',[\Carbon\Carbon::now()->day])
                                             ->whereRaw('EXTRACT(YEAR FROM start) = ?',[\Carbon\Carbon::now()->year])->count();
                                 }
 
@@ -166,7 +166,7 @@ session_start();
     <div class="col-md-4">
         <section class="panel bloc">
             <div class="panel-body">
-                <a href="{{ action('BillsController@index') }}">
+                <a href="{{ action('BillsController@indexnr') }}">
 
                     <div class="bloc_info"><img src="images/factures.png" ><span class="count">  <?php echo  App\Bill::where('status',0)->where('user_id',\Auth::user()->id)->count()  ?></span><p>Factures non réglées</p></div>
                 </a></div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Child;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -236,6 +237,22 @@ class AttendancesController extends Controller
                $att->forceDelete();
            }
        }
+
+
+    public function absenceToday()
+    {
+        $abstoday = Attendance::whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
+           ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+            ->whereRaw('EXTRACT(day from start) = ?', [Carbon::now()->day])
+            ->where('user_id',\Auth::user()->id)
+            ->paginate(10);
+        $count = Attendance::whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
+        ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+            ->whereRaw('EXTRACT(day from start) = ?', [Carbon::now()->day])
+            ->where('user_id',\Auth::user()->id)
+            ->count();
+        return view('attendances.absenceToday',compact('abstoday','count'));
+    }
 
 
 

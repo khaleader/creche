@@ -28,6 +28,7 @@ class TeacherRequest extends Request
         return [
             'nom_teacher'=> 'required',
             'date_naissance'=> 'required',
+            'fonction'=> 'required|onlyfonctions',
             'poste'=> 'required',
             'sexe'=> 'required',
             'email'=> 'required|unique:teachers,email',
@@ -36,6 +37,7 @@ class TeacherRequest extends Request
             'adresse'=> 'required',
             'cin'=> 'required',
             'salaire'=> 'required',
+
         ];
     }
 
@@ -53,6 +55,7 @@ class TeacherRequest extends Request
             'cin.required'=> 'Le Numéro de Cin est requis',
             'salaire.required'=> 'Le salaire est requis',
             'email.unique'=> 'Cet Email est dèja pris',
+            'fonction.onlyfonctions' => 'Vous devez préciser la fonction'
 
 
         ];

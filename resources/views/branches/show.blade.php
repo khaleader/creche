@@ -27,7 +27,7 @@
                     <h4 class="gen-case"> Informations générales
 
                     </h4>
-                    <a href="{{ action('BranchesController@delete',[$branch]) }}"><div class="btn2">Supprimer</div></a>
+                    <a class="delete-branch" href="{{ action('BranchesController@delete',[$branch]) }}"><div class="btn2">Supprimer</div></a>
                     <a href="{{ action('BranchesController@edit',[$branch]) }}"><div class="btn2">Modifier</div></a>
 
                 </header>
@@ -57,3 +57,36 @@
 
 
 @endsection
+
+
+@section('jquery')
+
+    <script>
+
+
+        $('body').on('click','.delete-branch',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+    </script>
+
+
+
+
+
+@stop

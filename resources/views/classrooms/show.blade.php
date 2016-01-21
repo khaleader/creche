@@ -55,7 +55,7 @@
                     <h4 class="gen-case"> Informations générales
 
                     </h4>
-                    <a href="{{ action('ClassroomsController@delete',[$cr]) }}"><div class="btn2">Supprimer</div></a>
+                    <a class="delete-classe" href="{{ action('ClassroomsController@delete',[$cr]) }}"><div class="btn2">Supprimer</div></a>
                     <a href="{{ action('ClassroomsController@edit',[$cr]) }}"><div class="btn2">Modifier</div></a>
                     <a href="{{ action('TimesheetsController@edit',[$cr]) }}"><div class="btn2">Emploi du temps</div></a>
 
@@ -97,3 +97,34 @@
     <div class="row"></div>
 
 @endsection
+
+@section('jquery')
+
+    <script>
+        $('body').on('click','.delete-classe',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+
+
+    </script>
+
+
+
+
+@stop

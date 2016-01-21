@@ -126,7 +126,7 @@
                             <label for="cname" class="control-label col-lg-3">Le Sexe</label>
                             <div class="form_ajout">
                                 <select name="sexe" class="form_ajout_input" >
-                                    <option value="garcon">Garcon</option>
+                                    <option value="Garçon">Garçon</option>
                                     <option value="fille">Fille</option>
                                 </select>
                             </div>
@@ -279,14 +279,26 @@
 
                                 </div>
                             </div>
+                            <div class="form_champ">
+                                <label for="cname" class="control-label col-lg-3">Fonction</label>
+                                <div class="form_ajout">
+                                    <select name="fonction" class="form_ajout_input" id="fonction">
+                                        <option selected>Selectionnez s'il vous plait</option>
+                                        <option value="professeur">professeur</option>
+                                        <option value="rh">ressources humaines</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
 
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Poste</label>
+                                <label for="cname" class="control-label col-lg-3">Matière</label>
                                 <div class="form_ajout">
                                   <!--  <input type="text" name="poste" class="form_ajout_input" placeholder="Entrez le poste "> -->
                                                     {!!  Form::select('poste',
                        App\Matter::where('user_id',\Auth::user()->id)->
-                       lists('nom_matiere','id') ,null,['class'=>'form_ajout_input']) !!}
+                       lists('nom_matiere','id') ,null,['class'=>'form_ajout_input','id'=>'matierep']) !!}
 
                                 </div>
                             </div>
@@ -541,6 +553,23 @@
                    }
                });
            });
+
+
+
+
+              $('#matierep').attr('disabled','disabled');
+              $('#fonction').change(function(){
+               var fonction =  $(this).val();
+                  if(fonction == 'professeur')
+                  {
+                      $('#matierep').attr('disabled',null);
+                  }else{
+                      $('#matierep').attr('disabled','disabled');
+                  }
+
+
+              });
+
           });
     </script>
 @stop

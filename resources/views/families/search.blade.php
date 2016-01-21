@@ -12,7 +12,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                   Le Resultat de la recherche des Enfants
+                   Le Resultat de la recherche des Elèves
                 </header>
                 <div class="panel-body">
                     <table class="table  table-hover general-table table_enfants" id="filterByAlpha">

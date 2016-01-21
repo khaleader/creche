@@ -7,7 +7,7 @@
                 <li>
                     <a class="active" href="{{  action('ChildrenController@index') }}">
                         <img src="{{  asset('images/enfants.png') }}" class="sidebar_icons">
-                        <span>Enfants</span>
+                        <span>Elèves</span>
                         <img src="{{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">
                     </a>
                 </li>
@@ -78,16 +78,24 @@
                     <li>
                         <a class="active" href="{{  action('ChildrenController@indexef') }}">
                             <img src="{{  asset('images/enfants.png') }}" class="sidebar_icons">
-                            <span>Enfants</span>
+                            <span>Elèves</span>
                             <img src="{{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">
                         </a>
                     </li>
                       <li>
                           <a href="{{  action('AttendancesController@indexef') }}">
                               <img src=" {{ asset('images/pointages.png')  }}" class="sidebar_icons">
-                              <span>absences</span>
+                              <span>Absences</span>
                               <img src=" {{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">
                           </a>
+                      </li>
+                      <li>
+                          <a href="{{  action('ClassroomsController@indexef') }}">
+                              <img src="{{  asset('images/emplois.png') }}" class="sidebar_icons">
+                              <span>Emplois du Temps</span>
+                              <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
+                          </a>
+
                       </li>
                       <li>
                           <a href="{{  action('BillsController@indexef') }}">
@@ -95,8 +103,8 @@
                               <span>Factures</span>
                               <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                           </a>
-
                       </li>
+
                 @endif
 
 

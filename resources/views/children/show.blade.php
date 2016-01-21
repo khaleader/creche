@@ -53,7 +53,7 @@
                 <h4 class="gen-case"> Informations générales
 
                 </h4>
-                <a href="{{ action('ChildrenController@delete',[$child->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
+                <a class="delete-child" href="{{ action('ChildrenController@delete',[$child->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
                 <a href="{{ action('ChildrenController@archive',[$child->id]) }}"><div class="btn_archiver">Archiver</div></a>
                 <a href="{{ action('ChildrenController@edit',[$child->id]) }}"><div class="btn_archiver">modifier</div></a>
             </header>
@@ -103,3 +103,34 @@
 
 
     @endsection
+
+@section('jquery')
+
+
+    <script>
+
+        $('body').on('click','.delete-child',function(e){
+            e.preventDefault();
+            var href = this.href;
+            alertify.dialog('confirm')
+                    .set({
+                        'labels':{ok:'Oui', cancel:'Non'},
+                        'message': 'voulez vous vraiment supprimer ? ',
+                        'transition': 'fade',
+                        'onok': function(){
+                            window.location.href = href;
+                            alertify.success('bien Supprimé!');
+                        },
+                        'oncancel': function(){
+                            alertify.error('Pas Supprimé :)');
+                        }
+                    }).show();
+
+        });
+
+    </script>
+
+
+
+
+ @stop

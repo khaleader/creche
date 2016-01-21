@@ -52,6 +52,14 @@
                         <i class="fa fa-calendar"></i><span>Pointages</span>
                     </div></a>
             </section>
+            @foreach($child->classrooms as $cr)
+            <section class="panel">
+                <a href="{{  action('ClassroomsController@showef',[$cr]) }}">
+                    <div class="panel-body absence_fiche_enfant" style="background-color:#337180">
+                        <i class="fa fa-calendar"></i><span>Emploi du temps</span>
+                    </div></a>
+            </section>
+                @endforeach
         </div>
 
         <div class="col-sm-9">

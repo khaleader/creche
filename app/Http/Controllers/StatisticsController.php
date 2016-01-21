@@ -36,7 +36,7 @@ class StatisticsController extends Controller
             ->count();
         $count_abs_normale = Attendance::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
             ->where('user_id',\Auth::user()->id)
-            ->where('title','Normale')
+            ->where('title','Normal')
             ->count();
         $count_abs_maladie = Attendance::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
             ->where('title','Maladie')
@@ -49,7 +49,7 @@ class StatisticsController extends Controller
             ->count();
         $garcons = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
             ->where('user_id',\Auth::user()->id)
-            ->where('sexe','garcon')
+            ->where('sexe','Garçon')
             ->count();
         $filles = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
             ->where('user_id',\Auth::user()->id)
@@ -182,7 +182,8 @@ class StatisticsController extends Controller
 
     public function monthly_bills()
     {
-      $bills =  Bill::where('user_id',\Auth::user()->id)->orderBy('start','asc')->paginate(10);
+      $bills =  Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+        ->where('user_id',\Auth::user()->id)->orderBy('start','asc')->paginate(10);
 
         $count = Bill::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
             ->where('user_id',\Auth::user()->id)
@@ -195,7 +196,8 @@ class StatisticsController extends Controller
      // index attendances statistics
     public function monthly_absence()
     {
-        $count = Attendance::whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+        $count = Attendance::whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
+        ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
             ->where('user_id',\Auth::user()->id)
             ->count();
 
@@ -225,7 +227,7 @@ class StatisticsController extends Controller
                     $text = 'Maladie';
                 } else{
                     $class = 'label-primary';
-                    $text = 'Normale';
+                    $text = 'Normal';
                 }
                 echo '  <tr>
                             <td><div class="minimal single-row">
@@ -335,7 +337,8 @@ class StatisticsController extends Controller
     {
         $count = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
             ->where('user_id',\Auth::user()->id)->count();
-       $children = Child::where('user_id',\Auth::user()->id)->orderBy('created_at','desc')->paginate(10);
+       $children = Child::whereRaw('EXTRACT(month from created_at) = ?', [Carbon::now()->month])
+        ->where('user_id',\Auth::user()->id)->orderBy('created_at','desc')->paginate(10);
         return view('statistics.new_subscribers',compact('children','count'));
     }
 

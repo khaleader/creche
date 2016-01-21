@@ -48,6 +48,7 @@ class TeachersController extends Controller
         $teacher->date_naissance = $request->date_naissance;
 
         $teacher->poste = Matter::where('user_id',\Auth::user()->id)->where('id',$request->poste)->first()->nom_matiere;
+        $teacher->fonction = $request->fonction;
         $teacher->sexe = $request->sexe;
         $teacher->email = $request->email;
         $teacher->num_fix = $request->num_fix;

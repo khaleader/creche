@@ -63,7 +63,7 @@
         @elseif(Route::current()->getUri() == 'children/create' or Route::current()->getUri() == 'ajouter_enfant' )
             <h2>{{  "inscription" }}</h2>
         @elseif(Route::current()->getUri() == 'children' or Request::is('children/*'))
-            <h2>{{  "enfants" }}</h2>
+            <h2>{{  "élèves" }}</h2>
         @elseif(Route::current()->getUri() == 'families' or Request::is('families/*') )
             <h2>{{  "familles" }}</h2>
         @elseif(Route::current()->getUri() == 'teachers'   or Request::is('teachers/*'))
@@ -115,7 +115,7 @@
     </a>
     <div class="search-form">
        {!! Form::open(['url' => action('FamiliesController@search'),'method'=> 'get']) !!}
-            <input type="text" name="terms" class="search-input" placeholder="Cherchez un enfant, une famille ...">
+            <input type="text" name="terms" class="search-input" placeholder="Cherchez un élève, une famille ...">
             <button type="submit">
                 <div class="fa fa-search"></div>
             </button>

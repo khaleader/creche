@@ -213,8 +213,6 @@ $(document).ready(function(){
                         alertify.error('Pas supprimé :)');
                     }
                 }).show();
-
-
     });
 
 

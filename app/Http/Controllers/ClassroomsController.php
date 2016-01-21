@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Branch;
+use App\Child;
 use App\Classroom;
 use App\Matter;
 use App\Timesheet;
@@ -23,8 +24,9 @@ class ClassroomsController extends Controller
 
     public function __construct()
     {
+        $this->middleware('Famille',['only'=>['indexef','showef']]);
         $this->middleware('auth');
-        $this->middleware('admin');
+        $this->middleware('admin',['except'=>['indexef','showef']]);
     }
     public function index()
     {
@@ -253,6 +255,22 @@ class ClassroomsController extends Controller
             }
         }
     }
+
+
+    /**********************************  Compte Famille         ************/
+
+    public function indexef()
+    {
+        $children = Child::where('f_id',\Auth::user()->id)->get();
+        return view('classrooms.indexef',compact('children'));
+    }
+
+    public function showef($id)
+    {
+        $ts = Timesheet::where('classroom_id',$id)->first();
+        return view('classrooms.showef',compact('ts'));
+    }
+
 
 
 }

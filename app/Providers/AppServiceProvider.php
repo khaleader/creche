@@ -23,6 +23,19 @@ class AppServiceProvider extends ServiceProvider
         Validator::replacer('greater_than_field', function($message, $attribute, $rule, $parameters) {
             return str_replace(':field', $parameters[0], $message);
         });
+        Validator::extend('onlyfonctions', function($attribute, $value, $parameters, $validator){
+            $words = array('professeur','rh');
+            if($words[0] == $value || $words[1] == $value)
+            {
+                return true;
+            }else{
+                return false;
+            }
+
+
+
+        });
+
     }
 
     /**

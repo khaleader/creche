@@ -27,7 +27,7 @@
           <aside class="col-lg-3">
                     <h4 class="drg-event-title">Les raisons d'absence</h4>
                     <div id='external-events'>
-                        <div class='external-event label label-primary'>Normale</div>
+                        <div class='external-event label label-primary'>Normal</div>
                         <div class='external-event label label-info'>Maladie</div>
 
                     </div>
@@ -104,7 +104,7 @@
                var child_id = '{{  $child->id }}';
                var title =  copiedEventObject.title;
                var color;
-               if(title == 'Normale')
+               if(title == 'Normal')
                {
                    color = '#7f64b5';
                }else{
@@ -158,32 +158,10 @@
                    success:function(json){
                         alert('Bien enlevé');
                    }
-
-
                });
-
            }
-
-
-
        });
-
-
-
-
-
-
-
-
-
-
-
-
-
    });
-
-
-
 
 
     </script>

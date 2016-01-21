@@ -88,6 +88,7 @@ Route::get('attendances/showef/{id}','AttendancesController@showef');
 Route::match(['get','post'],'delatt','AttendancesController@delatt');
 Route::match(['get','post'],'attbyalph','AttendancesController@attbyalph');
 Route::match(['get','post'],'pointage','AttendancesController@pointage');
+Route::get('attendances/absenceToday','AttendancesController@absenceToday'); // absence aujourd'hui compte ecole
 Route::resource('attendances','AttendancesController');
 
 
@@ -117,8 +118,11 @@ Route::get('schools/editef/{id}','SchoolsController@editef');
 Route::post('schools/updatepassef','SchoolsController@updatepassef');
 
 
-
-
+Route::get('bills/indexnr','BillsController@indexnr'); // index factures non réglées
+Route::post('bills/filterByYear','BillsController@filterByYear'); // filter by year
+Route::post('bills/filterByYearef','BillsController@filterByYearef'); // filter by year compte famille
+Route::post('bills/filterByMonthef','BillsController@filterByMonthef'); // filter by month compte famille
+Route::post('bills/statusindexef','BillsController@statusindexef'); // filter status compte famille
 
 
 // archive and delete bills
@@ -178,6 +182,9 @@ Route::resource('rooms','RoomsController');
 Route::post('classrooms/trierparbranche','ClassroomsController@trierparbranche'); //trier par branche  ajax
 Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax
 Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete classe by click
+Route::get('classrooms/indexef','ClassroomsController@indexef'); // index classrooms compte famille
+Route::get('classrooms/{id}/showef','ClassroomsController@showef'); // show  emploi du temps compte famille
+
 Route::resource('classrooms','ClassroomsController');
 
 Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax

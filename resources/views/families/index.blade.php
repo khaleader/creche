@@ -86,7 +86,7 @@
                             <th></th>
                             <th></th>
                             <th> Nom du responsable</th>
-                            <th class="hidden-phone">Nombre d'enfants</th>
+                            <th class="hidden-phone">Nombre d'élèves</th>
                             <th>Statut de paiement</th>
                             <th>Actions</th>
                             <th></th>

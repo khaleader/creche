@@ -8,7 +8,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                   {{  $count }} cas d'absence ce mois
+                    {{  $count }} cas d'absences Aujourd'hui
 
                 </header>
                 <div class="liste_actions">
@@ -55,10 +55,10 @@
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="{{  str_replace('/?','?',$att->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$abstoday->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="{{   str_replace('/?','?',$att->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$abstoday->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -77,32 +77,32 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($att as $t)
-                        <tr>
-                            <td><div class="minimal single-row">
-                                    <div class="checkbox_liste">
-                                        <input type="checkbox" value="{{ $t->id }}"  name="select[]">
+                        @foreach($abstoday as $t)
+                            <tr>
+                                <td><div class="minimal single-row">
+                                        <div class="checkbox_liste">
+                                            <input type="checkbox" value="{{ $t->id }}"  name="select[]">
 
-                                    </div>
-                                </div></td>
-                            <td><img class="avatar"
-                                     src="{{   $t->child->photo ? asset('uploads/'.$t->child->photo) : asset('images/no_avatar.jpg') }}"></td>
-                            <td>{{  ucwords($t->child->nom_enfant) }}</td>
-                            <td>{{  \Carbon\Carbon::parse($t->start)->format('d-m-Y') }} </td>
-                            @if($t->title == 'Maladie')
-                            <td><span class="label label-info label-mini">Maladie</span></td>
-                             @else
-                                <td><span class="label label-primary label-mini">Normal</span></td>
-                            @endif
-                            <td>
-                                <a href="{{ action('StatisticsController@delete_att',[$t]) }}" class="actions_icons delete-att">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-att" href="{{  action('StatisticsController@archive_att',[$t]) }}"><i class="fa fa-archive liste_icons "></i>
-                                </a>
-                            </td>
+                                        </div>
+                                    </div></td>
+                                <td><img class="avatar"
+                                         src="{{   $t->child->photo ? asset('uploads/'.$t->child->photo) : asset('images/no_avatar.jpg') }}"></td>
+                                <td>{{  ucwords($t->child->nom_enfant) }}</td>
+                                <td>{{  \Carbon\Carbon::parse($t->start)->format('d-m-Y') }} </td>
+                                @if($t->title == 'Maladie')
+                                    <td><span class="label label-info label-mini">Maladie</span></td>
+                                @else
+                                    <td><span class="label label-primary label-mini">Normal</span></td>
+                                @endif
+                                <td>
+                                    <a href="{{ action('StatisticsController@delete_att',[$t]) }}" class="actions_icons delete-att">
+                                        <i class="fa fa-trash-o liste_icons"></i></a>
+                                    <a class="archive-att" href="{{  action('StatisticsController@archive_att',[$t]) }}"><i class="fa fa-archive liste_icons "></i>
+                                    </a>
+                                </td>
 
-                            <td><a href="{{  action('AttendancesController@show',[$t->child->id]) }}"><div  class="btn_details">Détails</div></a></td>
-                        </tr>
+                                <td><a href="{{  action('AttendancesController@show',[$t->child->id]) }}"><div  class="btn_details">Détails</div></a></td>
+                            </tr>
                         @endforeach
                         </tbody>
                     </table>
@@ -141,7 +141,7 @@
             });
             $('#maladie').click(function(){
                 $('tbody').empty();
-               var  status = 'Maladie';
+                var  status = 'Maladie';
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('StatisticsController@absence_raison')}}',

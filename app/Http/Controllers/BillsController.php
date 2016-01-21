@@ -23,9 +23,12 @@ class BillsController extends Controller
 
     public function __construct()
     {
-       $this->middleware('Famille',['only'=>['showef','indexef','detailsef']]);
+       $this->middleware('Famille',[
+           'only'=>['showef','indexef','detailsef','filterByYearef','filterByMonthef','statusindexef']]);
         $this->middleware('auth');
-        $this->middleware('admin',['except'=>['showef','indexef','detailsef']]);
+        $this->middleware('admin',
+            ['except'=>
+                ['showef','indexef','detailsef','filterByYearef','filterByMonthef','statusindexef']]);
 
     }
 
@@ -33,8 +36,15 @@ class BillsController extends Controller
 
     public function index()
     {
+
         $bills =\Auth::user()->bills()->paginate(10);
         return view('bills.index', compact('bills'));
+    }
+
+    public function indexnr()
+    {
+        $bills =\Auth::user()->bills()->where('status',0)->paginate(10);
+        return view('bills.indexnr', compact('bills'));
     }
 
     /**
@@ -353,6 +363,59 @@ class BillsController extends Controller
     }
 
 
+
+    public function filterByYear()
+    {
+        if (\Request::ajax()) {
+            $year = \Input::get('year');
+            $bills = Bill::whereRaw('EXTRACT(year from start) = ?', [$year])
+                ->where('user_id',\Auth::user()->id)
+                ->get();
+            foreach ($bills as $bill) {
+                if ($bill->status == 0) {
+                    $class = "label-danger";
+                    $message = "Non réglée";
+                } else {
+                    $class = "label-success";
+                    $message = "réglée";
+                }
+                if($bill->child->photo)
+                    $photo = asset('uploads/'.$bill->child->photo);
+                else
+                    $photo = asset('images/no_avatar.jpg');
+
+                echo '  <tr>
+                                <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value="'. $bill->id .'" type="checkbox"  name="select[]">
+                                    </div>
+                                </div></td>
+                            <td>  ' . $bill->id . '</td>
+                            <td><img class="avatar" src="'.$photo.'"></td>
+                            <td>' . $bill->child->nom_enfant . '</td>
+                            <td> ' . $bill->start->format('d-m-Y') . ' </td>
+                            <td>  ' . $bill->somme . '  Dhs</td>
+                            <td><span class="label ' . $class . ' label-mini">
+                               ' . $message . ' </span>
+                            </td>
+                            <td>
+                                <a  href="' . '#' . '" class="actions_icons delete-bill">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+
+                            <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+
+
+            }
+
+
+        }
+    }
+
+
     public function monthindex()
     {
         if (\Request::ajax()) {
@@ -572,7 +635,7 @@ class BillsController extends Controller
     }
 
 
-
+/********************************* Compte Famille  **************************/
     // only famille account
 
     public function showef($id)
@@ -615,5 +678,175 @@ class BillsController extends Controller
         }
         return  response('Unauthorized.', 401);*/
     }
+
+
+    public function filterByYearef()
+    {
+        if (\Request::ajax()) {
+            $year = \Input::get('year');
+
+            $bills = Bill::whereRaw('EXTRACT(year from start) = ?', [$year])
+                ->where('f_id',\Auth::user()->id)
+                ->get();
+            foreach ($bills as $bill) {
+                if ($bill->status == 0) {
+                    $class = "label-danger";
+                    $message = "Non réglée";
+                } else {
+                    $class = "label-success";
+                    $message = "réglée";
+                }
+                if($bill->child->photo)
+                    $photo = asset('uploads/'.$bill->child->photo);
+                else
+                    $photo = asset('images/no_avatar.jpg');
+
+                echo '              <tr>
+                                    <td><div class="minimal single-row">
+                                        </div></td>
+                                    <td>'. $bill->id .'</td>
+                                    <td>'. $bill->start->format('d-m-Y') .'</td>
+                                    <td>'. $bill->somme .' Dhs</td>
+                                    <td><span class="label '. $class .' label-mini">
+                                   '. $message .'   </span>
+                                    </td>
+                                    <td>   '. $bill->child->nom_enfant  .'</td>
+
+                                    <td><a href="'.  action('BillsController@detailsef',[$bill->id]) .'"><div  class="btn_details">Détails</div></a></td>
+                                </tr>';
+
+
+            }
+
+
+        }
+    }
+
+
+
+    public function filterByMonthef()
+    {
+        if (\Request::ajax()) {
+            $month = \Input::get('month');
+
+            $bills = Bill::whereRaw('EXTRACT(month from start) = ?', [$month])
+                ->where('f_id',\Auth::user()->id)
+                ->get();
+            foreach ($bills as $bill) {
+                if ($bill->status == 0) {
+                    $class = "label-danger";
+                    $message = "Non réglée";
+                } else {
+                    $class = "label-success";
+                    $message = "réglée";
+                }
+                if($bill->child->photo)
+                    $photo = asset('uploads/'.$bill->child->photo);
+                else
+                    $photo = asset('images/no_avatar.jpg');
+
+                echo '     <tr>
+                                    <td><div class="minimal single-row">
+                                        </div></td>
+                                    <td>'. $bill->id .'</td>
+                                    <td>'. $bill->start->format('d-m-Y') .'</td>
+                                    <td>'. $bill->somme .' Dhs</td>
+                                    <td><span class="label '. $class .' label-mini">
+                                   '. $message .'   </span>
+                                    </td>
+                                    <td>   '. $bill->child->nom_enfant  .'</td>
+
+                                    <td><a href="'.  action('BillsController@detailsef',[$bill->id]) .'"><div  class="btn_details">Détails</div></a></td>
+                                </tr>';
+
+
+            }
+
+
+        }
+    }
+
+
+
+
+
+    public function statusindexef()
+    {
+        if (\Request::ajax()) {
+            $status = \Input::get('status');
+            if ($status == 0) {
+                $bills = Bill::where('status', 0)->where('f_id',\Auth::user()->id)->get();
+                foreach ($bills as $bill) {
+                    if ($bill->status == 0) {
+                        $class = "label-danger";
+                        $message = "Non réglée";
+                    } else {
+                        $class = "label-success";
+                        $message = "réglée";
+                    }
+                    if($bill->child->photo)
+                    {
+                        $photo = asset('uploads/'.$bill->child->photo);
+                    }else{
+                        $photo = asset('images/'.'avatar4.jpg');
+                    }
+
+                    echo '     <tr>
+                                    <td><div class="minimal single-row">
+                                        </div></td>
+                                    <td>'. $bill->id .'</td>
+                                    <td>'. $bill->start->format('d-m-Y') .'</td>
+                                    <td>'. $bill->somme .' Dhs</td>
+                                    <td><span class="label '. $class .' label-mini">
+                                   '. $message .'   </span>
+                                    </td>
+                                    <td>   '. $bill->child->nom_enfant  .'</td>
+
+                                    <td><a href="'.  action('BillsController@detailsef',[$bill->id]) .'"><div  class="btn_details">Détails</div></a></td>
+                                </tr>';
+                }
+
+            } else {
+                $bills = Bill::where('status', 1)->where('f_id',\Auth::user()->id)->get();
+                foreach ($bills as $bill) {
+                    if ($bill->status == 0) {
+                        $class = "label-danger";
+                        $message = "Non réglée";
+                    } else {
+                        $class = "label-success";
+                        $message = "réglée";
+                    }
+                    if($bill->child->photo)
+                        $photo =asset('uploads/'.$bill->child->photo);
+                    else
+                        $photo = asset('images/no_avatar.jpg');
+
+                    echo '     <tr>
+                                    <td><div class="minimal single-row">
+                                        </div></td>
+                                    <td>'. $bill->id .'</td>
+                                    <td>'. $bill->start->format('d-m-Y') .'</td>
+                                    <td>'. $bill->somme .' Dhs</td>
+                                    <td><span class="label '. $class .' label-mini">
+                                   '. $message .'   </span>
+                                    </td>
+                                    <td>   '. $bill->child->nom_enfant  .'</td>
+
+                                    <td><a href="'.  action('BillsController@detailsef',[$bill->id]) .'"><div  class="btn_details">Détails</div></a></td>
+                                </tr>';
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 
 }

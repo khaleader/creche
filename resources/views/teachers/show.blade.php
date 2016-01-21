@@ -40,7 +40,7 @@
                     <h4 class="gen-case"> Informations générales
 
                     </h4>
-                    <a href="{{ action('TeachersController@delete',[$teacher]) }}"><div class="btn_supprimer">Supprimer</div></a>
+                    <a class="delete-teacher" href="{{ action('TeachersController@delete',[$teacher]) }}"><div class="btn_supprimer">Supprimer</div></a>
                     <a href="{{ action('TeachersController@archive',[$teacher]) }}"><div class="btn_archiver">Archiver</div></a>
                     <a href="{{ action('TeachersController@edit',[$teacher->id]) }}"><div class="btn_archiver">modifier</div></a>
 
@@ -95,3 +95,28 @@
 
 
 @endsection
+
+@section('jquery')
+<script>
+
+
+    $('body').on('click','.delete-teacher' ,function(e){
+        e.preventDefault();
+        var href = this.href;
+        alertify.dialog('confirm')
+                .set({
+                    'labels':{ok:'Oui', cancel:'Non'},
+                    'message': 'voulez vous vraiment supprimer ? ',
+                    'transition': 'fade',
+                    'onok': function(){
+                        window.location.href = href;
+                        alertify.success('bien supprimé!');
+                    },
+                    'oncancel': function(){
+                        alertify.error('Pas supprimé :)');
+                    }
+                }).show();
+    });
+</script>
+@stop
+

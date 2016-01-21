@@ -63,7 +63,7 @@
                     <h4 class="gen-case"> Informations générales
 
                     </h4>
-                    <a href="{{ action('FamiliesController@delete',[$family->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
+                    <a class="delete-family" href="{{ action('FamiliesController@delete',[$family->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
                     <a href="{{ action('FamiliesController@archive',[$family->id]) }}"><div class="btn_archiver">Archiver</div></a>
                     <a href="{{ action('FamiliesController@edit',[$family->id]) }}"><div class="btn_archiver">modifier</div></a>
 
@@ -97,12 +97,12 @@
 
                         <tr>
                           <!--  <td><i class="fa fa-group"></i></td> -->
-                            <td><span><strong>Nombre d'enfants inscrits : </strong> {{ $family->children->count() }} </span></td>
+                            <td><span><strong>Nombre d'élèves inscrits : </strong> {{ $family->children->count() }} </span></td>
                         </tr>
                         <tr>
                           <!--  <td><i class="fa fa-group"></i></td> -->
                             <td>
-                                <span><strong>Nom des enfants inscrits :</strong></span>
+                                <span><strong>Nom d'élèves inscrits :</strong></span>
                                     @foreach($family->children as $child)
                                         @if($child->deleted_at)
                                             {{ "Archivé pour le Moment" }}
@@ -148,3 +148,28 @@
 
 
     @endsection
+
+@section('jquery')
+<script>
+    $('body').on('click','.delete-family',function(e){
+        e.preventDefault();
+        var href = this.href;
+        alertify.dialog('confirm')
+                .set({
+                    'labels':{ok:'Oui', cancel:'Non'},
+                    'message': 'voulez vous vraiment supprimer ? ',
+                    'transition': 'fade',
+                    'onok': function(){
+                        window.location.href = href;
+                        alertify.success('bien supprimé!');
+                    },
+                    'oncancel': function(){
+                        alertify.error('Pas supprimé :)');
+                    }
+                }).show();
+    });
+
+
+
+</script>
+@stop

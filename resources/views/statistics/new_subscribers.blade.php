@@ -42,7 +42,7 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a class="sexe" href="#">Garcon</a></li>
+                            <li><a class="sexe" href="#">Garçon</a></li>
                             <li><a class="sexe" href="#">Fille</a></li>
                         </ul>
                     </div>

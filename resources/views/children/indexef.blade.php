@@ -8,7 +8,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Liste des enfants
+                    Liste des élèves
 
                 </header>
 

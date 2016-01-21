@@ -49,22 +49,45 @@
                         <li><a id="status-non-regler" href="#">Non Réglées</a></li>
                     </ul>
                 </div>
+
+
+
+
+
+
+
                 <div class="btn-group hidden-phone">
                     <a data-toggle="dropdown" href="#" class="btn mini blue">
                         Mois
                         <i class="fa fa-angle-down "></i>
                     </a>
                     <ul class="dropdown-menu menu_actions bill-months">
-                        <li><a valeur="9" href="#">Septembre</a></li>
-                        <li><a  valeur="10" href="#">Octobre</a></li>
-                        <li><a valeur="11" href="#">Novembre</a></li>
-                        <li><a valeur="12" href="#">Decembre</a></li>
                         <li><a valeur="1" href="#">Janvier</a></li>
                         <li><a valeur="2" href="#">Février</a></li>
                         <li><a valeur="3" href="#">Mars</a></li>
                         <li><a valeur="4" href="#">Avril</a></li>
                         <li><a valeur="5" href="#">Mai</a></li>
                         <li><a valeur="6" href="#">Juin</a></li>
+                        <li><a valeur="7" href="#">Juillet</a></li>
+                        <li><a valeur="8" href="#">Aout</a></li>
+                        <li><a valeur="9" href="#">Septembre</a></li>
+                        <li><a  valeur="10" href="#">Octobre</a></li>
+                        <li><a valeur="11" href="#">Novembre</a></li>
+                        <li><a valeur="12" href="#">Decembre</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group hidden-phone">
+                    <a data-toggle="dropdown" href="#" class="btn mini blue">
+                        Année
+                        <i class="fa fa-angle-down "></i>
+                    </a>
+                    <ul class="dropdown-menu menu_actions bill-year">
+                        <li><a valeur="2015"  href="#">2015</a></li>
+                        <li><a valeur="2016" href="#">2016</a></li>
+                        <li><a valeur="2017"  href="#">2017</a></li>
+                        <li><a valeur="2018" href="#">2018</a></li>
+                        <li><a valeur="2019"  href="#">2019</a></li>
+                        <li><a valeur="2020" href="#">2020</a></li>
                     </ul>
                 </div>
 
@@ -236,6 +259,21 @@
                 $.ajax({
                     url: '{{  URL::action('BillsController@statusindex')}}',
                     data: 'status=' + status  +  '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+
+            $('.bill-year a').click(function(){
+                $('tbody').empty();
+
+                var year =$(this).attr('valeur');
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('BillsController@filterByYear')}}',
+                    data: 'year=' + year +  '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
                         $('tbody').append(data);
