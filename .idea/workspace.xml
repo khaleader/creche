@@ -2,55 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/attendances/absenceToday.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/bills/indexnr.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/classrooms/indexef.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/classrooms/showef.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/TeacherRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/TeacherRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/attendances/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/attendances/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/attendances/showef.blade.php" afterPath="$PROJECT_DIR$/resources/views/attendances/showef.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/indexef.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/indexef.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/branches/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/branches/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/branches/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/branches/show.blade.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/ajax-loader.gif" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/indexef.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/indexef.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/showef.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/showef.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/reglement.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/reglement.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/school.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/school.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/test.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/test.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/families/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/families/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/families/search.blade.php" afterPath="$PROJECT_DIR$/resources/views/families/search.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/families/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/families/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/levels/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/levels/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/matters/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/matters/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/matters/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/matters/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/alert-errors.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/alert-errors.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partials/alert-success.blade.php" afterPath="$PROJECT_DIR$/resources/views/partials/alert-success.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rooms/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/rooms/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/rooms/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/gestion.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/gestion.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/monthly_absence.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/monthly_absence.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/monthly_bills.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/monthly_bills.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/new_subscribers.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/new_subscribers.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/teachers/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/teachers/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/teachers/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/teachers/show.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,85 +32,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TeacherRequest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/TeacherRequest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-27.066668">
-              <caret line="55" column="57" selection-start-line="55" selection-start-column="57" selection-end-line="55" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TeachersController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TeachersController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.133333">
-              <caret line="46" column="54" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
-              <folding>
-                <marker date="1453363087393" expanded="true" signature="7449:8696" placeholder="..." />
-                <marker date="1453363087393" expanded="true" signature="7482:7776" placeholder="..." />
-                <marker date="1453363087393" expanded="true" signature="7514:7771" placeholder="..." />
-                <marker date="1453363087393" expanded="true" signature="7580:7732" placeholder="..." />
-                <marker date="1453363087393" expanded="true" signature="8033:8519" placeholder="..." />
-                <marker date="1453363087393" expanded="true" signature="8169:8251" placeholder="..." />
-                <marker date="1453363087393" expanded="true" signature="8374:8485" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SchoolsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.266667">
-              <caret line="271" column="44" selection-start-line="271" selection-start-column="44" selection-end-line="271" selection-end-column="44" />
-              <folding>
-                <marker date="1451999475395" expanded="true" signature="1932:3017" placeholder="..." />
-                <marker date="1451999475395" expanded="true" signature="1965:2257" placeholder="..." />
-                <marker date="1451999475395" expanded="true" signature="1997:2252" placeholder="..." />
-                <marker date="1451999475395" expanded="true" signature="2063:2213" placeholder="..." />
-                <marker date="1451999475395" expanded="true" signature="2539:2845" placeholder="..." />
-                <marker date="1451999475395" expanded="true" signature="2606:2688" placeholder="..." />
-                <marker date="1451999475395" expanded="true" signature="2733:2811" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppServiceProvider.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.466666">
-              <caret line="29" column="28" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="alert-errors.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/partials/alert-errors.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16934307">
-              <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.3">
-              <caret line="561" column="45" selection-start-line="561" selection-start-column="45" selection-end-line="561" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.42682928">
+              <caret line="385" column="13" selection-start-line="385" selection-start-column="13" selection-end-line="385" selection-end-column="13" />
               <folding>
-                <marker date="1453364073371" expanded="true" signature="10040:10238" placeholder="..." />
-                <marker date="1453364073371" expanded="true" signature="10055:10236" placeholder="..." />
-                <marker date="1453364073371" expanded="true" signature="10167:10184" placeholder="..." />
-                <marker date="1453364073371" expanded="true" signature="13241:13679" placeholder="..." />
-                <marker date="1453364073371" expanded="true" signature="16111:16310" placeholder="..." />
-                <marker date="1453364073371" expanded="true" signature="16126:16308" placeholder="..." />
-                <marker date="1453364073371" expanded="true" signature="16236:16254" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="10156:10354" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="10171:10352" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="10283:10300" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="13358:13796" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="16228:16427" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="16243:16425" placeholder="..." />
+                <marker date="1453366615087" expanded="true" signature="16353:16371" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -224,9 +111,9 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_01_21_075517_add_fonction_to_teacher.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/TeacherRequest.php" />
-        <option value="$PROJECT_DIR$/resources/views/children/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/alert-errors.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/children/create.blade.php" />
       </list>
     </option>
   </component>
@@ -1429,22 +1316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.3">
-          <caret line="561" column="45" selection-start-line="561" selection-start-column="45" selection-end-line="561" selection-end-column="45" />
-          <folding>
-            <marker date="1453364073371" expanded="true" signature="10040:10238" placeholder="..." />
-            <marker date="1453364073371" expanded="true" signature="10055:10236" placeholder="..." />
-            <marker date="1453364073371" expanded="true" signature="10167:10184" placeholder="..." />
-            <marker date="1453364073371" expanded="true" signature="13241:13679" placeholder="..." />
-            <marker date="1453364073371" expanded="true" signature="16111:16310" placeholder="..." />
-            <marker date="1453364073371" expanded="true" signature="16126:16308" placeholder="..." />
-            <marker date="1453364073371" expanded="true" signature="16236:16254" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/AppServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.466666">
@@ -1458,6 +1329,22 @@
         <state vertical-scroll-proportion="0.16934307">
           <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42682928">
+          <caret line="385" column="13" selection-start-line="385" selection-start-column="13" selection-end-line="385" selection-end-column="13" />
+          <folding>
+            <marker date="1453366615087" expanded="true" signature="10156:10354" placeholder="..." />
+            <marker date="1453366615087" expanded="true" signature="10171:10352" placeholder="..." />
+            <marker date="1453366615087" expanded="true" signature="10283:10300" placeholder="..." />
+            <marker date="1453366615087" expanded="true" signature="13358:13796" placeholder="..." />
+            <marker date="1453366615087" expanded="true" signature="16228:16427" placeholder="..." />
+            <marker date="1453366615087" expanded="true" signature="16243:16425" placeholder="..." />
+            <marker date="1453366615087" expanded="true" signature="16353:16371" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

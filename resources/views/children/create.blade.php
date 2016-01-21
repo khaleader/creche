@@ -3,6 +3,13 @@
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/completer/completer.css') }}"/>
     <script src="{{  asset('css/completer/completer.js') }}"></script>
+    <style>
+        #loader-to{
+            margin-left: 50%;
+            margin-top: 20px;
+        }
+
+    </style>
 
 
 @endsection
@@ -236,7 +243,7 @@
                             </div>
                         <div>
                             <button  id="submit" class="btn_form" type="submit">Enregistrer </button>
-                            <img id="loader-to" src="{{  asset('images/ajax-loader.gif') }}" >
+                            <img id="loader-to" src="{{  asset('images/ajax-loaderr.gif') }}" >
                         </div>
                         <?php
                         $check = App\CategoryBill::where('user_id',\Auth::user()->id)->get();
@@ -375,6 +382,7 @@
 @section('jquery')
     <script>
           $(document).ready(function() {
+             // $('#loader-to').show();
               $('#loader-to').hide();
               $('div.pdp').hide();
               $('#submit').click(function () {
