@@ -51,16 +51,19 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions bill-months">
-                            <li><a valeur="9" href="#">Septembre</a></li>
-                            <li><a  valeur="10" href="#">Octobre</a></li>
-                            <li><a valeur="11" href="#">Novembre</a></li>
-                            <li><a valeur="12" href="#">Decembre</a></li>
                             <li><a valeur="1" href="#">Janvier</a></li>
                             <li><a valeur="2" href="#">Février</a></li>
                             <li><a valeur="3" href="#">Mars</a></li>
                             <li><a valeur="4" href="#">Avril</a></li>
                             <li><a valeur="5" href="#">Mai</a></li>
                             <li><a valeur="6" href="#">Juin</a></li>
+                            <li><a valeur="7" href="#">Juillet</a></li>
+                            <li><a  valeur="8" href="#">Aout</a></li>
+                            <li><a valeur="9" href="#">Septembre</a></li>
+                            <li><a  valeur="10" href="#">Octobre</a></li>
+                            <li><a valeur="11" href="#">Novembre</a></li>
+                            <li><a valeur="12" href="#">Decembre</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -117,8 +120,8 @@
                                     <td>
                                         <a  href="{{--  action('BillsController@delete',[$bill->id]) --}}" class="actions_icons delete-bill">
                                             <i class="fa fa-trash-o liste_icons"></i></a>
-                                        <a class="archive-bill" href="{{--  action('BillsController@archive',[$bill->id]) --}}"><i class="fa fa-archive liste_icons"></i>
-                                        </a>
+                                       <!-- <a class="archive-bill" href="{{--  action('BillsController@archive',[$bill->id]) --}}"><i class="fa fa-archive liste_icons"></i>
+                                        </a>-->
                                     </td>
 
                                     <td><a href="{{  action('BillsController@details',[$bill->id]) }}"><div  class="btn_details">Détails</div></a></td>
