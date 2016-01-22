@@ -29,11 +29,11 @@ class FormValidationChildFamilyRequest extends Request
             'photo'=>'image',
             'nom_pere'=>'required|min:3',
             'nom_mere'=>'required|min:3',
-            'email_responsable'=>'required|email|unique:families,email_responsable',
+            'email_responsable'=>'required|email',
             'adresse'=>'required',
             'numero_fixe'=>'required',
             'numero_portable'=>'required',
-            'cin'=>'required|alpha_num|unique:families,cin'
+            'cin'=>'required|alpha_num'
         ];
     }
 

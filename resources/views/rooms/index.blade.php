@@ -41,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-rooms" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                          <!--  <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li> -->
                         </ul>
                     </div>
 
@@ -68,6 +68,7 @@
                             <th></th>
                             <th>Salle</th>
                             <th>Capacité de la salle</th>
+                            <th>Actions</th>
                             <th></th>
 
                         </tr>
@@ -86,8 +87,8 @@
                             <td>
                                 <a href="{{ action('RoomsController@delete',[$room]) }}" class="actions_icons delete-room">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
                             <td><a href="{{ action('RoomsController@show',[$room]) }}"><div  class="btn_details">Détails</div></a></td>
 

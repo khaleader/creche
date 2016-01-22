@@ -138,6 +138,25 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form_champ">
+                            <?php
+                            $emails =  App\Family::where('user_id',\Auth::user()->id)->lists('email_responsable','email_responsable')->toArray();
+                            $output = array_values($emails);
+                            $output = json_encode($output);
+                            ?>
+
+                            <label for="cname" class="control-label col-lg-3">Email du responsable</label>
+                            <div class="form_ajout">
+                                <input id="email_resp" completer data-suggest="true"
+                                       data-source='<?php echo $output  ?>'
+                                       value="{{ Request::old('email_responsable')?:'' }}"
+                                       type="email" name="email_responsable" class="form_ajout_input"
+                                       placeholder="Entrez l'email du responsable">
+
+                            </div>
+                        </div>
+
+
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Nom du pére</label>
                                 <div class="form_ajout">
@@ -204,13 +223,7 @@
 
 
 
-                        <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Email du responsable</label>
-                                <div class="form_ajout">
-                                    <input value="{{ Request::old('email_responsable')?:'' }}" type="email" name="email_responsable" class="form_ajout_input" placeholder="Entrez l'email du responsable">
 
-                                </div>
-                            </div>
 
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Adresse</label>
@@ -533,28 +546,39 @@
 
 
 
-           $('#nom_pere').blur(function(){
-             var nom =  $(this).val();
+           $('#email_resp').blur(function(){
+             var email =  $(this).val();
                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                $.ajax({
                    url : '{{ URL::action('ChildrenController@checkiffamily')  }}',
-                   data: 'nom=' + nom + '&_token=' + CSRF_TOKEN,
+                   data: 'email=' + email + '&_token=' + CSRF_TOKEN,
                    type :'post',
                    success:function(data){
                        if(data)
                        {
-                           alertify.set('notifier', 'position', 'bottom-right');
+                           var json = JSON.parse(data);
+                           $('input[name=numero_fixe]').val(json['numero_fixe']);
+                           $('input[name=numero_portable]').val(json['numero_portable']);
+                           $('input[name=adresse]').val(json['adresse']);
+                           $('input[name=cin]').val(json['cin']);
+                           $('input[name=nom_pere]').val(json['nom_pere']);
+                           $('input[name=nom_mere]').val(json['nom_mere']);
+                         //  $('input[name=email_responsable]').val(json['email_responsable']);
+                           $('select[name=responsable]').val(json['responsable']);
+                          // $('select[name=pere]').val(json['id']);
+
+                        /*   alertify.set('notifier', 'position', 'bottom-right');
                            alertify.set('notifier', 'delay', 20);
                            var notification =   alertify.error("si le parent son nom est " + data +
-                                   " veuillez vous rediriger vers ajouter un enfant en cliquant ici ");
+                                   " veuillez vous rediriger vers ajouter un enfant en cliquant ici ");*/
 
                        }
-                       var canDismiss = false;
-                       notification.ondismiss = function(){
+                       //var canDismiss = false;
+                     /*  notification.ondismiss = function(){
                            var href = '{{ URL::action('ChildrenController@create_enfant')  }}';
                            window.location.href = href;
                            return canDismiss;
-                       };
+                       };*/
                        setTimeout(function(){
                            canDismiss = true;
                        }, 1000);

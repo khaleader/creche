@@ -45,8 +45,8 @@
                                 <td>
                                     <a  class="delete-child"   href="{{ action('ChildrenController@delete',[$c->id]) }}" class="actions_icons">
                                         <i class="fa fa-trash-o liste_icons"></i></a>
-                                    <a class="archive-child" href="{{  action('ChildrenController@archive',[$c->id]) }}"><i class="fa fa-archive liste_icons"></i>
-                                    </a>
+                                  <!--  <a class="archive-child" href="{{  action('ChildrenController@archive',[$c->id]) }}"><i class="fa fa-archive liste_icons"></i>
+                                    </a> -->
                                 </td>
 
                                 <td><a href="{{ action('ChildrenController@show',[$c->id])  }}"><div  class="btn_details">Détails</div></a></td>
@@ -118,8 +118,8 @@
                                 <td>
                                     <a  href="{{  action('FamiliesController@delete',[$f->id]) }}" class="actions_icons delete-family">
                                         <i class="fa fa-trash-o liste_icons"></i></a>
-                                    <a class="archive-family" href="{{  action('FamiliesController@archive',[$f->id]) }}"><i class="fa fa-archive liste_icons"></i>
-                                    </a>
+                                    <!--<a class="archive-family" href="{{  action('FamiliesController@archive',[$f->id]) }}"><i class="fa fa-archive liste_icons"></i>
+                                    </a>-->
                                 </td>
 
                                 <td><a href="{{ action('FamiliesController@show',[$f->id])  }}"><div  class="btn_details">Détails</div></a></td>

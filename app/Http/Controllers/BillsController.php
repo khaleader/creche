@@ -132,7 +132,8 @@ class BillsController extends Controller
                  $bills->id,
                  $bills->somme,
                  \Auth::user()->name,
-                 $bills->child->Family->email_responsable
+                 $bills->child->Family->email_responsable,
+                 $bills->child->Family->responsable
               ));
                 $bills->status = 1;
                 $bills->save();
@@ -184,12 +185,12 @@ class BillsController extends Controller
                             <span class="label label-danger  label-mini">
                                    Non Réglée </span>
                             </td>
-                            <td>
+                            <!--<td>
                                 <a href="' .'#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill"  href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
                             <td><a href="' . action('BillsController@details', [$bills->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr> ';
                         }
@@ -217,12 +218,12 @@ class BillsController extends Controller
                             <span class="label label-success label-mini">
                                    Réglée </span>
                             </td>
-                            <td>
+                           <!-- <td>
                                 <a href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#'. '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
                             <td><a href="' . action('BillsController@details', [$bills->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr> ';
                         }
@@ -264,12 +265,12 @@ class BillsController extends Controller
                             <td><span class="label label-danger label-mini">
                                Non réglée </span>
                             </td>
-                            <td>
+                          <!--  <td>
                                 <a  href="' . '#'. '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
@@ -296,12 +297,12 @@ class BillsController extends Controller
                             <td><span class="label label-success label-mini">
                                 réglée </span>
                             </td>
-                            <td>
+                           <!-- <td>
                                 <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
@@ -344,12 +345,12 @@ class BillsController extends Controller
                             <span class="label ' . $class . ' label-mini">
                                    ' . $message . ' </span>
                             </td>
-                            <td>
+                            <!--<td>
                                 <a href="' . '#'. '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
                             <td><a href="' . action('BillsController@details', [$b->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr> ';
                     }
@@ -398,12 +399,12 @@ class BillsController extends Controller
                             <td><span class="label ' . $class . ' label-mini">
                                ' . $message . ' </span>
                             </td>
-                            <td>
+                           <!-- <td>
                                 <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
@@ -450,12 +451,12 @@ class BillsController extends Controller
                             <td><span class="label ' . $class . ' label-mini">
                                ' . $message . ' </span>
                             </td>
-                            <td>
+                          <!--  <td>
                                 <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
@@ -566,12 +567,12 @@ class BillsController extends Controller
                             <td><span class="label ' . $class . ' label-mini">
                                ' . $message . ' </span>
                             </td>
-                            <td>
+                           <!-- <td>
                                 <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
@@ -612,12 +613,12 @@ class BillsController extends Controller
                             <td><span class="label ' . $class . ' label-mini">
                                ' . $message . ' </span>
                             </td>
-                            <td>
+                           <!-- <td>
                                 <a  href="' . '#' . '" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="' . '#'. '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="' . '#' . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';

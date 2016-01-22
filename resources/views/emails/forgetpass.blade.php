@@ -325,7 +325,7 @@
     </tr>
 
     <tr style="vertical-align: top; text-align: left; padding: 0 ;background-color:#fff; " align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px;" align="left" valign="top">
-            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 20 0 10px; padding: 0;" align="left">Bonjour Mr {{ $name }},</p>
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 20 0 10px; padding: 0;" align="left">Bonjour Mr(Mme)  {{ $name }},</p>
 
             <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">On a récemment reçu votre demande de réinitialisation du mot de passe pour votre compte Oblivius Petite Enfance.</br></br>Le nouveau mot de passe est : {{ $new_password }} <br><br>Au cas où vous ne l'aviez pas demandé vous-même, ne vous enfaites pas car personne d'autre ne voit ce message. Connectez-vous simplement avec le nouveau mot de passe, puis changer le à votre convenance.</p>
 

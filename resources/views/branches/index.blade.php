@@ -40,7 +40,7 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-branches" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                            <!--<li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                             <th></th>
                             <th>Branche</th>
                             <th>Code de la branche</th>
-                            <th></th>
+                            <th>Actions</th>
 
                         </tr>
                         </thead>
@@ -81,8 +81,8 @@
                             <td>
                                 <a href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
                             <td><a href="{{ action('BranchesController@show',[$branch]) }}"><div  class="btn_details">Détails</div></a></td>
 

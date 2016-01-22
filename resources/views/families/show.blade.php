@@ -64,7 +64,7 @@
 
                     </h4>
                     <a class="delete-family" href="{{ action('FamiliesController@delete',[$family->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
-                    <a href="{{ action('FamiliesController@archive',[$family->id]) }}"><div class="btn_archiver">Archiver</div></a>
+                   <!-- <a href="{{ action('FamiliesController@archive',[$family->id]) }}"><div class="btn_archiver">Archiver</div></a>-->
                     <a href="{{ action('FamiliesController@edit',[$family->id]) }}"><div class="btn_archiver">modifier</div></a>
 
                 </header>

@@ -31,7 +31,7 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-teachers" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a id="archive-teachers" href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                          <!--  <li><a id="archive-teachers" href="#"><i class="fa fa-archive"></i>Archiver</a></li> -->
                         </ul>
                     </div>
 
@@ -107,9 +107,9 @@
                             <td>
                                 <a href="{{ action('TeachersController@delete',[$teacher->id]) }}" class="actions_icons  delete-teacher">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-teacher" href="{{ action('TeachersController@archive',[$teacher->id]) }}">
+                              <!--  <a class="archive-teacher" href="{{ action('TeachersController@archive',[$teacher->id]) }}">
                                     <i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                </a>-->
                             </td>
 
                             <td><a href="{{ action('TeachersController@show',[$teacher->id]) }}"><div  class="btn_details">Détails</div></a></td>

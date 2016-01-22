@@ -86,7 +86,7 @@
                             <th>Date</th>
                             <th>Montant</th>
                             <th>Statut</th>
-                            <th>Actions</th>
+                           <!-- <th>Actions</th>-->
                             <th></th>
                         </tr>
                         </thead>
@@ -106,12 +106,12 @@
                             <td><span class="label {{ $bills->status == 0 ? 'label-danger' : 'label-success'  }} label-mini">
                                    {{ $bills->status == 0 ? 'Non Réglée ' : 'Réglée'  }}   </span>
                             </td>
-                            <td>
+                         <!--   <td>
                                 <a  href="{{--  action('BillsController@delete',[$bills->id]) --}}" class="actions_icons delete-bill">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a class="archive-bill" href="{{--  action('BillsController@archive',[$bills->id]) --}}"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="{{ action('BillsController@details',[$bills->id]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>

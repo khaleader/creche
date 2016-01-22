@@ -27,7 +27,7 @@
                     </div>
 
 
-                    <div class="btn-group hidden-phone">
+                  <!--  <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
                             Actions
                             <i class="fa fa-angle-down "></i>
@@ -36,7 +36,7 @@
                             <li><a href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
                             <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
-                    </div>
+                    </div>-->
 
 
 
@@ -89,7 +89,7 @@
                             <th></th>
                             <th> Nom complet</th>
                             <th>Dernière Date d'absence</th>
-                            <th>Actions</th>
+                            <!--<th>Actions</th>-->
                             <th></th>
                         </tr>
                         </thead>
@@ -119,12 +119,12 @@
                             </td>
 
 
-                            <td>
+                          <!--  <td>
                                 <a href="#" class="actions_icons">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="{{  action('AttendancesController@show',[$child->id])  }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>

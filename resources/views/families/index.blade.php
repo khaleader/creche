@@ -33,7 +33,7 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-families" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a id="archive-families" href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                         <!--  <li><a id="archive-families" href="#"><i class="fa fa-archive"></i>Archiver</a></li>-->
                         </ul>
                     </div>
 
@@ -140,8 +140,8 @@
                        <td>
                                 <a  href="{{  action('FamiliesController@delete',[$family->id]) }}" class="actions_icons delete-family">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-family" href="{{  action('FamiliesController@archive',[$family->id]) }}"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                               <!-- <a class="archive-family" href="{{  action('FamiliesController@archive',[$family->id]) }}"><i class="fa fa-archive liste_icons"></i>
+                                </a> -->
                             </td>
 
                             <td><a href="{{ action('FamiliesController@show',[$family->id])  }}"><div  class="btn_details">Détails</div></a></td>

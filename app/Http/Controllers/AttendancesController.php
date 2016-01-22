@@ -58,12 +58,12 @@ class AttendancesController extends Controller
                             <td><img class="avatar" src=" '. $photo .'"></td>
                             <td>'.  $enfant->nom_enfant .'</td>
                             <td>15-09-2015 </td>
-                            <td>
+                          <!--  <td>
                                 <a href="#" class="actions_icons">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
-                            </td>
+                            </td>-->
 
                             <td><a href="'.  action('AttendancesController@show',[$enfant->id])  .'"><div  class="btn_details">Détails</div></a></td>
                         </tr>';

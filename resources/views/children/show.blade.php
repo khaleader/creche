@@ -54,7 +54,7 @@
 
                 </h4>
                 <a class="delete-child" href="{{ action('ChildrenController@delete',[$child->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
-                <a href="{{ action('ChildrenController@archive',[$child->id]) }}"><div class="btn_archiver">Archiver</div></a>
+               <!-- <a href="{{ action('ChildrenController@archive',[$child->id]) }}"><div class="btn_archiver">Archiver</div></a>-->
                 <a href="{{ action('ChildrenController@edit',[$child->id]) }}"><div class="btn_archiver">modifier</div></a>
             </header>
             <div class="panel-body informations_general">

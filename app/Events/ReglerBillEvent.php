@@ -17,13 +17,14 @@ class ReglerBillEvent extends Event
     public $montant;
     public $school_name;
     public $email;
+    public $responsable;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($nompere,$datefact,$nom_enf,$refid,$mont,$ecole_nom,$email)
+    public function __construct($nompere,$datefact,$nom_enf,$refid,$mont,$ecole_nom,$email,$responsable)
     {
         $this->nom_pere =$nompere;
         $this->date_facturation = $datefact;
@@ -32,6 +33,7 @@ class ReglerBillEvent extends Event
         $this->montant = $mont;
         $this->school_name = $ecole_nom;
         $this->email = $email;
+        $this->responsable = $responsable;
 
 
         $info = [
@@ -41,7 +43,8 @@ class ReglerBillEvent extends Event
             'ref' => $this->ref_id,
             'somme' => $this->montant,
             'ecole_name' => $this->school_name,
-            'email' => $this->email
+            'email' => $this->email,
+            'responsable' => $this->responsable
         ];
 
         Mail::queue('emails.reglement',$info,function($message){

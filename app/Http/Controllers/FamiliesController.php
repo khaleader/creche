@@ -79,8 +79,8 @@ class FamiliesController extends Controller
                             <td>
                                 <a href="'.action('FamiliesController@delete',[$family]).'" class="actions_icons delete-family">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-family" href="'.action('FamiliesController@archive',[$family]).'"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                               <!-- <a class="archive-family" href="'.action('FamiliesController@archive',[$family]).'"><i class="fa fa-archive liste_icons"></i>
+                                </a> -->
                             </td>
 
                             <td><a href="'.action('FamiliesController@show',[$family->id]).'"><div  class="btn_details">Détails</div></a></td>

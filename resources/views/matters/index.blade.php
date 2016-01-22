@@ -41,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-matters" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                           <!--  <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li> -->
                         </ul>
                     </div>
                     <div class="btn-group hidden-phone">
@@ -77,7 +77,7 @@
                             <th></th>
                             <th>Nom de matière</th>
                             <th>Code de la matière</th>
-                            <th></th>
+                            <th>Actions</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -94,8 +94,8 @@
                             <td>{{  $matter->code_matiere }}</td><td>
                                 <a href="{{ action('MattersController@delete',[$matter]) }}" class="actions_icons delete-matter">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                             <!--   <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
 
                             <td><a href="{{ action('MattersController@show',[$matter]) }}"><div  class="btn_details">Détails</div></a></td>

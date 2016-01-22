@@ -22,6 +22,7 @@ class SendEmailToRespAfterRegistrationEvent extends Event
     public $pseudo_compte_famille;
     public $mot_de_pass_temporaire_compte_famille;
     public $nom_responsable;
+    public $responsable;
 
 
 
@@ -41,14 +42,16 @@ class SendEmailToRespAfterRegistrationEvent extends Event
     /**
      * Create a new event instance.
      *
+     * @param $c_id
      * @param $nom_responsable
      * @param $nom_enfant
      * @param $date_inscription
      * @param $date_prochain_paiement
      * @param $pseudo_compte_famille
+     * @param $responsable
      * @param $mot_de_pass_temporaire_compte_famille
      */
-    public function __construct($c_id,$nom_responsable,$nom_enfant,$date_inscription,$date_prochain_paiement,$pseudo_compte_famille,$mot_de_pass_temporaire_compte_famille)
+    public function __construct($c_id,$nom_responsable,$nom_enfant,$date_inscription,$date_prochain_paiement,$pseudo_compte_famille,$responsable,$mot_de_pass_temporaire_compte_famille)
     {
         $this->child_id = $c_id;
         $this->nom_responsable = $nom_responsable;
@@ -56,6 +59,7 @@ class SendEmailToRespAfterRegistrationEvent extends Event
         $this->date_inscription = $date_inscription;
         $this->date_prochain_paiement = $date_prochain_paiement;
         $this->pseudo_compte_famille = $pseudo_compte_famille;
+        $this->responsable = $responsable;
         $this->mot_de_pass_temporaire_compte_famille = $mot_de_pass_temporaire_compte_famille;
 
         $user = new User();
@@ -81,6 +85,7 @@ class SendEmailToRespAfterRegistrationEvent extends Event
                     'date_inscription' => $this->date_inscription,
                     'date_pro_paim' => $this->date_prochain_paiement,
                     'pseudo_email' => $this->pseudo_compte_famille,
+                    'respons' => $this->responsable,
                     'pass' => $this->mot_de_pass_temporaire_compte_famille
                 ];
 

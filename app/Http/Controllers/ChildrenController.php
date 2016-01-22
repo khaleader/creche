@@ -64,64 +64,65 @@ class ChildrenController extends Controller
     public function store(FormValidationChildFamilyRequest $request)
     {
         // famille for family profile
-       $family = new Family();
-        $family->nom_pere = ucfirst($request->nom_pere);
-        $family->nom_mere = ucfirst($request->nom_mere);
-        $family->email_responsable = $request->email_responsable;
-        $family->adresse = $request->adresse;
-        $family->numero_fixe = $request->numero_fixe;
-        $family->numero_portable = $request->numero_portable;
-        $family->cin = strtoupper($request->cin);
-        $family->responsable = $request->responsable;
-        $family->user_id = \Auth::user()->id;
-        $family->save();
+        $famille = Family::where('user_id',\Auth::user()->id)->where('email_responsable',$request->email_responsable)->first();
+        if(!$famille) {
 
 
-        if ($family->id) {
-            $father = Family::findOrFail($family->id);
-            $child = new Child();
-            $child->date_naissance = Carbon::parse($request->date_naissance);
-            $child->transport = $request->transport;
-            $child->sexe = $request->sexe;
+            $family = new Family();
+            $family->nom_pere = ucfirst($request->nom_pere);
+            $family->nom_mere = ucfirst($request->nom_mere);
+            $family->email_responsable = $request->email_responsable;
+            $family->adresse = $request->adresse;
+            $family->numero_fixe = $request->numero_fixe;
+            $family->numero_portable = $request->numero_portable;
+            $family->cin = strtoupper($request->cin);
+            $family->responsable = $request->responsable;
+            $family->user_id = \Auth::user()->id;
+            $family->save();
 
 
-            $child->nom_enfant = ucfirst($request->nom_enfant);
-            $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
-            $child->user_id = \Auth::user()->id;
+            if ($family->id) {
+                $father = Family::findOrFail($family->id);
+                $child = new Child();
+                $child->date_naissance = Carbon::parse($request->date_naissance);
+                $child->transport = $request->transport;
+                $child->sexe = $request->sexe;
 
-            $image = Input::file('photo');
-            if(!$image && empty($image))
-            {
-                $filename = '';
 
-            }else{
-                $filename = $image->getClientOriginalName();
-                $path = public_path('uploads/' . $filename);
-                Image::make($image->getRealPath())->resize(313, 300)->save($path);
-              }
+                $child->nom_enfant = ucfirst($request->nom_enfant);
+                $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
+                $child->user_id = \Auth::user()->id;
+
+                $image = Input::file('photo');
+                if (!$image && empty($image)) {
+                    $filename = '';
+
+                } else {
+                    $filename = $image->getClientOriginalName();
+                    $path = public_path('uploads/' . $filename);
+                    Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                }
 
                 $child->photo = $filename;
                 $child->family_id = $family->id;
                 $child->save();
-                if($child->id) {
+                if ($child->id) {
                     //classe
-                    $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
+                    $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
                     $cr->children()->sync([$child->id]);
-                   $bill = new Bill();
+                    $bill = new Bill();
                     $bill->start = Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();
                     $bill->status = 0;
-                    if($request->transport == 1)
-                    {
-                        if(Transport::where('user_id',\Auth::user()->id)->exists())
-                        {
-                            $transport_somme =  Transport::where('user_id',\Auth::user()->id)->first()->somme;
-                            $bill_somme =CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                    if ($request->transport == 1) {
+                        if (Transport::where('user_id', \Auth::user()->id)->exists()) {
+                            $transport_somme = Transport::where('user_id', \Auth::user()->id)->first()->somme;
+                            $bill_somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
                             $bill->somme = $transport_somme + $bill_somme;
-                        }else{
+                        } else {
                             $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
                         }
-                    }else{
+                    } else {
                         $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
                     }
 
@@ -141,14 +142,76 @@ class ChildrenController extends Controller
                         $enfant->created_at->toDateString(),
                         $enfant->created_at->addMonth()->toDateString(),
                         $father->email_responsable,
+                        $father->responsable,
                         str_random(6)
                     ));
                 }
 
+            }
+            return redirect()->back()->with('success', "l'enfant et les parents ont bien été ajoutés! ");
+        }else{
+            // if the parent already in the database
+            $child = new Child();
+            $child->date_naissance = Carbon::parse($request->date_naissance);
+            $child->nom_enfant = $request->nom_enfant ;
+            $child->sexe = $request->sexe;
+            $child->age_enfant =$child->date_naissance->diffInYears(Carbon::now());
+
+            $child->transport = $request->transport;
+            $child->user_id = \Auth::user()->id;
+
+            $image = Input::file('photo');
+            if(!$image && empty($image))
+            {
+                $filename = '';
+
+            }else{
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+            }
+            $child->photo = $filename;
+            $child->family_id = $famille->id;
+            $resp = Family::findOrFail($famille->id);
+            $user =  User::where('email',$resp->email_responsable)->first();
+            if($user)
+            {
+                $child->f_id =$user->id;
+                $child->save();
+                if($child->id)
+                {
+                    $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
+                    $cr->children()->sync([$child->id]);
+
+                    $bill  = new Bill();
+                    $bill->start =Carbon::now()->toDateString();
+                    $bill->end = Carbon::now()->addMonth()->toDateString();
+                    $bill->status = 0;
+                    if($request->transport == 1)
+                    {
+                        if(Transport::where('user_id',\Auth::user()->id)->exists())
+                        {
+                            $transport_somme =  Transport::where('user_id',\Auth::user()->id)->first()->somme;
+                            $bill_somme =CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                            $bill->somme = $transport_somme + $bill_somme;
+                        }else{
+                            $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                        }
+                    }else{
+                        $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                    }
+
+                    $bill->child_id =$child->id;
+                    $bill->f_id = $user->id;
+                    $bill->user_id = \Auth::user()->id;
+                    $bill->save();
+                }
+            }
+
+
+            return redirect()->back()->with('success',"l'enfant a bien été ajouté! ");
         }
 
-
-       return redirect()->back()->with('success', "l'enfant et les parents ont bien été ajoutés! ");
     }
 
 
@@ -288,8 +351,8 @@ class ChildrenController extends Controller
                             <td>
                                 <a href="'.action('ChildrenController@delete',[$enfant]).'" class="actions_icons delete-child">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-child" href="'.action('ChildrenController@archive',[$enfant]).'"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                               <!-- <a class="archive-child" href="'.action('ChildrenController@archive',[$enfant]).'"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
 
                             <td><a href="'. action('ChildrenController@show',[$enfant->id]).'"><div  class="btn_details">Détails</div></a></td>
@@ -614,21 +677,24 @@ class ChildrenController extends Controller
     {
         if(\Request::ajax())
         {
-          $nom =  \Input::get('nom');
+          $email =  \Input::get('email');
 
 
-         $family =   Family::where('nom_pere','LIKE',$nom.'%')
+         $family =  Family::where('email_responsable',$email)
               ->where('user_id',\Auth::user()->id)->first();
             if($family)
             {
-                $count =  $family->children()->count();
-                echo  $family->nom_pere .' qui a '.$count. ' enfant(s)';
+                echo json_encode($family);
+               die();
+             //   $count =  $family->children()->count();
+               // echo  $family->nom_pere .' qui a '.$count. ' enfant(s)';
 
-                foreach($family->children as $enfant)
+             /*   foreach($family->children as $enfant)
                 {
                     echo ' ('.$enfant->nom_enfant.') ';
                 }
-                die();
+                die();*/
+
 
             }
 

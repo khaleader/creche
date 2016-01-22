@@ -322,7 +322,7 @@
     </tr>
 
     <tr style="vertical-align: top; text-align: left; padding: 0 ;background-color:#fff; " align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px;" align="left" valign="top">
-            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">Bonjour Mr {{ $resp }},</p>
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">Bonjour {{ $responsable == 1 ? 'Mr' : 'Mme' }}  {{ $resp }},</p>
 
             <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">Vous venez de régler la facture de la date : <strong>{{ $date }}</strong>, merci pour votre confiance et on vous rappelle que vous pouvez accéder à l’historique de vos factures à partir de votre compte <a href="http://petite-enfance.oblivius.fr" style="text-decoration:none;color:#687b8c;"><strong>Oblivius Petite enfance</strong></a>
                 .</p>

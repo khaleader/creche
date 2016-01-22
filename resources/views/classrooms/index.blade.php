@@ -40,7 +40,7 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-classrooms" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                           <!-- <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>-->
                         </ul>
                     </div>
                     <div class="btn-group hidden-phone">
@@ -102,8 +102,8 @@
                             <td>
                                 <a href="{{  action('ClassroomsController@delete',[$cr]) }}" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                               <!-- <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
 
                             <td><a href="{{ action('ClassroomsController@show',[$cr]) }}"><div  class="btn_details">Détails</div></a></td>

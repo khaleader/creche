@@ -249,6 +249,10 @@ class TeachersController extends Controller
                 ->get();
             foreach($teachers as $teacher)
             {
+                if($teacher->photo)
+                    $photo = asset('uploads/'.$teacher->photo);
+                else
+                    $photo = asset('images/no_avatar.jpg');
                 echo '
                     <tr>
                             <td><div class="minimal single-row">
@@ -257,16 +261,16 @@ class TeachersController extends Controller
 
                                     </div>
                                 </div></td>
-                            <td><img class="avatar" src="'. asset('images/avatar5.jpg') .'"></td>
+                            <td><img class="avatar" src="'. $photo .'"></td>
                             <td>'.  $teacher->nom_teacher .'</td>
                             <td>'. $teacher->poste .'</td>
 
                             <td>
                                 <a href="'.action('TeachersController@delete',[$teacher->id]).'" class="actions_icons  delete-teacher">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-teacher" href="'.action('TeachersController@archive',[$teacher->id]).'">
+                                <!--<a class="archive-teacher" href="'.action('TeachersController@archive',[$teacher->id]).'">
                                 <i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                </a>-->
                             </td>
 
                             <td><a href="'. action('TeachersController@show',[$teacher->id]) .'"><div  class="btn_details">Détails</div></a></td>
