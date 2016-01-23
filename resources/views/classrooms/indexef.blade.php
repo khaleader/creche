@@ -14,7 +14,7 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                             <th>Nom Enfant</th>
+                             <th>Nom Elève</th>
                             <th>Classe</th>
                             <th>Branche</th>
                             <th></th>

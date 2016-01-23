@@ -75,7 +75,7 @@
                             <th>Date</th>
                             <th>Montant</th>
                             <th>Statut</th>
-                            <th>Nom Enfant</th>
+                            <th>Nom Elève</th>
                             <th></th>
                         </tr>
                         </thead>

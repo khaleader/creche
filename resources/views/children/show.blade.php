@@ -71,6 +71,13 @@
       -->                  <td><span><strong>Nom Mère :</strong> {{  $child->family->nom_mere }} </span></td>
                     </tr>
                     <tr>
+                        @foreach($child->classrooms as $cr)
+                        <!--   <td><i class="fa fa-female"></i></td>
+         -->                  <td><span><strong> Classe :</strong> {{  $cr->nom_classe }} </span></td>
+                        @endforeach
+                    </tr>
+
+                    <tr>
                     <!--    <td><i class="fa fa-envelope"></i></td>
    -->                     <td><span><strong>Email :</strong> {{ $child->family->email_responsable  }} </span></td>
                     </tr>
