@@ -415,18 +415,26 @@ class ChildrenController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+
+
+
+
        $validator = Validator::make([
                $request->all(),
            'numero_fixe' =>$request->numero_fixe,
            'numero_portable' =>$request->numero_portable,
            'adresse' => $request->adresse,
-           'photo' => $request->photo
+           'photo' => $request->photo,
+           'classe' => $request->classe
 
         ],[
              'numero_fixe' => 'required',
              'numero_portable'=> 'required',
              'adresse'=> 'required',
-             'photo' => 'image'
+             'photo' => 'image',
+              'classe' => 'integer'
         ],
             [
                 'numero_fixe.required' => "Le tel fixe est requis",
@@ -441,7 +449,7 @@ class ChildrenController extends Controller
                {
                  if(Transport::where('user_id',\Auth::user()->id)->first()->somme > 0)
                  {
-                  $child = Child::findOrFail($id);
+                     $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                    if($child->transport == 0)
                    {
                     $bill = Bill::where('child_id',$child->id)->orderBy('id','desc')->first();
@@ -449,13 +457,14 @@ class ChildrenController extends Controller
                        $bill->save();
                        $child->transport = 1;
                        $child->save();
+
                     }
                    }else{
                        return redirect()->back()->withErrors(["Vous n'avez pas encore précisé un prix pour le transport"]);
                    }
                }elseif($request->transport == 0)
                {
-                   $child = Child::findOrFail($id);
+                   $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                    if($child->transport == 1)
                    {
                        // anuuler le transport
@@ -464,8 +473,10 @@ class ChildrenController extends Controller
                        $bill->save();
                        $child->transport = 0;
                        $child->save();
+
                    }
                }
+                $child->classrooms()->sync([$request->classe]);
 
                $family = Family::where('email_responsable',$request->em)->first();
                 $family->adresse = $request->adresse;
@@ -479,7 +490,7 @@ class ChildrenController extends Controller
                     $filename = $image->getClientOriginalName();
                     $path = public_path('uploads/' . $filename);
                     Image::make($image->getRealPath())->resize(313, 300)->save($path);
-                 $child =   Child::findOrFail($id);
+                    $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                     $child->photo = $filename;
                     $child->save();
                 }else{

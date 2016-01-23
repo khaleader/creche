@@ -4,9 +4,23 @@
     <link rel="stylesheet" href="{{ asset('css/completer/completer.css') }}"/>
     <script src="{{  asset('css/completer/completer.js') }}"></script>
     <style>
+        #loader-parent{
+            position: absolute;
+            width: 100%;
+            height:100%;
+            background-color: white;
+            opacity: 0.5;
+            top:0px;
+            right:0px;
+            left:0px;
+            bottom:0px;
+            z-index:500;
+
+
+        }
         #loader-to{
             margin-left: 50%;
-            margin-top: 20px;
+            margin-top: 25%;
         }
 
     </style>
@@ -107,7 +121,7 @@
 
 
                             <div class="form_champ {{ $errors->has('nom_enfant') ? 'has-error': '' }}">
-                                <label for="cname" class="control-label col-lg-3">Nom de l'enfant</label>
+                                <label for="cname" class="control-label col-lg-3">Nom de l'élève</label>
                                 <div class="form_ajout">
                                     <input value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
                                 </div>
@@ -256,7 +270,10 @@
                             </div>
                         <div>
                             <button  id="submit" class="btn_form" type="submit">Enregistrer </button>
-                            <img id="loader-to" src="{{  asset('images/ajax-loaderr.gif') }}" >
+                            <div id="loader-parent">
+                                <img id="loader-to" src="{{  asset('images/ajax-loaderr.gif') }}" >
+                            </div>
+
                         </div>
                         <?php
                         $check = App\CategoryBill::where('user_id',\Auth::user()->id)->get();
@@ -395,11 +412,11 @@
 @section('jquery')
     <script>
           $(document).ready(function() {
-             // $('#loader-to').show();
-              $('#loader-to').hide();
+             // $('#loader-parent').show();
+              $('#loader-parent').hide();
               $('div.pdp').hide();
               $('#submit').click(function () {
-                  $('#loader-to').show();
+                  $('#loader-parent').show();
               });
               $(".alert-danger").fadeTo(10000, 500).slideUp(500, function () {
                   $(".alert-danger").alert('close');
