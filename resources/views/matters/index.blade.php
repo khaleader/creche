@@ -44,7 +44,7 @@
                            <!--  <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li> -->
                         </ul>
                     </div>
-                    <div class="btn-group hidden-phone">
+                  <!--  <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
                             Trier par branche
                             <i class="fa fa-angle-down "></i>
@@ -53,7 +53,7 @@
                             <li><a href="#">Littéraire</a></li>
                             <li><a href="#">Sciences</a></li>
                         </ul>
-                    </div>
+                    </div>-->
 
 
 
