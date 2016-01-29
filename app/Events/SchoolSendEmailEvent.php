@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 class SchoolSendEmailEvent extends Event
 {
     use SerializesModels;
-
+    public $typeCompte;
     public $ecoleNom;
     public $type;
     public $email;
@@ -30,8 +30,9 @@ class SchoolSendEmailEvent extends Event
      *
      * @return void
      */
-    public function __construct($EcNa,$typ,$eml,$pass,$nomresp,$fix,$port,$adres,$ville,$pays)
+    public function __construct($typeCompte,$EcNa,$typ,$eml,$pass,$nomresp,$fix,$port,$adres,$ville,$pays)
     {
+        $this->typeCompte = $typeCompte;
         $this->ecoleNom = $EcNa;
         $this->type = $typ;
         $this->email = $eml;
@@ -54,6 +55,7 @@ class SchoolSendEmailEvent extends Event
         $user->adresse = $this->adresse;
         $user->ville = $this->ville;
         $user->pays = $this->pays;
+        $user->typeCompte = $this->typeCompte;
         $user->save();
         if($user)
         {

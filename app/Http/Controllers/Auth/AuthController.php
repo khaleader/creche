@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use App\Events\EssaiOfficielEvent;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -86,9 +86,19 @@ class AuthController extends Controller
         $authenticated = Auth::attempt(['email' => \Input::get('email'),'password'=>\Input::get('pass')],$remember);
         if($authenticated)
         {
-          return  redirect()->to('/');
+            // oblivius or ecole or family
+            $user = \Auth::user();
+              $type = \Auth::user()->type;
+            $compteType = \Auth::user()->typeCompte;
+          if($user->blocked == 0)
+          {
+              return  redirect()->to('/');
+          }else{
+              Auth::logout();
+              return redirect()->to('auth\login');
+          }
         }else{
-          return   redirect()->back();
+          return  redirect()->back();
         }
     }
 

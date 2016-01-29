@@ -109,6 +109,7 @@ class SchoolsController extends Controller
     public function store(AddSchoolRequest $request)
     {
        event(new SchoolSendEmailEvent(
+           $request->type,
            $request->nom_ecole,
             'ecole',
            $request->email_ecole,

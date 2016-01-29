@@ -24,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ReglerBillEvent' => [
             'App\Listeners\ReglerBillEventListener'
+        ],
+        'App\Events\EssaiOfficielEvent' => [
+            'App\Listeners\EssaiOfficielEventListener'
         ]
     ];
 

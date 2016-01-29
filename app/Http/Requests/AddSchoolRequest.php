@@ -24,6 +24,7 @@ class AddSchoolRequest extends Request
     public function rules()
     {
         return [
+            'type' => 'required|integer',
             'nom_ecole' => 'required',
             'nom_responsable' =>'required',
             'tel_fix' =>'required',
@@ -31,13 +32,15 @@ class AddSchoolRequest extends Request
             'email_ecole' =>'required|email|unique:users,email',
             'ecole_adresse' =>'required',
             'ecole_ville' =>'required',
-            'country' =>'alpha'
+            'country' =>'alpha',
+
         ];
     }
 
     public function messages()
     {
         return [
+            'type.integer'=> 'vous devez choisir le type',
             'nom_ecole.required'=> 'vous devez saisir un nom pour L\'ecole',
             'nom_responsable.required'=> 'vous devez saisir un nom de responsable',
             'tel_fix.required'=> 'vous devez saisir Le numéro de téléphone fixe',

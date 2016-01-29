@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\LogDemo::class,
         \App\Console\Commands\DeleteJobs::class,
         \App\Console\Commands\TruncateJobs::class,
+        \App\Console\Commands\checkOfficielAndEssai::class,
     ];
 
     /**
@@ -31,6 +32,7 @@ class Kernel extends ConsoleKernel
 
        $schedule->command('delete:jobs')->hourly();
         $schedule->command('truncate:jobs')->dailyAt('23:00');
+        $schedule->command('check:OfficielEssai')->dailyAt('23:00');
 
 
 
