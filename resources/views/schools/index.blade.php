@@ -37,15 +37,19 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
+                            <li><a href="{{ action('SchoolsController@deleteSchools') }}" id="delete"><i class=""></i>Supprimer</a></li>
+                            <li><a href="#" id="regler"><i class=""></i>réglées</a></li>
+                            <li><a href="#" id="non-regler"><i class=""></i>non réglées</a></li>
+                            <!--<li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li> -->
+                            <li><a href="#" id="bloquer"> <i class=""></i>bloquer</a></li>
+                            <li><a href="#" id="debloquer"><i class=""></i>débloquer</a></li>
+
                         </ul>
                     </div>
 
 
 
-                </div>
-                <div class="btn-toolbar alphabetical " id="alphabet-list">
+              <!--  <div class="btn-toolbar alphabetical " id="alphabet-list">
                     <div class="btn-group btn-group-sm ">
                         <button class="btn btn-default">A</button>
                         <button class="btn btn-default">B</button>
@@ -74,6 +78,28 @@
                         <button class="btn btn-default">Y</button>
                         <button class="btn btn-default">Z</button>
                     </div>
+                </div>-->
+                <span>Trier par :</span>
+                <div class="btn-group hidden-phone">
+                    <a data-toggle="dropdown" href="#" class="btn mini blue">
+                        Statut
+                        <i class="fa fa-angle-down "></i>
+                    </a>
+                    <ul class="dropdown-menu menu_actions">
+                        <li><a id="status-regler" href="#">Réglées</a></li>
+                        <li><a id="status-non-regler" href="#">Non Réglées</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group hidden-phone">
+                    <a data-toggle="dropdown" href="#" class="btn mini blue">
+                        Type
+                        <i class="fa fa-angle-down "></i>
+                    </a>
+                    <ul class="dropdown-menu menu_actions">
+                        <li><a id="essai" href="#">Essai</a></li>
+                        <li><a id="officiel" href="#">Officiel</a></li>
+                    </ul>
+                </div>
                 </div>
                 <ul class="unstyled inbox-pagination liste_arrow">
 
@@ -92,6 +118,7 @@
                             <th></th>
                             <th> Nom école</th>
                             <th class="hidden-phone">Date d'inscription</th>
+                            <th>Type</th>
                             <th>Statut de paiement</th>
                             <th>Actions</th>
                             <th></th>
@@ -108,6 +135,14 @@
                                 </div></td>
                             <td>{{ $ecole->name }}</td>
                             <td>{{ \Carbon\Carbon::parse($ecole->created_at)->format('d-m-Y') }} </td>
+                            <td>
+                                @if($ecole->typeCompte == 0)
+                                {{  'Essai' }}
+                                @else
+                                {{ 'Officiel' }}
+                                @endif
+
+                            </td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
                                 <a href="#" class="actions_icons">
@@ -125,7 +160,11 @@
             </section>
         </div>
     </div>
-    @endsection
+    <span id="boxes" style="display: none"></span>
+    <span id="blocked"  style="display: none"></span>
+    <span id="nblocked"  style="display: none"></span>
+
+@endsection
 
 
 @section('jquery')
@@ -137,6 +176,164 @@
                     this.checked = status;
                 });
             });
+            // supprimer select box
+            $('body').on('click','#delete',function(e){
+                e.preventDefault();
+                var href = this.href;
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'voulez vous vraiment supprimer ? ',
+                            'transition': 'fade',
+                            'onok': function(){
+                                var boxes;
+                                var status;
+                                $("input[name='select[]']").each(function(){
+                                    if($(this).is(':checked'))
+                                    {
+                                        status = true;
+                                        var valeur = $(this).val();
+                                        $(this).val(valeur).closest('tr').fadeOut();
+                                        boxes = $(this).val() + ',';
+                                        $('#boxes').append(boxes);
+                                    }
+                                });
+
+
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('SchoolsController@deleteSchools')}}',
+                                    data: 'schools=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        $('tbody').append(data);
+                                    }
+                                });
+
+
+                               // window.location.href = href;
+                                alertify.success('bien supprimé!');
+                            },
+                            'oncancel': function(){
+                                alertify.error('Pas supprimé :)');
+                            }
+                        }).show();
+            });
+
+            // bloquer select box
+            $('body').on('click','#bloquer',function(e){
+                e.preventDefault();
+                var href = this.href;
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'voulez vous vraiment bloquer ? ',
+                            'transition': 'fade',
+                            'onok': function(){
+                                var boxes;
+                                var status;
+                                $("input[name='select[]']").each(function(){
+                                    if($(this).is(':checked'))
+                                    {
+                                        status = true;
+                                        var valeur = $(this).val();
+                                      //  $(this).val(valeur).closest('tr').fadeOut();
+                                        boxes = $(this).val() + ',';
+                                        $('#blocked').append(boxes);
+                                    }
+                                });
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('SchoolsController@bloquer')}}',
+                                    data: 'blocked=' + $('#blocked').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        $('tbody').append(data);
+                                    }
+                                });
+
+
+                                // window.location.href = href;
+                                alertify.success('Bloqué!');
+                            },
+                            'oncancel': function(){
+                                alertify.error('Non Bloqué :)');
+                            }
+                        }).show();
+            });
+
+            // débloquer select box
+            $('body').on('click','#debloquer',function(e){
+                e.preventDefault();
+                var href = this.href;
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'voulez vous vraiment débloquer ? ',
+                            'transition': 'fade',
+                            'onok': function(){
+                                var boxes;
+                                var status;
+                                $("input[name='select[]']").each(function(){
+                                    if($(this).is(':checked'))
+                                    {
+                                        status = true;
+                                        var valeur = $(this).val();
+                                       // $(this).val(valeur).closest('tr').fadeOut();
+                                        boxes = $(this).val() + ',';
+                                        $('#nblocked').append(boxes);
+                                    }
+                                });
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('SchoolsController@debloquer')}}',
+                                    data: 'nblocked=' + $('#nblocked').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        $('tbody').append(data);
+                                    }
+                                });
+
+
+                                // window.location.href = href;
+                                alertify.success('Bien Débloqué!');
+                            },
+                            'oncancel': function(){
+                                alertify.error('Non Débloqué :)');
+                            }
+                        }).show();
+            });
+
+            $('#essai').click(function(){
+                $('tbody').empty();
+                var status = 0;
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('SchoolsController@offess')}}',
+                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+            $('#officiel').click(function(){
+                $('tbody').empty();
+                var status = 1;
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('SchoolsController@offess')}}',
+                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+
+
+
+
 
             $('#alphabet-list button').click(function(e){
                 $('tbody').empty();

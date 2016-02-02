@@ -412,6 +412,7 @@
 @section('jquery')
     <script>
           $(document).ready(function() {
+              $('select[name=classe]').prepend("<option selected>selectionnez la classe s'il vous plait</option>");
              // $('#loader-parent').show();
               $('#loader-parent').hide();
               $('div.pdp').hide();

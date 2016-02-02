@@ -33,7 +33,8 @@ class FormValidationChildFamilyRequest extends Request
             'adresse'=>'required',
             'numero_fixe'=>'required',
             'numero_portable'=>'required',
-            'cin'=>'required|alpha_num'
+            'cin'=>'required|alpha_num',
+            'classe'=>'required|integer'
         ];
     }
 
@@ -52,7 +53,8 @@ class FormValidationChildFamilyRequest extends Request
             'numero_fixe.required' => 'Le Numero fixe est obligatoire',
             'numero_portable.required' => "Le Numero Portable est obligatoire",
             'cin.required' => "Le Numéro CIN est obligatoire",
-            'cin.unique' => 'Ce Numéro de Cin est dèja pris '
+            'cin.unique' => 'Ce Numéro de Cin est dèja pris ',
+            'classe.integer' => "vous devez choisir une classe"
         ];
     }
 

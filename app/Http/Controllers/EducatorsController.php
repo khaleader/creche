@@ -59,13 +59,16 @@ class EducatorsController extends Controller
                 ->where('classroom_id',$request->classe)
                 ->where('teacher_id',$array[0])
                 ->where('matter_id',$array[1])
+                ->where('user_id',\Auth::user()->id)
                 ->first();
             if(!$check)
             {
                 DB::table('classroom_matter_teacher')->insert([
                     'classroom_id'=> $request->classe,
                     'teacher_id' => $array[0],
-                    'matter_id' => $array[1]
+                    'matter_id' => $array[1],
+                    'user_id' => \Auth::user()->id
+
 
                 ]);
             }

@@ -116,6 +116,10 @@ Route::get('bills/showef/{id}','BillsController@showef');
 Route::get('bills/indexef','BillsController@indexef');
 Route::get('schools/editef/{id}','SchoolsController@editef');
 Route::post('schools/updatepassef','SchoolsController@updatepassef');
+Route::post('schools/deleteSchools','SchoolsController@deleteSchools'); // delete schools
+Route::post('schools/bloquer','SchoolsController@bloquer');
+Route::post('schools/debloquer','SchoolsController@debloquer');
+Route::post('schools/offess','SchoolsController@offess'); // status trier officiel or essai
 
 
 Route::get('bills/indexnr','BillsController@indexnr'); // index factures non réglées

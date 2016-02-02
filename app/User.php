@@ -100,6 +100,9 @@ class User extends Model implements AuthenticatableContract,
            return $this->hasMany('App\Child','f_id');
        }
 
+
+
+
        public function teachers()
        {
            return $this->hasMany('App\Teacher');
@@ -118,20 +121,90 @@ class User extends Model implements AuthenticatableContract,
 
     public function matters()
     {
-        return $this->hasMany('App\Matter.php');
+        return $this->hasMany('App\Matter');
     }
 
     public function branches()
     {
-        return $this->hasMany('App\Branch.php');
+        return $this->hasMany('App\Branch');
     }
     public function rooms()
     {
-        return $this->hasMany('App\Room.php');
+        return $this->hasMany('App\Room');
     }
     public function classrooms()
     {
-        return $this->hasMany('App\Classroom.php');
+        return $this->hasMany('App\Classroom');
     }
+
+
+/************** only for schools user_id **************/
+
+    public function lesgamins() // only for school user_id children
+    {
+        return $this->hasMany(Child::class,'user_id')->withTrashed();
+    }
+
+    public function lesfamilles() // school family user_id
+    {
+        return $this->hasMany(Family::class,'user_id')->withTrashed();
+    }
+
+    public function lesfactures() // bill user_id
+    {
+        return $this->hasMany(Bill::class,'user_id')->withTrashed();
+    }
+
+    public function lespointages() // attendances user_id
+    {
+        return $this->hasMany(Attendance::class,'user_id')->withTrashed();
+    }
+
+    public function lesteachers()
+    {
+        return $this->hasMany(Teacher::class,'user_id')->withTrashed();
+
+    }
+
+    public function lescategoriesbills() // category_bills user_id
+    {
+        return $this->hasMany(CategoryBill::class,'user_id');
+    }
+
+
+    public function letransport()
+    {
+        return $this->hasOne(Transport::class,'user_id');
+    }
+
+    public function lesmatieres()
+    {
+        return $this->hasMany(Matter::class,'user_id');
+
+    }
+
+    public function lesbranches()
+    {
+        return $this->hasMany(Branch::class,'user_id');
+    }
+    public function lesrooms()
+    {
+        return $this->hasMany(Room::class,'user_id');
+    }
+    public function lesclassrooms()
+    {
+        return $this->hasMany(Classroom::class,'user_id');
+    }
+
+    public function leslevels()
+    {
+        return $this->hasMany(Level::class,'user_id');
+    }
+
+    public function lestimesheets()
+    {
+        return $this->hasMany(Timesheet::class,'user_id');
+    }
+
 
 }

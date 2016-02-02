@@ -25,18 +25,7 @@
                         <tbody>
                         <div>
                             {!! Form::open(['url'=> action('SchoolsController@store')]) !!}
-                            <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Type De Compte</label>
-                                <div class="form_ajout">
-                                    <select name="type" class="form_ajout_input" placeholder="Choisissez le pays">
-                                        <option>Choisissez le type s'il vous plait</option>
-                                        <option value="0">Essai</option>
-                                        <option value="1">Officiel</option>
 
-                                    </select>
-
-                                </div>
-                            </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Nom de l'école</label>
                                 <div class="form_ajout">
@@ -96,6 +85,18 @@
                                         <option>Choisissez le pays s'il vous plait</option>
                                         <option value="maroc">Maroc</option>
                                         <option value="france">France</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="form_champ">
+                                <label for="cname" class="control-label col-lg-3">Compte</label>
+                                <div class="form_ajout">
+                                    <select name="type" class="form_ajout_input" placeholder="Choisissez le pays">
+                                        <option>Choisissez le Compte s'il vous plait</option>
+                                        <option value="0">Essai</option>
+                                        <option value="1">Officiel</option>
 
                                     </select>
 

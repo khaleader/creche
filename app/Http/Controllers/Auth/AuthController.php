@@ -88,8 +88,8 @@ class AuthController extends Controller
         {
             // oblivius or ecole or family
             $user = \Auth::user();
-              $type = \Auth::user()->type;
-            $compteType = \Auth::user()->typeCompte;
+              $type = $user->type;
+            $compteType = $user->typeCompte;
           if($user->blocked == 0)
           {
               return  redirect()->to('/');

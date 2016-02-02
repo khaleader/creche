@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Child;
 use App\Events\SchoolSendEmailEvent;
 use App\Http\Requests\AddSchoolRequest;
 use App\Transport;
 use App\User;
 use App\CategoryBill;
+use Carbon\Carbon;
+use DB;
 use Google_Client;
 use Google_Service_Gmail;
 use Illuminate\Console\Scheduling\Event;
@@ -458,4 +461,145 @@ class SchoolsController extends Controller
     {
         //
     }
+
+
+    // delete schools
+    public function deleteSchools()
+    {
+        if(\Request::ajax())
+        {
+            $numbers = substr(Input::get('schools'),0,-1);
+            $ids = explode(',',$numbers);
+            $ids = array_unique($ids);
+            foreach($ids as $id)
+            {
+                $school = User::where('type','ecole')->where('id',$id)->first();
+                $school->lesgamins()->delete(); // archive only due to soft delete
+                $school->lesfamilles()->delete(); // archive only due to soft delete
+                $school->lesfactures()->delete();// archive only due to soft delete
+                $school->lespointages()->delete();// archive only due to soft delete
+                 $school->lesteachers()->delete();// archive only due to soft delete
+                $school->lesgamins()->forceDelete(); // real delete
+                $school->lesfamilles()->forceDelete();// real delete
+                $school->lesfactures()->forceDelete();// real delete
+                $school->lespointages()->forceDelete();// real delete
+                $school->lesteachers()->forceDelete();// real delete
+
+                 $school->lescategoriesbills()->delete(); // -> direct delete
+                 $school->letransport()->delete(); // -> direct delete
+                 $school->lesmatieres()->delete(); // -> direct delete
+                 $school->lesbranches()->delete(); // -> direct delete
+                 $school->lesrooms()->delete(); // -> direct delete
+                 $school->lesclassrooms()->delete(); // -> direct delete
+                $school->leslevels()->delete(); // -> direct delete
+                DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
+                 $school->lestimesheets()->delete(); // -> direct delete
+
+                // the last part is to delete The School
+              $school->delete();
+            }
+        }
+    }
+
+
+    public function bloquer()
+    {
+     if(\Request::ajax())
+     {
+         $numbers = substr(Input::get('blocked'),0,-1);
+         $ids = explode(',',$numbers);
+         $ids = array_unique($ids);
+         foreach($ids as $id)
+         {
+             $school = User::where('type','ecole')->where('id',$id)->first();
+             $school->blocked = 1;
+             $school->save();
+         }
+     }
+    }
+    public function debloquer()
+    {
+        if(\Request::ajax())
+        {
+            $numbers = substr(Input::get('nblocked'),0,-1);
+            $ids = explode(',',$numbers);
+            $ids = array_unique($ids);
+            foreach($ids as $id)
+            {
+                $school = User::where('type','ecole')->where('id',$id)->first();
+                $school->blocked = 0;
+                $school->save();
+            }
+        }
+    }
+
+
+    public function offess()
+    {
+        if(\Request::ajax())
+        {
+            $status = \Input::get('status');
+            if ($status == 0) {
+                $schools = User::where('type','ecole')
+                ->where('typeCompte', 0)->get();
+
+                foreach ($schools as $ecole) {
+                    echo '     <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value=" '.$ecole->id.'" type="checkbox" name="select[]" >
+
+                                    </div>
+                                </div></td>
+                            <td>'. $ecole->name.'</td>
+                            <td>'. Carbon::parse($ecole->created_at)->format('d-m-Y') .' </td>
+                            <td>
+                              Essai
+
+                            </td>
+                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
+                            <td>
+                                <a href="#" class="actions_icons">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+
+                            <td><a href="'. action('SchoolsController@show',[$ecole->id]) .'"><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+                }
+
+            }else {
+                $schools = User::where('type', 'ecole')
+                    ->where('typeCompte', 1)->get();
+
+                foreach ($schools as $ecole) {
+                    echo '     <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input value=" ' . $ecole->id . '" type="checkbox" name="select[]" >
+
+                                    </div>
+                                </div></td>
+                            <td>' . $ecole->name . '</td>
+                            <td>' . Carbon::parse($ecole->created_at)->format('d-m-Y') . ' </td>
+                            <td>
+                              Officiel
+
+                            </td>
+                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
+                            <td>
+                                <a href="#" class="actions_icons">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>
+                            </td>
+
+                            <td><a href="' . action('SchoolsController@show', [$ecole->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+                }
+            }
+        }
+    }
+
 }
