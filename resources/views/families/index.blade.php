@@ -125,7 +125,7 @@
             {
                 if($b->status == 0)
                 {
-                    $count += $count;
+                    $count += 1;
                 }
             }
 
