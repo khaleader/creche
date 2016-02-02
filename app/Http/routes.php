@@ -120,6 +120,7 @@ Route::post('schools/deleteSchools','SchoolsController@deleteSchools'); // delet
 Route::post('schools/bloquer','SchoolsController@bloquer');
 Route::post('schools/debloquer','SchoolsController@debloquer');
 Route::post('schools/offess','SchoolsController@offess'); // status trier officiel or essai
+Route::get('schools/delete/{id}','SchoolsController@delete');
 
 
 Route::get('bills/indexnr','BillsController@indexnr'); // index factures non réglées

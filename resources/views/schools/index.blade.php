@@ -6,7 +6,7 @@
 
 @section('content')
 
-
+    @include('partials.alert-success')
 
     <div class="row">
         <div class="col-sm-12">
@@ -145,7 +145,7 @@
                             </td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a  href="{{ action('SchoolsController@delete',[$ecole]) }}" class="actions_icons delete-school">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
@@ -347,6 +347,25 @@
                         $('tbody').append(data);
                     }
                 });
+            });
+
+            $('body').on('click','.delete-school',function(e){
+                e.preventDefault();
+                var href = this.href;
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'voulez vous vraiment supprimer ? ',
+                            'transition': 'fade',
+                            'onok': function(){
+                                window.location.href = href;
+                                alertify.success('bien Supprimé!');
+                            },
+                            'oncancel': function(){
+                                alertify.error('Pas Supprimé :)');
+                            }
+                        }).show();
+
             });
 
 

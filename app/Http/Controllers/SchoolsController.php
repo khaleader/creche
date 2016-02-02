@@ -559,7 +559,7 @@ class SchoolsController extends Controller
                             </td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="'.action('SchoolsController@delete',[$ecole]).'" class="actions_icons delete-school">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
@@ -589,7 +589,7 @@ class SchoolsController extends Controller
                             </td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
-                                <a href="#" class="actions_icons">
+                                <a href="'.action('SchoolsController@delete',[$ecole]).'" class="actions_icons delete-school">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>
@@ -600,6 +600,38 @@ class SchoolsController extends Controller
                 }
             }
         }
+    }
+
+
+    public function delete($id)
+    {
+        $school = User::where('type','ecole')->where('id',$id)->first();
+        $school = User::where('type','ecole')->where('id',$id)->first();
+        $school->lesgamins()->delete(); // archive only due to soft delete
+        $school->lesfamilles()->delete(); // archive only due to soft delete
+        $school->lesfactures()->delete();// archive only due to soft delete
+        $school->lespointages()->delete();// archive only due to soft delete
+        $school->lesteachers()->delete();// archive only due to soft delete
+        $school->lesgamins()->forceDelete(); // real delete
+        $school->lesfamilles()->forceDelete();// real delete
+        $school->lesfactures()->forceDelete();// real delete
+        $school->lespointages()->forceDelete();// real delete
+        $school->lesteachers()->forceDelete();// real delete
+
+        $school->lescategoriesbills()->delete(); // -> direct delete
+        $school->letransport()->delete(); // -> direct delete
+        $school->lesmatieres()->delete(); // -> direct delete
+        $school->lesbranches()->delete(); // -> direct delete
+        $school->lesrooms()->delete(); // -> direct delete
+        $school->lesclassrooms()->delete(); // -> direct delete
+        $school->leslevels()->delete(); // -> direct delete
+        DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
+        $school->lestimesheets()->delete(); // -> direct delete
+
+        // the last part is to delete The School
+        $school->delete();
+        return redirect()->to('schools')->with('success',"La suppression a bien été effectuée");
+
     }
 
 }
