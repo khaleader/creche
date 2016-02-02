@@ -117,25 +117,27 @@
                             </td>
                             <td> {{  $family->children->count() }}</td>
                             <td>
-                              <?php
-                                    foreach ($family->children as $c )
-                                        {
-                                            foreach($c->bills as $b)
-                                            {
-                                                if($b->status == 0)
-                                                {
-                                                    echo  '<span class="label label-danger label-mini"><i class="fa fa-money"></i></span>';
-                                                    break;
-                                                }
-                                                else
-                                                {
-                                                    echo  '<span class="label label-success label-mini"><i class="fa fa-money"></i></span>';
-                                                    break;
-                                                }
-                                            }
-                                        }
+      <?php
+           $count =0;
+    foreach ($family->children as $c )
+        {
+            foreach($c->bills as $b)
+            {
+                if($b->status == 0)
+                {
+                    $count += $count;
+                }
+            }
 
-                                ?>
+        }
+    if($count > 0)
+    {
+        echo  '<span class="label label-danger label-mini"><i class="fa fa-money"></i></span>';
+    }
+    else{
+        echo  '<span class="label label-success label-mini"><i class="fa fa-money"></i></span>';
+    }
+        ?>
                             </td>
                        <td>
                                 <a  href="{{  action('FamiliesController@delete',[$family->id]) }}" class="actions_icons delete-family">
