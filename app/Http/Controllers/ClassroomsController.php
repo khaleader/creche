@@ -246,8 +246,8 @@ class ClassroomsController extends Controller
                             <td>
                                 <a href="'.  action('ClassroomsController@delete',[$branch]) .'" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a href="#"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                                <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
 
                             <td><a href=""><div  class="btn_details">Détails</div></a></td>
