@@ -37,7 +37,7 @@ class BillsController extends Controller
     public function index()
     {
 
-        $bills =\Auth::user()->bills()->paginate(10);
+        $bills =\Auth::user()->bills()->orderBy('start','desc')->paginate(10);
         return view('bills.index', compact('bills'));
     }
 
