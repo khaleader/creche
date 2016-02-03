@@ -475,6 +475,11 @@ class SchoolsController extends Controller
             {
                 $school = User::where('type','ecole')->where('id',$id)->first();
                 $school->lesgamins()->delete(); // archive only due to soft delete
+                foreach($school->lesfamilles as $f)
+                {
+                    $famille = User::where('email',$f->email_responsable)->first();
+                    $famille->delete();
+                }
                 $school->lesfamilles()->delete(); // archive only due to soft delete
                 $school->lesfactures()->delete();// archive only due to soft delete
                 $school->lespointages()->delete();// archive only due to soft delete
@@ -608,6 +613,11 @@ class SchoolsController extends Controller
         $school = User::where('type','ecole')->where('id',$id)->first();
         $school = User::where('type','ecole')->where('id',$id)->first();
         $school->lesgamins()->delete(); // archive only due to soft delete
+        foreach($school->lesfamilles as $f)
+        {
+            $famille = User::where('email',$f->email_responsable)->first();
+            $famille->delete();
+        }
         $school->lesfamilles()->delete(); // archive only due to soft delete
         $school->lesfactures()->delete();// archive only due to soft delete
         $school->lespointages()->delete();// archive only due to soft delete

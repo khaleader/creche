@@ -148,7 +148,7 @@ class ChildrenController extends Controller
                 }
 
             }
-            return redirect()->back()->with('success', "l'enfant et les parents ont bien été ajoutés! ");
+            return redirect()->back()->with('success', "l'élève et les parents ont bien été ajoutés! ");
         }else{
             // if the parent already in the database
             $child = new Child();
@@ -209,7 +209,7 @@ class ChildrenController extends Controller
             }
 
 
-            return redirect()->back()->with('success',"l'enfant a bien été ajouté! ");
+            return redirect()->back()->with('success',"l'élève a bien été ajouté! ");
         }
 
     }

@@ -58,11 +58,17 @@ class LogDemo extends Command
                $d = Bill::where('child_id',$b->child_id)->orderBy('id','desc')->first();
                $bill = new Bill();
                 $bill->start =$d->end->toDateString();
-                $bill->end = $d->end->addMonth()->toDateString();
+                $nextMonth7 =$d->end->addMonth()->toDateString();
+                if(Carbon::parse($nextMonth7)->month == 7)
+                {
+                    $bill->end = Carbon::parse($nextMonth7)->addMonths(2)->toDateString();
+                }else{
+                    $bill->end = $nextMonth7;
+                }
                 $bill->status = 0;
-               $bill->user_id = $d->user_id;
-               $bill->somme =  $d->somme;
-               $bill->child_id =$d->child_id;
+                $bill->user_id = $d->user_id;
+                $bill->somme =  $d->somme;
+                $bill->child_id =$d->child_id;
                 $bill->f_id = $d->f_id;
                 $bill->save();
                 break;
