@@ -304,14 +304,14 @@
                                 <div class="form_champ">
                                     <label for="cname" class="control-label col-lg-3">Nom complet</label>
                                     <div class="form_ajout">
-                                        <input type="text" name="nom_teacher" class="form_ajout_input" placeholder="Entrez le nom complet">
+                                        <input value="{{ Request::old('nom_teacher')?:'' }}" type="text" name="nom_teacher" class="form_ajout_input" placeholder="Entrez le nom complet">
 
                                     </div>
                                 </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Date de naissance</label>
                                 <div class="form_ajout">
-                                    <input type="date" name="date_naissance" class="form_ajout_input" placeholder="Entrez la date de naissance ">
+                                    <input type="date" value="{{ Request::old('date_naissance')?:'' }}" name="date_naissance" class="form_ajout_input" placeholder="Entrez la date de naissance ">
                                     <div class="icone_input"><i class="fa fa-"></i></div>
 
                                 </div>
@@ -354,42 +354,42 @@
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Email </label>
                                 <div class="form_ajout">
-                                    <input type="text" name="email" class="form_ajout_input" placeholder="Entrez l'email ">
+                                    <input type="text" value="{{ Request::old('email')?:'' }}" name="email" class="form_ajout_input" placeholder="Entrez l'email ">
 
                                 </div>
                             </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Numéro fixe</label>
                                 <div class="form_ajout">
-                                    <input type="text" name="num_fix" class="form_ajout_input" placeholder="Entrez le numéro fixe ">
+                                    <input type="text" value="{{ Request::old('num_fix')?:'' }}" name="num_fix" class="form_ajout_input" placeholder="Entrez le numéro fixe ">
 
                                 </div>
                             </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Numéro portable</label>
                                 <div class="form_ajout">
-                                    <input type="text" name="num_portable" class="form_ajout_input" placeholder="Entrez le numéro portable ">
+                                    <input type="text" value="{{ Request::old('num_portable')?:'' }}" name="num_portable" class="form_ajout_input" placeholder="Entrez le numéro portable ">
 
                                 </div>
                             </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Adresse</label>
                                 <div class="form_ajout">
-                                    <input type="text" name="adresse" class="form_ajout_input" placeholder="Entrez l'adresse">
+                                    <input type="text" value="{{ Request::old('adresse')?:'' }}" name="adresse" class="form_ajout_input" placeholder="Entrez l'adresse">
 
                                 </div>
                             </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">CIN </label>
                                 <div class="form_ajout">
-                                    <input type="text" name="cin" class="form_ajout_input" placeholder="Entrez le CIN ">
+                                    <input type="text" value="{{ Request::old('cin')?:'' }}" name="cin" class="form_ajout_input" placeholder="Entrez le CIN ">
 
                                 </div>
                             </div>
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Salaire</label>
                                 <div class="form_ajout">
-                                    <input type="text" name="salaire" class="form_ajout_input" placeholder="Entrez le salaire ">
+                                    <input type="text" value="{{ Request::old('salaire')?:'' }}" name="salaire" class="form_ajout_input" placeholder="Entrez le salaire ">
 
                                 </div>
                             </div>

@@ -20,7 +20,19 @@
 
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail "></div>
-                            <div class="btn_upload">
+                            @if($teacher->photo)
+                                <div class="btn_upload">
+                                <span class="btn btn-white btn-file">
+                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i>Changer la photo</span>
+                                                   <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                                    {{--   Form::file('photo',null,['class'=>'default','id'=>'uploadFile']) --}}
+                                    <input name="photo" type="file" class="default" id="uploadFile">
+                              </span>
+
+                                </div>
+
+                            @else
+                                <div class="btn_upload">
                                 <span class="btn btn-white btn-file">
                                                    <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
@@ -28,7 +40,11 @@
                                     <input name="photo" type="file" class="default" id="uploadFile">
                               </span>
 
-                            </div>
+                                </div>
+
+
+                             @endif
+
                         </div>
 
 

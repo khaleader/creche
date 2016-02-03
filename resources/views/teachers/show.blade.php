@@ -50,14 +50,24 @@
 
 
                         <tbody>
+                        @if($teacher->fonction == 'professeur')
+                        <tr>
+                                <td><span><strong>Fonction :</strong> {{ $teacher->fonction }}</span></td>
+
+                        </tr>
+                        @endif
                         <tr>
                           <!--  <td><i class="fa fa-book"></i></td> -->
-                            <td><span><strong>Matière :</strong> {{ $teacher->poste }}</span></td>
+                            @if($teacher->fonction == 'rh')
+                            <td><span><strong>Poste :</strong> {{ $teacher->poste }}</span></td>
+                            @else
+                                <td><span><strong>Matière :</strong> {{ $teacher->poste }}</span></td>
+                            @endif
                         </tr>
-                        <tr>
-                         <!--   <td><i class="fa fa-group"></i></td> -->
+                       <!-- <tr>
+
                             <td><span><strong>Nombre de classe :</strong> 4 </span></td>
-                        </tr>
+                        </tr>-->
                         <tr>
                            <!-- <td><i class="fa fa-envelope"></i></td>-->
                             <td><span><strong>Email :</strong> {{ $teacher->email }} </span></td>
