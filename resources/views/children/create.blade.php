@@ -123,7 +123,7 @@
                             <div class="form_champ {{ $errors->has('nom_enfant') ? 'has-error': '' }}">
                                 <label for="cname" class="control-label col-lg-3">Nom de l'élève</label>
                                 <div class="form_ajout">
-                                    <input value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
+                                    <input value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
                                 </div>
                             </div>
 
@@ -413,6 +413,7 @@
     <script>
           $(document).ready(function() {
               $('select[name=classe]').prepend("<option selected>selectionnez la classe s'il vous plait</option>");
+              $('select[name=poste]').prepend("<option selected>selectionnez la matière s'il vous plait</option>");
              // $('#loader-parent').show();
               $('#loader-parent').hide();
               $('div.pdp').hide();

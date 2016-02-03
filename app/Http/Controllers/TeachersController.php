@@ -43,10 +43,12 @@ class TeachersController extends Controller
      */
     public function store(TeacherRequest $request)
     {
+
+        if($request->fonction  == 'professeur')
+        {
         $teacher = new Teacher();
         $teacher->nom_teacher = $request->nom_teacher;
         $teacher->date_naissance = $request->date_naissance;
-
         $teacher->poste = Matter::where('user_id',\Auth::user()->id)->where('id',$request->poste)->first()->nom_matiere;
         $teacher->fonction = $request->fonction;
         $teacher->sexe = $request->sexe;
@@ -61,6 +63,22 @@ class TeachersController extends Controller
         if($teacher)
         {
             $teacher->matters()->sync([$request->poste]);
+        }
+        }else{
+            $teacher = new Teacher();
+            $teacher->nom_teacher = $request->nom_teacher;
+            $teacher->date_naissance = $request->date_naissance;
+            $teacher->poste = 'Ressources Humains';
+            $teacher->fonction = $request->fonction;
+            $teacher->sexe = $request->sexe;
+            $teacher->email = $request->email;
+            $teacher->num_fix = $request->num_fix;
+            $teacher->num_portable = $request->num_portable;
+            $teacher->adresse = $request->adresse;
+            $teacher->cin = $request->cin;
+            $teacher->salaire = $request->salaire;
+            $teacher->user_id = \Auth::user()->id;
+            $teacher->save();
         }
         return redirect()->back()->with('success',"Les Informations Ont Bien été Enregistrés ! ");
     }

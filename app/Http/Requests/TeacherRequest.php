@@ -3,9 +3,12 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
+use Input;
 
 class TeacherRequest extends Request
 {
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -25,11 +28,13 @@ class TeacherRequest extends Request
 
     public function rules()
     {
-        return [
+
+
+        return[
             'nom_teacher'=> 'required',
             'date_naissance'=> 'required',
-            'fonction'=> 'required|onlyfonctions',
-            'poste'=> 'required',
+            'fonction'=> 'onlyfonctions',
+            'poste' => 'required_if:fonction,professeur|integer',
             'sexe'=> 'required',
             'email'=> 'required|unique:teachers,email',
             'num_fix'=> 'required',
@@ -37,8 +42,8 @@ class TeacherRequest extends Request
             'adresse'=> 'required',
             'cin'=> 'required',
             'salaire'=> 'required',
-
         ];
+
     }
 
     public function messages()
@@ -46,7 +51,8 @@ class TeacherRequest extends Request
         return [
             'nom_teacher.required'=> 'Le Nom est requis',
              'date_naissance.required'=> 'Le date de naissance est requis',
-            'poste.required'=> 'Le poste est requis',
+            'poste.required_if'=> 'La matière est requis',
+            'poste.integer' => 'vous devez choisir une matière',
             'sexe.required'=> 'Le sexe est requis',
             'email.required'=> 'L\'email  est requis',
             'num_fix.required'=> 'Le Numéro de fixe est requis',

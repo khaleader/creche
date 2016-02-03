@@ -94,7 +94,7 @@
                 </ul>
                 <div class="search-form">
                     <form action="#">
-                        <input id="bill-search-inst" type="text" name="search" class="search-input" placeholder="Cherchez un enfant...">
+                        <input id="bill-search-inst" type="text" name="search" class="search-input" placeholder="Cherchez un élève...">
                         <button type="submit">
                             <div class="fa fa-search"></div>
                         </button>
