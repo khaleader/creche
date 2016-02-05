@@ -20,7 +20,7 @@
         }
         #loader-to{
             margin-left: 50%;
-            margin-top: 25%;
+            margin-top: 45%;
         }
 
     </style>
@@ -451,7 +451,13 @@
                           if (data == '') {
                               alertify.set('notifier', 'position', 'bottom-right');
                               alertify.set('notifier', 'delay', 60);
-                              alertify.error('Attention L\'age de Cet Enfant est Introuvable  veuillez le créer S\'il Vous plait');
+                              alertify.error("Attention la catégorie pour cet age n'est pas encore crée veuillez la créer S'il Vous plait ,>>> Redirection Automatique");
+                              window.setTimeout(function(){
+                                  location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                              },5000);
+
+                              //location.reload();
+
                           } else {
                               alertify.set('notifier', 'position', 'bottom-right');
                               alertify.set('notifier', 'delay', 30);

@@ -40,7 +40,7 @@ class TeacherRequest extends Request
             'num_fix'=> 'required',
             'num_portable'=> 'required',
             'adresse'=> 'required',
-            'cin'=> 'required',
+            'cin'=> 'required|unique:teachers,cin',
             'salaire'=> 'required',
         ];
 
