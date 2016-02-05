@@ -268,6 +268,7 @@
 @section('jquery')
     <script>
         $(document).ready(function(){
+            $('div#categorie1').hide();
             $('div.pdp').hide();
             $('#uploadFile').on('change',function(){
                 $('img.pdp').hide();
