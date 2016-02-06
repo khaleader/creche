@@ -52,6 +52,7 @@ class SchoolSendEmailEvent extends Event
         $user->email = $this->email;
         $user->password = \Hash::make($this->password);
         $user->nom_responsable = $this->nomResponsable;
+        $user->sexe = $this->sexe;
         $user->tel_fixe = $this->fix;
         $user->tel_portable = $this->portab;
         $user->adresse = $this->adresse;
