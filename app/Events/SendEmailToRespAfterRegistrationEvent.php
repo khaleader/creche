@@ -23,6 +23,7 @@ class SendEmailToRespAfterRegistrationEvent extends Event
     public $mot_de_pass_temporaire_compte_famille;
     public $nom_responsable;
     public $responsable;
+    public $sexe;
 
 
 
@@ -68,6 +69,13 @@ class SendEmailToRespAfterRegistrationEvent extends Event
         $user->type = 'famille';
         $user->email = $this->pseudo_compte_famille;
         $user->password = \Hash::make($this->mot_de_pass_temporaire_compte_famille);
+        if($this->responsable == 1)
+        {
+            $user->sexe = 'homme';
+        }else{
+            $user->sexe = 'femme';
+        }
+
         $user->save();
         if($user)
         {
@@ -86,7 +94,7 @@ class SendEmailToRespAfterRegistrationEvent extends Event
                     'date_pro_paim' => $this->date_prochain_paiement,
                     'pseudo_email' => $this->pseudo_compte_famille,
                     'respons' => $this->responsable,
-                    'pass' => $this->mot_de_pass_temporaire_compte_famille
+                    'pass' => $this->mot_de_pass_temporaire_compte_famille,
                 ];
 
                 Mail::queue('emails.test',$info,function($message){

@@ -417,6 +417,7 @@ class StatisticsController extends Controller
                         'new_password'=> $pass_without,
                         'name' => $user->nom_responsable,
                         'ecole' => $user->name,
+                        'sexe' => $user->sexe,
                         'responsable' => $lacarte->responsable,
                         'date' => Carbon::now()->toDateString()
 
@@ -452,6 +453,7 @@ class StatisticsController extends Controller
                         'new_password'=> $pass_without,
                         'name' => $utilisateur->nom_responsable,
                         'ecole' => $utilisateur->name,
+                        'sexe' => $utilisateur->sexe,
                         'date' => Carbon::now()->toDateString()
 
                     ];

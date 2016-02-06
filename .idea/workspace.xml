@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Events/SchoolSendEmailEvent.php" afterPath="$PROJECT_DIR$/app/Events/SchoolSendEmailEvent.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/AddSchoolRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/AddSchoolRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creche/app/Http/Controllers/SchoolsController.php" afterPath="$PROJECT_DIR$/creche/app/Http/Controllers/SchoolsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/schools/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/schools/create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Events/SendEmailToRespAfterRegistrationEvent.php" afterPath="$PROJECT_DIR$/app/Events/SendEmailToRespAfterRegistrationEvent.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,89 +34,97 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/schools/create.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.9">
-              <caret line="102" column="34" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddSchoolRequest.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddSchoolRequest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.7">
-              <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SchoolSendEmailEvent.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Events/SchoolSendEmailEvent.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.042274054">
-              <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SchoolsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.627119">
-              <caret line="125" column="26" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
-              <folding>
-                <element signature="e#17691#20860#0#PHP" expanded="false" />
-                <marker date="1454786649443" expanded="true" signature="1974:3059" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="2007:2299" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="2039:2294" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="2105:2255" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="2581:2887" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="2648:2730" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="2775:2853" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18024:18381" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18024:18382" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18024:18437" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18024:19162" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18024:19292" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18057:18348" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18089:18343" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18155:18212" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18155:18304" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18531:18561" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18531:18602" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18752:18786" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18752:18795" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18752:19118" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="18879:18961" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="19006:19084" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="19526:20809" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="19559:19854" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="19591:19849" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="19657:19810" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="20042:20116" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="20266:20309" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="20266:20632" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="20393:20475" placeholder="..." />
-                <marker date="1454786649443" expanded="true" signature="20520:20598" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="school.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/emails/school.blade.php">
+      <file leaf-file-name="login.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-11.6">
-              <caret line="332" column="20" selection-start-line="332" selection-start-column="20" selection-end-line="332" selection-end-column="20" />
+              <caret line="97" column="98" selection-start-line="97" selection-start-column="98" selection-end-line="97" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.033333">
+              <caret line="455" column="53" selection-start-line="455" selection-start-column="53" selection-end-line="455" selection-end-column="53" />
               <folding>
-                <element signature="n#style#0;n#p#0;n#td#0;n#tr#3;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#1;n#td#0;n#tr#3;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1454793615812" expanded="true" signature="6924:8271" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="6957:7244" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="6989:7239" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="7054:7200" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="7277:7356" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="7297:7351" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="7653:8089" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="7780:7862" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="7977:8055" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="11507:12820" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="11540:11830" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="11572:11825" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="11638:11786" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="12205:12645" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="12335:12417" placeholder="..." />
+                <marker date="1454793615812" expanded="true" signature="12533:12611" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forgetpass.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.27113703">
+              <caret line="330" column="17" selection-start-line="330" selection-start-column="17" selection-end-line="330" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ChildrenController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.966667">
+              <caret line="145" column="37" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
+              <folding>
+                <marker date="1454468684520" expanded="true" signature="12715:14033" placeholder="..." />
+                <marker date="1454468684520" expanded="true" signature="12748:13038" placeholder="..." />
+                <marker date="1454468684520" expanded="true" signature="12780:13033" placeholder="..." />
+                <marker date="1454468684520" expanded="true" signature="12846:12994" placeholder="..." />
+                <marker date="1454468684520" expanded="true" signature="13413:13858" placeholder="..." />
+                <marker date="1454468684520" expanded="true" signature="13541:13623" placeholder="..." />
+                <marker date="1454468684520" expanded="true" signature="13660:13822" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SendEmailToRespAfterRegistrationEvent.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Events/SendEmailToRespAfterRegistrationEvent.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="16.766666">
+              <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/emails/test.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="111.433334">
+              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.466666">
+              <caret line="81" column="29" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,10 +142,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/statistics/monthly_bills.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
-        <option value="$PROJECT_DIR$/resources/views/families/search.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/branches/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/timesheets/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/rooms/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
@@ -162,7 +165,6 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/FormValidationChildFamilyRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/EducatorsController.php" />
         <option value="$PROJECT_DIR$/app/User.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/schools/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
         <option value="$PROJECT_DIR$/resources/views/families/index.blade.php" />
@@ -186,6 +188,11 @@
         <option value="$PROJECT_DIR$/app/Events/SchoolSendEmailEvent.php" />
         <option value="$PROJECT_DIR$/creche/app/Http/Controllers/SchoolsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/bills/details.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Events/SendEmailToRespAfterRegistrationEvent.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php" />
       </list>
     </option>
   </component>
@@ -481,18 +488,12 @@
               <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="creche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="creche" />
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,11 +507,61 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="database" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="migrations" />
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="creche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Http" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -658,49 +709,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/classrooms/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8890511">
-          <caret line="55" column="26" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_01_29_172209_add_typeCompte_to_users.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.110948905">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.8333335">
-          <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
-          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/ReglerBillEventListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3333334">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Events/BillEvent.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="23.566668">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Listeners/EssaiOfficielEventListener.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.5">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Listeners/SendEmailToRespAfterRegistrationEventListener.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -733,13 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5927007">
           <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3">
-          <caret line="81" column="29" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -915,13 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="186" column="45" selection-start-line="186" selection-start-column="45" selection-end-line="186" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Kernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.91532844">
@@ -1026,22 +1020,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19969513">
-          <caret line="540" column="13" selection-start-line="540" selection-start-column="13" selection-end-line="540" selection-end-column="13" />
-          <folding>
-            <marker date="1454468684520" expanded="true" signature="12715:14033" placeholder="..." />
-            <marker date="1454468684520" expanded="true" signature="12748:13038" placeholder="..." />
-            <marker date="1454468684520" expanded="true" signature="12780:13033" placeholder="..." />
-            <marker date="1454468684520" expanded="true" signature="12846:12994" placeholder="..." />
-            <marker date="1454468684520" expanded="true" signature="13413:13858" placeholder="..." />
-            <marker date="1454468684520" expanded="true" signature="13541:13623" placeholder="..." />
-            <marker date="1454468684520" expanded="true" signature="13660:13822" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/classrooms/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21167883">
@@ -1061,22 +1039,6 @@
         <state vertical-scroll-proportion="0.1122449">
           <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34398782">
-          <caret line="423" column="41" selection-start-line="423" selection-start-column="41" selection-end-line="423" selection-end-column="41" />
-          <folding>
-            <marker date="1454769452016" expanded="true" signature="11634:11832" placeholder="..." />
-            <marker date="1454769452016" expanded="true" signature="11649:11830" placeholder="..." />
-            <marker date="1454769452016" expanded="true" signature="11761:11778" placeholder="..." />
-            <marker date="1454769452016" expanded="true" signature="14248:14686" placeholder="..." />
-            <marker date="1454769452016" expanded="true" signature="17213:17412" placeholder="..." />
-            <marker date="1454769452016" expanded="true" signature="17228:17410" placeholder="..." />
-            <marker date="1454769452016" expanded="true" signature="17338:17356" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1107,14 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddSchoolRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.7">
-          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creche/app/Http/Controllers/SchoolsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.196793">
@@ -1131,17 +1085,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/schools/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.9">
-          <caret line="102" column="34" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/SchoolsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.627119">
+        <state vertical-scroll-proportion="0.77473366">
           <caret line="125" column="26" selection-start-line="125" selection-start-column="26" selection-end-line="125" selection-end-column="26" />
           <folding>
             <element signature="e#17691#20860#0#PHP" expanded="false" />
@@ -1185,6 +1131,135 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.042274054">
           <caret line="29" column="35" selection-start-line="29" selection-start-column="35" selection-end-line="29" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/AddSchoolRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38046646">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/schools/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12682216">
+          <caret line="102" column="34" selection-start-line="102" selection-start-column="34" selection-end-line="102" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/bills/details.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12682216">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6341108">
+          <caret line="200" column="0" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.6">
+          <caret line="97" column="98" selection-start-line="97" selection-start-column="98" selection-end-line="97" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.78134114">
+          <caret line="423" column="41" selection-start-line="423" selection-start-column="41" selection-end-line="423" selection-end-column="41" />
+          <folding>
+            <marker date="1454769452016" expanded="true" signature="11634:11832" placeholder="..." />
+            <marker date="1454769452016" expanded="true" signature="11649:11830" placeholder="..." />
+            <marker date="1454769452016" expanded="true" signature="11761:11778" placeholder="..." />
+            <marker date="1454769452016" expanded="true" signature="14248:14686" placeholder="..." />
+            <marker date="1454769452016" expanded="true" signature="17213:17412" placeholder="..." />
+            <marker date="1454769452016" expanded="true" signature="17228:17410" placeholder="..." />
+            <marker date="1454769452016" expanded="true" signature="17338:17356" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/AuthController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.466666">
+          <caret line="81" column="29" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/emails/test.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="111.433334">
+          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.033333">
+          <caret line="455" column="53" selection-start-line="455" selection-start-column="53" selection-end-line="455" selection-end-column="53" />
+          <folding>
+            <marker date="1454793615812" expanded="true" signature="6924:8271" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="6957:7244" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="6989:7239" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="7054:7200" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="7277:7356" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="7297:7351" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="7653:8089" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="7780:7862" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="7977:8055" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="11507:12820" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="11540:11830" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="11572:11825" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="11638:11786" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="12205:12645" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="12335:12417" placeholder="..." />
+            <marker date="1454793615812" expanded="true" signature="12533:12611" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Events/SendEmailToRespAfterRegistrationEvent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="16.766666">
+          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.966667">
+          <caret line="145" column="37" selection-start-line="145" selection-start-column="37" selection-end-line="145" selection-end-column="37" />
+          <folding>
+            <marker date="1454468684520" expanded="true" signature="12715:14033" placeholder="..." />
+            <marker date="1454468684520" expanded="true" signature="12748:13038" placeholder="..." />
+            <marker date="1454468684520" expanded="true" signature="12780:13033" placeholder="..." />
+            <marker date="1454468684520" expanded="true" signature="12846:12994" placeholder="..." />
+            <marker date="1454468684520" expanded="true" signature="13413:13858" placeholder="..." />
+            <marker date="1454468684520" expanded="true" signature="13541:13623" placeholder="..." />
+            <marker date="1454468684520" expanded="true" signature="13660:13822" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/emails/forgetpass.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27113703">
+          <caret line="330" column="17" selection-start-line="330" selection-start-column="17" selection-end-line="330" selection-end-column="17" />
           <folding />
         </state>
       </provider>
