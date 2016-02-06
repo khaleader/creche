@@ -3,7 +3,9 @@
 @include('partials.head')
 
 <body>
+@yield('loader')
 <section id="container">
+
     <!--header start-->
    @include('layouts.header')
     <!--header end-->

@@ -1,32 +1,40 @@
 @extends('layouts.default')
+
+
 @section('css')
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/completer/completer.css') }}"/>
     <script src="{{  asset('css/completer/completer.js') }}"></script>
     <style>
         #loader-parent{
-            position: absolute;
+            position: fixed;
             width: 100%;
-            height:100%;
+            height:100vh;
             background-color: white;
             opacity: 0.5;
-            top:0px;
-            right:0px;
-            left:0px;
-            bottom:0px;
-            z-index:500;
+            top:0;
+            right:0;
+            left:0;
+            bottom:0;
+            z-index:50000;
 
 
         }
         #loader-to{
             margin-left: 50%;
-            margin-top: 45%;
+            margin-top: 25%;
         }
 
     </style>
 
 
 @endsection
+@section('loader')
+    <div id="loader-parent">
+        <img id="loader-to" src="{{  asset('images/ajax-loaderr.gif') }}" >
+    </div>
+
+@stop
 @section('content')
         @include('partials.alert-success')
         @include('partials.alert-errors')
@@ -270,9 +278,7 @@
                             </div>
                         <div>
                             <button  id="submit" class="btn_form" type="submit">Enregistrer </button>
-                            <div id="loader-parent">
-                                <img id="loader-to" src="{{  asset('images/ajax-loaderr.gif') }}" >
-                            </div>
+
 
                         </div>
                         <?php
@@ -626,6 +632,9 @@
 
 
               });
+
+
+
 
           });
     </script>
