@@ -111,6 +111,7 @@ class SchoolsController extends Controller
            $request->email_ecole,
            str_random(6),
            $request->nom_responsable,
+           $request->sexe,
            $request->tel_fix,
            $request->tel_por,
            $request->ecole_adresse,

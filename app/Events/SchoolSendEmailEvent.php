@@ -17,6 +17,7 @@ class SchoolSendEmailEvent extends Event
     public $email;
     public $password;
     public $nomResponsable;
+    public $sexe;
     public $fix;
     public $portab;
     public $adresse;
@@ -30,7 +31,7 @@ class SchoolSendEmailEvent extends Event
      *
      * @return void
      */
-    public function __construct($typeCompte,$EcNa,$typ,$eml,$pass,$nomresp,$fix,$port,$adres,$ville,$pays)
+    public function __construct($typeCompte,$EcNa,$typ,$eml,$pass,$nomresp,$sexe,$fix,$port,$adres,$ville,$pays)
     {
         $this->typeCompte = $typeCompte;
         $this->ecoleNom = $EcNa;
@@ -38,6 +39,7 @@ class SchoolSendEmailEvent extends Event
         $this->email = $eml;
         $this->password = $pass;
         $this->nomResponsable = $nomresp;
+        $this->sexe = $sexe;
         $this->fix = $fix;
         $this->portab = $port;
         $this->adresse = $adres;
@@ -61,6 +63,7 @@ class SchoolSendEmailEvent extends Event
         {
             $info = [
                 'nom_resp' => $this->nomResponsable,
+                'sexe' => $this->sexe,
                 'nom_ecole' =>$this->ecoleNom,
                 'email' => $this->email,
                 'pass' => $this->password,

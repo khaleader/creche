@@ -11,7 +11,7 @@
             width: 100%;
             height:100vh;
             background-color: white;
-            opacity: 0.5;
+            opacity: 0.6;
             top:0;
             right:0;
             left:0;

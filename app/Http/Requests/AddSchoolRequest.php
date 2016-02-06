@@ -27,6 +27,7 @@ class AddSchoolRequest extends Request
             'type' => 'required|integer',
             'nom_ecole' => 'required',
             'nom_responsable' =>'required',
+            'sexe' => 'required',
             'tel_fix' =>'required',
             'tel_por' =>'required',
             'email_ecole' =>'required|email|unique:users,email',

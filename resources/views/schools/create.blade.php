@@ -40,6 +40,17 @@
 
                                 </div>
                             </div>
+                            <div class="form_champ">
+                                <label for="sexe" class="control-label col-lg-3">Sexe</label>
+                                <div class="form_ajout">
+                                    <select name="sexe" class="form_ajout_input">
+                                        <option value="homme">Homme</option>
+                                        <option value="femme">Femme</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
 
 
                             <div class="form_champ">
