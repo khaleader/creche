@@ -31,20 +31,20 @@ class SchoolSendEmailEvent extends Event
      *
      * @return void
      */
-    public function __construct($typeCompte,$EcNa,$typ,$eml,$pass,$nomresp,$sexe,$fix,$port,$adres,$ville,$pays)
+    public function __construct($EcNa,$typ,$eml,$pass,$nomresp,$fix,$port,$adres,$ville,$pays,$typeCompte,$sexe)
     {
-        $this->typeCompte = $typeCompte;
         $this->ecoleNom = $EcNa;
         $this->type = $typ;
         $this->email = $eml;
         $this->password = $pass;
         $this->nomResponsable = $nomresp;
-        $this->sexe = $sexe;
         $this->fix = $fix;
         $this->portab = $port;
         $this->adresse = $adres;
         $this->ville = $ville;
         $this->pays = $pays;
+        $this->typeCompte = $typeCompte;
+        $this->sexe = $sexe;
 
         $user = new User();
         $user->name = $this->ecoleNom;
@@ -52,13 +52,13 @@ class SchoolSendEmailEvent extends Event
         $user->email = $this->email;
         $user->password = \Hash::make($this->password);
         $user->nom_responsable = $this->nomResponsable;
-        $user->sexe = $this->sexe;
         $user->tel_fixe = $this->fix;
         $user->tel_portable = $this->portab;
         $user->adresse = $this->adresse;
         $user->ville = $this->ville;
         $user->pays = $this->pays;
         $user->typeCompte = $this->typeCompte;
+        $user->sexe = $this->sexe;
         $user->save();
         if($user)
         {

@@ -24,7 +24,7 @@ class AddSchoolRequest extends Request
     public function rules()
     {
         return [
-            'type' => 'required|integer',
+
             'nom_ecole' => 'required',
             'nom_responsable' =>'required',
             'sexe' => 'required',
@@ -34,6 +34,7 @@ class AddSchoolRequest extends Request
             'ecole_adresse' =>'required',
             'ecole_ville' =>'required',
             'country' =>'alpha',
+            'typeCompte' => 'required|integer',
 
         ];
     }
@@ -41,7 +42,7 @@ class AddSchoolRequest extends Request
     public function messages()
     {
         return [
-            'type.integer'=> 'vous devez choisir le type',
+            'typeCompte.integer'=> 'vous devez choisir le type de Compte',
             'nom_ecole.required'=> 'vous devez saisir un nom pour L\'ecole',
             'nom_responsable.required'=> 'vous devez saisir un nom de responsable',
             'tel_fix.required'=> 'vous devez saisir Le numéro de téléphone fixe',

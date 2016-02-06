@@ -104,7 +104,7 @@
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Compte</label>
                                 <div class="form_ajout">
-                                    <select name="type" class="form_ajout_input" placeholder="Choisissez le pays">
+                                    <select name="typeCompte" class="form_ajout_input">
                                         <option>Choisissez le Compte s'il vous plait</option>
                                         <option value="0">Essai</option>
                                         <option value="1">Officiel</option>

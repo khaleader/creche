@@ -106,21 +106,22 @@ class SchoolsController extends Controller
     public function store(AddSchoolRequest $request)
     {
 
-//$typeCompte,$EcNa,$typ,$eml,$pass,$nomresp,$sexe,$fix,$port,$adres,$ville,$pays
 
-        event(new SchoolSendEmailEvent(
-            $request->type,
+
+
+       event(new SchoolSendEmailEvent(
            $request->nom_ecole,
             'ecole',
            $request->email_ecole,
            str_random(6),
            $request->nom_responsable,
-           $request->sexe,
            $request->tel_fix,
            $request->tel_por,
            $request->ecole_adresse,
            $request->ecole_ville,
-           $request->country
+           $request->country,
+           $request->typeCompte,
+           $request->sexe
        ));
         return redirect()->back()->with('success','Bien enregistré');
     }
