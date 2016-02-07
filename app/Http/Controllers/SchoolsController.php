@@ -551,6 +551,10 @@ class SchoolsController extends Controller
                 ->where('typeCompte', 0)->get();
 
                 foreach ($schools as $ecole) {
+                    if($ecole->blocked == 0)
+                        $block = '<i class="fa fa-unlock fa-3x liste_icons"></i>';
+                    else
+                        $block = ' <i class="fa fa-lock fa-3x liste_icons"></i>';
                     echo '     <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
@@ -564,6 +568,7 @@ class SchoolsController extends Controller
                               Essai
 
                             </td>
+                            <td>'.$block.'</td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
                                 <a href="'.action('SchoolsController@delete',[$ecole]).'" class="actions_icons delete-school">
@@ -581,6 +586,10 @@ class SchoolsController extends Controller
                     ->where('typeCompte', 1)->get();
 
                 foreach ($schools as $ecole) {
+                    if($ecole->blocked == 0)
+                        $block = '<i class="fa fa-unlock fa-3x liste_icons"></i>';
+                    else
+                        $block = ' <i class="fa fa-lock fa-3x liste_icons"></i>';
                     echo '     <tr>
                             <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
@@ -594,6 +603,7 @@ class SchoolsController extends Controller
                               Officiel
 
                             </td>
+                                 <td>'.$block.'</td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
                                 <a href="'.action('SchoolsController@delete',[$ecole]).'" class="actions_icons delete-school">
