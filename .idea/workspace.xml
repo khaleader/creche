@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -55,8 +54,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33231708">
-              <caret line="615" column="14" selection-start-line="615" selection-start-column="14" selection-end-line="615" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.597561">
+              <caret line="621" column="18" selection-start-line="621" selection-start-column="18" selection-end-line="621" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -807,8 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33231708">
-          <caret line="615" column="14" selection-start-line="615" selection-start-column="14" selection-end-line="615" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.597561">
+          <caret line="621" column="18" selection-start-line="621" selection-start-column="18" selection-end-line="621" selection-end-column="18" />
           <folding />
         </state>
       </provider>
