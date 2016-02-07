@@ -119,6 +119,7 @@
                             <th> Nom école</th>
                             <th class="hidden-phone">Date d'inscription</th>
                             <th>Type</th>
+                            <th>Statut de Blocage</th>
                             <th>Statut de paiement</th>
                             <th>Actions</th>
                             <th></th>
@@ -142,6 +143,16 @@
                                 {{ 'Officiel' }}
                                 @endif
 
+                            </td>
+
+                            <td style="vertical-align: middle">
+                            @if($ecole->blocked == 0)
+                                    <i class="fa fa-unlock fa-3x liste_icons"></i>
+                            @else
+
+                                       <i class="fa fa-lock fa-3x liste_icons"></i>
+
+                            @endif
                             </td>
                             <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
                             <td>
