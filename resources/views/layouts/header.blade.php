@@ -23,9 +23,6 @@
           @elseif(\Auth::user() && Auth::user()->isFamily())
             <a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">
            @endif
-
-
-
          @if(Auth::user() && Auth::user()->isFamily())
                 <?php
 
@@ -37,9 +34,11 @@
                         echo 'Bienvenue '.$resp->nom_pere;
                     }
                   ?>
-             @else
-
+             @elseif(Auth::user() && Auth::user()->isAdmin())
              {{ 'Bienvenue '. \Auth::user()->name  }}
+             @else
+                    <a href="#"> {{ 'Bienvenue '.\Auth::user()->name  }}</a>
+
 
 
             @endif
