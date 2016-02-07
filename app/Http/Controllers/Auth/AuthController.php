@@ -88,17 +88,15 @@ class AuthController extends Controller
         {
             // oblivius or ecole or family
             $user = \Auth::user();
-              $type = $user->type;
-            $compteType = $user->typeCompte;
           if($user->blocked == 0)
           {
               return  redirect()->to('/');
           }else{
               Auth::logout();
-              return redirect()->to('auth\login');
+              return redirect()->to('auth\login')->withErrors(['Email ou mot de passe incorrect.']);
           }
         }else{
-          return  redirect()->back();
+          return  redirect()->back()->withErrors(['Email ou mot de passe incorrect.']);
         }
     }
 

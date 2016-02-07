@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/alertify/default.css') }}"/>
     <!-- Semantic UI theme -->
     <link rel="stylesheet" href="{{ asset('css/alertify/semantic.css') }}"/>
+    <script src="{{ asset('bs3/js/bootstrap.min.js')}}"></script>
 
 
 </head>
@@ -62,11 +63,28 @@
 
     </div>
 
+    <div class=" col-sm-offset-3 col-sm-6" style="position:absolute;bottom: 0">
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                <div class="col-sm-12">
+                    <div class="alert  alert-danger alert-dismissable" style="margin-top: 5px">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                        {{ $error }}
+                    </div>
+                </div>
+            @endforeach
+        @endif
+    </div>
+
 
 </div>
 
 <script>
    $(document).ready(function(){
+       $(".alert-danger").fadeTo(10000, 500).slideUp(500, function() {
+           $(".alert-danger").alert('close');
+       });
 
       /*  $('.mot-oulie a').on('click',function(e){
             bootbox.prompt("Entrez Votre Email", function(result) {
