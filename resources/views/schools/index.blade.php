@@ -259,7 +259,7 @@
                                     data: 'blocked=' + $('#blocked').text() + '&_token=' + CSRF_TOKEN,
                                     type: 'post',
                                     success: function (data) {
-                                        $('tbody').append(data);
+                                        location.reload();
                                     }
                                 });
 
@@ -301,7 +301,7 @@
                                     data: 'nblocked=' + $('#nblocked').text() + '&_token=' + CSRF_TOKEN,
                                     type: 'post',
                                     success: function (data) {
-                                        $('tbody').append(data);
+                                        location.reload();
                                     }
                                 });
 
