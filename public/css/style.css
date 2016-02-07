@@ -612,6 +612,7 @@ a.logo span {
     margin-top: 10px;
     text-transform: capitalize;
     float: left;
+    width:200px;
 
 }
 .account img {
