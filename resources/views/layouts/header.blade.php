@@ -44,7 +44,7 @@
 
             @endif
         </a>
-       <img src="{{ \Auth::user()->photo ? asset('uploads/'.\Auth::user()->photo ):asset('images/user.png') }}" alt="user" style="margin-left: 12px;">
+       <img src="{{ \Auth::user()->photo ? asset('uploads/'.\Auth::user()->photo ):asset('images/user.png') }}" alt="user">
 
 </a>
     </div>
