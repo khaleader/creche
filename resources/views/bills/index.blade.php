@@ -128,7 +128,16 @@
                             <td>{{  $bill->id  }}</td>
                             <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
                             <td>{{ $bill->child->nom_enfant  }}</td>
-                            <td>{{  $bill->start->format('d-m-Y') }}</td>
+                            <td>
+                                {{  $bill->start->format('d-m-Y') }}
+                                @if(Carbon\Carbon::now() > $bill->start && $bill->status == 0)
+                                    <span class="label label-danger label-mini" ><i class="fa fa-clock-o fa-2x"></i></span>
+                                @elseif(Carbon\Carbon::now() < $bill->start  && $bill->status == 0)
+                                    {{  '('.$bill->start->diffInDays() .' Jr)' }}
+
+                                @endif
+
+                            </td>
                             <td>{{  $bill->somme  }} Dhs</td>
                             <td><span class="label {{  $bill->status == 0 ? 'label-danger': 'label-success'  }}  label-mini">
                                    {{  $bill->status == 0 ? 'Non réglée': 'réglée' }} </span>

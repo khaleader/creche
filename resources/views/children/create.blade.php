@@ -477,7 +477,7 @@
                   });
               });
 
-              $('input[name=cin]').keyup(function(){
+            /*  $('input[name=cin]').keyup(function(){
                   var cin = $(this).val();
                  var email_resp = $('input[name=email_responsable]').val();
                   var fix = $('input[name=numero_fixe]').val();
@@ -499,7 +499,7 @@
                              }
                       }
                   });
-              });
+              });*/
               $('#transport').change(function () {
                   var trans = $(this).val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
