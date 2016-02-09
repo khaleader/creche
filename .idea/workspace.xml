@@ -2,19 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/classrooms/indexelc.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/AttendancesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/attendances/absenceToday.blade.php" afterPath="$PROJECT_DIR$/resources/views/attendances/absenceToday.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/attendances/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/attendances/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/attendances/showef.blade.php" afterPath="$PROJECT_DIR$/resources/views/attendances/showef.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/show.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/monthly_absence.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/monthly_absence.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/indexelc.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/indexelc.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,40 +32,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/classrooms/show.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4666667">
-              <caret line="53" column="52" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="indexelc.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/classrooms/indexelc.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19270073">
-              <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.32846716">
+              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassroomsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.1">
-              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-              <folding>
-                <marker date="1455025510757" expanded="true" signature="7176:8362" placeholder="..." />
-                <marker date="1455025510757" expanded="true" signature="7209:7501" placeholder="..." />
-                <marker date="1455025510757" expanded="true" signature="7241:7496" placeholder="..." />
-                <marker date="1455025510757" expanded="true" signature="7307:7457" placeholder="..." />
-                <marker date="1455025510757" expanded="true" signature="7859:8239" placeholder="..." />
-                <marker date="1455025510757" expanded="true" signature="7993:8075" placeholder="..." />
-                <marker date="1455025510757" expanded="true" signature="8113:8203" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -987,7 +948,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/classrooms/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.4666667">
+        <state vertical-scroll-proportion="0.23941606">
           <caret line="53" column="52" selection-start-line="53" selection-start-column="45" selection-end-line="53" selection-end-column="52" />
           <folding />
         </state>
@@ -995,8 +956,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/classrooms/indexelc.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19270073">
-          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.32846716">
+          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
           <folding />
         </state>
       </provider>

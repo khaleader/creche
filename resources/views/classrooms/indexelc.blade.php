@@ -11,7 +11,7 @@
 
                     <div class="actions_btn">
                         <ul>
-                            <li><a  href="{{ action('ClassroomsController@show',[$id]) }}"><img id="ajouter" src="{{-- asset('images/ajouter.png') --}}">informations de la classe</a></li>
+                            <li><a  href="{{ action('ClassroomsController@show',[$id]) }}"><img id="ajouter" src="{{asset('images/informc.png') }}">informations de la classe</a></li>
 
                         </ul>
                     </div>
