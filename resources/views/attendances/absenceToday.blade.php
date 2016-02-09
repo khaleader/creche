@@ -43,8 +43,8 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions">
-                            <li><a id="normale" href="#">Normal</a></li>
-                            <li><a id="maladie" href="#">Maladie</a></li>
+                            <li><a id="normale" href="#">Justifiée</a></li>
+                            <li><a id="maladie" href="#">Non Justifiée</a></li>
                         </ul>
                     </div>
 
@@ -90,9 +90,9 @@
                                 <td>{{  ucwords($t->child->nom_enfant) }}</td>
                                 <td>{{  \Carbon\Carbon::parse($t->start)->format('d-m-Y') }} </td>
                                 @if($t->title == 'Maladie')
-                                    <td><span class="label label-info label-mini">Maladie</span></td>
+                                    <td><span class="label label-info label-mini">Non Justifiée</span></td>
                                 @else
-                                    <td><span class="label label-primary label-mini">Normal</span></td>
+                                    <td><span class="label label-primary label-mini">Justifiée</span></td>
                                 @endif
                                 <td>
                                     <a href="{{ action('StatisticsController@delete_att',[$t]) }}" class="actions_icons delete-att">
@@ -131,7 +131,7 @@
                 var status = 'Normal';
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('StatisticsController@absence_raison')}}',
+                    url: '{{  URL::action('AttendancesController@absence_raison_today')}}',
                     data: 'status=' + status + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
@@ -144,7 +144,7 @@
                 var  status = 'Maladie';
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('StatisticsController@absence_raison')}}',
+                    url: '{{  URL::action('AttendancesController@absence_raison_today')}}',
                     data: 'status=' + status + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {

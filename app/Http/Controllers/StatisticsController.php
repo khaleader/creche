@@ -224,10 +224,10 @@ class StatisticsController extends Controller
                 if($t->title == 'Maladie')
                 {
                     $class = 'label-info';
-                    $text = 'Maladie';
+                    $text = 'Non Justifiée';
                 } else{
                     $class = 'label-primary';
-                    $text = 'Normal';
+                    $text = 'Justifiée';
                 }
                 echo '  <tr>
                             <td><div class="minimal single-row">
@@ -247,8 +247,8 @@ class StatisticsController extends Controller
                             <td>
                                 <a href="'.action('StatisticsController@delete_att',[$t]).'" class="actions_icons delete-att">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
-                                <a class="archive-att" href="'.action('StatisticsController@archive_att',[$t]).'"><i class="fa fa-archive liste_icons"></i>
-                                </a>
+                              <!--  <a class="archive-att" href="'.action('StatisticsController@archive_att',[$t]).'"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
                             </td>
 
                             <td><a href="'.  action('AttendancesController@show',[$t->child->id]) .'"><div  class="btn_details">Détails</div></a></td>

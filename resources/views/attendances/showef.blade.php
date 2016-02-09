@@ -27,8 +27,8 @@
                 <aside class="col-lg-3">
                     <h4 class="drg-event-title">Les raisons d'absence</h4>
                     <div id='external-events'>
-                        <div class='external-event label label-primary'>Normal</div>
-                        <div class='external-event label label-info'>Maladie</div>
+                        <div valeur="Normal" class='external-event label label-primary'>Justifiée</div>
+                        <div valeur="Maladie" class='external-event label label-info'>Non Justifiée</div>
 
                     </div>
                 </aside>
@@ -60,7 +60,7 @@
                 // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
                 // it doesn't need to have a start or end
                 var eventObject = {
-                    title: $.trim($(this).text()) // use the element's text as the event title
+                    title: $.trim($(this).attr('valeur')) // use the element's text as the event title
                 };
                 // store the Event Object in the DOM element so we can get to it later
                 $(this).data('eventObject', eventObject);
@@ -87,6 +87,47 @@
                 editable: false,
                 droppable: false ,// this allows things to be dropped onto the calendar
                 events : <?php echo ($resultat) ? $resultat: "" ?>,
+
+                drop:function(date, allDay){
+                    var originalEventObject = $(this).data('eventObject');
+
+                    // we need to copy it, so that multiple events don't have a reference to the same object
+                    var copiedEventObject = $.extend({}, originalEventObject);
+
+                    // assign it the date that was reported
+                    var start =  copiedEventObject.start = date;
+                    var start = moment(start).format("YYYY-MM-DD HH:mm:ss");
+                    var allDay = copiedEventObject.allDay = allDay;
+                    var allDay = true;
+                    var child_id = '{{  $child->id }}';
+                    var title =  copiedEventObject.title;
+                    var color;
+                    if(title == 'Normal')
+                    {
+                        color = '#7f64b5';
+                    }else{
+                        color ='#f1c435';
+                    }
+
+
+                    $('#calendar').fullCalendar('renderEvent', {
+                        title: copiedEventObject.title == 'Normal' ? 'Justifiée': 'Non Justifiée',
+                        start: copiedEventObject.start,
+                        color:color,
+                        allDay:copiedEventObject.allDay
+                    }, true);
+
+                },
+                eventRender: function(event, element) {
+                    if(event.color == '#7f64b5')
+                    {
+                        element.append("<span class='closeon'><i class='fa fa-check-circle'></i></span>");
+                    }else{
+                        element.append("<span class='closeon'><i class='fa fa-exclamation-circle'></i></span>");
+
+                    }
+
+                }
 
 
 

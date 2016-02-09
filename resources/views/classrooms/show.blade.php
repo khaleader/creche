@@ -78,6 +78,10 @@
                             <td><span><strong>Capacité de salle : </strong>{{ $cr->capacite_classe }} élèves </span></td>
                         </tr>
                         <tr>
+                            <td><span><strong>Nombre d'élèves inscrits : </strong> {{ $cr->children()->count() }} </span></td>
+
+                        </tr>
+                        <tr>
 
                             <td><span><strong>Niveau : </strong>{{ $cr->niveau }} </span></td>
                         </tr>

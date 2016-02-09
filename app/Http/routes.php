@@ -162,6 +162,7 @@ Route::match(['get'],'teachers/archive/{id}','TeachersController@archive');
 Route::get('statistics/mb','StatisticsController@monthly_bills');
 Route::get('statistics/mabs','StatisticsController@monthly_absence'); // index attendances statistics
 Route::post('statistics/absence_raison','StatisticsController@absence_raison'); // trier en ajax normale ou maladie
+Route::post('attendances/absence_raison_today','AttendancesController@absence_raison_today'); // for today only
 Route::match(['get','post'],'statistics/supprimer_att','StatisticsController@supprimer_att'); // supprimer att en ajax
 Route::match(['get','post'],'statistics/archiver_att','StatisticsController@archiver_att'); //archiver att en ajax
 Route::get('statistics/delete_att/{id}','StatisticsController@delete_att');
@@ -183,7 +184,7 @@ Route::post('rooms/supprimer','RoomsController@supprimer'); //suppression ajax
 Route::get('rooms/delete/{id}','RoomsController@delete'); // delete a room by click
 Route::resource('rooms','RoomsController');
 
-
+Route::get('classrooms/indexelc/{id}','ClassroomsController@indexelc'); // afficher les élèves d'une classe
 Route::post('classrooms/trierparbranche','ClassroomsController@trierparbranche'); //trier par branche  ajax
 Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax
 Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete classe by click

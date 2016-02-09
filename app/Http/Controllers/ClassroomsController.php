@@ -38,6 +38,14 @@ class ClassroomsController extends Controller
         ]);
     }
 
+    public function indexelc($id)
+    {
+        $cr =Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $id =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        $cr =$cr->children()->paginate(10);
+        return view('classrooms.indexelc',compact('cr','id'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

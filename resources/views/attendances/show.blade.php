@@ -27,8 +27,8 @@
           <aside class="col-lg-3">
                     <h4 class="drg-event-title">Les raisons d'absence</h4>
                     <div id='external-events'>
-                        <div class='external-event label label-primary'>Normal</div>
-                        <div class='external-event label label-info'>Maladie</div>
+                        <div valeur="Normal" class='external-event label label-primary'>Justifiée</div>
+                        <div valeur="Maladie" class='external-event label label-info'>Non Justifiée</div>
 
                     </div>
                 </aside>
@@ -60,7 +60,7 @@
             // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
             // it doesn't need to have a start or end
             var eventObject = {
-                title: $.trim($(this).text()) // use the element's text as the event title
+                title: $.trim($(this).attr('valeur')) // use the element's text as the event title
             };
             // store the Event Object in the DOM element so we can get to it later
             $(this).data('eventObject', eventObject);
@@ -79,17 +79,19 @@
 
 
        $('#calendar').fullCalendar({
+           selectOverlap:false,
            header: {
                left: 'prev,next today',
                center: 'title',
                right: 'month,basicWeek,basicDay'
            },
+
            editable: true,
            droppable: true ,// this allows things to be dropped onto the calendar
                    events : <?php echo ($resultat) ? $resultat: "" ?>,
 
            drop: function(date, allDay) { // this function is called when something is dropped
-
+           // console.log(date._d);
                // retrieve the dropped element's stored Event Object
                var originalEventObject = $(this).data('eventObject');
 
@@ -120,7 +122,7 @@
 
                    type: 'post',
                    success: function (response) {
-                       alert("Succès de l'opération");
+                       alertify.success("Succès de l'opération");
                    }
                });
 
@@ -130,7 +132,7 @@
                // render the event on the calendar
                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
                $('#calendar').fullCalendar('renderEvent', {
-                   title: copiedEventObject.title,
+                   title: copiedEventObject.title == 'Normal' ? 'Justifiée': 'Non Justifiée',
                    start: copiedEventObject.start,
                    color:color,
                    allDay:copiedEventObject.allDay
@@ -146,7 +148,6 @@
            eventRender: function(event, element) {
                element.append("<span class='closeon'>X</span>");
            },
-
            // delete event
            eventClick: function (calEvent, jsEvent, view) {
                $('#calendar').fullCalendar('removeEvents', calEvent._id);
@@ -156,7 +157,8 @@
                    data: {'id': calEvent._id, '_token': CSRF_TOKEN},
                    method: 'post',
                    success:function(json){
-                        alert('Bien enlevé');
+                       alertify.success('Bien enlevé');
+
                    }
                });
            }

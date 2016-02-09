@@ -12,10 +12,10 @@
                         <div class="bloc_statistique"><img src="images/pointages.png" ><span class="count">{{$count_absence }}</span><p>Cas d'absence ce mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
-                                <span class="count">{{ $count_abs_normale }}</span><p>Normales</p>
+                                <span class="count">{{ $count_abs_normale }}</span><p>Justifiées</p>
                             </div>
                             <div class="bloc_statistique_d2">
-                                <span class="count">{{  $count_abs_maladie }}</span><p>Maladies</p>
+                                <span class="count">{{  $count_abs_maladie }}</span><p>Non Justifiées</p>
                             </div>
 
                         </div>

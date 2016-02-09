@@ -109,10 +109,22 @@ class AttendancesController extends Controller
             if($child->user_id == \Auth::user()->id)
             {
                 $events = Attendance::where('child_id',$child->id)->get();
+                foreach($events as $ev)
+                {
+                    if($ev['title'] == 'Normal' && $ev['child_id'] == $id)
+                    {
+                        $ev['title'] = 'Justifiée';
+
+                    }else{
+                        $ev['title'] = 'Non Justifiée';
+                    }
+                }
+
+               // $events =array_unique($events);
               //  $events =  $child->attendances;//->whereLoose('deleted_at',null);
                     $resultat = json_encode($events);
-                    $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
 
+                    $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
 
                 return view('attendances.show')->with(['child'=>$child,'resultat'=>$resultat]);
             }
@@ -148,6 +160,16 @@ class AttendancesController extends Controller
             {
                 $child = Child::findOrFail($id);
                 $events = Attendance::where('child_id',$child->id)->get();
+                foreach($events as $ev)
+                {
+                    if($ev['title'] == 'Normal')
+                    {
+                        $ev['title'] = 'Justifiée';
+
+                    }else{
+                        $ev['title'] = 'Non Justifiée';
+                    }
+                }
               //  $events =  $child->attendances;
                 $resultat = json_encode($events);
                 $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
@@ -252,6 +274,61 @@ class AttendancesController extends Controller
             ->where('user_id',\Auth::user()->id)
             ->count();
         return view('attendances.absenceToday',compact('abstoday','count'));
+    }
+
+
+    public function absence_raison_today()
+    {
+        if(\Request::ajax()) {
+            $status = \Input::get('status');
+            $att = Attendance::where('user_id', \Auth::user()->id)
+                ->where('title', $status)
+                ->whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
+                ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+                ->whereRaw('EXTRACT(day from start) = ?', [Carbon::now()->day])
+                ->orderBy('start', 'desc')->get();
+
+            foreach ($att as $t) {
+                if ($t->child->photo)
+                    $photo = asset('uploads/' . $t->child->photo);
+                else
+                    $photo = asset('images/no_avatar.jpg');
+                if ($t->title == 'Maladie') {
+                    $class = 'label-info';
+                    $text = 'Non Justifiée';
+                } else {
+                    $class = 'label-primary';
+                    $text = 'Justifiée';
+                }
+                echo '  <tr>
+                            <td><div class="minimal single-row">
+                                    <div class="checkbox_liste">
+                                        <input type="checkbox" value="' . $t->id . '"  name="select[]">
+
+                                    </div>
+                                </div></td>
+                            <td><img class="avatar"
+                                     src="' . $photo . '"></td>
+                            <td>' . ucwords($t->child->nom_enfant) . '</td>
+                            <td>' . Carbon::parse($t->start)->format('d-m-Y') . '</td>
+
+
+                                <td><span class="label ' . $class . ' label-mini">' . $text . '</span></td>
+
+                            <td>
+                                <a href="' . action('StatisticsController@delete_att', [$t]) . '" class="actions_icons delete-att">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                              <!--  <a class="archive-att" href="' . action('StatisticsController@archive_att', [$t]) . '"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
+                            </td>
+
+                            <td><a href="' . action('AttendancesController@show', [$t->child->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+            }
+
+
+        }
+
     }
 
 
