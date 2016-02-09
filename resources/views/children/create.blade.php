@@ -129,7 +129,7 @@
 
 
                             <div class="form_champ {{ $errors->has('nom_enfant') ? 'has-error': '' }}">
-                                <label for="cname" class="control-label col-lg-3">Nom de l'élève</label>
+                                <label for="cname" class="control-label col-lg-3">Nom de l'élève * </label>
                                 <div class="form_ajout">
                                     <input value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
                                 </div>
@@ -143,7 +143,7 @@
                                 </div>
                             </div>-->
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Date de naissance</label>
+                                <label for="cname" class="control-label col-lg-3">Date de naissance * </label>
                                 <div class="form_ajout">
                                     <input id="date_birth_child"  value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" >
                                     <div class="icone_input"><i class="fa fa-"></i></div>
@@ -152,7 +152,7 @@
                             </div>
 
                         <div class="form_champ">
-                            <label for="cname" class="control-label col-lg-3">Le Sexe</label>
+                            <label for="cname" class="control-label col-lg-3">Le Sexe  * </label>
                             <div class="form_ajout">
                                 <select name="sexe" class="form_ajout_input" >
                                     <option value="Garçon">Garçon</option>
@@ -167,7 +167,7 @@
                             $output = json_encode($output);
                             ?>
 
-                            <label for="cname" class="control-label col-lg-3">Email du responsable</label>
+                            <label for="cname" class="control-label col-lg-3">Email du responsable * </label>
                             <div class="form_ajout">
                                 <input id="email_resp" completer data-suggest="true"
                                        data-source='<?php echo $output  ?>'
@@ -180,7 +180,7 @@
 
 
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Nom du pére</label>
+                                <label for="cname" class="control-label col-lg-3">Nom du pére * </label>
                                 <div class="form_ajout">
                                     <?php
                                     $array =  App\Family::where('user_id',\Auth::user()->id)->lists('nom_pere','nom_pere')->toArray();
@@ -196,7 +196,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Nom de la mère</label>
+                                <label for="cname" class="control-label col-lg-3">Nom de la mère * </label>
                                 <div class="form_ajout">
                                     <?php
                                     $array =  App\Family::where('user_id',\Auth::user()->id)->lists('nom_mere','nom_mere')->toArray();
@@ -211,7 +211,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Le résponsable</label>
+                                <label for="cname" class="control-label col-lg-3">Le résponsable * </label>
                                 <div class="form_ajout">
                                     <select name="responsable" class="form_ajout_input" placeholder="Choisissez le responsable">
                                         <option value="1">Père</option>
@@ -220,7 +220,7 @@
                                 </div>
                             </div>
                         <div class="form_champ">
-                            <label for="cname" class="control-label col-lg-3">Le Transport</label>
+                            <label for="cname" class="control-label col-lg-3">Le Transport * </label>
                             <div class="form_ajout">
                                 <select id="transport" name="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option selected value="0">Non</option>
@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="form_champ">
-                            <label for="cname" class="control-label col-lg-3">La Classe</label>
+                            <label for="cname" class="control-label col-lg-3">La Classe * </label>
                             <div class="form_ajout">
 
                                 {!!  Form::select('classe',
@@ -270,7 +270,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">CIN du responsable</label>
+                                <label for="cname" class="control-label col-lg-3">CIN du responsable * </label>
                                 <div class="form_ajout">
                                     <input value="{{ Request::old('cin')?:'' }}" type="text" name="cin" class="form_ajout_input" placeholder="Entrez le CIN du responsable">
 

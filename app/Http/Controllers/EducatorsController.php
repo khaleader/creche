@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Classroom;
+use App\Teacher;
 use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class EducatorsController extends Controller
 {
@@ -75,10 +77,77 @@ class EducatorsController extends Controller
 
         }
         return redirect()->back();
+    }
+
+    public function enregistrer(Request $request)
+    {
+             //dd($request->all());
+               $validator = Validator::make([
+            $request->all(),
+
+        ],[
+            'teacher' => 'integer',
+
+        ],
+            [
+                'teacher.integer' => "Le professeur est requis",
+            ]);
+        if($validator->passes() && !is_null($request->matter))
+        {
+           $yes = DB::table('classroom_matter')->where('classroom_id',$request->cr)
+                ->where('matter_id',$request->matter)->first();
+            if(!$yes)
+            {
+                DB::table('classroom_matter')->insert([
+                   'classroom_id' => $request->cr,
+                    'matter_id'=> $request->matter
+                ]);
+
+            }
+
+
+
+            $check =  DB::table('classroom_matter_teacher')
+                ->where('classroom_id',$request->cr)
+                ->where('teacher_id',$request->teacher)
+                ->where('matter_id',$request->matter)
+                ->where('user_id',\Auth::user()->id)
+                ->first();
+            if(!$check)
+            {
+                DB::table('classroom_matter_teacher')->insert([
+                    'classroom_id'=> $request->cr,
+                    'teacher_id' => $request->teacher,
+                    'matter_id' => $request->matter,
+                    'user_id' => \Auth::user()->id
+                ]);
+
+
+            }else{
+                return redirect()->back()->withErrors(['dèja enregsitré']);
+            }
+            return redirect()->back();
+        }else{
+            return redirect()->back()->withErrors(['vous devez choisir un professeur']);
+        }
 
 
 
     }
+
+    public function getmatters()
+    {
+        if(\Request::ajax()) {
+            $value = \Input::get('value');
+           $teacher = Teacher::where('user_id',\Auth::user()->id)
+               ->where('id',$value)->first();
+            foreach ($teacher->matters as $item) {
+                echo '<option value="'.$item->id.'">'.$item->nom_matiere.'</option>';
+           }
+
+        }
+    }
+
 
     /**
      * Display the specified resource.

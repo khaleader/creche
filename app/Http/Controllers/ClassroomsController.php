@@ -7,6 +7,7 @@ use App\Child;
 use App\Classroom;
 use App\Matter;
 use App\Timesheet;
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -211,6 +212,7 @@ class ClassroomsController extends Controller
     public function delete($id)
     {
        $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+     DB::table('classroom_matter_teacher')->where('user_id',\Auth::user()->id)->where('classroom_id',$id)->delete();
         $cr->delete();
         return redirect('classrooms')->with('success',"la classe a bien été supprimé");
     }
@@ -225,6 +227,8 @@ class ClassroomsController extends Controller
             foreach($ids as $id)
             {
                 $b =   Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                 DB::table('classroom_matter_teacher')->where('user_id',\Auth::user()->id)->where('classroom_id',$id)->delete();
+
                 $b->delete();
 
             }

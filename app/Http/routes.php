@@ -214,6 +214,8 @@ Route::post('levels/supprimer','LevelsController@supprimer');
 Route::get('levels/delete/{id}','LevelsController@delete'); // supprimer un niveau by click
 Route::resource('levels','LevelsController');
 
+Route::post('educators/enregistrer','EducatorsController@enregistrer'); // edit classroom teacher / matter
 
+Route::post('educators/getmatters','EducatorsController@getmatters');
 Route::post('educators/getmatieres','EducatorsController@getmatieres');
 Route::resource('educators','EducatorsController');

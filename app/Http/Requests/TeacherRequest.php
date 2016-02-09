@@ -37,7 +37,7 @@ class TeacherRequest extends Request
             'poste' => 'required_if:fonction,professeur|integer',
             'sexe'=> 'required',
             'email'=> 'required|unique:teachers,email',
-            'num_fix'=> 'required',
+          //  'num_fix'=> 'required',
             'num_portable'=> 'required',
             'adresse'=> 'required',
             'cin'=> 'required|unique:teachers,cin',

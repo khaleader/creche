@@ -1,5 +1,16 @@
 @extends('layouts.default')
 
+@section('css')
+
+    <style>
+        .forthis > label{
+            margin-left:34%;
+        }
+
+    </style>
+
+@endsection
+
 @section('content')
     @include('partials.alert-errors')
     @include('partials.alert-success')
@@ -16,24 +27,64 @@
 
 
                         <tbody>
-                        @foreach($cr->matieres as $m)
-
+                        @foreach($cr->matieres->unique() as $m)
                             <tr>
-
-                                <td><span><strong>{{ $m->nom_matiere }}  : </strong>
+                                <td><span><strong>{{ $m->nom_matiere  }}  : </strong>
                                         <?php
                                         $ok =  DB::table('classroom_matter_teacher')
                                                 ->where('classroom_id',$cr->id)
                                                 ->where('matter_id',$m->id)
                                                 ->first();
-                                        $teacher =  App\Teacher::where('user_id',\Auth::user()->id)->where('id',$ok->teacher_id)->first();
-                                        echo  $teacher->nom_teacher;
+                                             $teachers = $m->teachers->toArray();
+                                             foreach($teachers as $y)
+                                                 {
+
+                                                     echo $y['nom_teacher'].'<br>';
+                                                 }
+
+
 
                                         ?>
                                 </span></td>
 
+
                             </tr>
                         @endforeach
+                        {!! Form::open(['url'=>action('EducatorsController@enregistrer')]) !!}
+                        <tr>
+                            <div class="form_champ forthis">
+                                <label for="cname" class="control-label col-md-3">Professeur</label>
+                                <div class="form_ajout col-md-9">
+                                    {!!  Form::select('teacher',
+        App\Teacher::where('user_id',\Auth::user()->id)->
+        lists('nom_teacher','id') ,null,['class'=>'form_ajout_input']) !!}
+
+                                </div>
+                            </div>
+                        </tr>
+                        <tr>
+                            <input type="hidden" value="{{ $cr->id }}" name="cr">
+                            <div class="form_champ forthis">
+                                <label for="cname" class="control-label col-md-3">Matière</label>
+                                <div class="form_ajout col-md-9">
+                                     <select class="form_ajout_input" name="matter">
+
+                                     </select>
+
+                                                    {{--  Form::select('matter',
+                        App\Matter::where('user_id',\Auth::user()->id)->
+                        lists('nom_matiere','id') ,null,['class'=>'form_ajout_input']) --}}
+
+                                </div>
+                            </div>
+                        </tr>
+
+                        <tr>
+                            <button  class="btn_form"  style="margin-right: 34%;" type="submit">Enregistrer</button>
+                        </tr>
+                        {!!  Form::close() !!}
+
+
                         </tbody>
                     </table>
                 </div>
@@ -108,9 +159,9 @@
 
                              </select>-->
 
-                            {!!  Form::select('branche',
-App\Branch::where('user_id',\Auth::user()->id)->
-lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) !!}
+                                            {!!  Form::select('branche',
+                App\Branch::where('user_id',\Auth::user()->id)->
+                lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) !!}
 
                         </div>
                     </div>
@@ -132,13 +183,30 @@ lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) !!}
 
 @section('jquery')
     <script>
-
+        $('select[name=teacher]').prepend('<option selected>Selectionnez</option>');
         $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){
             $(".alert-danger").alert('close');
 
         });
         $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
             $(".alert-success").alert('close');
+
+        });
+
+        $('select[name=teacher]').change(function(){
+         var value = $(this).val();
+
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('EducatorsController@getmatters')}}',
+                data: 'value=' +  value + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+                    $('select[name=matter]').empty();
+                    $('body select[name=matter]').prepend(data);
+
+                }
+            });
 
         });
 

@@ -16,19 +16,21 @@
 
 
                         <tbody>
-                        @foreach($cr->matieres as $m)
+                        @foreach($cr->matieres->unique() as $m)
 
                         <tr>
 
                             <td><span><strong>{{ $m->nom_matiere }}  : </strong>
                                  <?php
-                                   $ok =  DB::table('classroom_matter_teacher')
-                                         ->where('classroom_id',$cr->id)
-                                         ->where('matter_id',$m->id)
-                                         ->first();
-                                  $teacher =  App\Teacher::where('user_id',\Auth::user()->id)->where('id',$ok->teacher_id)->first();
-                                       echo  $teacher->nom_teacher;
-
+                                    $ok =  DB::table('classroom_matter_teacher')
+                                            ->where('classroom_id',$cr->id)
+                                            ->where('matter_id',$m->id)
+                                            ->first();
+                                    $teachers = $m->teachers->toArray();
+                                    foreach($teachers as $y)
+                                    {
+                                        echo $y['nom_teacher'].'<br>';
+                                    }
                                    ?>
                                 </span></td>
 

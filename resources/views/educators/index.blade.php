@@ -1,5 +1,6 @@
 @extends('layouts.default')
 
+@include('partials.alert-errors')
 @section('content')
 
     <div class="row">
