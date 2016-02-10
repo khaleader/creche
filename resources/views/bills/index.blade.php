@@ -131,7 +131,15 @@
                             <td>
                                 {{  $bill->start->format('d-m-Y') }}
                                 @if(Carbon\Carbon::now() > $bill->start && $bill->status == 0)
-                                    <span class="label label-danger label-mini" ><i class="fa fa-clock-o fa-2x"></i></span>
+                                    <span class="label label-danger label-mini" 
+            style="position:relative;display:inline-block;width: 25px;height: 25px;vertical-align: middle;">
+
+
+
+
+                                        <i style="position:absolute;top: 4px; left:6px;"
+
+                                        class="fa fa-clock-o fa-2x"></i></span>
                                 @elseif(Carbon\Carbon::now() < $bill->start  && $bill->status == 0)
                                     {{  '('.$bill->start->diffInDays() .' Jr)' }}
 
