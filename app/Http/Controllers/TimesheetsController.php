@@ -28,7 +28,8 @@ class TimesheetsController extends Controller
     public function edit($id)
     {
       $ts = Timesheet::where('user_id',\Auth::user()->id)->where('classroom_id',$id)->first();
-        return view('timesheets.edit',compact('ts'));
+      $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+        return view('timesheets.edit',compact('ts','cr'));
     }
 
     public function enregistrer()

@@ -32,6 +32,12 @@
 })->download('csv');
 */
         ?>
+<section class="panel">
+    <header class="panel-heading">
+        Emploi du temps : {{ $cr->nom_classe }}
+
+    </header>
+    <div class="panel-body">
 
     <div style="width:700px;" >
         <div class="left">
@@ -639,6 +645,8 @@
             </table>
         </div>
     </div>
+        </div>
+    </section>
 @endsection
 @section('jquery')
     <script src="{{ asset('css/easyui/jquery.easyui.min.js') }}"></script>
