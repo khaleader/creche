@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matter extends Model
 {
-
+    protected $guarded =['id'];
     protected $fillable = ['nom_matiere','code_matiere','color','user_id'];
 
     public function user()

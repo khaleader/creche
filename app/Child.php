@@ -9,7 +9,7 @@ class Child extends Model
 {
 
 use SoftDeletes;
-
+    protected $guarded =['id'];
 protected $dates = ['date_naissance','deleted_at'];
 
 

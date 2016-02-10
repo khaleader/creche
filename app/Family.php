@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Family extends Model
 {
-
+    protected $guarded =['id'];
 protected  $dates = ['deleted_at'];
 
 

@@ -21,6 +21,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var string
      */
+    protected $guarded =['id'];
     protected $table = 'users';
 
     /**

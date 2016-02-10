@@ -9,7 +9,7 @@ class Bill extends Model
 {
 use SoftDeletes;
 
-
+    protected $guarded =['id'];
     protected $dates = ['start','end'];
 
 

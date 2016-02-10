@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Teacher extends Model
 {
 use SoftDeletes;
-
+    protected $guarded =['id'];
     protected $dates = ['date_naissance','deleted_at'];
 
 

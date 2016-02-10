@@ -131,7 +131,7 @@
                             <td>
                                 {{  $bill->start->format('d-m-Y') }}
                                 @if(Carbon\Carbon::now() > $bill->start && $bill->status == 0)
-                                    <span class="label label-danger label-mini" 
+                                    <span class="label label-danger label-mini"
             style="position:relative;display:inline-block;width: 25px;height: 25px;vertical-align: middle;">
 
 

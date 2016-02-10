@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoryBill extends Model
 {
-
+    protected $guarded =['id'];
     protected $fillable = [
       'age_de','age_a','prix','name','user_id'
     ];
