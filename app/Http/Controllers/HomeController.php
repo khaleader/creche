@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Attendance;
+use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Gmail;
 use Illuminate\Http\Request;
@@ -29,7 +31,16 @@ class HomeController extends Controller
         $client->setRedirectUri('http://laravel.dev:8000/schools/boite');
         $client->addScope('https://mail.google.com');
         $service = new Google_Service_Gmail($client);
-        return view('index')->with(['client'=> $client, 'service'=> $service]);
+        $count = Attendance::whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
+            ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
+            ->whereRaw('EXTRACT(day from start) = ?', [Carbon::now()->day])
+            ->where('user_id',\Auth::user()->id)
+            ->count();
+        return view('index')->with([
+            'client'=> $client,
+            'service'=> $service,
+            'count' => $count
+        ]);
 
     }
 

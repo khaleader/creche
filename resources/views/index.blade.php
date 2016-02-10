@@ -78,16 +78,7 @@ session_start();
             <div class="panel-body">
                 <a href="{{ action('AttendancesController@absenceToday') }}">
                     <div class="bloc_info"><img src="{{ asset('images/pointages.png') }}" ><span class="count">
-
-                         <?php
-                           $c = App\Child::where('user_id',\Auth::user()->id)->get();
-                            if(!$c->isEmpty())
-                                {
-                                    echo  App\Attendance::whereIn('title',['normal','maladie'])->whereRaw('EXTRACT(DAY FROM start) = ?',[\Carbon\Carbon::now()->day])
-                                            ->whereRaw('EXTRACT(YEAR FROM start) = ?',[\Carbon\Carbon::now()->year])->count();
-                                }
-
-                            ?>
+                                {{ $count }}
                         </span><p>Absents aujourd'hui</p></div></a>
             </div>
         </section>
