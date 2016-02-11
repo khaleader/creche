@@ -340,12 +340,12 @@
                             }
                         }).show();
             });
-            $('.tooltip-jqui').hide();
+            $('.tooltip-jqui').css('visibility','hidden');
             $('tbody').hover(function(){
-               $('strong.tooltip-jqui').show();
+               $('strong.tooltip-jqui').css('visibility','visible');
             });
             $('tbody').mouseleave(function(){
-               $('strong.tooltip-jqui').hide();
+               $('strong.tooltip-jqui').css('visibility','hidden');
             });
 
 
