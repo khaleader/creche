@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,125 +33,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/classrooms/edit.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.4333334">
-              <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
-              <folding>
-                <element signature="e#3141#3167#0#HTML" expanded="true" />
-                <marker date="1455186564466" expanded="true" signature="889:1415" placeholder="{...}" />
-                <marker date="1455186564466" expanded="true" signature="1971:2126" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="1986:2124" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="2069:2087" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="5446:5578" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="5524:5541" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="6470:6649" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="6485:6647" placeholder="..." />
-                <marker date="1455186564466" expanded="true" signature="6583:6610" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/bills/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32361516">
-              <caret line="341" column="15" selection-start-line="341" selection-start-column="15" selection-end-line="341" selection-end-column="15" />
-              <folding>
-                <element signature="e#7180#7203#0#HTML" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="5.1666665">
+              <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/classrooms/show.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.733334">
-              <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
-              <folding>
-                <marker date="1455148135907" expanded="true" signature="1724:1968" placeholder="..." />
-                <marker date="1455148135907" expanded="true" signature="1760:1968" placeholder="..." />
-                <marker date="1455148135907" expanded="true" signature="1814:1968" placeholder="..." />
-                <marker date="1455148135907" expanded="true" signature="1856:1906" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimesheetsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TimesheetsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.366667">
-              <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-              <folding>
-                <marker date="1455142450087" expanded="true" signature="4565:5606" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="4598:4887" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="4630:4882" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="4696:4843" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="5035:5399" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="5160:5242" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="5287:5365" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="5432:5575" placeholder="..." />
-                <marker date="1455142450087" expanded="true" signature="5490:5570" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/timesheets/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.733333">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="780" column="20" selection-start-line="780" selection-start-column="16" selection-end-line="780" selection-end-column="20" />
               <folding>
-                <element signature="e#1265#1318#0#HTML" expanded="true" />
-                <element signature="e#3038#3139#0#HTML" expanded="true" />
-                <element signature="e#3526#3626#0#HTML" expanded="true" />
-                <element signature="e#4011#4111#0#HTML" expanded="true" />
-                <element signature="e#4495#4595#0#HTML" expanded="true" />
-                <element signature="e#4980#5080#0#HTML" expanded="true" />
-                <element signature="e#5465#5565#0#HTML" expanded="true" />
-                <element signature="e#5951#6050#0#HTML" expanded="true" />
-                <element signature="e#6435#6533#0#HTML" expanded="true" />
-                <element signature="e#6918#7017#0#HTML" expanded="true" />
-                <element signature="e#7402#7470#0#HTML" expanded="true" />
-                <element signature="e#7887#7986#0#HTML" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassroomsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.466666">
-              <caret line="249" column="27" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="27" />
-              <folding>
-                <element signature="e#7649#9166#0#PHP" expanded="false" />
-                <marker date="1455145474436" expanded="true" signature="7947:9133" placeholder="..." />
-                <marker date="1455145474436" expanded="true" signature="7980:8272" placeholder="..." />
-                <marker date="1455145474436" expanded="true" signature="8012:8267" placeholder="..." />
-                <marker date="1455145474436" expanded="true" signature="8078:8228" placeholder="..." />
-                <marker date="1455145474436" expanded="true" signature="8630:9010" placeholder="..." />
-                <marker date="1455145474436" expanded="true" signature="8764:8846" placeholder="..." />
-                <marker date="1455145474436" expanded="true" signature="8884:8974" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EducatorsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EducatorsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.440678">
-              <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="64" selection-end-column="26" />
-              <folding>
-                <marker date="1455038976146" expanded="true" signature="5131:5452" placeholder="..." />
-                <marker date="1455038976146" expanded="true" signature="5352:5452" placeholder="..." />
-                <marker date="1455038976146" expanded="true" signature="5427:5452" placeholder="..." />
+                <element signature="e#1323#1376#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -216,9 +116,9 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
         <option value="$PROJECT_DIR$/resources/views/classrooms/show.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/classrooms/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
       </list>
     </option>
   </component>
@@ -894,7 +794,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EducatorsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.440678">
+        <state vertical-scroll-proportion="0.30898023">
           <caret line="59" column="20" selection-start-line="59" selection-start-column="20" selection-end-line="64" selection-end-column="26" />
           <folding>
             <marker date="1455038976146" expanded="true" signature="5131:5452" placeholder="..." />
@@ -914,7 +814,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.466666">
+        <state vertical-scroll-proportion="0.45772594">
           <caret line="249" column="27" selection-start-line="249" selection-start-column="27" selection-end-line="249" selection-end-column="27" />
           <folding>
             <element signature="e#7649#9166#0#PHP" expanded="false" />
@@ -939,7 +839,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TimesheetsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.366667">
+        <state vertical-scroll-proportion="0.803207">
           <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
           <folding>
             <marker date="1455142450087" expanded="true" signature="4565:5606" placeholder="..." />
@@ -955,49 +855,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/timesheets/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.733333">
-          <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#1265#1318#0#HTML" expanded="true" />
-            <element signature="e#3038#3139#0#HTML" expanded="true" />
-            <element signature="e#3526#3626#0#HTML" expanded="true" />
-            <element signature="e#4011#4111#0#HTML" expanded="true" />
-            <element signature="e#4495#4595#0#HTML" expanded="true" />
-            <element signature="e#4980#5080#0#HTML" expanded="true" />
-            <element signature="e#5465#5565#0#HTML" expanded="true" />
-            <element signature="e#5951#6050#0#HTML" expanded="true" />
-            <element signature="e#6435#6533#0#HTML" expanded="true" />
-            <element signature="e#6918#7017#0#HTML" expanded="true" />
-            <element signature="e#7402#7470#0#HTML" expanded="true" />
-            <element signature="e#7887#7986#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/classrooms/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4333334">
-          <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
-          <folding>
-            <element signature="e#3141#3167#0#HTML" expanded="true" />
-            <marker date="1455186564466" expanded="true" signature="889:1415" placeholder="{...}" />
-            <marker date="1455186564466" expanded="true" signature="1971:2126" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="1986:2124" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="2069:2087" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="5446:5578" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="5524:5541" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="6470:6649" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="6485:6647" placeholder="..." />
-            <marker date="1455186564466" expanded="true" signature="6583:6610" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/classrooms/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.733334">
+        <state vertical-scroll-proportion="0.819242">
           <caret line="31" column="62" selection-start-line="31" selection-start-column="62" selection-end-line="31" selection-end-column="62" />
           <folding>
             <marker date="1455148135907" expanded="true" signature="1724:1968" placeholder="..." />
@@ -1008,12 +868,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/classrooms/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50728863">
+          <caret line="46" column="86" selection-start-line="46" selection-start-column="86" selection-end-line="46" selection-end-column="86" />
+          <folding>
+            <marker date="1455195360989" expanded="true" signature="2008:2163" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="2023:2161" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="2106:2124" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="5483:5615" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="5561:5578" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="6507:6686" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="6522:6684" placeholder="..." />
+            <marker date="1455195360989" expanded="true" signature="6620:6647" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/bills/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32361516">
-          <caret line="341" column="15" selection-start-line="341" selection-start-column="15" selection-end-line="341" selection-end-column="15" />
+        <state vertical-scroll-proportion="5.1666665">
+          <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/timesheets/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="780" column="20" selection-start-line="780" selection-start-column="16" selection-end-line="780" selection-end-column="20" />
           <folding>
-            <element signature="e#7180#7203#0#HTML" expanded="true" />
+            <element signature="e#1323#1376#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -8,6 +8,9 @@
         .forrooms tr div{
             margin-bottom: 10px;
         }
+        .left td{
+            background: none;
+        }
 
     </style>
 

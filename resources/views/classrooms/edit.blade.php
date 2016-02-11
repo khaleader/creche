@@ -44,7 +44,7 @@
                 {
                     echo $y->nom_teacher.' <a class="del-teac" teacher="'.$y->id.'" matiere="'.$m->id.'"
              cr="'.$cr->id.'"
-             href="#"><i class="fa fa-2x fa-times"></i></a>' .'<br>';
+             href="#"><i class="fa fa-2x fa-times-circle" style="vertical-align:middle"></i></a>' .'<br>';
                 }
 
          }
