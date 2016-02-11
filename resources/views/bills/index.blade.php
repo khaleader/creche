@@ -137,7 +137,7 @@
                                         <i style="position:absolute;top: 4px; left:6px;"
                                            class="fa fa-clock-o fa-2x"></i></span> -->
                         <strong class="tooltip-jqui" title=" {{ $bill->start->diffInDays()  }} Jours de Detard">
-                            <i class="fa fa-info-circle" style="color: red;"></i></strong>
+                            <i class="fa fa-info-circle" style="color: #FF6C60;"></i></strong>
 
                                     @elseif(Carbon\Carbon::now() < $bill->start  && $bill->status == 0)
                                         <strong class="tooltip-jqui" title=" {{  '('.$bill->start->diffInDays() .' Jours Restants avant la Date de Paiement)' }} " > <i class="fa fa-info-circle"></i></strong>
