@@ -129,7 +129,7 @@
                             <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
                             <td>{{ $bill->child->nom_enfant  }}</td>
                             <td>
-                                {{  $bill->start->format('d-m-Y') }}
+                                <span class="date-f">{{  $bill->start->format('d-m-Y') }} </span>
 
                                     @if(Carbon\Carbon::now() > $bill->start && $bill->status == 0)
                                         <!--<span class="label label-danger label-mini"
@@ -340,6 +340,14 @@
                             }
                         }).show();
             });
+            $('.tooltip-jqui').hide();
+            $('tbody').hover(function(){
+               $('strong.tooltip-jqui').show();
+            });
+            $('tbody').mouseleave(function(){
+               $('strong.tooltip-jqui').hide();
+            });
+
 
             $('.tooltip-jqui').tooltip();
         });
