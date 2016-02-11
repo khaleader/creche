@@ -116,7 +116,7 @@
 
                     </h4>
 
-                    <a href="{{ action('TimesheetsController@index') }}"><div class="btn2">Emploi du temps</div></a>
+                    <a href="{{ action('TimesheetsController@edit',[$cr]) }}"><div class="btn2">Emploi du temps</div></a>
 
                 </header>
                 <div class="panel-body informations_general">

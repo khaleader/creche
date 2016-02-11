@@ -130,20 +130,21 @@
                             <td>{{ $bill->child->nom_enfant  }}</td>
                             <td>
                                 {{  $bill->start->format('d-m-Y') }}
-                                @if(Carbon\Carbon::now() > $bill->start && $bill->status == 0)
-                                    <span class="label label-danger label-mini"
-            style="position:relative;display:inline-block;width: 25px;height: 25px;vertical-align: middle;">
 
-
-
-
+                                    @if(Carbon\Carbon::now() > $bill->start && $bill->status == 0)
+                                        <!--<span class="label label-danger label-mini"
+                                              style="position:relative;display:inline-block;width: 25px;height: 25px;vertical-align: middle;">
                                         <i style="position:absolute;top: 4px; left:6px;"
+                                           class="fa fa-clock-o fa-2x"></i></span> -->
+                        <strong class="tooltip-jqui" title=" {{ $bill->start->diffInDays()  }} Jours de Detard">
+                            <i class="fa fa-info-circle" style="color: red;"></i></strong>
 
-                                        class="fa fa-clock-o fa-2x"></i></span>
-                                @elseif(Carbon\Carbon::now() < $bill->start  && $bill->status == 0)
-                                    {{  '('.$bill->start->diffInDays() .' Jr)' }}
+                                    @elseif(Carbon\Carbon::now() < $bill->start  && $bill->status == 0)
+                                        <strong class="tooltip-jqui" title=" {{  '('.$bill->start->diffInDays() .' Jours Restants avant la Date de Paiement)' }} " > <i class="fa fa-info-circle"></i></strong>
 
-                                @endif
+                                    @endif
+
+
 
                             </td>
                             <td>{{  $bill->somme  }} Dhs</td>
@@ -339,6 +340,8 @@
                             }
                         }).show();
             });
+
+            $('.tooltip-jqui').tooltip();
         });
     </script>
     @stop
