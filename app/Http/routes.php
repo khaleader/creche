@@ -184,6 +184,8 @@ Route::post('rooms/supprimer','RoomsController@supprimer'); //suppression ajax
 Route::get('rooms/delete/{id}','RoomsController@delete'); // delete a room by click
 Route::resource('rooms','RoomsController');
 
+
+Route::post('classrooms/detach','ClassroomsController@detach'); // detach from the 3 relations cr-matter-teacher
 Route::get('classrooms/indexelc/{id}','ClassroomsController@indexelc'); // afficher les élèves d'une classe
 Route::post('classrooms/trierparbranche','ClassroomsController@trierparbranche'); //trier par branche  ajax
 Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax

@@ -235,6 +235,23 @@ class ClassroomsController extends Controller
         }
     }
 
+    public function detach()
+    {
+        if(\Request::ajax())
+        {
+           $matiere = \Input::get('matiere');
+           $teacher = \Input::get('teacher');
+            $cr = \Input::get('cr');
+            DB::table('classroom_matter_teacher')
+                ->where('classroom_id',$cr)
+                ->where('teacher_id',$teacher)
+                ->where('matter_id',$matiere)
+                ->where('user_id',\Auth::user()->id)
+                ->delete();
+            echo 'deleted';
+        }
+    }
+
     public function trierparbranche()
     {
         if(\Request::ajax())

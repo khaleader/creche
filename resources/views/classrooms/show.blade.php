@@ -22,14 +22,20 @@
 
                             <td><span><strong>{{ $m->nom_matiere }}  : </strong>
                                  <?php
-                                    $ok =  DB::table('classroom_matter_teacher')
-                                            ->where('classroom_id',$cr->id)
-                                            ->where('matter_id',$m->id)
-                                            ->first();
-                                    $teachers = $m->teachers->toArray();
+
+                                    $teachers = $m->teachers;
                                     foreach($teachers as $y)
                                     {
-                                        echo $y['nom_teacher'].'<br>';
+                                        $ok =  DB::table('classroom_matter_teacher')
+                                                ->where('classroom_id',$cr->id)
+                                                ->where('matter_id',$m->id)
+                                                ->where('teacher_id',$y->id)
+                                                ->first();
+                                        if($ok)
+                                            {
+                                                echo $y->nom_teacher.'<br>';
+                                            }
+
                                     }
                                    ?>
                                 </span></td>

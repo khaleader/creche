@@ -31,20 +31,28 @@
                             <tr>
                                 <td><span><strong>{{ $m->nom_matiere  }}  : </strong>
                                         <?php
-                                        $ok =  DB::table('classroom_matter_teacher')
-                                                ->where('classroom_id',$cr->id)
-                                                ->where('matter_id',$m->id)
-                                                ->first();
-                                             $teachers = $m->teachers->toArray();
-                                             foreach($teachers as $y)
-                                                 {
 
-                                                     echo $y['nom_teacher'].'<br>';
-                                                 }
+     $teachers = $m->teachers;
+     foreach($teachers as $y)
+         {
+             $ok =  DB::table('classroom_matter_teacher')
+                     ->where('classroom_id',$cr->id)
+                     ->where('matter_id',$m->id)
+                     ->where('teacher_id',$y->id)
+                     ->first();
+            if($ok)
+                {
+                    echo $y->nom_teacher.' <a class="del-teac" teacher="'.$y->id.'" matiere="'.$m->id.'"
+             cr="'.$cr->id.'"
+             href="#"><i class="fa fa-2x fa-times"></i></a>' .'<br>';
+                }
+
+         }
 
 
 
                                         ?>
+
                                 </span></td>
 
 
@@ -209,6 +217,26 @@
             });
 
         });
+
+        $('body').on('click','.del-teac',function(){
+
+           var teacher = $(this).attr('teacher');
+            var matiere = $(this).attr('matiere');
+            var cr = $(this).attr('cr');
+            $(this).closest('td').slideUp();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('ClassroomsController@detach')}}',
+                data: 'cr='+ cr + '&matiere=' +  matiere + '&teacher=' + teacher + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+
+
+                }
+            });
+
+        });
+
 
     </script>
 
