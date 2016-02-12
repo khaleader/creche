@@ -43,7 +43,7 @@
     <div class="panel-body">
 
     <div style="width:700px;" >
-        <div class="left">
+        <div class="left" style="width: 80px;">
             <table>
                 <?php
                 $matieres = \App\Matter::where('user_id',\Auth::user()->id)->get();
@@ -60,15 +60,15 @@
             <table class="classes forrooms">
                 @foreach($salles as $s)
                 <tr>
-                    <td><div color="{{ $s->color }}" style="color:white;  background-color:{{ $s->color }} " class="item2">{{ $s->nom_salle }}</div></td>
+                    <td><div color="{{ $s->color }}" style="color:white;  background-color:{{ $s->color }};width:50px " class="item2">{{ $s->nom_salle }}</div></td>
                 </tr>
                 @endforeach
 
 
             </table>
         </div>
-        <div class="right">
-            <table class="planning">
+        <div class="right" style="width: 616px;">
+            <table class="planning" style="width: 880px">
                 <tr>
                     <td class="blank"></td>
                     <td class="title">08:00</td>

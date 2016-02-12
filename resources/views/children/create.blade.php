@@ -25,6 +25,11 @@
             margin-top: 25%;
         }
 
+
+
+
+
+
     </style>
 
 
@@ -167,7 +172,16 @@
                             $output = json_encode($output);
                             ?>
 
-                            <label for="cname" class="control-label col-lg-3">Email du responsable * </label>
+                            <label for="cname" class="control-label col-lg-3">Email du responsable *
+                              <!--  <a  class="email-info" href="#"
+                                title="
+                                1: nom élève
+                                2: date de naissance
+
+
+                               ">
+                                    <i class="fa fa-info-circle"></i>
+                                </a> --> </label>
                             <div class="form_ajout">
                                 <input id="email_resp" completer data-suggest="true"
                                        data-source='<?php echo $output  ?>'
@@ -176,6 +190,7 @@
                                        placeholder="Entrez l'email du responsable">
 
                             </div>
+
                         </div>
 
 
@@ -631,7 +646,15 @@
                   }
 
 
+
+
               });
+
+              $('.email-info').tooltip(
+                      { tooltipClass: 'withColor'}
+              );
+
+
 
 
 

@@ -11,7 +11,7 @@
     @yield('css')
     <link href=" {{  asset('bs3/css/bootstrap.css') }}" rel="stylesheet">
     <script src="{{  asset('js/moment.min.js') }}"></script>
-    <link href="{{  asset('js/jquery-ui/jquery-ui-1.10.1.custom.min.css') }}" rel="stylesheet">
+    <link href="{{  asset('js/jquery-ui/jquery-ui-1.10.1.custom.css') }}" rel="stylesheet">
     <link href=" {{  asset('css/bootstrap-reset.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
       <link rel="stylesheet" href="{{ asset('js/bootstrap-fileupload/bootstrap-fileupload.css') }}">
