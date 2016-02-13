@@ -4,6 +4,7 @@
 @section('css')
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/completer/completer.css') }}"/>
+
     <script src="{{  asset('css/completer/completer.js') }}"></script>
     <style>
         #loader-parent{
@@ -17,17 +18,11 @@
             left:0;
             bottom:0;
             z-index:50000;
-
-
         }
         #loader-to{
             margin-left: 50%;
             margin-top: 25%;
         }
-
-
-
-
 
 
     </style>
@@ -44,7 +39,6 @@
         @include('partials.alert-success')
         @include('partials.alert-errors')
     <div class="row">
-
         {!!  Form::open(['url'=> action('ChildrenController@store'),'files'=>true]) !!}
         <div class="col-sm-3">
             <section id="image-h" class="panel">
@@ -133,7 +127,7 @@
                     <table class="table table-hover general-table table_informations">
 
 
-                            <div class="form_champ {{ $errors->has('nom_enfant') ? 'has-error': '' }}">
+                            <div class="form_champ c {{ $errors->has('nom_enfant') ? 'has-error': '' }}">
                                 <label for="cname" class="control-label col-lg-3">Nom de l'élève * </label>
                                 <div class="form_ajout">
                                     <input value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
@@ -147,8 +141,8 @@
 
                                 </div>
                             </div>-->
-                            <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Date de naissance * </label>
+                            <div class="form_champ c">
+                                <label for="cname"  class="control-label col-lg-3">Date de naissance * </label>
                                 <div class="form_ajout">
                                     <input id="date_birth_child"  value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" >
                                     <div class="icone_input"><i class="fa fa-"></i></div>
@@ -156,7 +150,7 @@
                                 </div>
                             </div>
 
-                        <div class="form_champ">
+                        <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Le Sexe  * </label>
                             <div class="form_ajout">
                                 <select name="sexe" class="form_ajout_input" >
@@ -165,7 +159,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form_champ">
+                        <div class="form_champ only-for-email">
                             <?php
                             $emails =  App\Family::where('user_id',\Auth::user()->id)->lists('email_responsable','email_responsable')->toArray();
                             $output = array_values($emails);
@@ -173,15 +167,34 @@
                             ?>
 
                             <label for="cname" class="control-label col-lg-3">Email du responsable *
-                              <!--  <a  class="email-info" href="#"
-                                title="
-                                1: nom élève
-                                2: date de naissance
+
+                               <span class="tooltips tooltip-effect-2"><i class="fa fa-info-circle"></i>
+                                    <span class="tooltip-content clearfix" style="padding-left:20px;"><span class="tooltip-text">
+                                            Si L'email se génère automatiqement
+                                            ca veut dire que ce responsable est déjà enregistré
+                                            et il a déjà un(e) élève enregistré(e). <br>
+                                            Dans ce cas vous allez ajouter un(e) nouveau ou (nouvelle) élève. <br>
+                                            Les champs A remplir  Sont: <br>
+                                            Nom de l'élève <br>
+                                            Date de naissance <br>
+                                            Les champs A selectionner  Sont : <br>
+                                            Le Sexe <br>
+                                            La Classe <br>
+                                            Le Transport <br>
+                                            Et pour que les autres champs se remplissent automatiquement
+                                            cliquez deux fois sur cet email et mettez la souris dans n'importe quel champ
 
 
-                               ">
-                                    <i class="fa fa-info-circle"></i>
-                                </a> --> </label>
+
+
+
+
+                                          </span></span>
+                                </span>
+
+
+
+                            </label>
                             <div class="form_ajout">
                                 <input id="email_resp" completer data-suggest="true"
                                        data-source='<?php echo $output  ?>'
@@ -234,7 +247,7 @@
                                     </select>
                                 </div>
                             </div>
-                        <div class="form_champ">
+                        <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Le Transport * </label>
                             <div class="form_ajout">
                                 <select id="transport" name="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
@@ -245,7 +258,7 @@
 
                             </div>
                         </div>
-                        <div class="form_champ">
+                        <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">La Classe * </label>
                             <div class="form_ajout">
 
@@ -393,6 +406,19 @@
 
                                 </div>
                             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Adresse</label>
                                 <div class="form_ajout">
@@ -431,8 +457,23 @@
     @endsection
 
 @section('jquery')
+            <!-- codrops -->
+        <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\classie.js') }}"></script>
+        <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\notificationFx.js') }}"></script>
+        <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\modernizr.custom.js') }}"></script>
+
+        <!-- codrops -->
     <script>
           $(document).ready(function() {
+
+
+
+
+
+
+
+
+
               $('select[name=classe]').prepend("<option selected>selectionnez la classe s'il vous plait</option>");
               $('select[name=poste]').prepend("<option selected>selectionnez la matière s'il vous plait</option>");
              // $('#loader-parent').show();
@@ -472,7 +513,7 @@
                           if (data == '') {
                               alertify.set('notifier', 'position', 'bottom-right');
                               alertify.set('notifier', 'delay', 60);
-                              alertify.error("Attention la catégorie pour cet age n'est pas encore crée veuillez la créer S'il Vous plait ,>>> Redirection Automatique");
+                              alertify.error("Attention la catégorie pour cet age n'est pas encore crée veuillez la créer S'il Vous plait >>> Redirection Automatique");
                               window.setTimeout(function(){
                                   location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
                               },5000);
@@ -592,6 +633,8 @@
 
 
 
+
+
            $('#email_resp').blur(function(){
              var email =  $(this).val();
                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -612,6 +655,12 @@
                          //  $('input[name=email_responsable]').val(json['email_responsable']);
                            $('select[name=responsable]').val(json['responsable']);
                           // $('select[name=pere]').val(json['id']);
+
+
+
+
+
+
 
                         /*   alertify.set('notifier', 'position', 'bottom-right');
                            alertify.set('notifier', 'delay', 20);
@@ -645,18 +694,30 @@
                       $('#matierep').attr('disabled','disabled');
                   }
 
-
-
-
               });
 
-              $('.email-info').tooltip(
+              $(window).on('scroll',function(){
+                  var scrollTop = $(window).scrollTop();
+                  if(scrollTop > 316)
+                  {
+                      $('.tooltips.tooltip-effect-2').hide();
+                  }else{
+                      $('.tooltips.tooltip-effect-2').show();
+                  }
+                  console.log(scrollTop);
+              });
+
+             /* $('.email-info').tooltip(
                       { tooltipClass: 'withColor'}
-              );
+              );*/
 
-
-
-
+              $('.tooltips').css('visibility','hidden');
+              $('div.form_champ.only-for-email').hover(function(){
+                  $('.tooltips').css('visibility','visible');
+              });
+              $('div.form_champ.only-for-email').mouseleave(function(){
+                  $('.tooltips').css('visibility','hidden');
+              });
 
 
           });

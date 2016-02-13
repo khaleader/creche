@@ -164,18 +164,16 @@ session_start();
         </section>
     </div>
 </div>
+
+
 @endif
-
-
 @endsection
 
 @section('jquery')
-
     <script>
             var date = new Date();
       //  $('#horloge_time').text( date.getHours() + ':' + date.getMinutes());
 
     </script>
-
 
 @stop

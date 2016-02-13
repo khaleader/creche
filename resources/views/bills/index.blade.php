@@ -102,7 +102,6 @@
                         </button>
                     </form>
                 </div>
-
                 <div class="panel-body">
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
@@ -118,6 +117,7 @@
                             <th></th>
                         </tr>
                         </thead>
+
                         <tbody>
                         @foreach($bills as $bill)
                             @unless($bill->child->deleted_at)
@@ -140,6 +140,8 @@
                                            class="fa fa-clock-o fa-2x"></i></span> -->
                         <strong class="tooltip-jqui" title=" {{ $bill->start->diffInDays()  }} Jours de Detard">
                             <i class="fa fa-info-circle" style="color: #FF6C60;"></i></strong>
+
+
 
                                     @elseif(Carbon\Carbon::now() < $bill->start  && $bill->status == 0)
                                         <strong class="tooltip-jqui" title=" {{  '('.$bill->start->diffInDays() .' Jours Restants avant la Date de Paiement)' }} " > <i class="fa fa-info-circle"></i></strong>

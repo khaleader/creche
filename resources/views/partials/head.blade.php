@@ -16,10 +16,12 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
       <link rel="stylesheet" href="{{ asset('js/bootstrap-fileupload/bootstrap-fileupload.css') }}">
      <!-- <script src="{{  asset('js/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script> -->
-
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <link rel="stylesheet" href="{{ asset('css/msc-style.css') }}" />
     <script src="{{   asset('js/msc-script.js') }}"></script>
             <link rel="stylesheet" href="{{ asset('css/clndr.css') }}" />
+
+
 
     <!--/************** alertify alert ***********/-->
     <!-- JavaScript -->
@@ -34,6 +36,8 @@
     <!-- Bootstrap theme -->
    <!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/alertifyjs/1.5.0/css/themes/bootstrap.min.css"/> -->
     <!--/************** alertify alert ***********/-->
+
+    <link rel="stylesheet" href="{{ asset('js\codrops\tooltip\tooltip-classic.css') }}">
 
 
 

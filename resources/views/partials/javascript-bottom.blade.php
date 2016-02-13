@@ -44,6 +44,10 @@
 
 
 <script src="{{  asset('bs3/js/bootstrap.js') }}"></script>
+
+
+
+
 <!--common script init for all pages-->
 <script src="{{ asset('js/scripts.js')}}"></script>
 <!--script for this page-->

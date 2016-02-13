@@ -4,6 +4,8 @@
 
 <script  src="{{ asset('js/jscolor.js') }}"></script>
 
+
+
 @section('content')
     @include('partials.alert-errors')
     @include('partials.alert-success')
