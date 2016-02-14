@@ -82,7 +82,7 @@
        $(".alert-danger").fadeTo(10000, 500).slideUp(500, function() {
            $(".alert-danger").alert('close');
        });
-       $.fn.snow({ minSize:9 });
+       $.fn.snow({ minSize:7 });
 
       /*  $('.mot-oulie a').on('click',function(e){
             bootbox.prompt("Entrez Votre Email", function(result) {
