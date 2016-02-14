@@ -22,8 +22,7 @@
     <!-- Semantic UI theme -->
     <link rel="stylesheet" href="{{ asset('css/alertify/semantic.css') }}"/>
     <script src="{{ asset('bs3/js/bootstrap.min.js')}}"></script>
-
-
+    <link rel="stylesheet" href="{{ asset('js\codrops\rain\rain.css') }}">
 </head>
 <body id="body-login-page">
 <div id="login-page-c">
@@ -77,12 +76,13 @@
 
 
 </div>
-
+<script src="{{ asset('js\codrops\rain\snow.min.1.0.js') }}"></script>
 <script>
    $(document).ready(function(){
        $(".alert-danger").fadeTo(10000, 500).slideUp(500, function() {
            $(".alert-danger").alert('close');
        });
+       $.fn.snow({ minSize:9 });
 
       /*  $('.mot-oulie a').on('click',function(e){
             bootbox.prompt("Entrez Votre Email", function(result) {
