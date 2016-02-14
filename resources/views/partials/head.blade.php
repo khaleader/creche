@@ -8,7 +8,6 @@
     <title>Oblivius Petite Enfance </title>
     <!--Core CSS -->
     <link rel="shortcut icon" type="image/png"  href="{{ asset('favicon.png') }}">
-    @yield('css')
     <link href=" {{  asset('bs3/css/bootstrap.css') }}" rel="stylesheet">
     <script src="{{  asset('js/moment.min.js') }}"></script>
     <link href="{{  asset('js/jquery-ui/jquery-ui-1.10.1.custom.css') }}" rel="stylesheet">

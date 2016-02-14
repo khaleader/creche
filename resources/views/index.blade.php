@@ -2,7 +2,14 @@
 session_start();
  ?>
 @extends('layouts.default')
+@section('css')
 
+
+    <link rel="stylesheet" href="{{ asset('js\codrops\Notification-Styles-Inspiration\css\ns-default.css') }}">
+    <link rel="stylesheet" href="{{ asset('js\codrops\Notification-Styles-Inspiration\css\ns-style-attached.css') }}">
+
+
+@stop
 @section('content')
         <!--mini statistics start-->
 <div class="row">
@@ -165,13 +172,44 @@ session_start();
     </div>
 </div>
 
-
+<script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\modernizr.custom.js') }}"></script>
+<script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\classie.js') }}"></script>
+<script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\notificationFx.js') }}"></script>
 @endif
+
+    @if($errors->any())
+        <script>
+
+
+
+
+            var notification = new NotificationFx({
+                message : '<a href="{{  url('/') }}"> <img src="{{    asset('images/logo.png')}}" alt="logo"> </a>' ,
+                layout : 'attached',
+                effect : 'bouncyflip',
+                type : 'notice', // notice, warning or error
+                onClose : function() {
+
+                }
+            });
+            notification.show();
+
+
+        </script>
+    @endif
+
+
 @endsection
 
 @section('jquery')
+
+
+
     <script>
-            var date = new Date();
+
+
+            // show the notification
+
       //  $('#horloge_time').text( date.getHours() + ':' + date.getMinutes());
 
     </script>

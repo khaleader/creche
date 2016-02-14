@@ -1,6 +1,6 @@
 /* Growl-style notifications */
 .ns-attached {
-    left: 30px;
+    left: 0px;
     max-width: 300px;
 }
 
@@ -71,21 +71,22 @@
 .ns-effect-bouncyflip {
     -webkit-transform-origin: 50% 0%;
     transform-origin: 50% 0%;
-    background: #fff;
+    background:#7F64B5;
     color: #484860;
     top: 0;
     box-shadow: 0 13px 10px -5px rgba(0,0,0,0.2);
 }
 
 .ns-effect-bouncyflip .icon {
-    position: absolute;
+    /*position: absolute;*/
     display: block;
-    top: 2em;
-    left: 2em;
+    line-height: 35px;
 }
 
 .ns-effect-bouncyflip p {
-    padding: 0.5em 0.8em 0.8em 3.5em;
+    margin-top: -56px;
+    padding-top: 31px;
+    padding-left: 36px;
 }
 
 .ns-effect-bouncyflip .ns-close::after,
@@ -201,7 +202,7 @@
 
 @media screen and (max-width: 25em) {
     .ns-attached {
-        left: 30px;
+        left: 0px;
         max-width: none;
         right: 30px;
     }

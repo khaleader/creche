@@ -90,7 +90,7 @@ class AuthController extends Controller
             $user = \Auth::user();
           if($user->blocked == 0)
           {
-              return  redirect()->to('/');
+              return  redirect()->to('/')->withErrors('welcome');
           }else{
               Auth::logout();
               return redirect()->to('auth\login')->withErrors(['Email ou mot de passe incorrect.']);

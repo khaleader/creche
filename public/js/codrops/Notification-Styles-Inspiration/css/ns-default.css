@@ -2,14 +2,15 @@
 
 .ns-box {
 	position: fixed;
-	background: rgba(42,45,50,0.85);
-	padding: 22px;
+	background-color: #7F64B5;
+ padding: 10px 16px 10px 16px;
 	line-height: 1.4;
-	z-index: 1000;
+	z-index: 99999999;
 	pointer-events: none;
-	color: rgba(250,251,255,0.95);
+	/*color: rgba(250,251,255,0.95);*/
 	font-size: 90%;
 	font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+	width: 240px;
 }
 
 .ns-box.ns-show {

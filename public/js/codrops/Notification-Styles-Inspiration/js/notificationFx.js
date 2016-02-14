@@ -54,7 +54,7 @@
 		// the message
 		message : 'yo!',
 		// layout type: growl|attached|bar|other
-		layout : 'growl',
+		layout : 'attached',
 		// effects for the specified layout:
 		// for growl layout: scale|slide|genie|jelly
 		// for attached layout: flip|bouncyflip
@@ -66,7 +66,7 @@
 		type : 'error',
 		// if the user doesn´t close the notification then we remove it 
 		// after the following time
-		ttl : 6000,
+		ttl : 4000,
 		// callbacks
 		onClose : function() { return false; },
 		onOpen : function() { return false; }
@@ -107,7 +107,7 @@
 	NotificationFx.prototype._initEvents = function() {
 		var self = this;
 		// dismiss notification
-		this.ntf.querySelector( '.ns-close' ).addEventListener( 'click', function() { self.dismiss(); } );
+		this.ntf.querySelector( '.ns-close' ).addEventListener('click', function() { self.dismiss(); } );
 	}
 
 	/**
