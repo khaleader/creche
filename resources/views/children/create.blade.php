@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="{{ asset('css/completer/completer.css') }}"/>
 
     <script src="{{  asset('css/completer/completer.js') }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('js\codrops\PageLoadingEffects\css\component.css') }}" />
+    <script src="{{ asset('js\codrops\PageLoadingEffects\js\snap.svg-min.js') }}"></script>
     <style>
         #loader-parent{
             position: fixed;
@@ -30,9 +33,9 @@
 
 @endsection
 @section('loader')
-    <div id="loader-parent">
+  <!--  <div id="loader-parent">
         <img id="loader-to" src="{{  asset('images/ajax-loaderr.gif') }}" >
-    </div>
+    </div> -->
 
 @stop
 @section('content')
@@ -452,6 +455,11 @@
 
     </div>
         <span id="prices" style="display: none;"></span>
+        <div id="loader" class="pageload-overlay" data-opening="M20,15 50,30 50,30 30,30 Z;M0,0 80,0 50,30 20,45 Z;M0,0 80,0 60,45 0,60 Z;M0,0 80,0 80,60 0,60 Z" data-closing="M0,0 80,0 60,45 0,60 Z;M0,0 80,0 50,30 20,45 Z;M20,15 50,30 50,30 30,30 Z;M30,30 50,30 50,30 30,30 Z">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+                <path d="M30,30 50,30 50,30 30,30 Z"/>
+            </svg>
+        </div><!-- /pageload-overlay -->
     <div class="row">
     </div>
     @endsection
@@ -459,12 +467,36 @@
 @section('jquery')
             <!-- codrops -->
         <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\classie.js') }}"></script>
-        <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\notificationFx.js') }}"></script>
         <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\modernizr.custom.js') }}"></script>
+        <script src="{{ asset('js\codrops\PageLoadingEffects\js\svgLoader.js') }}"></script>
 
         <!-- codrops -->
     <script>
           $(document).ready(function() {
+              //only loader effect
+              function showLoader()
+              {
+                  var pageWrap = document.getElementById( 'container'),
+                          pages = [].slice.call( pageWrap.querySelectorAll( 'div.container' ) ),
+                          currentPage = 0,
+                  //triggerLoading = [].slice.call( pageWrap.querySelectorAll( 'a.pageload-link' ) ),
+                          loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 100 } );
+                  loader.show();
+              }
+
+              function hideHeader()
+              {
+                  var pageWrap = document.getElementById( 'container'),
+                          pages = [].slice.call( pageWrap.querySelectorAll( 'div.container' ) ),
+                          currentPage = 0,
+                  //triggerLoading = [].slice.call( pageWrap.querySelectorAll( 'a.pageload-link' ) ),
+                          loader = new SVGLoader( document.getElementById( 'loader' ), { speedIn : 100 } );
+                  loader.hide();
+              }
+              //loader effect only
+
+
+
 
 
 
@@ -480,7 +512,8 @@
               $('#loader-parent').hide();
               $('div.pdp').hide();
               $('#submit').click(function () {
-                  $('#loader-parent').show();
+                 // $('#loader-parent').show();
+                  showLoader();
               });
               $(".alert-danger").fadeTo(10000, 500).slideUp(500, function () {
                   $(".alert-danger").alert('close');
@@ -718,6 +751,19 @@
               $('div.form_champ.only-for-email').mouseleave(function(){
                   $('.tooltips').css('visibility','hidden');
               });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
           });
