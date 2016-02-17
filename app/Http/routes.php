@@ -231,3 +231,4 @@ Route::get('gallery',function(){
     return view('gallery3d.index');
 })->middleware(['auth','admin']);
 /* Gallery Room*/
+

@@ -338,7 +338,17 @@
             @endif
 
 
-            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">On vous remercie pour votre confiance, votre compte officiel à été crée avec succès, et vous pouvez désormais l'utilisé dès maintenant et profiter de toutes les fonctionnalités et avantages mises à votre disposition pour vous optimiser la gestion de votre école.</br></br>Notre équipe est toujours à votre disposition pour vous accompagner et vous aider à exploiter pleinement les fonctionnalités du logiciel.</br></br>Vous trouverez en dessous vos identifiants pour accéder à votre compte </strong>Oblivius Petite Enfance</stron>, une fois connecté n'oubliez pas de changer votre mot de passe à votre convenance.</p>
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">
+                Nous vous remercions de votre confiance,
+                Votre compte officiel à été créé avec succès. Vous pouvez désormais l'utiliser et profiter de toutes les fonctionnalités
+                et avantages mis à votre disposition pour optimiser la gestion de votre école.</br>
+
+
+                </br>Notre équipe reste à votre disposition pour vous accompagner et vous aider à exploiter pleinement les fonctionnalités du logiciel.</br>
+                </br>Vous trouverez ci-dessous vos identifiants pour accéder à votre compte </strong>Oblivius Petite Enfance</stron>, Une fois connecté nous vous conseillons de modifier votre mot de passe et d'en choisir un nouveau.
+
+
+            </p>
 
             <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left"><strong>Login :</strong> {{ $email }}</p>
 

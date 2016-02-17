@@ -144,6 +144,7 @@ return [
         PulkitJalan\Google\GoogleServiceProvider::class,
         Morrislaptop\LaravelQueueClear\LaravelQueueClearServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Vsmoraes\Pdf\PdfServiceProvider::class,
 
 
 
@@ -210,7 +211,8 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Google'   => PulkitJalan\Google\Facades\Google::class,
-        'Excel' =>    Maatwebsite\Excel\Facades\Excel::class,
+        'Excel'    => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF'      => Vsmoraes\Pdf\PdfFacade::class,
 
     ],
 

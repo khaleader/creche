@@ -4,6 +4,9 @@
 
 @section('content')
     <div class="row">
+
+
+
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
@@ -150,6 +153,9 @@
     </div>
     <span id="boxes" style="display: none;"></span>
     <span id="boxesarchives" style="display: none;"></span>
+
+
+
 @endsection
 @section('jquery')
     <script type="text/javascript">
