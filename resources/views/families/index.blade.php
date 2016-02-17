@@ -263,7 +263,7 @@
                     .set({
                         'labels':{ok:'Oui', cancel:'Non'},
                         'message': 'voulez vous vraiment supprimer ? ',
-                        'transition': 'fade',
+                        'transition': 'slide',
                         'onok': function(){
                             window.location.href = href;
                             alertify.success('bien supprimé!');

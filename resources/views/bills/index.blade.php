@@ -138,7 +138,7 @@
                                               style="position:relative;display:inline-block;width: 25px;height: 25px;vertical-align: middle;">
                                         <i style="position:absolute;top: 4px; left:6px;"
                                            class="fa fa-clock-o fa-2x"></i></span> -->
-                        <strong class="tooltip-jqui" title=" {{ $bill->start->diffInDays()  }} Jours de Detard">
+                        <strong class="tooltip-jqui" title=" {{ $bill->start->diffInDays()  }} Jours de Retard">
                             <i class="fa fa-info-circle" style="color: #FF6C60;"></i></strong>
 
 

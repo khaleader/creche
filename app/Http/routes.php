@@ -221,3 +221,13 @@ Route::post('educators/enregistrer','EducatorsController@enregistrer'); // edit 
 Route::post('educators/getmatters','EducatorsController@getmatters');
 Route::post('educators/getmatieres','EducatorsController@getmatieres');
 Route::resource('educators','EducatorsController');
+
+
+
+
+/* Gallery room */
+
+Route::get('gallery',function(){
+    return view('gallery3d.index');
+})->middleware(['auth','admin']);
+/* Gallery Room*/
