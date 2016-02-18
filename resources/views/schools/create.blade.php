@@ -1,4 +1,11 @@
 @extends('layouts.default')
+@section('css')
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('js\codrops\PageLoadingEffects\css\component.css') }}" />
+    <script src="{{ asset('js\codrops\PageLoadingEffects\js\snap.svg-min.js') }}"></script>
+
+@stop
+
 @section('content')
     @include('partials.alert-errors')
     @include('partials.alert-success')
@@ -125,6 +132,11 @@
             </section>
         </div>
     </div>
+    <div id="loader" class="pageload-overlay" data-opening="M 0,0 0,60 80,60 80,0 z M 80,0 40,30 0,60 40,30 z">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="none">
+            <path d="M 0,0 0,60 80,60 80,0 Z M 80,0 80,60 0,60 0,0 Z"/>
+        </svg>
+    </div><!-- /pageload-overlay -->
     <div class="row"></div>
 
 
@@ -134,11 +146,33 @@
 
 
 @section('jquery')
+        <!-- codrops -->
+    <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\classie.js') }}"></script>
+    <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\modernizr.custom.js') }}"></script>
+    <script src="{{ asset('js\codrops\PageLoadingEffects\js\svgLoader.js') }}"></script>
+
+    <!-- codrops -->
+
     <script>
         $(function(){
             $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){
                 $(".alert-danger").alert('close');
             });
+            function showLoader()
+            {
+                var pageWrap = document.getElementById( 'container'),
+                        pages = [].slice.call( pageWrap.querySelectorAll('div.container') ),
+                        currentPage = 0,
+                //triggerLoading = [].slice.call( pageWrap.querySelectorAll( 'a.pageload-link' ) ),
+                        loader = new SVGLoader( document.getElementById( 'loader' ), {
+                            speedIn : 300, speedOut : 600, easingIn : mina.easeinout, easingOut : mina.bounce
+                        } );
+                loader.show();
+            }
+            $('button[type=submit]').click(function(){
+               showLoader();
+            });
+
         });
     </script>
 @stop

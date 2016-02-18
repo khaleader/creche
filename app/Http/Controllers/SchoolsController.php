@@ -480,7 +480,11 @@ class SchoolsController extends Controller
                 foreach($school->lesfamilles as $f)
                 {
                     $famille = User::where('email',$f->email_responsable)->first();
-                    $famille->delete();
+                    if(!is_null())
+                    {
+                        $famille->delete();
+                    }
+
                 }
                 $school->lesfamilles()->delete(); // archive only due to soft delete
                 $school->lesfactures()->delete();// archive only due to soft delete
@@ -628,7 +632,11 @@ class SchoolsController extends Controller
         foreach($school->lesfamilles as $f)
         {
             $famille = User::where('email',$f->email_responsable)->first();
-            $famille->delete();
+            if(!is_null($famille))
+            {
+                $famille->delete();
+            }
+
         }
         $school->lesfamilles()->delete(); // archive only due to soft delete
         $school->lesfactures()->delete();// archive only due to soft delete

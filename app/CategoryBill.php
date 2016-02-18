@@ -27,4 +27,17 @@ class CategoryBill extends Model
                 }
             }
     }
+
+    public static function getYearFoEssai($user,$date)
+    {
+        $old = Carbon::parse($date)->diff(Carbon::now())->format('%y');
+        $cat = CategoryBill::where('user_id',$user->id)->get();
+        foreach($cat as $c)
+        {
+            if($old >= $c->age_de && $old <= $c->age_a)
+            {
+                return $c->prix;
+            }
+        }
+    }
 }

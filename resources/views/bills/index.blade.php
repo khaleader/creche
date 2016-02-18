@@ -182,7 +182,7 @@
     <span id="childid" style="display: none;">{{--  $child->id --}}</span>
 @endsection
 @section('jquery')
-    <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
+  <!--  <script src="{{ asset('js\print-widget\jquery.js') }}"></script> -->
     <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
     <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
     <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
