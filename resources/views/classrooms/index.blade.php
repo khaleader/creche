@@ -10,9 +10,9 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a href="{{ action('ClassroomsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
-                          <!--  <li><a href="#"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter</a></li>
-                            <li><a href="#"><img id="imprimer" src="{{ asset('images/imprimer.png') }}">Imprimer</a></li>
-                            <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
+                          <!--  <li><a href="#"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter</a></li>-->
+                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png') }}">Imprimer</a></li>
+                          <!--  <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
                             <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->
                         </ul>
                     </div>
@@ -80,7 +80,7 @@
                             <th>Capacité de salle</th>
                             <th>Niveau</th>
                             <th>Branche</th>
-                            <th></th>
+                            <th>Actions</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -120,7 +120,43 @@
 @endsection
 
 @section('jquery')
+    <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
+    <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
+    <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
+    <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
+    <script src="{{ asset('js\print-widget\widget-print.js') }}"></script>
     <script>
+
+        $(function(){
+            $('.table').tablesorter({
+                widgets:["print"],
+                widgetOptions : {
+                    print_extraCSS: "@media print {" +
+                    ".avatar{ width:40px;height:40px;}" +
+                    "td { text-align:center}" +
+                    "td > span.label-danger:before { content:'Non Payé'}" +
+                    "td > span.label-success:before { content: 'Payé '}" +
+                    "}",
+                    print_title: 'La liste des Classes',
+                    print_rows : 'v',
+                    print_callback   : function(config, $table, printStyle){
+                        // do something to the $table (jQuery object of table wrapped in a div)
+                        // or add to the printStyle string, then...
+                        // print the table using the following code
+                        $.tablesorter.printTable.printOutput( config, $table.html(), printStyle );
+                    }
+                }
+            });
+
+            $('#imprimer').click(function(){
+                $('.table').trigger('printTable');
+            });
+
+
+
+
+
+
         $('.select-all').click(function(){
             var status = this.checked;
             $("input[name='select[]']").each(function(){
@@ -193,7 +229,7 @@
 
 
 
-
+        });
 
     </script>
 

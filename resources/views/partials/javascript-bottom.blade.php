@@ -24,9 +24,9 @@
 <!--clock init-->
 <script src="{{ asset('js/css3clock/js/css3clock.js')  }}"></script>
 <!--Easy Pie Chart-->
-<script src="{{ asset('js/easypiechart/jquery.easypiechart.js')}}"></script>
+<!--<script src="{{ asset('js/easypiechart/jquery.easypiechart.js')}}"></script> -->
 <!--Sparkline Chart-->
-<script src="{{ asset('js/sparkline/jquery.sparkline.js')  }}"></script>
+<!--<script src="{{ asset('js/sparkline/jquery.sparkline.js')  }}"></script>-->
 <!--Morris Chart-->
 <!--<script src="{{ asset('js/morris-chart/morris.js')  }}"></script>
 <script src="{{ asset('js/morris-chart/raphael-min.js')}}"></script>-->
@@ -39,7 +39,7 @@
 <script src="{{ asset('js/flot-chart/jquery.flot.growraf.js')  }}"></script>
 <script src="{{ asset('js/dashboard.js')  }}"></script> -->
 
-<script src="{{ asset('js/jquery.customSelect.min.js')  }}" ></script>
+<!--<script src="{{ asset('js/jquery.customSelect.min.js')  }}" ></script>-->
 <script src="{{ asset('js/jquery.js')}}"></script>
 
 

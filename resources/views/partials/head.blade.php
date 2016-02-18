@@ -48,7 +48,7 @@
     <!--Morris Chart CSS -->
     <link rel="stylesheet" href="{{ asset('js/morris-chart/morris.css')  }}">
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/style.css')  }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css')  }}" rel="stylesheet" media="all">
     <link href="{{ asset('css/style-responsive.css')  }}" rel="stylesheet"/>
     <link href="{{ asset('css/animate.min.css')  }}" rel="stylesheet">
     <link href="{{ asset('css/set2.css')  }}" rel="stylesheet">
@@ -72,5 +72,6 @@
             max-width: 100%;
         }
     </style>
+
 
 </head>

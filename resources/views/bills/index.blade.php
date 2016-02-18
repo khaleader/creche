@@ -7,6 +7,11 @@
             <section class="panel">
                 <header class="panel-heading">
                     Liste des factures
+                    <div class="actions_btn">
+                        <ul>
+                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                        </ul>
+                    </div>
 
                 </header>
                 <div class="liste_actions">
@@ -177,8 +182,37 @@
     <span id="childid" style="display: none;">{{--  $child->id --}}</span>
 @endsection
 @section('jquery')
+    <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
+    <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
+    <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
+    <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
+    <script src="{{ asset('js\print-widget\widget-print.js') }}"></script>
     <script>
         $(document).ready(function(){
+
+            $('.table').tablesorter({
+                widgets:["print"],
+                widgetOptions : {
+                    print_extraCSS: "@media print {" +
+                    ".avatar{ width:40px;height:40px;}" +
+                    "td { text-align:center}" +
+                    "}",
+                    print_title: 'La liste des Professeurs et RH',
+                    print_rows : 'v',
+                    print_callback   : function(config, $table, printStyle){
+                        // do something to the $table (jQuery object of table wrapped in a div)
+                        // or add to the printStyle string, then...
+                        // print the table using the following code
+                        $.tablesorter.printTable.printOutput( config, $table.html(), printStyle );
+                    }
+                }
+            });
+
+            $('#imprimer').click(function(){
+                $('.table').trigger('printTable');
+            });
+
+
             $('.select-all').click(function(){
                 var status = this.checked;
                 $("input[name='select[]']").each(function(){
