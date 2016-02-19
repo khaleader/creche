@@ -9,7 +9,7 @@
                 <div class="panel-body">
 
                     <div class="nom">
-                                <span>{{ $ecole->name }}</span>
+                       <span>{{ $ecole->name }} </span> <span> {{ '('.$ecole->lesgamins()->count().') Elèves'  }} </span>
                     </div>
 
 
