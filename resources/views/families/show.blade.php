@@ -66,6 +66,7 @@
                     <a class="delete-family" href="{{ action('FamiliesController@delete',[$family->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
                    <!-- <a href="{{ action('FamiliesController@archive',[$family->id]) }}"><div class="btn_archiver">Archiver</div></a>-->
                     <a href="{{ action('FamiliesController@edit',[$family->id]) }}"><div class="btn_archiver">modifier</div></a>
+                    <a href="{{ action('FamiliesController@addchild',[$family->id]) }}"><div style="width: 150px;" class="btn_archiver">Ajouter un Enfant</div></a>
 
                 </header>
                 <div class="panel-body informations_general">

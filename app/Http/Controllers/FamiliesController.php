@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Bill;
+use App\CategoryBill;
 use App\Child;
+use App\Classroom;
 use App\Family;
 use App\Http\Requests\AddSchoolRequest;
+use App\Transport;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -37,6 +42,78 @@ class FamiliesController extends Controller
     {
        $families = \Auth::user()->families()->paginate(10);
        return view('families.index',compact('families'));
+    }
+
+
+    public function addchild(Request $request, $id = null)
+    {
+        if(\Request::isMethod('get'))
+        {
+          $family =  Family::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            return view('families.addchild',compact('family'));
+        }else{
+            // if the parent already in the database
+            $child = new Child();
+            $child->date_naissance = Carbon::parse($request->date_naissance);
+            $child->nom_enfant = $request->nom_enfant ;
+            $child->sexe = $request->sexe;
+            $child->age_enfant =$child->date_naissance->diffInYears(Carbon::now());
+
+            $child->transport = $request->transport;
+            $child->user_id = \Auth::user()->id;
+
+            $image = \Input::file('photo');
+            if(!$image && empty($image))
+            {
+                $filename = '';
+
+            }else{
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+            }
+            $child->photo = $filename;
+            $child->family_id = $request->familyid;
+            $resp = Family::findOrFail($request->familyid);
+            $user =  User::where('email',$resp->email_responsable)->first();
+            if($user)
+            {
+                $child->f_id =$user->id;
+                $child->save();
+                if($child->id)
+                {
+                    $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
+                    $cr->children()->sync([$child->id]);
+
+                    $bill  = new Bill();
+                    $bill->start =Carbon::now()->toDateString();
+                    $bill->end = Carbon::now()->addMonth()->toDateString();
+                    $bill->status = 0;
+                    if($request->transport == 1)
+                    {
+                        if(Transport::where('user_id',\Auth::user()->id)->exists())
+                        {
+                            $transport_somme =  Transport::where('user_id',\Auth::user()->id)->first()->somme;
+                            $bill_somme =CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                            $bill->somme = $transport_somme + $bill_somme;
+                        }else{
+                            $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                        }
+                    }else{
+                        $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                    }
+
+                    $bill->child_id =$child->id;
+                    $bill->f_id = $user->id;
+                    $bill->user_id = \Auth::user()->id;
+                    $bill->save();
+                }
+            }
+
+
+            return redirect()->back()->with('success',"l'élève a bien été ajouté! ");
+        }
+
     }
 
 

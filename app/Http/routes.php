@@ -75,6 +75,12 @@ Route::match(['get','post'],'families/archiver','FamiliesController@archiver');
 Route::get('families/delete/{id}','FamiliesController@delete');
 Route::get('families/archive/{id}','FamiliesController@archive');
 
+
+
+/* add child to family in families/show/id */
+
+Route::any('families/addchild/{id?}','FamiliesController@addchild');
+
 Route::get('search/{q}',['uses'=>'FamiliesController@search']);
 Route::match(['get','post'],'fambyalph','FamiliesController@fambyalph');
 Route::resource('families','FamiliesController');

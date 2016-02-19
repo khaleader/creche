@@ -308,7 +308,6 @@ class SchoolSendEmailEvent extends Event
 
                 // classrooms
                 for ($i = 1; $i <= 2; $i++) {
-                  $cr =  new Classroom();
                     $cr = new Classroom();
                     $cr->nom_classe = 'classe '.$i;
                     $cr->code_classe = 'cl'.$i;
@@ -380,6 +379,18 @@ class SchoolSendEmailEvent extends Event
                             $family->responsable = 1;
                             $family->user_id = $user->id;
                             $family->save();
+                            // compte famille user
+                            $f = new User();
+                            $f->nom_responsable = $family->nom_pere;
+                            $f->name = $user->name;
+                            $f->type = 'famille';
+                            $f->email = $family->email_responsable;
+                            $f->password = \Hash::make('123456');
+                            $f->sexe = 'homme';
+                            $f->save();
+
+
+
                             if ($family->id) {
                                 $child = new Child();
                                 $child->date_naissance = Carbon::parse($dates[$i]);
@@ -395,6 +406,7 @@ class SchoolSendEmailEvent extends Event
                                 $child->photo = '';
                                 $child->family_id = $family->id;
                                 $child->save();
+
                                 if ($child->id) {
                                     //classe
                                     $cr = Classroom::where('user_id',$user->id)->where('code_classe', 'cl1')->first();
@@ -409,6 +421,15 @@ class SchoolSendEmailEvent extends Event
                                     $bill->user_id = $user->id;
                                     $bill->save();
 
+                                    if($f)
+                                    {
+                                        $enf = Child::findOrFail($child->id);
+                                        $enf->f_id =$f->id;
+                                        $enf->save();
+                                        $b =  Bill::where('child_id',$enf->id)->first();
+                                        $b->f_id = $f->id;
+                                        $b->save();
+                                    }
 
                                 }
                             };
@@ -425,6 +446,18 @@ class SchoolSendEmailEvent extends Event
                             $family->responsable = 1;
                             $family->user_id = $user->id;
                             $family->save();
+                            // compte famille user
+                            $f = new User();
+                            $f->nom_responsable = $family->nom_pere;
+                            $f->name = $user->name;
+                            $f->type = 'famille';
+                            $f->email = $family->email_responsable;
+                            $f->password = \Hash::make('123456');
+                            $f->sexe = 'homme';
+                            $f->save();
+
+
+
                             if ($family->id) {
                                 $child = new Child();
                                 $child->date_naissance = Carbon::parse($dates[$i]);
@@ -440,6 +473,9 @@ class SchoolSendEmailEvent extends Event
                                 $child->photo = '';
                                 $child->family_id = $family->id;
                                 $child->save();
+
+
+
                                 if ($child->id) {
                                     //classe
                                     $cr = Classroom::where('user_id',$user->id)->where('code_classe','cl1')->first();
@@ -453,6 +489,16 @@ class SchoolSendEmailEvent extends Event
                                     $bill->child_id = $child->id;
                                     $bill->user_id = $user->id;
                                     $bill->save();
+
+                                    if($f)
+                                    {
+                                        $enf = Child::findOrFail($child->id);
+                                        $enf->f_id =$f->id;
+                                        $enf->save();
+                                        $b =  Bill::where('child_id',$enf->id)->first();
+                                        $b->f_id = $f->id;
+                                        $b->save();
+                                    }
 
 
                                 }
@@ -470,6 +516,16 @@ class SchoolSendEmailEvent extends Event
                             $family->responsable = 1;
                             $family->user_id = $user->id;
                             $family->save();
+
+                            $f = new User();
+                            $f->nom_responsable = $family->nom_pere;
+                            $f->name = $user->name;
+                            $f->type = 'famille';
+                            $f->email = $family->email_responsable;
+                            $f->password = \Hash::make('123456');
+                            $f->sexe = 'homme';
+                            $f->save();
+
                             if ($family->id) {
                                 $child = new Child();
                                 $child->date_naissance = Carbon::parse($dates[$i]);
@@ -485,9 +541,13 @@ class SchoolSendEmailEvent extends Event
                                 $child->photo = '';
                                 $child->family_id = $family->id;
                                 $child->save();
+
+
+
+
                                 if ($child->id) {
                                     //classe
-                                    $cr = Classroom::where('user_id',$user->id)->where('code_classe', 'cl2')->first();
+                                    $cr = Classroom::where('user_id',$user->id)->where('code_classe','cl2')->first();
                                     $cr->children()->attach([$child->id]);
                                     $bill = new Bill();
                                     $bill->start = Carbon::now()->toDateString();
@@ -498,6 +558,15 @@ class SchoolSendEmailEvent extends Event
                                     $bill->child_id = $child->id;
                                     $bill->user_id = $user->id;
                                     $bill->save();
+                                    if($f)
+                                    {
+                                        $enf = Child::findOrFail($child->id);
+                                        $enf->f_id =$f->id;
+                                        $enf->save();
+                                        $b =  Bill::where('child_id',$enf->id)->first();
+                                        $b->f_id = $f->id;
+                                        $b->save();
+                                    }
 
 
                                 }
@@ -515,6 +584,15 @@ class SchoolSendEmailEvent extends Event
                             $family->responsable = 1;
                             $family->user_id = $user->id;
                             $family->save();
+                            $f = new User();
+                            $f->nom_responsable = $family->nom_pere;
+                            $f->name = $user->name;
+                            $f->type = 'famille';
+                            $f->email = $family->email_responsable;
+                            $f->password = \Hash::make('123456');
+                            $f->sexe = 'homme';
+                            $f->save();
+
                             if ($family->id) {
                                 $child = new Child();
                                 $child->date_naissance = Carbon::parse($dates[$i]);
@@ -530,6 +608,9 @@ class SchoolSendEmailEvent extends Event
                                 $child->photo = '';
                                 $child->family_id = $family->id;
                                 $child->save();
+
+
+
                                 if ($child->id) {
                                     //classe
                                     $cr = Classroom::where('user_id',$user->id)->where('code_classe', 'cl2')->first();
@@ -543,7 +624,15 @@ class SchoolSendEmailEvent extends Event
                                     $bill->child_id = $child->id;
                                     $bill->user_id = $user->id;
                                     $bill->save();
-
+                                    if($f)
+                                    {
+                                        $enf = Child::findOrFail($child->id);
+                                        $enf->f_id =$f->id;
+                                        $enf->save();
+                                        $b =  Bill::where('child_id',$enf->id)->first();
+                                        $b->f_id = $f->id;
+                                        $b->save();
+                                    }
 
                                 }
                             };
