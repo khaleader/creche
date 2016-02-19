@@ -27,7 +27,6 @@ class ajouterEnfantRequest extends Request
             'nom_enfant'=> 'required',
             'date_naissance'=>'required',
             'photo'=>'image',
-            'pere' => 'required|integer',
         ];
     }
 
@@ -37,8 +36,6 @@ class ajouterEnfantRequest extends Request
             'nom_enfant.required' => 'Le Nom de L\'enfant est obligatoire',
             'date_naissance.required' => 'La Date de Naissance est Obligatoire',
             'photo.required' => 'La Photo de L\'enfant est obligatoire',
-            'pere.integer' => 'vous devez Choisir Un Parent',
-            'mere.integer' => 'vous devez Choisir Un Parent',
 
         ];
     }
