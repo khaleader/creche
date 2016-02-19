@@ -178,7 +178,7 @@ session_start();
 @endif
 
     @if($errors->any())
-        <script>
+      <!--  <script>
 
 
 
@@ -195,7 +195,7 @@ session_start();
           //  notification.show();
 
 
-        </script>
+        </script>-->
     @endif
 
 
