@@ -487,7 +487,7 @@
                   loader.show();
               }
 
-              function hideHeader()
+              function hideLoader()
               {
                   var pageWrap = document.getElementById( 'container'),
                           pages = [].slice.call( pageWrap.querySelectorAll( 'div.container' ) ),
