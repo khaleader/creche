@@ -54,9 +54,13 @@ class FamiliesController extends Controller
         {
           $family =  Family::where('user_id',\Auth::user()->id)->where('id',$id)->first();
             return view('families.addchild',compact('family'));
-        }else {
+        }elseif(\Request::isMethod('post')) {
             $validator = Validator::make([
                 $request->all(),
+                'nom_enfant' =>$request->nom_enfant,
+                'date_naissance' => $request->date_naissance,
+                'photo' => $request->photo
+
             ], [
                 'nom_enfant' => 'required',
                 'date_naissance' => 'required',
