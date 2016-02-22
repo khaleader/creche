@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use URL;
 use Validator;
 
 class LevelsController extends Controller
@@ -149,6 +151,50 @@ class LevelsController extends Controller
                 $b =   Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                 $b->delete();
             }
+        }
+    }
+
+
+
+    /*********************Excel export*******************************************/
+
+    public function exportExcel()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Level::where('user_id', \Auth::user()->id)->forPage($page,10)
+                ->get(['niveau']);
+            Excel::create('Sheetname', function ($excel) use ($model) {
+                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+                    $sheet->fromModel($model);
+                    // $sheet->setBorder('A1:B1', 'thin');
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1',function($cells){
+                        $cells->setBackground('#97efee');
+                        // header only
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+
+                    $sheet->row(1, array(
+                        'Le Niveau'
+                    ));
+
+
+                });
+            })->export('xls');
         }
     }
 }

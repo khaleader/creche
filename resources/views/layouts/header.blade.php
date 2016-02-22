@@ -14,14 +14,23 @@
         </li>
         <li class="menu_li"> <img src="{{ asset('images/qui_sommes_nous.png')  }}" alt="" id="qui_sommes_nous"><a href="">Qui sommes nous ?</a></li>
         <li class="menu_li"> <img src="{{ asset('images/contactez_nous.png')  }}" alt="" id="contactez_nous"><a href="" >Contactez-nous</a></li>
-        <li class="menu_li"> <img src="{{ asset('images/comment_ca_marche.png')  }}" alt="" id="comment_ca_marche"><a href="" >Comment Ca marche</a></li>
+        @if(\Auth::user() && Auth::user()->isAdmin())
+            <li class="menu_li"> <img src="{{ asset('images/param.png')  }}" alt="" id="comment_ca_marche">
+                <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}" >Paramètres</a>
+            </li>
+                @elseif(\Auth::user() && Auth::user()->isFamily())
+            <li class="menu_li"> <img src="{{ asset('images/param.png')  }}" alt="" id="comment_ca_marche">
+                <a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}" >Paramètres
+                </a>
+            </li>
+           @endif
     </ul>
     <div class="account" id="account">
 
          @if(\Auth::user() && Auth::user()->isAdmin())
-            <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">
+            <a href="{{-- action('SchoolsController@edit',[\Auth::user()->id]) --}}">
           @elseif(\Auth::user() && Auth::user()->isFamily())
-            <a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">
+            <a href="{{-- action('SchoolsController@editef',[\Auth::user()->id]) --}}">
            @endif
          @if(Auth::user() && Auth::user()->isFamily())
                 <?php

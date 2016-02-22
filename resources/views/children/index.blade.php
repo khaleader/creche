@@ -12,6 +12,9 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                            <li><a href="{{ action('ChildrenController@exportEleve') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter</a></li>
+                            <li><a href="{{ action('ChildrenController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png') }}">Exporter en Pdf</a></li>
+
                         </ul>
                     </div>
 
@@ -40,6 +43,7 @@
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-children" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
                             <!--<li><a id="archive-children" href="#"><i class="fa fa-archive"></i>Archiver</a></li>-->
+
                         </ul>
                     </div>
 

@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use URL;
 use Validator;
 
 class ClassroomsController extends Controller
@@ -286,6 +288,64 @@ class ClassroomsController extends Controller
     }
 
 
+
+    public function addMatterandProfToCr($id)
+    {
+       if(\Request::isMethod('get'))
+       {
+           $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+           return  view('classrooms.addMatterandProfToCr',compact('cr'));
+       }
+    }
+
+
+
+
+    /************************Export Excel************************************/
+
+    public function exportExcel()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Classroom::where('user_id', \Auth::user()->id)->forPage($page,10)
+                ->get(['nom_classe','code_classe','capacite_classe','niveau','branche']);
+            Excel::create('Sheetname', function ($excel) use ($model) {
+                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+                    $sheet->fromModel($model);
+                    // $sheet->setBorder('A1:B1', 'thin');
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:E1',function($cells){
+                        $cells->setBackground('#97efee');
+                        // header only
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+
+                    $sheet->row(1, array(
+                        'Nom de la Classe', 'Code de la Classe','Capacité de la Classe','Niveau','Branche'
+                    ));
+
+
+                });
+            })->export('xls');
+        }
+    }
+
+
+
+
     /**********************************  Compte Famille         ************/
 
     public function indexef()
@@ -299,6 +359,9 @@ class ClassroomsController extends Controller
         $ts = Timesheet::where('classroom_id',$id)->first();
         return view('classrooms.showef',compact('ts'));
     }
+
+
+
 
 
 

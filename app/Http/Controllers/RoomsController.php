@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use URL;
 use Validator;
 
 class RoomsController extends Controller
@@ -175,5 +177,49 @@ class RoomsController extends Controller
             }
         }
     }
+
+
+    public function exportExcel()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Room::where('user_id', \Auth::user()->id)->forPage($page,10)
+                ->get(['nom_salle','capacite_salle']);
+            Excel::create('Sheetname', function ($excel) use ($model) {
+                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+                    $sheet->fromModel($model);
+                    // $sheet->setBorder('A1:B1', 'thin');
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:B1',function($cells){
+                        $cells->setBackground('#97efee');
+                        // header only
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+
+                    $sheet->row(1, array(
+                        'Salle', 'Capacité de la Salle'
+                    ));
+
+
+                });
+            })->export('xls');
+        }
+    }
+
+
+
 
 }

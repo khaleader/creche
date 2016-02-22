@@ -10,7 +10,7 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a href="{{ action('ClassroomsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
-                          <!--  <li><a href="#"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter</a></li>-->
+                           <li><a href="{{ action('ClassroomsController@exportExcel')}}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter</a></li>
                             <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png') }}">Imprimer</a></li>
                           <!--  <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
                             <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->

@@ -93,21 +93,7 @@ class SchoolSendEmailEvent extends Event
                 });
             }
         }else {
-            $user = new User();
-            $user->name = $this->ecoleNom;
-            $user->type = $this->type;
-            $user->email = $this->email;
-            $user->password = \Hash::make($this->password);
-            $user->nom_responsable = $this->nomResponsable;
-            $user->tel_fixe = $this->fix;
-            $user->tel_portable = $this->portab;
-            $user->adresse = $this->adresse;
-            $user->ville = $this->ville;
-            $user->pays = $this->pays;
-            $user->typeCompte = $this->typeCompte;
-            $user->sexe = $this->sexe;
             $user->save();
-            if ($user) {
                 /* sending email */
                 $info = [
                     'nom_resp' => $this->nomResponsable,
@@ -640,7 +626,7 @@ class SchoolSendEmailEvent extends Event
 
                     }
                 }
-            }
+
 
 
                 }

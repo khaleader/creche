@@ -147,7 +147,6 @@ return [
         Vsmoraes\Pdf\PdfServiceProvider::class,
 
 
-
         /*
          * Application Service Providers...
          */
@@ -212,7 +211,8 @@ return [
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Google'   => PulkitJalan\Google\Facades\Google::class,
         'Excel'    => Maatwebsite\Excel\Facades\Excel::class,
-        'PDF'      => Vsmoraes\Pdf\PdfFacade::class,
+        'PDF'      => Vsmoraes\Pdf\PdfFacade::class
+
 
     ],
 

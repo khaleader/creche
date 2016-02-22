@@ -20,6 +20,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
+use URL;
 use Validator;
 
 class ChildrenController extends Controller
@@ -417,10 +419,6 @@ class ChildrenController extends Controller
     {
 
 
-
-
-
-
        $validator = Validator::make([
                $request->all(),
            'numero_fixe' =>$request->numero_fixe,
@@ -744,11 +742,105 @@ class ChildrenController extends Controller
              {
                  echo 'here';
              }
-
-
-
          }
     }
+
+    /***********************Excel part ************************/
+
+    public function exportEleve()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Child::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_enfant','created_at']);
+            Excel::create('Sheetname', function ($excel) use ($model) {
+                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+                        foreach ($model as $child) {
+                                       $count = Bill::where('user_id',\Auth::user()->id)
+                                       ->where('child_id',$child->id)
+                                       ->where('status',0)
+                                        ->count();
+                            if ($count == 0) {
+                                $child->status = 'Réglée';
+                            } else {
+                                $child->status = 'Non Réglée';
+                            }
+                            $child->created_at = $child->created_at->toDateString();
+                    }
+                    $sheet->fromModel($model);
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:D1',function($cells){
+                      $cells->setBackground('#97efee');
+
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+                    $sheet->row(1, array('ID',
+                        'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
+                    ));
+
+                });
+            })->export('xls');
+        }
+    }
+
+
+public function exportPdf()
+{
+    $page = substr(URL::previous(), -1);
+    if (is_null($page)) {
+        $page = 1;
+    } else {
+        $model = Child::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_enfant','created_at']);
+        Excel::create('Sheetname', function ($excel) use ($model) {
+            $excel->sheet('Sheetname', function ($sheet) use ($model) {
+                foreach ($model as $child) {
+                    $count = Bill::where('user_id',\Auth::user()->id)
+                        ->where('child_id',$child->id)
+                        ->where('status',0)
+                        ->count();
+                    if ($count == 0) {
+                        $child->status = 'Réglée';
+                    } else {
+                        $child->status = 'Non Réglée';
+                    }
+                    $child->created_at = $child->created_at->toDateString();
+                }
+                $sheet->fromModel($model);
+                $sheet->setStyle(array(
+                    'font' => array(
+                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+                    )
+                ));
+                $sheet->setAllBorders('thin');
+                $sheet->cells('A1:D1',function($cells){
+                    $cells->setBackground('#97efee');
+
+                    $cells->setFont(array(
+                        'family'     => 'Calibri',
+                        'size'       => '14',
+                        'bold'       =>  true
+                    ));
+                });
+                $sheet->row(1, array('ID',
+                    'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
+                ));
+
+            });
+        })->export('pdf');
+    }
+}
 
 
 

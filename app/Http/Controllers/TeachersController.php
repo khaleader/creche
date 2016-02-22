@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Family;
 use App\Http\Requests\TeacherRequest;
 use App\Matter;
 use App\Teacher;
@@ -10,6 +11,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
+use URL;
 use Validator;
 
 class TeachersController extends Controller
@@ -134,7 +137,8 @@ class TeachersController extends Controller
             'num_fix' =>$request->num_fix,
             'num_portable' =>$request->num_portable,
             'adresse' => $request->adresse,
-            'photo' => $request->photo
+            'photo' => $request->photo,
+            'salaire' => $request->salaire
 
         ],[
             'num_fix' => 'required',
@@ -162,9 +166,10 @@ class TeachersController extends Controller
                  $teacher->num_fix =$request->num_fix;
                  $teacher->num_portable =$request->num_portable;
                  $teacher->adresse =$request->adresse;
+                 $teacher->salaire = $request->salaire;
                  $teacher->save();
              }else{
-                 $teacher = Family::findOrFail($id);
+                 $teacher = Teacher::findOrFail($id);
                  if(isset($teacher->photo))
                  {
                      $filename = $teacher->photo;
@@ -174,6 +179,7 @@ class TeachersController extends Controller
                  $teacher->num_fix =$request->num_fix;
                  $teacher->num_portable =$request->num_portable;
                  $teacher->adresse =$request->adresse;
+                 $teacher->salaire = $request->salaire;
                  $teacher->photo = $filename;
                  $teacher->save();
              }
@@ -300,6 +306,43 @@ class TeachersController extends Controller
 
             //  echo json_encode($enfants);
             //die();
+        }
+    }
+
+
+    public function exportExcel()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Teacher::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_teacher','fonction','poste']);
+            Excel::create('Sheetname', function ($excel) use ($model) {
+                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+
+                    $sheet->fromModel($model);
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:D1',function($cells){
+                        $cells->setBackground('#97efee');
+
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+                    $sheet->row(1, array(
+                        'ID', 'Nom Complet', 'Fonction','Poste'
+                    ));
+
+                });
+            })->export('xls');
         }
     }
 

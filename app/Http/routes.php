@@ -16,6 +16,8 @@
         return view('index');
     });
 });*/
+use Illuminate\Contracts\Pagination\Paginator;
+
 Route::get('/','HomeController@index');
 
 
@@ -63,6 +65,12 @@ Route::post('children/checktransport','ChildrenController@checktransport');
 Route::match(['get','post'],'children/checkiffamily','ChildrenController@checkiffamily'); // check if family exists ajax
 Route::post('children/checktoreturn','ChildrenController@checktoreturn'); // check multiple fields to redirect if family exists ajax
 
+// excel children/index
+Route::get('children/exportEleve','ChildrenController@exportEleve');
+// PDF Export PDF
+Route::get('children/exportPdf','ChildrenController@exportPdf');
+
+
 
 Route::resource('children','ChildrenController');
 
@@ -74,6 +82,9 @@ Route::match(['get','post'],'families/archiver','FamiliesController@archiver');
 /*  By clicking on actions   */
 Route::get('families/delete/{id}','FamiliesController@delete');
 Route::get('families/archive/{id}','FamiliesController@archive');
+
+// excel export families/index
+Route::get('families/exportExcel','FamiliesController@exportExcel');
 
 
 
@@ -149,6 +160,8 @@ Route::resource('bills','BillsController');
 
 
 /* TeachersController */
+Route::get('teachers/exportExcel','TeachersController@exportExcel');
+
 Route::resource('teachers','TeachersController');
 
 // alpha search for teachers -- teachers/index
@@ -185,9 +198,17 @@ Route::resource('statistics','StatisticsController');
 /* *********************                       *******************/
 Route::get('branches/delete/{id}','BranchesController@delete'); // delete a branch by click
 Route::post('branches/supprimer','BranchesController@supprimer'); // suppression ajax
+
+//branches excel export branches/index
+Route::get('branches/exportExcel','BranchesController@exportExcel');
+
 Route::resource('branches','BranchesController');
+
+
 Route::post('rooms/supprimer','RoomsController@supprimer'); //suppression ajax
 Route::get('rooms/delete/{id}','RoomsController@delete'); // delete a room by click
+
+Route::get('rooms/export','RoomsController@exportExcel');
 Route::resource('rooms','RoomsController');
 
 
@@ -199,10 +220,17 @@ Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete cl
 Route::get('classrooms/indexef','ClassroomsController@indexef'); // index classrooms compte famille
 Route::get('classrooms/{id}/showef','ClassroomsController@showef'); // show  emploi du temps compte famille
 
+Route::any('classrooms/addMatterandProfToCr/{id?}','ClassroomsController@addMatterandProfToCr');
+// Excel export classrooms/index
+Route::get('classrooms/exportExcel','ClassroomsController@exportExcel');
+
 Route::resource('classrooms','ClassroomsController');
 
 Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax
 Route::get('matters/delete/{id}','MattersController@delete'); // delete a matter  by click
+
+// export excel matters/index
+Route::get('matters/export','MattersController@exportMatiere');
 
 Route::resource('matters','MattersController');
 
@@ -220,6 +248,10 @@ Route::resource('timesheets','TimesheetsController');
 /* levels */
 Route::post('levels/supprimer','LevelsController@supprimer');
 Route::get('levels/delete/{id}','LevelsController@delete'); // supprimer un niveau by click
+
+//level export excel levels/index
+Route::get('levels/exportExcel','LevelsController@exportExcel');
+
 Route::resource('levels','LevelsController');
 
 Route::post('educators/enregistrer','EducatorsController@enregistrer'); // edit classroom teacher / matter
@@ -238,3 +270,39 @@ Route::get('gallery',function(){
 })->middleware(['auth','admin']);
 /* Gallery Room*/
 
+Route::get('pdf',function() {
+
+    $page = substr(URL::previous(), -1);
+    if (is_null($page)) {
+        $page = 1;
+    } else {
+      $model = App\Matter::where('user_id', \Auth::user()->id)->forPage($page, 5)->get(['nom_matiere','code_matiere']);
+      Excel::create('Sheetname', function ($excel) use ($model) {
+        $excel->sheet('Sheetname', function ($sheet) use ($model) {
+            $sheet->fromModel($model);
+            $sheet->setStyle(array(
+                'font' => array(
+                    'name'      =>  'Calibri',
+                    'size'      =>  13,
+
+                )
+            ));
+            $sheet->setAllBorders('thin');
+            $sheet->cells('A1:B1',function($cells){
+                $cells->setBackground('#97efee');
+                // header only
+                $cells->setFont(array(
+                    'family'     => 'Calibri',
+                    'size'       => '14',
+                    'bold'       =>  true
+                ));
+            });
+
+            $sheet->row(1, array(
+                'Nom Matière', 'Code Matière'
+            ));
+
+        });
+    })->export('pdf');
+}
+});

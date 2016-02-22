@@ -39,9 +39,9 @@ class TeacherRequest extends Request
             'email'=> 'required|unique:teachers,email',
           //  'num_fix'=> 'required',
             'num_portable'=> 'required',
-            'adresse'=> 'required',
+           // 'adresse'=> 'required',
             'cin'=> 'required|unique:teachers,cin',
-            'salaire'=> 'required',
+           // 'salaire'=> 'required',
         ];
 
     }

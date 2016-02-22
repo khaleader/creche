@@ -10,6 +10,8 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a href="{{ action('LevelsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
+                            <li><a href="{{ action('LevelsController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter</a></li>
+
                         </ul>
                     </div>
 

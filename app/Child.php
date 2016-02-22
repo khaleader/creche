@@ -10,7 +10,7 @@ class Child extends Model
 
 use SoftDeletes;
     protected $guarded =['id'];
-protected $dates = ['date_naissance','deleted_at'];
+protected $dates = ['date_naissance','deleted_at','created_at'];
 
 
     public function setDateNaissanceAttribute($date)

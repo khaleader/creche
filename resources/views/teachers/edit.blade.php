@@ -127,7 +127,7 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Salaire</label>
                             <div class="form_ajout">
-                                <input type="text" value="{{  $teacher->salaire }}" disabled name="salaire" class="form_ajout_input" placeholder="Entrez le CIN du responsable">
+                                <input type="text" value="{{  $teacher->salaire }}"  name="salaire" class="form_ajout_input" placeholder="Entrez le CIN du responsable">
 
                             </div>
                         </div>

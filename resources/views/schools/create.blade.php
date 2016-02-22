@@ -155,7 +155,7 @@
 
     <script>
         $(function(){
-           
+
 
 
             $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){

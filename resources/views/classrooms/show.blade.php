@@ -66,6 +66,7 @@
                     <a class="delete-classe" href="{{ action('ClassroomsController@delete',[$cr]) }}"><div class="btn2">Supprimer</div></a>
                     <a href="{{ action('ClassroomsController@edit',[$cr]) }}"><div class="btn2">Modifier</div></a>
                     <a href="{{ action('TimesheetsController@edit',[$cr]) }}"><div class="btn2">Emploi du temps</div></a>
+                    <a href="{{ action('ClassroomsController@addMatterandProfToCr',[$cr]) }}"> <div class="btn2">ajouter Un Professeur</div> </a>
 
                 </header>
                 <div class="panel-body informations_general">

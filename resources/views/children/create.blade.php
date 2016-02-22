@@ -320,7 +320,7 @@
 
                      alertify.set("notifier","position", "top-right");
                      alertify.set("notifier","delay", 30);
-                     alertify.error("Vous n\'avez pas encoré remplissez les tarifs de paiement  **cliquez D\'abord sur votre  profile puis > " +
+                     alertify.error("Vous n\'avez pas encoré remplissez les tarifs de paiement  **cliquez D\'abord sur paramètres > " +
                       "options de paiement > Selectionnez une Catégorie pour remplir l\'intervalle de l\'age et les prix :)");
 
                         </script>';
@@ -339,14 +339,14 @@
                         <div id="password" class="tab-pane">
                            {!! Form::open(['url'=>action('TeachersController@store')]) !!}
                                 <div class="form_champ">
-                                    <label for="cname" class="control-label col-lg-3">Nom complet</label>
+                                    <label for="cname" class="control-label col-lg-3">Nom complet *</label>
                                     <div class="form_ajout">
                                         <input value="{{ Request::old('nom_teacher')?:'' }}" type="text" name="nom_teacher" class="form_ajout_input" placeholder="Entrez le nom complet">
 
                                     </div>
                                 </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Date de naissance</label>
+                                <label for="cname" class="control-label col-lg-3">Date de naissance *</label>
                                 <div class="form_ajout">
                                     <input type="date" value="{{ Request::old('date_naissance')?:'' }}" name="date_naissance" class="form_ajout_input" placeholder="Entrez la date de naissance ">
                                     <div class="icone_input"><i class="fa fa-"></i></div>
@@ -354,7 +354,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Fonction</label>
+                                <label for="cname" class="control-label col-lg-3">Fonction *</label>
                                 <div class="form_ajout">
                                     <select name="fonction" class="form_ajout_input" id="fonction">
                                         <option selected>Selectionnez s'il vous plait</option>
@@ -367,7 +367,7 @@
                             </div>
 
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Matière</label>
+                                <label for="cname" class="control-label col-lg-3">Matière *</label>
                                 <div class="form_ajout">
                                   <!--  <input type="text" name="poste" class="form_ajout_input" placeholder="Entrez le poste "> -->
                                                     {!!  Form::select('poste',
@@ -378,7 +378,7 @@
                             </div>
 
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Le sexe</label>
+                                <label for="cname" class="control-label col-lg-3">Le sexe *</label>
                                 <div class="form_ajout">
                                     <select name="sexe" class="form_ajout_input" placeholder="Le sexe">
                                         <option>Homme</option>
@@ -389,7 +389,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Email </label>
+                                <label for="cname" class="control-label col-lg-3">Email *</label>
                                 <div class="form_ajout">
                                     <input type="text" value="{{ Request::old('email')?:'' }}" name="email" class="form_ajout_input" placeholder="Entrez l'email ">
 
@@ -403,7 +403,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Numéro portable</label>
+                                <label for="cname" class="control-label col-lg-3">Numéro portable *</label>
                                 <div class="form_ajout">
                                     <input type="text" value="{{ Request::old('num_portable')?:'' }}" name="num_portable" class="form_ajout_input" placeholder="Entrez le numéro portable ">
 
@@ -430,7 +430,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">CIN </label>
+                                <label for="cname" class="control-label col-lg-3">CIN *</label>
                                 <div class="form_ajout">
                                     <input type="text" value="{{ Request::old('cin')?:'' }}" name="cin" class="form_ajout_input" placeholder="Entrez le CIN ">
 

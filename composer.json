@@ -18,6 +18,9 @@
         "morrislaptop/laravel-queue-clear": "~1.0",
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "maatwebsite/excel": "~2.0",
+        "league/csv": "^8.0",
+        "dompdf/dompdf": "^0.6.2",
+        "mpdf/mpdf": "^6.0",
         "vsmoraes/laravel-pdf": "^1.0"
 
     },

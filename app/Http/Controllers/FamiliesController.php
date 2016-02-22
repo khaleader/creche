@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
+use Maatwebsite\Excel\Facades\Excel;
+use URL;
 use Validator;
 
 class FamiliesController extends Controller
@@ -443,6 +445,72 @@ class FamiliesController extends Controller
 
 
         return view('families.search')->with(['child'=>$child,'family'=>$family]);
+    }
+
+
+
+    /****************************Excel export*********************************/
+
+    public function exportExcel()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $family = Family::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','responsable','nom_pere','nom_mere']);
+            Excel::create('Sheetname', function ($excel) use ($family) {
+                $excel->sheet('Sheetname', function ($sheet) use ($family) {
+
+
+                    foreach ($family as $f) {
+                        $count = 0;
+                        if ($f->responsable == 0) {
+                            $f->responsable = $f->nom_mere;
+                        } else {
+                            $f->responsable = $f->nom_pere;
+                        }
+                        foreach ($f->children as $c) {
+                            foreach ($c->bills as $b) {
+                                if ($b->status == 0) {
+                                    $count += 1;
+                                }
+                            }
+
+                        }
+                        if($count > 0)
+                        {
+                            $f->status = 'Non Réglée';
+                        }else{
+                            $f->status = 'Réglée';
+                        }
+                    }
+
+
+
+                    $sheet->fromModel($family);
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:E1',function($cells){
+                        $cells->setBackground('#97efee');
+
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+                    $sheet->row(1, array(
+                        'ID', 'Responsable','Nom Père','Nom Mère','Status de Paiement'
+                    ));
+
+                });
+            })->export('xls');
+        }
     }
 
 }
