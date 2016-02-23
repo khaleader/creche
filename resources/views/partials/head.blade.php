@@ -22,6 +22,8 @@
 
 
 
+
+
     <!--/************** alertify alert ***********/-->
     <!-- JavaScript -->
     <script src="{{ asset('js/alertify/alertify.min.js') }}"></script>

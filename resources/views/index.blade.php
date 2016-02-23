@@ -11,7 +11,21 @@ session_start();
 
 @stop
 @section('content')
-        <!--mini statistics start-->
+    @if(\Auth::user()->typeCompte == 0)
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel bloc3" id="mydiv">
+                <div class="panel-body" >
+
+                    <div class="bloc_info"><p><strong id="date-container">6 j : 21 h : 36 min : 42 sec</strong> qui vous restent pour tester la globalité de nos fonctionnalités.</br>Si vous voulez activer votre compte officiel contactez-nous sur :&nbsp; <strong> 06 10 15 85 99</strong> ou bien sur <strong>oblivius.contact@gmail.com</strong></p></div>
+                    <a href="#" onclick="$('#mydiv').hide()"><img src="images/close.png"></a>
+                </div>
+            </section>
+        </div>
+    </div>
+@endif
+
+
 <div class="row">
     @if(Auth::user() && Auth::user()->isOblivius())
         <div class="col-md-4">
@@ -160,17 +174,52 @@ session_start();
 
 
 @if(Auth::user() && Auth::user()->isAdmin())
-<div class="row">
-    <div class="col-md-4">
-        <section class="panel bloc">
-            <div class="panel-body">
-                <a href="{{ action('BillsController@indexnr') }}">
+                <div class="row">
+                    <div class="col-md-4">
+            <section class="panel bloc">
+                <div class="panel-body">
+                    <a href="{{ action('BillsController@indexnr') }}">
 
-                    <div class="bloc_info"><img src="images/factures.png" ><span class="count">  <?php echo  App\Bill::where('status',0)->where('user_id',\Auth::user()->id)->count()  ?></span><p>Factures non réglées</p></div>
-                </a></div>
-        </section>
-    </div>
-</div>
+                        <div class="bloc_info"><img src="{{ asset('images/factures.png') }}" >
+                            <span class="count">
+                                <?php echo  App\Bill::where('status',0)
+                                        ->where('user_id',\Auth::user()->id)->count()  ?>
+                            </span><p>Factures non réglées</p></div>
+                    </a></div>
+            </section>
+        </div>
+                    <div class="col-md-4">
+                        <section class="panel bloc">
+                            <div class="panel-body">
+                                <a href="#">
+                                    <div class="bloc_info"><img src="{{ asset('images/anniversary.png') }}" >
+                                        <?php
+                        $annv =  \App\Child::where('user_id',\Auth::user()->id)
+                                  ->whereRaw('EXTRACT(month from date_naissance) = ?', [\Carbon\Carbon::now()->month])
+                                  ->whereRaw('EXTRACT(day from date_naissance) = ?', [\Carbon\Carbon::now()->day])
+                                    ->count();
+
+                                        ?>
+                                        <span class="count">{{ $annv }}</span><p>Anniversaires</p></div>
+                                </a></div>
+                        </section>
+                    </div>
+
+                    <div class="col-md-4">
+                        <section class="panel bloc " id="support">
+                            <div class="panel-body">
+
+                                <div class="bloc_info">
+                                    <span>Besoin d'aide ?</span>
+                                    <p>N'hésitez pas à appeler le </br>service après-vente</p>
+                                    <img src="images/phone.png" alt="phone"><label>06 10 15 85 99 </label>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+
+                </div>
 
 <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\modernizr.custom.js') }}"></script>
 <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\classie.js') }}"></script>
@@ -203,14 +252,14 @@ session_start();
 
 @section('jquery')
 
-
+    <script src="{{ asset('js\countdown\jquery.countdown.js') }}"></script>
 
     <script>
 
+  $('#date-container').countdown({
+           date: "{{ \Auth::user()->created_at->addDays(7)  }}"
+       });
 
-            // show the notification
-
-      //  $('#horloge_time').text( date.getHours() + ':' + date.getMinutes());
 
     </script>
 

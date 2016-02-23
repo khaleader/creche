@@ -7114,3 +7114,79 @@ td.drop.droppable{
 /*                fin          */
 /*      emploi du temps      */
 
+
+
+
+
+#support{
+    background-image: url('../images/support.png');
+    background-repeat: no-repeat;
+    height: 163px;
+    width: 340px;
+}
+#support span{
+    font-size: 18px;
+    font-family: open Sans;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 5px;
+}
+#support p{
+    font-size: 14px;
+    font-family: open Sans;
+    font-weight: normal;
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#support label{
+    font-size: 18px;
+    font-family: open Sans;
+    font-weight: bolder;
+    color: #fff;
+}
+#support img{
+    float: left;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.bloc3{
+    height: 60px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    background-color: #0fb4d2;
+}
+.bloc3 p{
+    font-size: 14px;
+    font-family: open Sans;
+    font-weight: bolder;
+    color: #fff;
+    display: inline-block;
+    float: left;
+
+}
+
+.bloc3 a{
+    float: right;
+    margin-top: 3px;
+}
+
+.bloc4{
+    height: 10px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.1);
+    padding: 0px;
+
+}
+
+.bloc_tri{
+    display:inline-block;
+    float: left;
+    margin-left: 15px;
+}
+.bloc4_body{
+    padding: 0px;
+}
+
+
+
+
