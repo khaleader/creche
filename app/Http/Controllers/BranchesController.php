@@ -185,8 +185,8 @@ class BranchesController extends Controller
         } else {
             $model = Branch::where('user_id', \Auth::user()->id)->forPage($page,10)
                 ->get(['nom_branche','code_branche']);
-            Excel::create('Sheetname', function ($excel) use ($model) {
-                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+            Excel::create('La liste des Branches', function ($excel) use ($model) {
+                $excel->sheet('La liste des Branches', function ($sheet) use ($model) {
                     $sheet->fromModel($model);
                     // $sheet->setBorder('A1:B1', 'thin');
                     $sheet->setStyle(array(
@@ -214,6 +214,47 @@ class BranchesController extends Controller
 
                 });
             })->export('xls');
+        }
+    }
+
+
+    public function exportPdf()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Branch::where('user_id', \Auth::user()->id)->forPage($page,10)
+                ->get(['nom_branche','code_branche']);
+            Excel::create('La liste des Branches', function ($excel) use ($model) {
+                $excel->sheet('La liste des Branches', function ($sheet) use ($model) {
+                    $sheet->fromModel($model);
+                    // $sheet->setBorder('A1:B1', 'thin');
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:B1',function($cells){
+                        $cells->setBackground('#97efee');
+                        // header only
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+
+                    $sheet->row(1, array(
+                        'Nom de la Branche','Code de La Branche'
+                    ));
+
+
+                });
+            })->export('pdf');
         }
     }
 

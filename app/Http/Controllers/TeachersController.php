@@ -316,9 +316,9 @@ class TeachersController extends Controller
         if (is_null($page)) {
             $page = 1;
         } else {
-            $model = Teacher::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_teacher','fonction','poste']);
-            Excel::create('Sheetname', function ($excel) use ($model) {
-                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+            $model = Teacher::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['nom_teacher','fonction','poste']);
+            Excel::create('La liste des Professeurs et RH', function ($excel) use ($model) {
+                $excel->sheet('La liste des Professeurs et RH', function ($sheet) use ($model) {
 
                     $sheet->fromModel($model);
                     $sheet->setStyle(array(
@@ -328,7 +328,7 @@ class TeachersController extends Controller
                         )
                     ));
                     $sheet->setAllBorders('thin');
-                    $sheet->cells('A1:D1',function($cells){
+                    $sheet->cells('A1:C1',function($cells){
                         $cells->setBackground('#97efee');
 
                         $cells->setFont(array(
@@ -338,11 +338,47 @@ class TeachersController extends Controller
                         ));
                     });
                     $sheet->row(1, array(
-                        'ID', 'Nom Complet', 'Fonction','Poste'
+                         'Nom Complet', 'Fonction','Poste'
                     ));
 
                 });
             })->export('xls');
+        }
+    }
+
+    public function exportPdf()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $model = Teacher::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['nom_teacher','fonction','poste']);
+            Excel::create('La liste des Professeurs et RH', function ($excel) use ($model) {
+                $excel->sheet('La liste des Professeurs et RH', function ($sheet) use ($model) {
+
+                    $sheet->fromModel($model);
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('A1:C1',function($cells){
+                        $cells->setBackground('#97efee');
+
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+                    $sheet->row(1, array(
+                        'Nom Complet', 'Fonction','Poste'
+                    ));
+
+                });
+            })->export('pdf');
         }
     }
 

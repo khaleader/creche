@@ -7,7 +7,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    {{ $count }} nouvelles inscriptions ce mois
+                    {{ $count }} nouvelles inscriptions En <strong>{{ $month.'-'.$year }}</strong>
 
                 </header>
                 <div class="liste_actions">
@@ -245,7 +245,7 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('StatisticsController@trier_sexe')}}',
-                    data: 'sexe=' + sCurrentLetter + '&_token=' + CSRF_TOKEN,
+                    data: 'sexe=' + sCurrentLetter + '&_token=' + CSRF_TOKEN + '&month=' + '{{ $month }}' + '&year=' + '{{ $year }}',
                     type: 'post',
                     success: function (data) {
                         $('tbody').append(data);

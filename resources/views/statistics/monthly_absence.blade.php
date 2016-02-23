@@ -8,7 +8,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                   {{  $count }} cas d'absence ce mois
+                   {{  $count }} cas d'absence En <strong> {{ $month.'-'.$year }}</strong>
 
                 </header>
                 <div class="liste_actions">
@@ -132,7 +132,8 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('StatisticsController@absence_raison')}}',
-                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    data: 'status=' + status + '&month=' +  '{{ $month }}' + '&year=' + '{{ $year }}'
+                    + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
                         $('tbody').append(data);
@@ -145,7 +146,8 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('StatisticsController@absence_raison')}}',
-                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    data: 'status=' + status + '&month=' + '{{ $month }}' + '&year=' + '{{ $year }}'
+                    + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
                         $('tbody').append(data);

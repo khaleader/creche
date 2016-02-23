@@ -9,7 +9,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Liste des enfants absents
+                    Liste pour gérer les absences
 
                 </header>
                 <div class="liste_actions">

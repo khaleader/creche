@@ -462,8 +462,8 @@ class FamiliesController extends Controller
             $page = 1;
         } else {
             $family = Family::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','responsable','nom_pere','nom_mere']);
-            Excel::create('Sheetname', function ($excel) use ($family) {
-                $excel->sheet('Sheetname', function ($sheet) use ($family) {
+            Excel::create('La liste des familles', function ($excel) use ($family) {
+                $excel->sheet('La liste des familles', function ($sheet) use ($family) {
 
 
                     foreach ($family as $f) {
@@ -490,6 +490,11 @@ class FamiliesController extends Controller
                     }
 
 
+                    $sheet->setWidth('A',0);
+                    $sheet->setWidth('B',20);
+                    $sheet->setWidth('C',20);
+                    $sheet->setWidth('D',20);
+                    $sheet->setWidth('E',20);
 
                     $sheet->fromModel($family);
                     $sheet->setStyle(array(
@@ -509,11 +514,81 @@ class FamiliesController extends Controller
                         ));
                     });
                     $sheet->row(1, array(
-                        'ID', 'Responsable','Nom Père','Nom Mère','Status de Paiement'
+                        '', 'Responsable','Nom Père','Nom Mère','Status de Paiement'
                     ));
 
                 });
             })->export('xls');
+        }
+    }
+
+
+
+    public function exportPdf()
+    {
+        $page = substr(URL::previous(), -1);
+        if (is_null($page)) {
+            $page = 1;
+        } else {
+            $family = Family::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','responsable','nom_pere','nom_mere']);
+            Excel::create('La liste des familles', function ($excel) use ($family) {
+                $excel->sheet('La liste des familles', function ($sheet) use ($family) {
+
+
+                    foreach ($family as $f) {
+                        $count = 0;
+                        if ($f->responsable == 0) {
+                            $f->responsable = $f->nom_mere;
+                        } else {
+                            $f->responsable = $f->nom_pere;
+                        }
+                        foreach ($f->children as $c) {
+                            foreach ($c->bills as $b) {
+                                if ($b->status == 0) {
+                                    $count += 1;
+                                }
+                            }
+
+                        }
+                        if($count > 0)
+                        {
+                            $f->status = 'Non Réglée';
+                        }else{
+                            $f->status = 'Réglée';
+                        }
+                        $f->id = '';
+                    }
+
+
+                    $sheet->setWidth('A',false);
+                    $sheet->setWidth('B',20);
+                    $sheet->setWidth('C',20);
+                    $sheet->setWidth('D',20);
+                    $sheet->setWidth('E',20);
+
+                    $sheet->fromModel($family);
+                    $sheet->setStyle(array(
+                        'font' => array(
+                            'name'      =>  'Calibri',
+                            'size'      =>  13,
+                        )
+                    ));
+                    $sheet->setAllBorders('thin');
+                    $sheet->cells('B1:E1',function($cells){
+                        $cells->setBackground('#97efee');
+
+                        $cells->setFont(array(
+                            'family'     => 'Calibri',
+                            'size'       => '14',
+                            'bold'       =>  true
+                        ));
+                    });
+                    $sheet->row(1, array(
+                        '', 'Responsable','Nom Père','Nom Mère','Status de Paiement'
+                    ));
+
+                });
+            })->export('pdf');
         }
     }
 

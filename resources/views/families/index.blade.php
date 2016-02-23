@@ -11,7 +11,8 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                            <li><a href="{{ action('FamiliesController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png')  }}">Exporter</a></li>
+                            <li><a href="{{ action('FamiliesController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
+                            <li><a href="{{ action('FamiliesController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png')  }}">Exporter PDF</a></li>
 
                         </ul>
                     </div>

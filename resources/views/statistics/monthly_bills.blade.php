@@ -8,7 +8,7 @@
     <div class="col-sm-12">
         <section class="panel">
             <header class="panel-heading">
-                {{ $count }} Factures générées ce mois
+                {{ $count }} Factures générées En <strong>{{ $month.'-'.$year }}</strong>
 
             </header>
             <div class="liste_actions">
@@ -56,7 +56,7 @@
 
 
 
-                <div class="btn-group hidden-phone">
+             <!--   <div class="btn-group hidden-phone">
                     <a data-toggle="dropdown" href="#" class="btn mini blue">
                         Mois
                         <i class="fa fa-angle-down "></i>
@@ -75,8 +75,8 @@
                         <li><a valeur="11" href="#">Novembre</a></li>
                         <li><a valeur="12" href="#">Decembre</a></li>
                     </ul>
-                </div>
-                <div class="btn-group hidden-phone">
+                </div>-->
+                <!--<div class="btn-group hidden-phone">
                     <a data-toggle="dropdown" href="#" class="btn mini blue">
                         Année
                         <i class="fa fa-angle-down "></i>
@@ -89,7 +89,7 @@
                         <li><a valeur="2019"  href="#">2019</a></li>
                         <li><a valeur="2020" href="#">2020</a></li>
                     </ul>
-                </div>
+                </div>-->
 
 
 
@@ -244,8 +244,8 @@
                 var status = 1;
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('BillsController@statusindex')}}',
-                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    url: '{{  URL::action('StatisticsController@statusindex')}}',
+                    data: 'status=' + status + '&_token=' + CSRF_TOKEN  + '&month=' + '{{ $month }}' + '&year=' + '{{ $year }}',
                     type: 'post',
                     success: function (data) {
                         $('tbody').append(data);
@@ -257,8 +257,8 @@
                 var status =0;
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('BillsController@statusindex')}}',
-                    data: 'status=' + status  +  '&_token=' + CSRF_TOKEN,
+                    url: '{{  URL::action('StatisticsController@statusindex')}}',
+                    data: 'status=' + status  +  '&_token=' + CSRF_TOKEN +  '&month=' + '{{ $month }}' + '&year=' + '{{ $year }}',
                     type: 'post',
                     success: function (data) {
                         $('tbody').append(data);

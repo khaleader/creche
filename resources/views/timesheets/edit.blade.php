@@ -653,6 +653,8 @@
 @endsection
 @section('jquery')
     <script src="{{ asset('css/easyui/jquery.easyui.min.js') }}"></script>
+
+
     <script>
         $(function(){
 

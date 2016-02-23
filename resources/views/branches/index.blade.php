@@ -10,10 +10,12 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a href="{{ action('BranchesController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
-                          <li><a href="{{ action('BranchesController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png')  }}">Exporter</a></li>
-                           <!--   <li><a href="#"><img id="imprimer" src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                            <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
-                            <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->
+                          <li><a href="{{ action('BranchesController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
+                            <li><a href="{{ action('BranchesController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png')  }}">Exporter PDF</a></li>
+
+                            <!--   <li><a href="#"><img id="imprimer" src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                             <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
+                             <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->
                         </ul>
                     </div>
                 </header>

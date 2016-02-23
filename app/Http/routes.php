@@ -85,7 +85,8 @@ Route::get('families/archive/{id}','FamiliesController@archive');
 
 // excel export families/index
 Route::get('families/exportExcel','FamiliesController@exportExcel');
-
+// pdf export families/index
+Route::get('families/exportPdf','FamiliesController@exportPdf');
 
 
 /* add child to family in families/show/id */
@@ -118,8 +119,8 @@ Route::match(['get','post'],'nonregler','BillsController@nonregler');
 Route::match(['get','post'],'status','BillsController@status');
 // filter status bills/index
 Route::match(['get','post'],'statusindex','BillsController@statusindex');
-
-
+// for statistics only
+Route::any('statistics/statusindex','StatisticsController@statusindex');
 
 // filter by month bills/show
 Route::match(['get','post'],'month','BillsController@month');
@@ -128,9 +129,13 @@ Route::match(['get','post'],'monthindex','BillsController@monthindex');
 
 // instant search ajax bills/index
 Route::match(['get','post'],'instantsearch','BillsController@searchinst');
+
+Route::get('bills/exportExcel','BillsController@exportExcel');
+Route::get('bills/exportPdf','BillsController@exportPdf');
 // showef famille bills (account Family)
 Route::get('bills/showef/{id}','BillsController@showef');
 Route::get('bills/indexef','BillsController@indexef');
+
 Route::get('schools/editef/{id}','SchoolsController@editef');
 Route::post('schools/updatepassef','SchoolsController@updatepassef');
 Route::post('schools/deleteSchools','SchoolsController@deleteSchools'); // delete schools
@@ -160,7 +165,11 @@ Route::resource('bills','BillsController');
 
 
 /* TeachersController */
+// excel export
 Route::get('teachers/exportExcel','TeachersController@exportExcel');
+// export pdf
+Route::get('teachers/exportPdf','TeachersController@exportPdf');
+
 
 Route::resource('teachers','TeachersController');
 
@@ -178,18 +187,21 @@ Route::match(['get'],'teachers/archive/{id}','TeachersController@archive');
 
 
 /* statistics*/
-Route::get('statistics/mb','StatisticsController@monthly_bills');
-Route::get('statistics/mabs','StatisticsController@monthly_absence'); // index attendances statistics
+Route::get('statistics/mb/{year}/{month}','StatisticsController@monthly_bills');
+Route::get('statistics/mabs/{year}/{month}','StatisticsController@monthly_absence'); // index attendances statistics
 Route::post('statistics/absence_raison','StatisticsController@absence_raison'); // trier en ajax normale ou maladie
 Route::post('attendances/absence_raison_today','AttendancesController@absence_raison_today'); // for today only
 Route::match(['get','post'],'statistics/supprimer_att','StatisticsController@supprimer_att'); // supprimer att en ajax
 Route::match(['get','post'],'statistics/archiver_att','StatisticsController@archiver_att'); //archiver att en ajax
 Route::get('statistics/delete_att/{id}','StatisticsController@delete_att');
 Route::get('statistics/archive_att/{id}','StatisticsController@archive_att');
-Route::get('statistics/newsbsc','StatisticsController@new_subscribers');
+Route::get('statistics/newsbsc/{year}/{month}','StatisticsController@new_subscribers');
 Route::post('statistics/trier_sexe','StatisticsController@trier_sexe'); // trier en ajax sexe garcon ou fille
 Route::post('forgetpass','StatisticsController@forgetpass'); // forget pass ajax login
 Route::get('gestion','StatisticsController@gestion');
+
+Route::any('statistics/getYearAndMonth','StatisticsController@getYearAndMonth');
+
 Route::resource('statistics','StatisticsController');
 
 
@@ -201,14 +213,16 @@ Route::post('branches/supprimer','BranchesController@supprimer'); // suppression
 
 //branches excel export branches/index
 Route::get('branches/exportExcel','BranchesController@exportExcel');
-
+//branches pdf export branches/index
+Route::get('branches/exportPdf','BranchesController@exportPdf');
 Route::resource('branches','BranchesController');
 
 
 Route::post('rooms/supprimer','RoomsController@supprimer'); //suppression ajax
 Route::get('rooms/delete/{id}','RoomsController@delete'); // delete a room by click
 
-Route::get('rooms/export','RoomsController@exportExcel');
+Route::get('rooms/exportExcel','RoomsController@exportExcel');
+Route::get('rooms/exportPdf','RoomsController@exportPdf');
 Route::resource('rooms','RoomsController');
 
 
@@ -223,15 +237,17 @@ Route::get('classrooms/{id}/showef','ClassroomsController@showef'); // show  emp
 Route::any('classrooms/addMatterandProfToCr/{id?}','ClassroomsController@addMatterandProfToCr');
 // Excel export classrooms/index
 Route::get('classrooms/exportExcel','ClassroomsController@exportExcel');
-
+// export pdf classrooms/index
+Route::get('classrooms/exportPdf','ClassroomsController@exportPdf');
 Route::resource('classrooms','ClassroomsController');
 
 Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax
 Route::get('matters/delete/{id}','MattersController@delete'); // delete a matter  by click
 
 // export excel matters/index
-Route::get('matters/export','MattersController@exportMatiere');
-
+Route::get('matters/exportExcel','MattersController@exportMatiere');
+// export pdf  matters/index
+Route::get('matters/exportPdf','MattersController@exportPdf');
 Route::resource('matters','MattersController');
 
 
@@ -251,6 +267,8 @@ Route::get('levels/delete/{id}','LevelsController@delete'); // supprimer un nive
 
 //level export excel levels/index
 Route::get('levels/exportExcel','LevelsController@exportExcel');
+//level pdf excel levels/index
+Route::get('levels/exportPdf','LevelsController@exportPdf');
 
 Route::resource('levels','LevelsController');
 

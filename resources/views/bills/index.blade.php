@@ -10,6 +10,9 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                            <li><a id="exporter" href="{{ action('BillsController@exportExcel') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
+                            <li><a id="pdf" href="{{ action('BillsController@exportPdf') }}"><img  src="{{ asset('images/pdf-icon.png')  }}">Exporter PDF</a></li>
+
                         </ul>
                     </div>
 

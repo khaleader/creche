@@ -754,8 +754,8 @@ class ChildrenController extends Controller
             $page = 1;
         } else {
             $model = Child::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_enfant','created_at']);
-            Excel::create('Sheetname', function ($excel) use ($model) {
-                $excel->sheet('Sheetname', function ($sheet) use ($model) {
+            Excel::create('La liste des Elèves', function ($excel) use ($model) {
+                $excel->sheet('La liste des Elèves', function ($sheet) use ($model) {
                         foreach ($model as $child) {
                                        $count = Bill::where('user_id',\Auth::user()->id)
                                        ->where('child_id',$child->id)
@@ -767,7 +767,13 @@ class ChildrenController extends Controller
                                 $child->status = 'Non Réglée';
                             }
                             $child->created_at = $child->created_at->toDateString();
+                            $child->id ='';
+
                     }
+                    $sheet->setWidth('A',0);
+                    $sheet->setWidth('B',20);
+                    $sheet->setWidth('C',20);
+                    $sheet->setWidth('D',20);
                     $sheet->fromModel($model);
                     $sheet->setStyle(array(
                         'font' => array(
@@ -776,6 +782,7 @@ class ChildrenController extends Controller
                         )
                     ));
                     $sheet->setAllBorders('thin');
+                    $sheet->setAutoFilter();
                     $sheet->cells('A1:D1',function($cells){
                       $cells->setBackground('#97efee');
 
@@ -785,7 +792,7 @@ class ChildrenController extends Controller
                             'bold'       =>  true
                         ));
                     });
-                    $sheet->row(1, array('ID',
+                    $sheet->row(1, array('',
                         'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
                     ));
 
@@ -802,8 +809,8 @@ public function exportPdf()
         $page = 1;
     } else {
         $model = Child::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_enfant','created_at']);
-        Excel::create('Sheetname', function ($excel) use ($model) {
-            $excel->sheet('Sheetname', function ($sheet) use ($model) {
+        Excel::create('La liste des Elèves', function ($excel) use ($model) {
+            $excel->sheet('La liste des Elèves', function ($sheet) use ($model) {
                 foreach ($model as $child) {
                     $count = Bill::where('user_id',\Auth::user()->id)
                         ->where('child_id',$child->id)
@@ -815,7 +822,13 @@ public function exportPdf()
                         $child->status = 'Non Réglée';
                     }
                     $child->created_at = $child->created_at->toDateString();
+                    $child->id = '';
                 }
+
+                $sheet->setWidth('A',0);
+                $sheet->setWidth('B',20);
+                $sheet->setWidth('C',20);
+                $sheet->setWidth('D',20);
                 $sheet->fromModel($model);
                 $sheet->setStyle(array(
                     'font' => array(
@@ -824,7 +837,7 @@ public function exportPdf()
                     )
                 ));
                 $sheet->setAllBorders('thin');
-                $sheet->cells('A1:D1',function($cells){
+                $sheet->cells('B1:D1',function($cells){
                     $cells->setBackground('#97efee');
 
                     $cells->setFont(array(
@@ -833,7 +846,7 @@ public function exportPdf()
                         'bold'       =>  true
                     ));
                 });
-                $sheet->row(1, array('ID',
+                $sheet->row(1, array('',
                     'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
                 ));
 
