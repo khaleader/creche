@@ -12,8 +12,22 @@
             <a href="{{ url('/') }}">
                 Tableau de bord</a>
         </li>
-        <li class="menu_li"> <img src="{{ asset('images/qui_sommes_nous.png')  }}" alt="" id="qui_sommes_nous"><a href="">Qui sommes nous ?</a></li>
-        <li class="menu_li"> <img src="{{ asset('images/contactez_nous.png')  }}" alt="" id="contactez_nous"><a href="" >Contactez-nous</a></li>
+        <!--
+        <li class="menu_li"> <img src="{{ asset('images/qui_sommes_nous.png')  }}" alt="" id="qui_sommes_nous">
+            <a href="">Qui sommes nous ?</a></li>
+        <li class="menu_li"> <img src="{{ asset('images/contactez_nous.png')  }}" alt="" id="contactez_nous">
+            <a href="" >Contactez-nous</a></li>
+
+              -->
+        <li id="header_inbox_bar" class="menu_li">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img src="{{ asset('images/contactez_nous.png') }}" alt="" id="contactez_nous">
+                <span class="badge bg-important">4</span>
+                Boite de réception
+            </a>
+        </li>
+
+
         @if(\Auth::user() && Auth::user()->isAdmin())
             <li class="menu_li"> <img src="{{ asset('images/param.png')  }}" alt="" id="comment_ca_marche">
                 <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}" >Paramètres</a>

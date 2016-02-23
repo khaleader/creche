@@ -589,7 +589,7 @@ class StatisticsController extends Controller
                 <div class="panel-body">
                     <a href="'. action('StatisticsController@monthly_absence',[$year,$month]) .'">
                         <div class="bloc_statistique"><img src="images/pointages.png" ><span class="count">
-                        '.$count_absence .'</span><p>Cas d\'absence En '.$monthtext.' '.$year.'</p></div>
+                        '.$count_absence .'</span><p>Cas d\'absence Ce Mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
                                 <span class="count">'. $count_abs_normale .'</span><p>Justifiées</p>
@@ -609,7 +609,7 @@ class StatisticsController extends Controller
                 <div class="panel-body">
                     <a href="'. action('StatisticsController@new_subscribers',[$year,$month]) .'">
                         <div class="bloc_statistique"><img src="images/inscription.png" >
-                        <span class="count">'. $ns_number .'</span><p>Nouvelles inscriptions En '.$monthtext.' '.$year.'</p></div>
+                        <span class="count">'. $ns_number .'</span><p>Nouvelles inscriptions Ce Mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
                                 <span class="count">'.$garcons.' </span><p>Garçons</p>
@@ -629,7 +629,7 @@ class StatisticsController extends Controller
                 <div class="panel-body">
                     <a href="'. action('StatisticsController@monthly_bills',[$year,$month]) .'">
                         <div class="bloc_statistique"><img src="images/factures.png" ><span class="count">
-                        '. $count_bills.'</span><p>Factures générées En '.$monthtext.' '.$year.'</p></div>
+                        '. $count_bills.'</span><p>Factures générées Ce Mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
                                 <span class="count">'.  $regled_bills .'</span><p>Réglées</p>
@@ -652,7 +652,7 @@ class StatisticsController extends Controller
                 <div class="panel-body">
                     <a href="#">
                         <div class="bloc_statistique"><img src="images/statistiques.png" >
-                        <span class="count">'. $somme .' </span><p>Dhs total estimé En '.$monthtext.' '. $year .'</p></div>
+                        <span class="count">'. $somme .' </span><p>Dhs total estimé Ce Mois</p></div>
                         <div class="bloc_statistique_details">
                             <div class="bloc_statistique_d1">
                                 <span class="count">'. $encaisse .'</span><p>Dhs encaissé</p>
