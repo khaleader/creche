@@ -183,16 +183,16 @@ class MattersController extends Controller
     }
 
 
+    /***********************Excel part ***********************
+     * @param $ids
+     */
 
-    /***********************Excel part ************************/
-
-    public function exportMatiere()
+    public function exportMatiere($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Matter::where('user_id', \Auth::user()->id)->forPage($page,10)->get(['nom_matiere','code_matiere']);
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Matter::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['nom_matiere','code_matiere']);
             Excel::create('La liste des Matières', function ($excel) use ($model) {
                 $excel->sheet('La liste des Matières', function ($sheet) use ($model) {
                     $sheet->fromModel($model);
@@ -222,18 +222,16 @@ class MattersController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
 
 
-    public function exportPdf()
+    public function exportPdf($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Matter::where('user_id', \Auth::user()->id)->forPage($page,10)->get(['nom_matiere','code_matiere']);
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+            $model = Matter::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['nom_matiere','code_matiere']);
             Excel::create('La liste des Matières', function ($excel) use ($model) {
                 $excel->sheet('La liste des Matières', function ($sheet) use ($model) {
                     $sheet->fromModel($model);
@@ -263,7 +261,7 @@ class MattersController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 
 

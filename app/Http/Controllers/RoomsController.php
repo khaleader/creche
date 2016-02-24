@@ -179,13 +179,12 @@ class RoomsController extends Controller
     }
 
 
-    public function exportExcel()
+    public function exportExcel($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Room::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Room::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_salle','capacite_salle']);
             Excel::create('La liste des salles', function ($excel) use ($model) {
                 $excel->sheet('La liste des salles', function ($sheet) use ($model) {
@@ -216,16 +215,14 @@ class RoomsController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
-    public function exportPdf()
+    public function exportPdf($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Room::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+            $model = Room::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_salle','capacite_salle']);
             Excel::create('La liste des salles', function ($excel) use ($model) {
                 $excel->sheet('La liste des salles', function ($sheet) use ($model) {
@@ -256,7 +253,7 @@ class RoomsController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 
 

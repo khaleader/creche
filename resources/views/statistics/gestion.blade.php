@@ -66,6 +66,14 @@
                 </div>
             </section>
         </div>
+        <div class="col-md-3">
+            <section class="panel bloc2">
+                <div class="panel-body">
+                    <a href="#">
+                        <div class="bloc_info2"><img src="{{ asset('images/bus.png') }}" ><p>Transports</p></div></a>
+                </div>
+            </section>
+        </div>
 
 
 

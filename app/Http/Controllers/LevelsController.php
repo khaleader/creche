@@ -155,16 +155,16 @@ class LevelsController extends Controller
     }
 
 
+    /*********************Excel export******************************************
+     * @param $ids
+     */
 
-    /*********************Excel export*******************************************/
-
-    public function exportExcel()
+    public function exportExcel($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Level::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Level::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['niveau']);
             Excel::create('Niveaux', function ($excel) use ($model) {
                 $excel->sheet('Niveaux', function ($sheet) use ($model) {
@@ -195,19 +195,18 @@ class LevelsController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
 
 
 
-    public function exportPdf()
+    public function exportPdf($ids = null )
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Level::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Level::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['niveau']);
             Excel::create('Niveaux', function ($excel) use ($model) {
                 $excel->sheet('Niveaux', function ($sheet) use ($model) {
@@ -238,6 +237,6 @@ class LevelsController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 }

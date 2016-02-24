@@ -452,16 +452,16 @@ class FamiliesController extends Controller
     }
 
 
+    /****************************Excel export********************************
+     * @param $ids
+     */
 
-    /****************************Excel export*********************************/
-
-    public function exportExcel()
+    public function exportExcel($ids =null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $family = Family::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','responsable','nom_pere','nom_mere']);
+
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+            $family = Family::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','responsable','nom_pere','nom_mere']);
             Excel::create('La liste des familles', function ($excel) use ($family) {
                 $excel->sheet('La liste des familles', function ($sheet) use ($family) {
 
@@ -519,18 +519,19 @@ class FamiliesController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
 
-
-    public function exportPdf()
+    /**
+     * @param $ids
+     */
+    public function exportPdf($ids=null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $family = Family::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','responsable','nom_pere','nom_mere']);
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $family = Family::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','responsable','nom_pere','nom_mere']);
             Excel::create('La liste des familles', function ($excel) use ($family) {
                 $excel->sheet('La liste des familles', function ($sheet) use ($family) {
 
@@ -589,7 +590,7 @@ class FamiliesController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 
 }

@@ -299,17 +299,16 @@ class ClassroomsController extends Controller
     }
 
 
+    /************************Export Excel***********************************
+     * @param $ids
+     */
 
-
-    /************************Export Excel************************************/
-
-    public function exportExcel()
+    public function exportExcel($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Classroom::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Classroom::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_classe','code_classe','capacite_classe','niveau','branche']);
             Excel::create('La liste des Classes', function ($excel) use ($model) {
                 $excel->sheet('La liste des Classes', function ($sheet) use ($model) {
@@ -340,15 +339,13 @@ class ClassroomsController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
-    public function exportPdf()
+    public function exportPdf($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Classroom::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+            $model = Classroom::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_classe','code_classe','capacite_classe','niveau','branche']);
             Excel::create('La liste des Classes', function ($excel) use ($model) {
                 $excel->sheet('La liste des Classes', function ($sheet) use ($model) {
@@ -385,7 +382,7 @@ class ClassroomsController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 
 

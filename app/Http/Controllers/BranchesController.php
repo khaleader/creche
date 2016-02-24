@@ -174,16 +174,16 @@ class BranchesController extends Controller
     }
 
 
+    /********************************Export Excel ********************************************
+     * @param null $ids
+     */
 
-    /********************************Export Excel *********************************************/
-
-    public function exportExcel()
+    public function exportExcel($ids =null )
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Branch::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Branch::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_branche','code_branche']);
             Excel::create('La liste des Branches', function ($excel) use ($model) {
                 $excel->sheet('La liste des Branches', function ($sheet) use ($model) {
@@ -214,17 +214,16 @@ class BranchesController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
 
-    public function exportPdf()
+    public function exportPdf($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Branch::where('user_id', \Auth::user()->id)->forPage($page,10)
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Branch::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_branche','code_branche']);
             Excel::create('La liste des Branches', function ($excel) use ($model) {
                 $excel->sheet('La liste des Branches', function ($sheet) use ($model) {
@@ -255,7 +254,7 @@ class BranchesController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 
 }

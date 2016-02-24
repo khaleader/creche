@@ -745,15 +745,16 @@ class ChildrenController extends Controller
          }
     }
 
-    /***********************Excel part ************************/
+    /***********************Excel part ***********************
+     * @param $ids
+     */
 
-    public function exportEleve()
+    public function exportEleve($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Child::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_enfant','created_at']);
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Child::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','nom_enfant','created_at']);
             Excel::create('La liste des Elèves', function ($excel) use ($model) {
                 $excel->sheet('La liste des Elèves', function ($sheet) use ($model) {
                         foreach ($model as $child) {
@@ -798,17 +799,19 @@ class ChildrenController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
 
-public function exportPdf()
+    /**
+     * @param $ids
+     */
+    public function exportPdf($ids = null )
 {
-    $page = substr(URL::previous(), -1);
-    if (is_null($page)) {
-        $page = 1;
-    } else {
-        $model = Child::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','nom_enfant','created_at']);
+    $ids =  explode(',',substr($ids,0,-1));
+    $ids =   array_unique($ids);
+
+        $model = Child::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','nom_enfant','created_at']);
         Excel::create('La liste des Elèves', function ($excel) use ($model) {
             $excel->sheet('La liste des Elèves', function ($sheet) use ($model) {
                 foreach ($model as $child) {
@@ -852,7 +855,7 @@ public function exportPdf()
 
             });
         })->export('pdf');
-    }
+
 }
 
 

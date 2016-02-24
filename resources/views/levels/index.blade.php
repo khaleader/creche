@@ -10,8 +10,8 @@
                     <div class="actions_btn">
                         <ul>
                             <li><a href="{{ action('LevelsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
-                            <li><a href="{{ action('LevelsController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
-                            <li><a href="{{ action('LevelsController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png') }}">Exporter PDF</a></li>
+                            <li><a id="exporter" href="{{ action('LevelsController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
+                            <li><a id="pdf" href="{{ action('LevelsController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png') }}">Exporter PDF</a></li>
 
                         </ul>
                     </div>
@@ -155,6 +155,42 @@
                     }
                 });
             });
+
+
+            var ExcelLink = $('#exporter').attr('href');
+            var PdfLink = $('#pdf').attr('href');
+
+            setInterval(function(){
+                $('#exporter').attr('href',ExcelLink);
+                $('#pdf').attr('href',PdfLink);
+            },  10000);
+
+            /* Excel avec le tri Awesome !*/
+            var valuesExcel = '';
+            $('#exporter').click(function(e) {
+                valuesExcel = '';
+                //  e.preventDefault();
+                $("input[name='select[]']").each(function () {
+                    valuesExcel += $(this).val() + ",";
+                });
+                $(this).attr('href', ExcelLink + '/' + valuesExcel);
+                /* Excel avec le tri Awesome !*/
+
+            });
+
+
+            /* Pdf avec le tri Awesome !*/
+            var valuesPdf = '';
+            $('#pdf').click(function(e){
+                valuesPdf = '';
+                //  e.preventDefault();
+                $("input[name='select[]']").each(function(){
+                    valuesPdf += $(this).val() + ",";
+                });
+                $(this).attr('href',PdfLink + '/' + valuesPdf);
+            });
+            /* Pdf avec le tri Awesome !*/
+
 
 
 

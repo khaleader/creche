@@ -310,13 +310,15 @@ class TeachersController extends Controller
     }
 
 
-    public function exportExcel()
+    /**
+     * @param $ids
+     */
+    public function exportExcel($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Teacher::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['nom_teacher','fonction','poste']);
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Teacher::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['nom_teacher','fonction','poste']);
             Excel::create('La liste des Professeurs et RH', function ($excel) use ($model) {
                 $excel->sheet('La liste des Professeurs et RH', function ($sheet) use ($model) {
 
@@ -343,16 +345,15 @@ class TeachersController extends Controller
 
                 });
             })->export('xls');
-        }
+
     }
 
-    public function exportPdf()
+    public function exportPdf($ids = null)
     {
-        $page = substr(URL::previous(), -1);
-        if (is_null($page)) {
-            $page = 1;
-        } else {
-            $model = Teacher::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['nom_teacher','fonction','poste']);
+        $ids =  explode(',',substr($ids,0,-1));
+        $ids =   array_unique($ids);
+
+            $model = Teacher::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['nom_teacher','fonction','poste']);
             Excel::create('La liste des Professeurs et RH', function ($excel) use ($model) {
                 $excel->sheet('La liste des Professeurs et RH', function ($sheet) use ($model) {
 
@@ -379,7 +380,7 @@ class TeachersController extends Controller
 
                 });
             })->export('pdf');
-        }
+
     }
 
 }

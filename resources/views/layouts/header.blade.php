@@ -12,7 +12,7 @@
             <a href="{{ url('/') }}">
                 Tableau de bord</a>
         </li>
-       
+
         <li class="menu_li"> <img src="{{ asset('images/qui_sommes_nous.png')  }}" alt="" id="qui_sommes_nous">
             <a href="">Qui sommes nous ?</a></li>
         <li class="menu_li"> <img src="{{ asset('images/contactez_nous.png')  }}" alt="" id="contactez_nous">

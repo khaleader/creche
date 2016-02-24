@@ -842,15 +842,16 @@ class BillsController extends Controller
         }
     }
 
-/*****************Export excel and pdf ***************************/
+    /*****************Export excel and pdf **************************
+     * @param $ids
+     */
 
-          public function exportExcel()
+          public function exportExcel($ids =null)
           {
-              $page = substr(URL::previous(), -1);
-              if (is_null($page)) {
-                  $page = 1;
-              } else {
-                  $model = Bill::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','child_id','start','somme','status']);
+             $ids =  explode(',',substr($ids,0,-1));
+               $ids =   array_unique($ids);
+
+                  $model = Bill::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id', 'child_id', 'start', 'somme', 'status']);
                   Excel::create('La liste des Factures', function ($excel) use ($model) {
                       $excel->sheet('La liste des Factures', function ($sheet) use ($model) {
                           foreach ($model as $bill) {
@@ -860,48 +861,47 @@ class BillsController extends Controller
                               } else {
                                   $bill->status = 'Réglée';
                               }
-                              $bill->child_id = Child::where('id',$bill->child_id)->first()->nom_enfant;
-
+                              $bill->child_id = Child::where('id', $bill->child_id)->first()->nom_enfant;
 
                           }
 
-                          $sheet->setWidth('A',20);
-                          $sheet->setWidth('B',20);
-                          $sheet->setWidth('C',20);
-                          $sheet->setWidth('D',20);
-                          $sheet->setWidth('D',20);
+                          $sheet->setWidth('A', 20);
+                          $sheet->setWidth('B', 20);
+                          $sheet->setWidth('C', 20);
+                          $sheet->setWidth('D', 20);
+                          $sheet->setWidth('E', 20);
                           $sheet->fromModel($model);
                           $sheet->setStyle(array(
                               'font' => array(
-                                  'name'      =>  'Calibri',
-                                  'size'      =>  13,
+                                  'name' => 'Calibri',
+                                  'size' => 13,
                               )
                           ));
                           $sheet->setAllBorders('thin');
-                          $sheet->cells('A1:E1',function($cells){
+                          $sheet->cells('A1:E1', function ($cells) {
                               $cells->setBackground('#97efee');
 
                               $cells->setFont(array(
-                                  'family'     => 'Calibri',
-                                  'size'       => '14',
-                                  'bold'       =>  true
+                                  'family' => 'Calibri',
+                                  'size' => '14',
+                                  'bold' => true
                               ));
                           });
                           $sheet->row(1, array(
-                              'Num De Facture',   'Nom de l\'élève',  'Date', 'Montant','Statut'
+                              'Num De Facture', 'Nom de l\'élève', 'Date', 'Montant', 'Statut'
                           ));
 
                       });
                   })->export('xls');
+
               }
-          }
-            public function exportPdf()
+            public function exportPdf($ids = null)
             {
-                $page = substr(URL::previous(), -1);
-                if (is_null($page)) {
-                    $page = 1;
-                } else {
-                    $model = Bill::where('user_id', \Auth::user()->id)->forPage($page, 10)->get(['id','child_id','start','somme','status']);
+                $ids =  explode(',',substr($ids,0,-1));
+                $ids =   array_unique($ids);
+
+
+                    $model = Bill::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','child_id','start','somme','status']);
                     Excel::create('La liste des Factures', function ($excel) use ($model) {
                         $excel->sheet('La liste des Factures', function ($sheet) use ($model) {
                             foreach ($model as $bill) {
@@ -943,7 +943,7 @@ class BillsController extends Controller
 
                         });
                     })->export('pdf');
-                }
+
             }
 
 
