@@ -825,13 +825,18 @@ class ChildrenController extends Controller
                         $child->status = 'Non Réglée';
                     }
                     $child->created_at = $child->created_at->toDateString();
-                    $child->id = '';
+                   unset($child->id);
                 }
 
-                $sheet->setWidth('A',0);
+                $sheet->setWidth('A',1);
                 $sheet->setWidth('B',20);
                 $sheet->setWidth('C',20);
-                $sheet->setWidth('D',20);
+               // $sheet->setWidth('D',20);
+                $sheet->setMergeColumn(array(
+                    'columns' => array('A','B'),
+                    'rows' => array(
+                    )
+                ));
                 $sheet->fromModel($model);
                 $sheet->setStyle(array(
                     'font' => array(
@@ -840,7 +845,7 @@ class ChildrenController extends Controller
                     )
                 ));
                 $sheet->setAllBorders('thin');
-                $sheet->cells('B1:D1',function($cells){
+                $sheet->cells('A1:C1',function($cells){
                     $cells->setBackground('#97efee');
 
                     $cells->setFont(array(
@@ -849,7 +854,7 @@ class ChildrenController extends Controller
                         'bold'       =>  true
                     ));
                 });
-                $sheet->row(1, array('',
+                $sheet->row(1, array(
                     'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
                 ));
 

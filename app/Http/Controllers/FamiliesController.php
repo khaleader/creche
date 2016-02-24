@@ -557,15 +557,14 @@ class FamiliesController extends Controller
                         }else{
                             $f->status = 'Réglée';
                         }
-                        $f->id = '';
+                      unset($f->id);
                     }
 
 
-                    $sheet->setWidth('A',false);
+                    $sheet->setWidth('A',20);
                     $sheet->setWidth('B',20);
                     $sheet->setWidth('C',20);
                     $sheet->setWidth('D',20);
-                    $sheet->setWidth('E',20);
 
                     $sheet->fromModel($family);
                     $sheet->setStyle(array(
@@ -575,7 +574,7 @@ class FamiliesController extends Controller
                         )
                     ));
                     $sheet->setAllBorders('thin');
-                    $sheet->cells('B1:E1',function($cells){
+                    $sheet->cells('A1:D1',function($cells){
                         $cells->setBackground('#97efee');
 
                         $cells->setFont(array(
@@ -585,7 +584,7 @@ class FamiliesController extends Controller
                         ));
                     });
                     $sheet->row(1, array(
-                        '', 'Responsable','Nom Père','Nom Mère','Status de Paiement'
+                         'Responsable','Nom Père','Nom Mère','Status de Paiement'
                     ));
 
                 });
