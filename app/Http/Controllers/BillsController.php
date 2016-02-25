@@ -555,8 +555,8 @@ class BillsController extends Controller
                       }   else{
                           $photo = asset('images/avatar4.jpg');
                       }
-                      echo '  <tr class="no-print">
-                                <td><div class="minimal single-row">
+                      echo '  <tr >
+                                <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
