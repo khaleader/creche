@@ -111,7 +111,7 @@
                     <ul class="nav nav-tabs nav-justified ">
                         <li class="active">
                             <a data-toggle="tab" href="#informations">
-                                Ajouter un enfant
+                                Ajouter un Elève
                             </a>
                         </li>
                         <li>
@@ -130,10 +130,10 @@
                     <table class="table table-hover general-table table_informations">
 
 
-                            <div class="form_champ c {{ $errors->has('nom_enfant') ? 'has-error': '' }}">
+                            <div class="form_champ c ">
                                 <label for="cname" class="control-label col-lg-3">Nom de l'élève * </label>
                                 <div class="form_ajout">
-                                    <input value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
+                                    <input  value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
                                 </div>
                             </div>
 
@@ -414,14 +414,6 @@
 
 
 
-
-
-
-
-
-
-
-
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Adresse</label>
                                 <div class="form_ajout">
@@ -500,15 +492,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
               $('select[name=classe]').prepend("<option selected>selectionnez la classe s'il vous plait</option>");
               $('select[name=poste]').prepend("<option selected>selectionnez la matière s'il vous plait</option>");
              // $('#loader-parent').show();
@@ -579,14 +562,14 @@
 
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                   $.ajax({
-                     url :'{{ URL::action('ChildrenController@checktoreturn')  }}',
+                     url :'{{-- URL::action('ChildrenController@checktoreturn')  --}}',
                       data : 'email_resp=' + email_resp + '&fix=' + fix + '&portable=' +portable + '&nom_pere=' + nom_pere
                                + '&nom_mere=' + nom_mere + '&cin=' + cin + '&_token=' + CSRF_TOKEN,
                       type: 'post',
                       success : function(data){
                              if(data ==  'here')
                              {
-                                 var href = '{{ URL::action('ChildrenController@create_enfant')  }}';
+                                 var href = '{{-- URL::action('ChildrenController@create_enfant')  --}}';
                                  window.location.href = href;
                              }
                       }
@@ -669,8 +652,6 @@
 
 
 
-
-
            $('#email_resp').blur(function(){
              var email =  $(this).val();
                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -694,10 +675,6 @@
 
 
 
-
-
-
-
                         /*   alertify.set('notifier', 'position', 'bottom-right');
                            alertify.set('notifier', 'delay', 20);
                            var notification =   alertify.error("si le parent son nom est " + data +
@@ -706,7 +683,7 @@
                        }
                        //var canDismiss = false;
                      /*  notification.ondismiss = function(){
-                           var href = '{{ URL::action('ChildrenController@create_enfant')  }}';
+                           var href = '{{-- URL::action('ChildrenController@create_enfant')  --}}';
                            window.location.href = href;
                            return canDismiss;
                        };*/

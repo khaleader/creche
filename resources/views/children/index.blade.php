@@ -1,5 +1,24 @@
 ﻿@extends('layouts.default')
+@section('css')
+    <style>
+        @media print {
+           .paiement span.label{
+                color: #fff;
+               -webkit-print-color-adjust: exact;
+            }
+            .paiement span.label-danger {
+                background-color: #FF6C60 !important;
+                -webkit-print-color-adjust: exact;
+            }
 
+            .paiement span.label-success{
+                background-color: #A9D86E !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+        }
+    </style>
+@stop
 
 @section('content')
     <div class="row">
@@ -96,20 +115,20 @@
                     <table class="table  table-hover general-table table_enfants" id="filterByAlpha">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th></th>
                             <th> Nom complet</th>
                             <th class="hidden-phone">Date d'inscription</th>
                             <th>Statut de paiement</th>
-                            <th>Actions</th>
-                            <th></th>
+                            <th class="no-print">Actions</th>
+                            <th class="no-print"></th>
                         </tr>
                         </thead>
                         <tbody>
                           @foreach($children as $child)
 
                         <tr id="{{  ucwords($child->nom_enfant) }}">
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" value="{{ $child->id  }}"  name="select[]">
 
@@ -129,7 +148,7 @@
 
                           $counter =  App\Bill::where('child_id',$child->id)->where('status',0)->count(); ?>
 
-                            <td>
+                            <td class="paiement">
                                 @if(App\Bill::all()->count() == 0)
                                 {{ 'pas de factures'  }}
                                     @else
@@ -141,13 +160,13 @@
                             </td>
 
                             <td>
-                                <a  class="delete-child actions_icons"   href="{{ action('ChildrenController@delete',[$child->id]) }}">
+                                <a class="no-print"  class="delete-child actions_icons"   href="{{ action('ChildrenController@delete',[$child->id]) }}">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                <!-- <a class="archive-child" href="{{  action('ChildrenController@archive',[$child->id]) }}"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
 
-                            <td><a href="{{ action('ChildrenController@show',[$child->id])  }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{ action('ChildrenController@show',[$child->id])  }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endforeach
 
@@ -168,37 +187,31 @@
 @section('jquery')
 
     <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-print.js') }}"></script>
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
+
+
     <script type="text/javascript">
 
         $(document).ready(function(){
-            // table sorter
-            $('#filterByAlpha').tablesorter({
-                widgets:["print"],
-                widgetOptions : {
-                    print_extraCSS: "@media print {" +
-                    ".avatar{ width:40px;height:40px;}" +
-                    "td { text-align:center}" +
-                    "td >span.label-danger:before { content:'non réglée'}" +
-                    "td > span.label-success:before { content: 'réglée '}" +
-                    "}",
-                    print_title: 'La liste des élèves',
-                    print_rows : 'v',
-                    print_callback   : function(config, $table, printStyle){
-                        // do something to the $table (jQuery object of table wrapped in a div)
-                        // or add to the printStyle string, then...
-                        // print the table using the following code
-                        $.tablesorter.printTable.printOutput( config, $table.html(), printStyle );
-                    }
-                }
-            });
 
-            $('#imprimer').click(function(){
-                $('#filterByAlpha').trigger('printTable');
-            });
+$('#imprimer').click(function(){
+$('.table').print({
+    globalStyles: true,
+    mediaPrint: false,
+    stylesheet: null,
+    noPrintSelector: ".no-print",
+    iframe: true,
+    append: null,
+    prepend: null,
+    manuallyCopyFormValues: true,
+    deferred: $.Deferred(),
+    timeout: 250,
+    title: 'La liste des Elèves',
+    doctype: '<!doctype html>'
+});
+});
+
+
 
 
             $('.select-all').click(function(){
