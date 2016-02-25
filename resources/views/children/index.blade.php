@@ -3,8 +3,20 @@
     <style>
         @media print {
            .paiement span.label{
-                color: #fff;
+               background-color: #ffffff;
                -webkit-print-color-adjust: exact;
+            }
+            i.fa{
+             color: #FFF !important;
+                -webkit-print-color-adjust: exact;
+            }
+            i.fa-money{
+                color: #FFF !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .label{
+                color: #FFF !important;
+                -webkit-print-color-adjust: exact;
             }
             .paiement span.label-danger {
                 background-color: #FF6C60 !important;
@@ -198,7 +210,7 @@ $('#imprimer').click(function(){
 $('.table').print({
     globalStyles: true,
     mediaPrint: false,
-    stylesheet: null,
+    stylesheet:null,
     noPrintSelector: ".no-print",
     iframe: true,
     append: null,

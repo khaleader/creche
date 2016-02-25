@@ -6,6 +6,19 @@
                 color: #fff;
                 -webkit-print-color-adjust: exact;
             }
+
+            i.fa{
+                color: #FFF !important;
+                -webkit-print-color-adjust: exact;
+            }
+            i.fa-money{
+                color: #FFF !important;
+                -webkit-print-color-adjust: exact;
+            }
+            .label{
+                color: #FFF !important;
+                -webkit-print-color-adjust: exact;
+            }
             .paiement span.label-danger {
                 background-color: #FF6C60 !important;
                 -webkit-print-color-adjust: exact;
