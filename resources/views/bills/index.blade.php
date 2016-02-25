@@ -223,7 +223,7 @@
                     noPrintSelector: ".no-print",
                     iframe: true,
                     append: null,
-                    prepend: null,
+                    prepend: 'La liste des Factures',
                     manuallyCopyFormValues: true,
                     deferred: $.Deferred(),
                     timeout: 250,

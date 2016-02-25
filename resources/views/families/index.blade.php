@@ -218,7 +218,7 @@
                     noPrintSelector: ".no-print",
                     iframe: true,
                     append: null,
-                    prepend: null,
+                    prepend: '<h3>La liste des Familles</h3>',
                     manuallyCopyFormValues: true,
                     deferred: $.Deferred(),
                     timeout: 250,

@@ -214,7 +214,7 @@ $('.table').print({
     noPrintSelector: ".no-print",
     iframe: true,
     append: null,
-    prepend: null,
+    prepend: '<h3>La liste des Elèves</h3>',
     manuallyCopyFormValues: true,
     deferred: $.Deferred(),
     timeout: 250,

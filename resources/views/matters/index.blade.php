@@ -20,7 +20,7 @@
                                     <img  src="{{ asset('images/pdf-icon.png')  }}">Exporter PDF</a>
                             </li>
 
-                            <li><a href="#"><img id="imprimer" src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
                             <!-- <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
                            <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->
                         </ul>
@@ -82,31 +82,32 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th>Nom de matière</th>
                             <th>Code de la matière</th>
-                            <th>Actions</th>
-                            <th></th>
+                            <th class="no-print">Actions</th>
+                            <th class="no-print"></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($matters as $matter)
                         <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" value="{{ $matter->id }}"  name="select[]">
 
                                     </div>
                                 </div></td>
                             <td>{{ $matter->nom_matiere }}</td>
-                            <td>{{  $matter->code_matiere }}</td><td>
+                            <td>{{  $matter->code_matiere }}</td>
+                            <td class="no-print">
                                 <a href="{{ action('MattersController@delete',[$matter]) }}" class="actions_icons delete-matter">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                              <!--   <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
 
-                            <td><a href="{{ action('MattersController@show',[$matter]) }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{ action('MattersController@show',[$matter]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endforeach
 
@@ -124,10 +125,28 @@
 @endsection
 
 @section('jquery')
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
     <script>
 
         $(function(){
+            $('#imprimer').click(function(){
+                $(document).find('.table').print
+                ({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet:null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: '<h3>La liste des Matières</h3>',
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: 'La liste des Matières',
+                    doctype: '<!doctype html>'
+                });
 
+            });
 
         $('.select-all').click(function(){
             var status = this.checked;

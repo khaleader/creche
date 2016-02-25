@@ -12,6 +12,7 @@
                             <li><a href="{{ action('LevelsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
                             <li><a id="exporter" href="{{ action('LevelsController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
                             <li><a id="pdf" href="{{ action('LevelsController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png') }}">Exporter PDF</a></li>
+                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
 
                         </ul>
                     </div>
@@ -58,9 +59,9 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th>Niveau</th>
-                            <th>Actions</th>
+                            <th class="no-print">Actions</th>
 
                         </tr>
                         </thead>
@@ -69,20 +70,20 @@
                         @foreach($levels as $l)
 
                             <tr>
-                                <td><div class="minimal single-row">
+                                <td class="no-print"><div class="minimal single-row">
                                         <div class="checkbox_liste ">
                                             <input type="checkbox" value="{{ $l->id }}" name="select[]" >
 
                                         </div>
                                     </div></td>
                                 <td>{{  $l->niveau }}</td>
-                                <td>
+                                <td class="no-print">
                                     <a href="{{  action('LevelsController@delete',[$l]) }}" class="actions_icons delete-level">
                                         <i class="fa fa-trash-o liste_icons"></i></a>
                                     <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                     </a>-->
                                 </td>
-                                <td><a href="{{ action('LevelsController@show',[$l]) }}"><div  class="btn_details">Détails</div></a></td>
+                                <td class="no-print"><a href="{{ action('LevelsController@show',[$l]) }}"><div  class="btn_details">Détails</div></a></td>
 
                             </tr>
                         @endforeach
@@ -98,9 +99,37 @@
 
 
 @section('jquery')
-
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
     <script>
         $(function(){
+
+            $('#imprimer').click(function(){
+                $(document).find('.table').print
+                ({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet:null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: '<h3>Les Niveaux</h3>',
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: 'Les Niveaux',
+                    doctype: '<!doctype html>'
+                });
+
+            });
+
+
+
+
+
+
+
+
+
             $('.select-all').click(function(){
                 var status = this.checked;
                 $("input[name='select[]']").each(function(){

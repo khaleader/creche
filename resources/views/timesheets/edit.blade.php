@@ -12,6 +12,52 @@
             background: none;
         }
 
+
+        @media print {
+          div.left.droppable{
+              display: none;
+          }
+            .item{
+                -webkit-print-color-adjust: exact !important;
+            }
+            div.item{
+                width: 50px !important;
+                text-align: center !important;
+                background: #fafafa !important;
+                color: #fff !important;
+                border-radius: 3px !important;
+                padding-bottom: 5px !important;
+                padding-top: 5px !important;
+                position: relative !important;
+                margin-left:15px !important;
+
+            }
+
+            tbody td.title{
+                padding-left:15px  !important;
+                background-color: #eeeeee !important;
+            }
+            .blank{
+                background-color: #eeeeee !important;
+            }
+
+            td.time{
+                padding-left:15px  !important;
+                background-color: #eeeeee !important;
+            }
+            div.assigned{
+                display: inline-block !important;
+                margin-top: 10px !important;
+            }
+
+
+        }
+
+
+
+
+
+
     </style>
 
   @stop
@@ -38,7 +84,12 @@
 <section class="panel">
     <header class="panel-heading">
         Emploi du temps : {{ $cr->nom_classe }}
+        <div class="actions_btn">
+            <ul>
+                <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
 
+            </ul>
+        </div>
     </header>
     <div class="panel-body">
 
@@ -67,7 +118,7 @@
 
             </table>
         </div>
-        <div class="right" style="width: 616px;">
+        <div id="emploi-du-temps" class="right " style="width: 616px;">
             <table class="planning" style="width: 880px">
                 <tr>
                     <td class="blank"></td>
@@ -92,7 +143,7 @@
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '08:00:00')
                                 <div class="item  assigned"  value="{{ $t->id }}"
-                                     style="width:50px;position: static;background-color:{{ $t->color }}
+                                     style="width:50px;position: static;background-color:{{ $t->color }} !important;
 
                                ">{{ $t->matiere }}</div>
                             @endif
@@ -102,7 +153,7 @@
                     <td class="drop" data-time="09:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '09:00:00')
-                                <div class="item   assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item   assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -110,7 +161,7 @@
                     <td class="drop" data-time="10:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '10:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -118,7 +169,7 @@
                     <td class="drop" data-time="11:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '11:00:00')
-                                <div class="item assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -126,7 +177,7 @@
                     <td class="drop" data-time="12:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '12:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -134,7 +185,7 @@
                     <td class="drop" data-time="13:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '13:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -142,7 +193,7 @@
                     <td class="drop" data-time="14:00"  >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '14:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                               ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -150,7 +201,7 @@
                     <td class="drop" data-time="15:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '15:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                              ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -158,7 +209,7 @@
                     <td class="drop" data-time="16:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '16:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                               ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -166,7 +217,7 @@
                     <td class="drop" data-time="17:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '17:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}"
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;"
                                >{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -174,7 +225,7 @@
                     <td class="drop" data-time="18:00" >
                         @foreach($kda as $t)
                             @if($t->lundi == 'lundi' && $t->time == '18:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                               ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -185,7 +236,7 @@
                     <td class="drop" data-time="08:00">
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '08:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -193,7 +244,7 @@
                     <td class="drop" data-time="09:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '09:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -201,7 +252,7 @@
                     <td class="drop" data-time="10:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '10:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -209,7 +260,7 @@
                     <td class="drop" data-time="11:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '11:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -217,7 +268,7 @@
                     <td class="drop" data-time="12:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '12:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -225,7 +276,7 @@
                     <td class="drop" data-time="13:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '13:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -233,7 +284,7 @@
                     <td class="drop" data-time="14:00">
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '14:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -241,7 +292,7 @@
                     <td class="drop" data-time="15:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '15:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -249,7 +300,7 @@
                     <td class="drop" data-time="16:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '16:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -258,7 +309,7 @@
                     <td class="drop" data-time="17:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '17:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -266,7 +317,7 @@
                     <td class="drop" data-time="18:00" >
                         @foreach($kda as $t)
                             @if($t->mardi == 'mardi' && $t->time == '18:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -277,7 +328,7 @@
                     <td class="drop "data-time="08:00">
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '08:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -285,7 +336,7 @@
                     <td class="drop" data-time="09:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '09:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -293,7 +344,7 @@
                     <td class="drop" data-time="10:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '10:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -301,7 +352,7 @@
                     <td class="drop" data-time="11:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '11:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -309,7 +360,7 @@
                     <td class="drop" data-time="12:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '12:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -317,7 +368,7 @@
                     <td class="drop" data-time="13:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '13:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -325,7 +376,7 @@
                     <td class="drop" data-time="14:00">
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '14:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -333,7 +384,7 @@
                     <td class="drop" data-time="15:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '15:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -341,7 +392,7 @@
                     <td class="drop" data-time="16:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '16:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -349,7 +400,7 @@
                     <td class="drop" data-time="17:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '17:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -357,7 +408,7 @@
                     <td class="drop" data-time="18:00" >
                         @foreach($kda as $t)
                             @if($t->mercredi == 'mercredi' && $t->time == '18:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -368,7 +419,7 @@
                     <td class="drop"  data-time="08:00">
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '08:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -376,7 +427,7 @@
                     <td class="drop"  data-time="09:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '09:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -384,7 +435,7 @@
                     <td class="drop"  data-time="10:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '10:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -392,7 +443,7 @@
                     <td class="drop"  data-time="11:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '11:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -400,7 +451,7 @@
                     <td class="drop"  data-time="12:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '12:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -408,7 +459,7 @@
                     <td class="drop"  data-time="13:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '13:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -416,7 +467,7 @@
                     <td class="drop"  data-time="14:00">
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '14:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -424,7 +475,7 @@
                     <td class="drop"  data-time="15:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '15:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -432,7 +483,7 @@
                     <td class="drop"  data-time="16:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '16:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -440,7 +491,7 @@
                     <td class="drop"  data-time="17:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '17:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -448,7 +499,7 @@
                     <td class="drop"  data-time="18:00" >
                         @foreach($kda as $t)
                             @if($t->jeudi == 'jeudi' && $t->time == '18:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -462,7 +513,7 @@
                     <td class="drop vers" data-time="08:00">
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '08:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -471,7 +522,7 @@
                     <td class="drop " data-time="09:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '09:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -479,7 +530,7 @@
                     <td class="drop " data-time="10:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '10:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -487,7 +538,7 @@
                     <td class="drop" data-time="11:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '11:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -495,7 +546,7 @@
                     <td class="drop" data-time="12:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '12:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -503,7 +554,7 @@
                     <td class="drop" data-time="13:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '13:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -511,7 +562,7 @@
                     <td class="drop" data-time="14:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '14:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -519,7 +570,7 @@
                     <td class="drop" data-time="15:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '15:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -527,7 +578,7 @@
                     <td class="drop" data-time="16:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '16:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -535,7 +586,7 @@
                     <td class="drop" data-time="17:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '17:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -543,7 +594,7 @@
                     <td class="drop" data-time="18:00" >
                         @foreach($kda as $t)
                             @if($t->vendredi == 'vendredi' && $t->time == '18:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -558,7 +609,7 @@
                     <td class="drop" data-time="08:00">
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '08:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -566,7 +617,7 @@
                     <td class="drop" data-time="09:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '09:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -574,7 +625,7 @@
                     <td class="drop" data-time="10:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '10:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -582,7 +633,7 @@
                     <td class="drop" data-time="11:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '11:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -590,7 +641,7 @@
                     <td class="drop" data-time="12:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '12:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -598,7 +649,7 @@
                     <td class="drop" data-time="13:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '13:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -606,7 +657,7 @@
                     <td class="drop" data-time="14:00">
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '14:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -614,7 +665,7 @@
                     <td class="drop" data-time="15:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '15:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -622,7 +673,7 @@
                     <td class="drop" data-time="16:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '16:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -630,7 +681,7 @@
                     <td class="drop" data-time="17:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '17:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -638,7 +689,7 @@
                     <td class="drop" data-time="18:00" >
                         @foreach($kda as $t)
                             @if($t->samedi == 'samedi' && $t->time == '18:00:00')
-                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }}
+                                <div class="item  assigned" value="{{ $t->id }}" style="width:50px;position: static;background-color:{{ $t->color }} !important;
                                         ">{{ $t->matiere }}</div>
                             @endif
                         @endforeach
@@ -653,10 +704,31 @@
 @endsection
 @section('jquery')
     <script src="{{ asset('css/easyui/jquery.easyui.min.js') }}"></script>
-
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
 
     <script>
         $(function(){
+
+            $('#imprimer').click(function(){
+                $(document).find('table.planning').print
+                ({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet:null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: "<h3>L'emploi du Temps de {{ $cr->nom_classe }}</h3> ",
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: "l'emploi du Temps de {{ $cr->nom_classe }} ",
+                    doctype: '<!doctype html>'
+                });
+
+            });
+
+
 
 
             $('td > div.item').click(function(){
