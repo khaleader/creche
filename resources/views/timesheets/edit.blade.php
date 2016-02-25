@@ -20,7 +20,7 @@
             .item{
                 -webkit-print-color-adjust: exact !important;
             }
-            div.item{
+            div.item {
                 width: 50px !important;
                 text-align: center !important;
                 background: #fafafa !important;
@@ -30,8 +30,12 @@
                 padding-top: 5px !important;
                 position: relative !important;
                 margin-left:15px !important;
+                margin-bottom:2px !important;
 
             }
+
+
+
 
             tbody td.title{
                 padding-left:15px  !important;
@@ -111,7 +115,7 @@
             <table class="classes forrooms">
                 @foreach($salles as $s)
                 <tr>
-                    <td><div color="{{ $s->color }}" style="color:white;  background-color:{{ $s->color }};width:50px " class="item2">{{ $s->nom_salle }}</div></td>
+                    <td><div color="{{ $s->color }}" style="color:white;  background-color:{{ $s->color }} !important;width:50px " class="item2">{{ $s->nom_salle }}</div></td>
                 </tr>
                 @endforeach
 

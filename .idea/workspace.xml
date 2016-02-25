@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,62 +31,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/levels/index.blade.php">
+      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/teachers/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.133333">
-              <caret line="117" column="33" selection-start-line="117" selection-start-column="33" selection-end-line="117" selection-end-column="33" />
+            <state vertical-scroll-proportion="34.8">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/bills/index.blade.php">
+      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/timesheets/edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53722626">
-              <caret line="225" column="60" selection-start-line="225" selection-start-column="60" selection-end-line="225" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.133333">
-              <caret line="216" column="42" selection-start-line="216" selection-start-column="42" selection-end-line="216" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/families/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.6">
-              <caret line="220" column="55" selection-start-line="220" selection-start-column="55" selection-end-line="220" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/teachers/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.233333">
-              <caret line="147" column="30" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/matters/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.633333">
-              <caret line="140" column="55" selection-start-line="140" selection-start-column="55" selection-end-line="140" selection-end-column="55" />
-              <folding />
+            <state vertical-scroll-proportion="0.42335767">
+              <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+              <folding>
+                <element signature="e#3088#3165#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,13 +118,13 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/children/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/families/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/teachers/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/matters/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/levels/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
       </list>
     </option>
   </component>
@@ -687,13 +649,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/attendances/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46569344">
-          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/xampp/htdocs/enfance/statistiques.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.8">
@@ -1138,88 +1093,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/timesheets/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54452556">
-          <caret line="718" column="33" selection-start-line="718" selection-start-column="33" selection-end-line="718" selection-end-column="33" />
-          <folding>
-            <element signature="e#2217#2237#0#HTML" expanded="true" />
-            <element signature="e#2266#2286#0#HTML" expanded="true" />
-            <element signature="e#2696#2749#0#HTML" expanded="true" />
-            <element signature="e#3346#3366#0#HTML" expanded="true" />
-            <element signature="e#4545#4658#0#HTML" expanded="true" />
-            <element signature="e#5045#5157#0#HTML" expanded="true" />
-            <element signature="e#5542#5654#0#HTML" expanded="true" />
-            <element signature="e#6038#6150#0#HTML" expanded="true" />
-            <element signature="e#6535#6647#0#HTML" expanded="true" />
-            <element signature="e#7032#7144#0#HTML" expanded="true" />
-            <element signature="e#7530#7641#0#HTML" expanded="true" />
-            <element signature="e#8026#8136#0#HTML" expanded="true" />
-            <element signature="e#8521#8632#0#HTML" expanded="true" />
-            <element signature="e#9017#9097#0#HTML" expanded="true" />
-            <element signature="e#9514#9625#0#HTML" expanded="true" />
-            <element signature="e#10117#10238#0#HTML" expanded="true" />
-            <element signature="e#10623#10744#0#HTML" expanded="true" />
-            <element signature="e#11129#11250#0#HTML" expanded="true" />
-            <element signature="e#11635#11756#0#HTML" expanded="true" />
-            <element signature="e#12141#12262#0#HTML" expanded="true" />
-            <element signature="e#12647#12768#0#HTML" expanded="true" />
-            <element signature="e#13152#13273#0#HTML" expanded="true" />
-            <element signature="e#13658#13779#0#HTML" expanded="true" />
-            <element signature="e#14164#14285#0#HTML" expanded="true" />
-            <element signature="e#14671#14792#0#HTML" expanded="true" />
-            <element signature="e#15177#15298#0#HTML" expanded="true" />
-            <element signature="e#15802#15923#0#HTML" expanded="true" />
-            <element signature="e#16314#16435#0#HTML" expanded="true" />
-            <element signature="e#16826#16947#0#HTML" expanded="true" />
-            <element signature="e#17338#17459#0#HTML" expanded="true" />
-            <element signature="e#17850#17971#0#HTML" expanded="true" />
-            <element signature="e#18362#18483#0#HTML" expanded="true" />
-            <element signature="e#18873#18994#0#HTML" expanded="true" />
-            <element signature="e#19385#19506#0#HTML" expanded="true" />
-            <element signature="e#19897#20018#0#HTML" expanded="true" />
-            <element signature="e#20409#20530#0#HTML" expanded="true" />
-            <element signature="e#20921#21042#0#HTML" expanded="true" />
-            <element signature="e#21535#21656#0#HTML" expanded="true" />
-            <element signature="e#22042#22163#0#HTML" expanded="true" />
-            <element signature="e#22549#22670#0#HTML" expanded="true" />
-            <element signature="e#23056#23177#0#HTML" expanded="true" />
-            <element signature="e#23563#23684#0#HTML" expanded="true" />
-            <element signature="e#24070#24191#0#HTML" expanded="true" />
-            <element signature="e#24576#24697#0#HTML" expanded="true" />
-            <element signature="e#25083#25204#0#HTML" expanded="true" />
-            <element signature="e#25590#25711#0#HTML" expanded="true" />
-            <element signature="e#26097#26218#0#HTML" expanded="true" />
-            <element signature="e#26604#26725#0#HTML" expanded="true" />
-            <element signature="e#27237#27358#0#HTML" expanded="true" />
-            <element signature="e#27751#27872#0#HTML" expanded="true" />
-            <element signature="e#28264#28385#0#HTML" expanded="true" />
-            <element signature="e#28776#28897#0#HTML" expanded="true" />
-            <element signature="e#29288#29409#0#HTML" expanded="true" />
-            <element signature="e#29800#29921#0#HTML" expanded="true" />
-            <element signature="e#30312#30433#0#HTML" expanded="true" />
-            <element signature="e#30824#30945#0#HTML" expanded="true" />
-            <element signature="e#31336#31457#0#HTML" expanded="true" />
-            <element signature="e#31848#31969#0#HTML" expanded="true" />
-            <element signature="e#32360#32481#0#HTML" expanded="true" />
-            <element signature="e#33048#33169#0#HTML" expanded="true" />
-            <element signature="e#33556#33677#0#HTML" expanded="true" />
-            <element signature="e#34064#34185#0#HTML" expanded="true" />
-            <element signature="e#34572#34693#0#HTML" expanded="true" />
-            <element signature="e#35080#35201#0#HTML" expanded="true" />
-            <element signature="e#35588#35709#0#HTML" expanded="true" />
-            <element signature="e#36095#36216#0#HTML" expanded="true" />
-            <element signature="e#36603#36724#0#HTML" expanded="true" />
-            <element signature="e#37111#37232#0#HTML" expanded="true" />
-            <element signature="e#37619#37740#0#HTML" expanded="true" />
-            <element signature="e#38127#38248#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.133333">
+        <state vertical-scroll-proportion="0.6627737">
           <caret line="216" column="42" selection-start-line="216" selection-start-column="42" selection-end-line="216" selection-end-column="42" />
           <folding />
         </state>
@@ -1227,7 +1103,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/families/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.6">
+        <state vertical-scroll-proportion="0.5080292">
           <caret line="220" column="55" selection-start-line="220" selection-start-column="55" selection-end-line="220" selection-end-column="60" />
           <folding />
         </state>
@@ -1235,7 +1111,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/teachers/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.233333">
+        <state vertical-scroll-proportion="0.2729927">
           <caret line="147" column="30" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
           <folding />
         </state>
@@ -1243,7 +1119,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/matters/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.633333">
+        <state vertical-scroll-proportion="0.46569344">
           <caret line="140" column="55" selection-start-line="140" selection-start-column="55" selection-end-line="140" selection-end-column="55" />
           <folding />
         </state>
@@ -1259,9 +1135,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/bills/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53722626">
+        <state vertical-scroll-proportion="8.0">
           <caret line="225" column="60" selection-start-line="225" selection-start-column="60" selection-end-line="225" selection-end-column="60" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/teachers/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="34.8">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/timesheets/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42335767">
+          <caret line="32" column="45" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+          <folding>
+            <element signature="e#3088#3165#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
