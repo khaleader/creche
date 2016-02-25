@@ -340,7 +340,7 @@ class ChildrenController extends Controller
                     $photo =  asset('images/avatar4.jpg');
 
                 echo ' <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" name="select[]" value="'.$enfant->id.'">
 
@@ -349,15 +349,15 @@ class ChildrenController extends Controller
                             <td><img class="avatar" src=" '. $photo .' "></td>
                             <td>'. $enfant->nom_enfant .'</td>
                             <td>'.  $enfant->date_naissance->format('d-m-Y') .' </td>
-                            <td><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
-                            <td>
+                            <td class="paiement"><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
+                            <td class="no-print">
                                 <a href="'.action('ChildrenController@delete',[$enfant]).'" class="actions_icons delete-child">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                <!-- <a class="archive-child" href="'.action('ChildrenController@archive',[$enfant]).'"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
 
-                            <td><a href="'. action('ChildrenController@show',[$enfant->id]).'"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="'. action('ChildrenController@show',[$enfant->id]).'"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
             }
 

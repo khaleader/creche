@@ -254,7 +254,7 @@ class BillsController extends Controller
                       }
 
                     echo '  <tr>
-                             <td><div class="minimal single-row">
+                             <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
@@ -274,7 +274,7 @@ class BillsController extends Controller
                                 </a>
                             </td>-->
 
-                            <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
                 }
 
@@ -286,7 +286,7 @@ class BillsController extends Controller
                     else
                     $photo = asset('images/no_avatar.jpg');
                     echo '  <tr>
-                                <td><div class="minimal single-row">
+                                <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
@@ -306,7 +306,7 @@ class BillsController extends Controller
                                 </a>
                             </td>-->
 
-                            <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
 
                 }
@@ -334,7 +334,7 @@ class BillsController extends Controller
                     if ($b->start->month == $mois && !$b->deleted_at) {
 
                         echo ' <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="' . $b->id . '" type="checkbox"  name="select[]">
 
@@ -353,7 +353,7 @@ class BillsController extends Controller
                                 <a class="archive-bill" href="' . '#' . '"><i class="fa fa-archive liste_icons"></i>
                                 </a>
                             </td>-->
-                            <td><a href="' . action('BillsController@details', [$b->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="' . action('BillsController@details', [$b->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr> ';
                     }
                 }
@@ -388,7 +388,7 @@ class BillsController extends Controller
                     $photo = asset('images/no_avatar.jpg');
 
                 echo '  <tr>
-                                <td><div class="minimal single-row">
+                                <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
@@ -408,7 +408,7 @@ class BillsController extends Controller
                                 </a>
                             </td>-->
 
-                            <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
 
 
@@ -440,7 +440,7 @@ class BillsController extends Controller
                     $photo = asset('images/no_avatar.jpg');
 
                 echo '  <tr>
-                                <td><div class="minimal single-row">
+                                <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
@@ -460,7 +460,7 @@ class BillsController extends Controller
                                 </a>
                             </td>-->
 
-                            <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
 
 
@@ -555,7 +555,7 @@ class BillsController extends Controller
                       }   else{
                           $photo = asset('images/avatar4.jpg');
                       }
-                      echo '  <tr>
+                      echo '  <tr class="no-print">
                                 <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
@@ -576,7 +576,7 @@ class BillsController extends Controller
                                 </a>
                             </td>-->
 
-                            <td><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="' . action('BillsController@details', [$bill->id]) . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
 
                   }
@@ -602,7 +602,7 @@ class BillsController extends Controller
                           }
 
                           echo '  <tr>
-                                   <td><div class="minimal single-row">
+                                   <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
@@ -622,7 +622,7 @@ class BillsController extends Controller
                                 </a>
                             </td>-->
 
-                            <td><a href="' . '#' . '"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"> <a href="' . '#' . '"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
 
                       }

@@ -279,7 +279,7 @@ class TeachersController extends Controller
                     $photo = asset('images/no_avatar.jpg');
                 echo '
                     <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" value="'. $teacher->id.' "  name="select[]">
 
@@ -289,7 +289,7 @@ class TeachersController extends Controller
                             <td>'.  $teacher->nom_teacher .'</td>
                             <td>'. $teacher->poste .'</td>
 
-                            <td>
+                            <td class="no-print">
                                 <a href="'.action('TeachersController@delete',[$teacher->id]).'" class="actions_icons  delete-teacher">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <!--<a class="archive-teacher" href="'.action('TeachersController@archive',[$teacher->id]).'">
@@ -297,7 +297,7 @@ class TeachersController extends Controller
                                 </a>-->
                             </td>
 
-                            <td><a href="'. action('TeachersController@show',[$teacher->id]) .'"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="'. action('TeachersController@show',[$teacher->id]) .'"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                 ';
             }

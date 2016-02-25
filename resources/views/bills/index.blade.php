@@ -215,7 +215,8 @@
         $(document).ready(function(){
 
             $('#imprimer').click(function(){
-                $('.table').print({
+                $(document).find('.table').print
+              ({
                     globalStyles: true,
                     mediaPrint: false,
                     stylesheet:null,

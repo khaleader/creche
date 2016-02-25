@@ -151,10 +151,12 @@ class FamiliesController extends Controller
                 ->where('responsable',1)->orWhere('nom_mere', 'LIKE', $caracter .'%')
                  ->where('responsable',0)
                 ->get();
+                $count =0;
+
+
+
                foreach($families as $family)
                {
-
-
                    if($family->responsable == 0)
                        $resp = $family->nom_mere;
                    else
@@ -165,8 +167,27 @@ class FamiliesController extends Controller
                    }else{
                        $photo = asset('images/no_avatar.jpg');
                    }
+
+                   foreach ($family->children as $c )
+                   {
+                       foreach($c->bills as $b)
+                       {
+                           if($b->status == 0)
+                           {
+                               $count += 1;
+                           }
+                       }
+                   }
+                   if($count > 0)
+                   {
+                       $class = 'label-danger';
+                   }
+                   else{
+                       $class = 'label-success';
+                   }
+
                    echo '<tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" name="select[]" value=" '.$family->id.' ">
 
@@ -176,15 +197,15 @@ class FamiliesController extends Controller
                             <td>'. $resp .' </td>
 
                             <td>'.  $family->children->count() .'</td>
-                            <td><span class="label label-success label-mini"><i class="fa fa-money"></i></span></td>
-                            <td>
+                            <td class="paiement"><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
+                            <td class="no-print">
                                 <a href="'.action('FamiliesController@delete',[$family]).'" class="actions_icons delete-family">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                <!-- <a class="archive-family" href="'.action('FamiliesController@archive',[$family]).'"><i class="fa fa-archive liste_icons"></i>
                                 </a> -->
                             </td>
 
-                            <td><a href="'.action('FamiliesController@show',[$family->id]).'"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="'.action('FamiliesController@show',[$family->id]).'"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
                }
 
