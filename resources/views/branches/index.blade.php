@@ -13,8 +13,8 @@
                           <li><a id="exporter" href="{{ action('BranchesController@exportExcel') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
                             <li><a id="pdf" href="{{ action('BranchesController@exportPdf') }}"><img  src="{{ asset('images/pdf-icon.png')  }}">Exporter PDF</a></li>
 
-                            <!--   <li><a href="#"><img id="imprimer" src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                             <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
+                             <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                           <!--  <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
                              <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->
                         </ul>
                     </div>
@@ -60,10 +60,10 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th  class="no-print"></th>
                             <th>Branche</th>
                             <th>Code de la branche</th>
-                            <th>Actions</th>
+                            <th  class="no-print">Actions</th>
 
                         </tr>
                         </thead>
@@ -72,7 +72,7 @@
                         @foreach($branches as $branch)
 
                         <tr>
-                            <td><div class="minimal single-row">
+                            <td  class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" value="{{ $branch->id }}" name="select[]" >
 
@@ -81,12 +81,12 @@
                             <td>{{  $branch->nom_branche }}</td>
                             <td>{{  $branch->code_branche }}</td>
                             <td>
-                                <a href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
+                                <a  class="no-print" href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
-                            <td><a href="{{ action('BranchesController@show',[$branch]) }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{ action('BranchesController@show',[$branch]) }}"><div  class="btn_details">Détails</div></a></td>
 
                         </tr>
                         @endforeach
@@ -103,13 +103,38 @@
 
 
 @section('jquery')
-
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
     <script>
 
         $(function(){
 
 
-        $('.select-all').click(function(){
+            $('#imprimer').click(function(){
+                $(document).find('.table').print
+                ({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet:null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: '<h3 style="width: 100%;height:50px;line-height: 50px !important;' +
+                    ' text-align:center !important;border-radius:' +
+                    ' 40px !important;background-color: #e9f1f3 !important;' +
+                    'color:#6b519d !important ;">Les Branches</h3>',
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: 'Les Branches',
+                    doctype: '<!doctype html>'
+                });
+
+            });
+
+
+
+
+            $('.select-all').click(function(){
             var status = this.checked;
             $("input[name='select[]']").each(function(){
                 this.checked = status;

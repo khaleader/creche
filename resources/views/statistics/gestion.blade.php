@@ -16,7 +16,7 @@
             <section class="panel bloc2">
                 <div class="panel-body">
                     <a href="{{  action('LevelsController@index') }}">
-                        <div class="bloc_info2"><img src="{{ asset('images/salles.png') }}" ><p>Niveaux</p></div></a>
+                        <div class="bloc_info2"><img src="{{ asset('images/niveaux.png') }}" ><p>Niveaux</p></div></a>
                 </div>
             </section>
         </div>

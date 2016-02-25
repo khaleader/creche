@@ -812,9 +812,10 @@ class ChildrenController extends Controller
     $ids =   array_unique($ids);
 
         $model = Child::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','nom_enfant','created_at']);
-        Excel::create('La liste des Elèves', function ($excel) use ($model) {
-            $excel->sheet('La liste des Elèves', function ($sheet) use ($model) {
+       Excel::create('La liste des Elèves', function ($excel) use ($model,$ids) {
+            $excel->sheet('La liste des Elèves', function ($sheet) use ($model, $ids) {
                 foreach ($model as $child) {
+                    $child->time = $child->created_at->toDateString();
                     $count = Bill::where('user_id',\Auth::user()->id)
                         ->where('child_id',$child->id)
                         ->where('status',0)
@@ -824,41 +825,46 @@ class ChildrenController extends Controller
                     } else {
                         $child->status = 'Non Réglée';
                     }
-                    $child->created_at = $child->created_at->toDateString();
+                    unset($child->created_at);
                    unset($child->id);
                 }
 
-                $sheet->setWidth('A',1);
+                $sheet->setWidth('A',20);
                 $sheet->setWidth('B',20);
                 $sheet->setWidth('C',20);
                // $sheet->setWidth('D',20);
-                $sheet->setMergeColumn(array(
-                    'columns' => array('A','B'),
-                    'rows' => array(
-                    )
-                ));
-                $sheet->fromModel($model);
-                $sheet->setStyle(array(
-                    'font' => array(
-                        'name'      =>  'Calibri',
-                        'size'      =>  13,
-                    )
-                ));
-                $sheet->setAllBorders('thin');
-                $sheet->cells('A1:C1',function($cells){
-                    $cells->setBackground('#97efee');
 
+                $sheet->fromModel($model);
+                $sheet->setAllBorders('thin');
+                $sheet->setFontFamily('OpenSans');
+                $sheet->setFontSize(13);
+                $sheet->setFontBold(false);
+
+                for($i = 1; $i <= count($ids) +1 ; $i++)
+                {
+                    $sheet->row($i,function($rows){
+                        $rows->setFontColor('#556b7b');
+                        $rows->setAlignment('center');
+                    });
+                }
+
+
+                $sheet->cells('A1:C1',function($cells){
+                    $cells->setBackground('#e9f1f3');
+                    $cells->setFontColor('#556b7b');
                     $cells->setFont(array(
-                        'family'     => 'Calibri',
-                        'size'       => '14',
-                        'bold'       =>  true
+                        'family'     => 'OpenSans',
+                        'size'       => '15',
+                        'bold'       =>  true,
                     ));
+
                 });
                 $sheet->row(1, array(
                     'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
                 ));
 
             });
+
         })->export('pdf');
 
 }

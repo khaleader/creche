@@ -225,26 +225,35 @@ class BranchesController extends Controller
 
             $model = Branch::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_branche','code_branche']);
-            Excel::create('La liste des Branches', function ($excel) use ($model) {
-                $excel->sheet('La liste des Branches', function ($sheet) use ($model) {
+            Excel::create('La liste des Branches', function ($excel) use ($model,$ids) {
+                $excel->sheet('La liste des Branches', function ($sheet) use ($model, $ids) {
                     $sheet->fromModel($model);
-                    // $sheet->setBorder('A1:B1', 'thin');
-                    $sheet->setStyle(array(
-                        'font' => array(
-                            'name'      =>  'Calibri',
-                            'size'      =>  13,
 
-                        )
-                    ));
                     $sheet->setAllBorders('thin');
+                    $sheet->setFontFamily('OpenSans');
+                    $sheet->setFontSize(13);
+                    $sheet->setFontBold(false);
+                    $sheet->setAllBorders('thin');
+
+                    for($i = 1; $i <= count($ids) +1 ; $i++)
+                    {
+                        $sheet->row($i,function($rows){
+                            $rows->setFontColor('#556b7b');
+                            $rows->setAlignment('center');
+                        });
+                    }
+
+
                     $sheet->cells('A1:B1',function($cells){
-                        $cells->setBackground('#97efee');
-                        // header only
+                        $cells->setBackground('#e9f1f3');
+                        $cells->setFontColor('#556b7b');
+
                         $cells->setFont(array(
-                            'family'     => 'Calibri',
-                            'size'       => '14',
-                            'bold'       =>  true
+                            'family'     => 'OpenSans',
+                            'size'       => '15',
+                            'bold'       =>  true,
                         ));
+
                     });
 
                     $sheet->row(1, array(

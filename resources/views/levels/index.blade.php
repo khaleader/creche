@@ -112,7 +112,10 @@
                     noPrintSelector: ".no-print",
                     iframe: true,
                     append: null,
-                    prepend: '<h3>Les Niveaux</h3>',
+                    prepend: '<h3 style="width: 100%;height:50px;line-height: 50px !important;' +
+                    ' text-align:center !important;border-radius:' +
+                    ' 40px !important;background-color: #e9f1f3 !important;' +
+                    'color:#6b519d !important ;">Les Niveaux</h3>',
                     manuallyCopyFormValues: true,
                     deferred: $.Deferred(),
                     timeout: 250,

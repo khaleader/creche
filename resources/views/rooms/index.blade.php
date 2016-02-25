@@ -15,8 +15,8 @@
                             <li><a id="exporter" href="{{ action('RoomsController@exportExcel') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
                             <li><a id="pdf" href="{{ action('RoomsController@exportPdf') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter PDF</a></li>
 
-                            <!--  <li><a href="#"><img id="imprimer" src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                              <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
+                           <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
+                              <!--   <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
                               <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li>-->
                         </ul>
                     </div>
@@ -68,18 +68,18 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th>Salle</th>
                             <th>Capacité de la salle</th>
-                            <th>Actions</th>
-                            <th></th>
+                            <th class="no-print">Actions</th>
+                            <th class="no-print"></th>
 
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($rooms as $room)
                         <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" name="select[]" value="{{ $room->id }}" >
 
@@ -87,13 +87,13 @@
                                 </div></td>
                             <td>{{  $room->nom_salle }}</td>
                             <td>{{ $room->capacite_salle }} élèves</td>
-                            <td>
+                            <td class="no-print">
                                 <a href="{{ action('RoomsController@delete',[$room]) }}" class="actions_icons delete-room">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
-                            <td><a href="{{ action('RoomsController@show',[$room]) }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{ action('RoomsController@show',[$room]) }}"><div  class="btn_details">Détails</div></a></td>
 
 
                         </tr>
@@ -111,9 +111,31 @@
 @endsection
 
 @section('jquery')
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
     <script>
 
         $(function(){
+
+
+            $('#imprimer').click(function(){
+                $('.table').print({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet: null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: '<h3 style="width: 100%;height:50px;line-height: 50px !important;' +
+                    ' text-align:center !important;border-radius:' +
+                    ' 40px !important;background-color: #e9f1f3 !important;' +
+                    'color:#6b519d !important ;">La liste des salles</h3>',
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: 'La liste des salles',
+                    doctype: '<!doctype html>'
+                });
+            });
 
 
         $('.select-all').click(function(){

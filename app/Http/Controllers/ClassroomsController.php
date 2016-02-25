@@ -262,7 +262,7 @@ class ClassroomsController extends Controller
            $branches = Classroom::where('user_id',\Auth::user()->id)->where('branche',$br)->get();
             foreach ($branches as $branch) {
                 echo '         <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox"  value="'.$branch->id.' " name="select[]">
 
@@ -274,14 +274,14 @@ class ClassroomsController extends Controller
                             <td> '. $branch->niveau .'</td>
                             <td>'. $branch->branche .'</td>
 
-                            <td>
+                            <td class="no-print">
                                 <a href="'.  action('ClassroomsController@delete',[$branch]) .'" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
 
-                            <td><a href=""><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href=""><div  class="btn_details">Détails</div></a></td>
                         </tr>';
             }
         }
@@ -347,8 +347,8 @@ class ClassroomsController extends Controller
         $ids =   array_unique($ids);
             $model = Classroom::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
                 ->get(['nom_classe','code_classe','capacite_classe','niveau','branche']);
-            Excel::create('La liste des Classes', function ($excel) use ($model) {
-                $excel->sheet('La liste des Classes', function ($sheet) use ($model) {
+            Excel::create('La liste des Classes', function ($excel) use ($model,$ids) {
+                $excel->sheet('La liste des Classes', function ($sheet) use ($model,$ids) {
                     $sheet->setWidth('A',15);
                     $sheet->setWidth('B',15);
                     $sheet->setWidth('C',15);
@@ -356,23 +356,32 @@ class ClassroomsController extends Controller
                     $sheet->setWidth('E',15);
                     $sheet->fromModel($model);
 
-                    // $sheet->setBorder('A1:B1', 'thin');
-                    $sheet->setStyle(array(
-                        'font' => array(
-                            'name'      =>  'Calibri',
-                            'size'      =>  13,
 
-                        )
-                    ));
                     $sheet->setAllBorders('thin');
+                    $sheet->setFontFamily('OpenSans');
+                    $sheet->setFontSize(13);
+                    $sheet->setFontBold(false);
+                    $sheet->setAllBorders('thin');
+
+                    for($i = 1; $i <= count($ids) +1 ; $i++)
+                    {
+                        $sheet->row($i,function($rows){
+                            $rows->setFontColor('#556b7b');
+                            $rows->setAlignment('center');
+                        });
+                    }
+
                     $sheet->cells('A1:E1',function($cells){
-                        $cells->setBackground('#97efee');
-                        // header only
+
+                        $cells->setBackground('#e9f1f3');
+                        $cells->setFontColor('#556b7b');
+
                         $cells->setFont(array(
-                            'family'     => 'Calibri',
-                            'size'       => '14',
-                            'bold'       =>  true
+                            'family'     => 'OpenSans',
+                            'size'       => '15',
+                            'bold'       =>  true,
                         ));
+
                     });
 
                     $sheet->row(1, array(

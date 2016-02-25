@@ -553,8 +553,8 @@ class FamiliesController extends Controller
         $ids =   array_unique($ids);
 
             $family = Family::whereIn('id',$ids)->where('user_id', \Auth::user()->id)->get(['id','responsable','nom_pere','nom_mere']);
-            Excel::create('La liste des familles', function ($excel) use ($family) {
-                $excel->sheet('La liste des familles', function ($sheet) use ($family) {
+            Excel::create('La liste des familles', function ($excel) use ($family,$ids) {
+                $excel->sheet('La liste des familles', function ($sheet) use ($family,$ids) {
 
 
                     foreach ($family as $f) {
@@ -588,20 +588,31 @@ class FamiliesController extends Controller
                     $sheet->setWidth('D',20);
 
                     $sheet->fromModel($family);
-                    $sheet->setStyle(array(
-                        'font' => array(
-                            'name'      =>  'Calibri',
-                            'size'      =>  13,
-                        )
-                    ));
+
+                    $sheet->setAllBorders('thin');
+                    $sheet->setFontFamily('OpenSans');
+                    $sheet->setFontSize(13);
+                    $sheet->setFontBold(false);
+
+                    for($i = 1; $i <= count($ids) +1 ; $i++)
+                    {
+                        $sheet->row($i,function($rows){
+                            $rows->setFontColor('#556b7b');
+                            $rows->setAlignment('center');
+                        });
+                    }
+
+
+
                     $sheet->setAllBorders('thin');
                     $sheet->cells('A1:D1',function($cells){
-                        $cells->setBackground('#97efee');
+                        $cells->setBackground('#e9f1f3');
+                        $cells->setFontColor('#556b7b');
 
                         $cells->setFont(array(
-                            'family'     => 'Calibri',
-                            'size'       => '14',
-                            'bold'       =>  true
+                            'family'     => 'OpenSans',
+                            'size'       => '15',
+                            'bold'       =>  true,
                         ));
                     });
                     $sheet->row(1, array(

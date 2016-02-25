@@ -76,20 +76,20 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th>La classe</th>
                             <th>Code classe</th>
                             <th>Capacité de salle</th>
                             <th>Niveau</th>
                             <th>Branche</th>
-                            <th>Actions</th>
-                            <th></th>
+                            <th class="no-print">Actions</th>
+                            <th class="no-print"></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($classrooms as $cr)
                         <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox"  value="{{ $cr->id }}" name="select[]">
 
@@ -101,14 +101,14 @@
                             <td>{{  $cr->niveau }}</td>
                             <td>{{  $cr->branche    }}</td>
 
-                            <td>
+                            <td class="no-print">
                                 <a href="{{  action('ClassroomsController@delete',[$cr]) }}" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                <!-- <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
 
-                            <td><a href="{{ action('ClassroomsController@indexelc',[$cr]) }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{ action('ClassroomsController@indexelc',[$cr]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -122,37 +122,35 @@
 @endsection
 
 @section('jquery')
-    <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-print.js') }}"></script>
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
+
     <script>
 
         $(function(){
-            $('.table').tablesorter({
-                widgets:["print"],
-                widgetOptions : {
-                    print_extraCSS: "@media print {" +
-                    ".avatar{ width:40px;height:40px;}" +
-                    "td { text-align:center}" +
-                    "td > span.label-danger:before { content:'Non Payé'}" +
-                    "td > span.label-success:before { content: 'Payé '}" +
-                    "}",
-                    print_title: 'La liste des Classes',
-                    print_rows : 'v',
-                    print_callback   : function(config, $table, printStyle){
-                        // do something to the $table (jQuery object of table wrapped in a div)
-                        // or add to the printStyle string, then...
-                        // print the table using the following code
-                        $.tablesorter.printTable.printOutput( config, $table.html(), printStyle );
-                    }
-                }
-            });
 
             $('#imprimer').click(function(){
-                $('.table').trigger('printTable');
+                $(document).find('.table').print
+                ({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet:null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: '<h3 style="width: 100%;height:50px;line-height: 50px !important;' +
+                    ' text-align:center !important;border-radius:' +
+                    ' 40px !important;background-color: #e9f1f3 !important;' +
+                    'color:#6b519d !important ;">La Liste des Classes</h3>',
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: 'La Liste des Classes',
+                    doctype: '<!doctype html>'
+                });
+
             });
+
+
 
 
 
