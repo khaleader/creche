@@ -90,19 +90,19 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th></th>
                             <th> Nom complet</th>
                             <th>Poste</th>
 
-                            <th>Actions</th>
-                            <th></th>
+                            <th class="no-print">Actions</th>
+                            <th class="no-print"></th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($teachers as $teacher)
                         <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" value="{{ $teacher->id }}"  name="select[]">
 
@@ -112,7 +112,7 @@
                             <td>{{  $teacher->nom_teacher }}</td>
                             <td>{{ $teacher->poste }}</td>
 
-                            <td>
+                            <td class="no-print">
                                 <a href="{{ action('TeachersController@delete',[$teacher->id]) }}" class="actions_icons  delete-teacher">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                               <!--  <a class="archive-teacher" href="{{ action('TeachersController@archive',[$teacher->id]) }}">
@@ -120,7 +120,7 @@
                                 </a>-->
                             </td>
 
-                            <td><a href="{{ action('TeachersController@show',[$teacher->id]) }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{ action('TeachersController@show',[$teacher->id]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -137,36 +137,26 @@
 
 @section('jquery')
     <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-print.js') }}"></script>
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
     <script>
 $(document).ready(function(){
 
 
-    $('.table').tablesorter({
-        widgets:["print"],
-        widgetOptions : {
-            print_extraCSS: "@media print {" +
-            ".avatar{ width:40px;height:40px;}" +
-            "td { text-align:center}" +
-            "td >span.label-danger:before { content:'non réglée'}" +
-            "td > span.label-success:before { content: 'réglée '}" +
-            "}",
-            print_title: 'La liste des Professeurs et RH',
-            print_rows : 'v',
-            print_callback   : function(config, $table, printStyle){
-                // do something to the $table (jQuery object of table wrapped in a div)
-                // or add to the printStyle string, then...
-                // print the table using the following code
-                $.tablesorter.printTable.printOutput( config, $table.html(), printStyle );
-            }
-        }
-    });
-
     $('#imprimer').click(function(){
-        $('.table').trigger('printTable');
+        $('.table').print({
+            globalStyles: true,
+            mediaPrint: false,
+            stylesheet:null,
+            noPrintSelector: ".no-print",
+            iframe: true,
+            append: null,
+            prepend: null,
+            manuallyCopyFormValues: true,
+            deferred: $.Deferred(),
+            timeout: 250,
+            title: 'La liste des Professeurs et RH',
+            doctype: '<!doctype html>'
+        });
     });
 
 

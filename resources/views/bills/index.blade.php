@@ -1,4 +1,25 @@
 @extends('layouts.default')
+@section('css')
+    <style>
+        @media print {
+
+            .label{
+                color: #FFF !important;
+                -webkit-print-color-adjust: exact;
+            }
+             span.label-danger {
+                background-color: #FF6C60 !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+             span.label-success{
+                background-color: #A9D86E !important;
+                -webkit-print-color-adjust: exact;
+            }
+
+        }
+    </style>
+@stop
 
 
 @section('content')
@@ -114,7 +135,7 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th></th>
+                            <th class="no-print"></th>
                             <th>N° Facture </th>
                             <th></th>
                             <th> Nom complet</th>
@@ -122,7 +143,7 @@
                             <th>Montant</th>
                             <th>Statut</th>
                            <!-- <th>Actions</th>-->
-                            <th></th>
+                            <th class="no-print"></th>
                         </tr>
                         </thead>
 
@@ -130,7 +151,7 @@
                         @foreach($bills as $bill)
                             @unless($bill->child->deleted_at)
                         <tr>
-                            <td><div class="minimal single-row">
+                            <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="{{ $bill->id }}" type="checkbox"  name="select[]">
                                     </div>
@@ -170,7 +191,7 @@
                                 </a>
                             </td>-->
 
-                            <td><a href="{{  action('BillsController@details',[$bill->id]) }}"><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="{{  action('BillsController@details',[$bill->id]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endunless
                             @endforeach
@@ -185,34 +206,30 @@
     <span id="childid" style="display: none;">{{--  $child->id --}}</span>
 @endsection
 @section('jquery')
-  <!--  <script src="{{ asset('js\print-widget\jquery.js') }}"></script> -->
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.js') }}"></script>
-    <script src="{{ asset('js\print-widget\jquery.tablesorter.widgets.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-columnSelector.js') }}"></script>
-    <script src="{{ asset('js\print-widget\widget-print.js') }}"></script>
+  <!--  <script src="{{-- asset('js\print-widget\jquery.js') --}}"></script> -->
+
+    <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
+
+
     <script>
         $(document).ready(function(){
 
-            $('.table').tablesorter({
-                widgets:["print"],
-                widgetOptions : {
-                    print_extraCSS: "@media print {" +
-                    ".avatar{ width:40px;height:40px;}" +
-                    "td { text-align:center}" +
-                    "}",
-                    print_title: 'La liste des Professeurs et RH',
-                    print_rows : 'v',
-                    print_callback   : function(config, $table, printStyle){
-                        // do something to the $table (jQuery object of table wrapped in a div)
-                        // or add to the printStyle string, then...
-                        // print the table using the following code
-                        $.tablesorter.printTable.printOutput( config, $table.html(), printStyle );
-                    }
-                }
-            });
-
             $('#imprimer').click(function(){
-                $('.table').trigger('printTable');
+                $('.table').print({
+                    globalStyles: true,
+                    mediaPrint: false,
+                    stylesheet:null,
+                    noPrintSelector: ".no-print",
+                    iframe: true,
+                    append: null,
+                    prepend: null,
+                    manuallyCopyFormValues: true,
+                    deferred: $.Deferred(),
+                    timeout: 250,
+                    title: 'La liste des Factures',
+                    doctype: '<!doctype html>'
+                });
+
             });
 
 
