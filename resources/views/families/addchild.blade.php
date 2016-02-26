@@ -66,7 +66,7 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Date de naissance</label>
                             <div class="form_ajout">
-                                <input type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
+                                <input id="date_birth_child" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
                                 <div class="icone_input"><i class="fa fa-"></i></div>
 
                             </div>
@@ -122,6 +122,39 @@
             $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
                 $(".alert-success").alert('close');
             });
+
+            $('#date_birth_child').blur(function () {
+                var inputDate = new Date(this.value);
+                var inputDate = inputDate.toLocaleDateString();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ChildrenController@getage')}}',
+                    data: 'inputd=' + inputDate + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        if (data == '') {
+                            alertify.set('notifier', 'position', 'bottom-right');
+                            alertify.set('notifier', 'delay', 60);
+                            alertify.error("Attention la catégorie pour cet age n'est pas encore crée veuillez la créer S'il Vous plait >>> Redirection Automatique");
+                            window.setTimeout(function(){
+                                location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                            },5000);
+
+                            //location.reload();
+
+                        } else {
+                            alertify.set('notifier', 'position', 'bottom-right');
+                            alertify.set('notifier', 'delay', 30);
+                            alertify.warning(data);
+                            var data = data.substr(-7);
+                            var data = data.substr(0, 3);
+                            $('#prices').empty();
+                            $('#prices').append(data);
+                        }
+                    }
+                });
+            });
+
 
 
 

@@ -50,4 +50,5 @@
 
 <!--common script init for all pages-->
 <script src="{{ asset('js/scripts.js')}}"></script>
+<script src="{{ asset('js/sidebar-script.js') }}"></script>
 <!--script for this page-->

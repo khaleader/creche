@@ -46,7 +46,10 @@
                                 <li><a data-month="12" href="#">Décembre</a></li>
                             </ul>
                         </div>
-                    </div></div>
+                    </div>
+               <strong style="font-size: 15px;text-transform: capitalize" id="show-month"></strong>  <strong style="font-size: 15px" id="show-year"></strong>
+                </div>
+
             </section>
         </div>
     </div>
@@ -151,6 +154,8 @@
             $('#months-statistics > li > a ').click(function(){
                  month =  $(this).attr('data-month');
                  monthtext = $(this).text();
+                $('#show-month').text('( '+ monthtext + ', ');
+                $('#show-year').text(year + ' )');
 
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({

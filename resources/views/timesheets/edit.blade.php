@@ -722,7 +722,10 @@
                     noPrintSelector: ".no-print",
                     iframe: true,
                     append: null,
-                    prepend: "<h3>L'emploi du Temps de {{ $cr->nom_classe }}</h3> ",
+                    prepend: '<h3 style="width: 100%;height:50px;line-height: 50px !important;' +
+                    ' text-align:center !important;border-radius:' +
+                    ' 40px !important;background-color: #e9f1f3 !important;' +
+                    'color:#6b519d !important ;">L\'emploi du Temps de La {{ $cr->nom_classe }}</h3>',
                     manuallyCopyFormValues: true,
                     deferred: $.Deferred(),
                     timeout: 250,

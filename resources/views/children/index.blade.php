@@ -171,8 +171,8 @@
 
                             </td>
 
-                            <td>
-                                <a class="no-print"  class="delete-child actions_icons"   href="{{ action('ChildrenController@delete',[$child->id]) }}">
+                            <td class="no-print">
+                                <a  class="delete-child actions_icons"   href="{{ action('ChildrenController@delete',[$child->id]) }}">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                <!-- <a class="archive-child" href="{{  action('ChildrenController@archive',[$child->id]) }}"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
@@ -198,7 +198,6 @@
 
 @section('jquery')
 
-    <script src="{{ asset('js\print-widget\jquery.js') }}"></script>
     <script src="{{ asset('js\printme\jQuery.print.js') }}"></script>
 
 
