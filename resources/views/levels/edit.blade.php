@@ -37,6 +37,10 @@
                         </div>
                     </div>
                     <button class="btn_form" type="submit">Enregistrer</button>
+                    <a  style="line-height:40px; text-align:center;margin-right: 10px;"
+                        class="btn_form" href="{{ URL::previous() }}">
+                        Annuler
+                    </a>
                     {!! Form::close() !!}
                 </div>
 
