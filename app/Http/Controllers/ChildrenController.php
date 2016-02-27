@@ -829,12 +829,13 @@ class ChildrenController extends Controller
                    unset($child->id);
                 }
 
-                $sheet->setWidth('A',20);
-                $sheet->setWidth('B',20);
-                $sheet->setWidth('C',20);
+
                // $sheet->setWidth('D',20);
 
                 $sheet->fromModel($model);
+                $sheet->setWidth('A',1);
+                $sheet->setWidth('B',1);
+                $sheet->setWidth('C',1);
                 $sheet->setAllBorders('thin');
                 $sheet->setFontFamily('OpenSans');
                 $sheet->setFontSize(13);
@@ -842,13 +843,25 @@ class ChildrenController extends Controller
 
                 for($i = 1; $i <= count($ids) +1 ; $i++)
                 {
+                    $sheet->setHeight($i, 25);
                     $sheet->row($i,function($rows){
-                        $rows->setFontColor('#556b7b');
-                        $rows->setAlignment('center');
+                    $rows->setFontColor('#556b7b');
+                    $rows->setAlignment('center');
+                    });
+
+
+                    $sheet->cells('A'.$i.':'.'C'.$i,function($cells){
+                      $cells->setValignment('middle');
+                        $cells->setFontColor('#556b7b');
+                        $cells->setFont(array(
+                            'family'     => 'OpenSans',
+                            'size'       => '13',
+                            'bold'       =>  false,
+                        ));
+
                     });
                 }
-
-
+                // normal header
                 $sheet->cells('A1:C1',function($cells){
                     $cells->setBackground('#e9f1f3');
                     $cells->setFontColor('#556b7b');
@@ -859,6 +872,10 @@ class ChildrenController extends Controller
                     ));
 
                 });
+
+
+
+
                 $sheet->row(1, array(
                     'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
                 ));

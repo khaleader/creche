@@ -110,7 +110,8 @@
             <h2>{{ 'salles' }}</h2>
         @elseif(Route::current()->getUri() == 'educators' or Request::is('educators/*') )
             <h2>{{ 'RÉPARTITION PROFESSEURS' }}</h2>
-
+         @elseif(Route::current()->getUri() == 'levels' or Request::is('levels/*'))
+                      <h2>{{ 'niveaux' }}</h2>
         @else
            <h2>{{  'inconnu' }}</h2>
         @endif

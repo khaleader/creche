@@ -235,19 +235,31 @@ class BranchesController extends Controller
                     $sheet->setFontBold(false);
                     $sheet->setAllBorders('thin');
 
+
                     for($i = 1; $i <= count($ids) +1 ; $i++)
                     {
+                        $sheet->setHeight($i, 25);
                         $sheet->row($i,function($rows){
                             $rows->setFontColor('#556b7b');
                             $rows->setAlignment('center');
                         });
+
+
+                        $sheet->cells('A'.$i.':'.'B'.$i,function($cells){
+                            $cells->setValignment('middle');
+                            $cells->setFontColor('#556b7b');
+                            $cells->setFont(array(
+                                'family'     => 'OpenSans',
+                                'size'       => '13',
+                                'bold'       =>  false,
+                            ));
+
+                        });
                     }
-
-
+                    // normal header
                     $sheet->cells('A1:B1',function($cells){
                         $cells->setBackground('#e9f1f3');
                         $cells->setFontColor('#556b7b');
-
                         $cells->setFont(array(
                             'family'     => 'OpenSans',
                             'size'       => '15',
@@ -255,6 +267,9 @@ class BranchesController extends Controller
                         ));
 
                     });
+
+
+
 
                     $sheet->row(1, array(
                         'Nom de la Branche','Code de La Branche'
