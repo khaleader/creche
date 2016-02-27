@@ -260,6 +260,8 @@ session_start();
            date: "{{ \Auth::user()->created_at->addDays(7)  }}"
        });
 
+  localStorage.classe = '';
+
 
     </script>
 
