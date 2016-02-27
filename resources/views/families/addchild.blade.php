@@ -84,7 +84,7 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Le Transport</label>
                             <div class="form_ajout">
-                                <select name="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
+                                <select name="transport" id="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option selected value="0">Non</option>
                                     <option value="1">Oui</option>
                                 </select>
@@ -110,6 +110,7 @@
         {!! Form::close() !!}
     </div>
     <div class="row"></div>
+    <span id="prices" style="display: none;"></span>
 @endsection
 
 @section('jquery')
@@ -155,7 +156,52 @@
                 });
             });
 
+            $('#transport').change(function () {
+                var trans = $(this).val();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                if (trans == 1) {
+                    $.ajax({
+                        url: '{{  URL::action('ChildrenController@checktransport')}}',
+                        data: 'status=' + 1 + '&_token=' + CSRF_TOKEN,
+                        type: 'post',
+                        success: function (data) {
+                            if(data == '')
+                            {
+                                alertify.set('notifier', 'position', 'bottom-left');
+                                alertify.set('notifier', 'delay', 60);
+                                alertify.error("Attention vous n'avez pas encore spécifié un prix pour le transport");
+                            }else{
+                                if ($('#prices').text().length > 0) {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    var prix = $('#prices').text();
+                                    $.ajax({
+                                        url: '{{  URL::action('ChildrenController@total')}}',
+                                        data: 'prix=' + prix + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            if(data)
+                                            {
+                                                alertify.set('notifier', 'position', 'bottom-left');
+                                                alertify.set('notifier', 'delay', 30);
+                                                alertify.success("Le Total à Payer (+Transport) est :" + data + " Dhs");
 
+                                            }
+                                        }
+                                    });
+                                }else{
+                                    alertify.set('notifier', 'position', 'bottom-left');
+                                    alertify.set('notifier', 'delay', 20);
+                                    alertify.error("Veuillez préciser la date de naissance ");
+                                }
+                            }
+                        }
+                    });
+
+
+
+
+                }
+            });
 
 
 

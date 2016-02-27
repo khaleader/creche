@@ -455,6 +455,7 @@
 
     <div class="row">
     </div>
+        <span id="prices" style="display: none;"></span>
     @endsection
 
 @section('jquery')

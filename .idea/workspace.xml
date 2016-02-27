@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/BranchesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/BranchesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/LevelsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/LevelsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MattersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MattersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/indexnr.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/indexnr.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/header.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/children/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/children/create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/families/addchild.blade.php" afterPath="$PROJECT_DIR$/resources/views/families/addchild.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,12 +44,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://C:/xampp/htdocs/integration/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33231708">
+            <state vertical-scroll-proportion="-3.6949153">
               <caret line="86" column="42" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="42" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.1864405">
+              <caret line="457" column="6" selection-start-line="457" selection-start-column="6" selection-end-line="457" selection-end-column="56" />
+              <folding>
+                <element signature="e#23344#23366#0#HTML" expanded="true" />
+                <marker date="1456537521655" expanded="true" signature="13301:13499" placeholder="..." />
+                <marker date="1456537521655" expanded="true" signature="13316:13497" placeholder="..." />
+                <marker date="1456537521655" expanded="true" signature="13428:13445" placeholder="..." />
+                <marker date="1456537521655" expanded="true" signature="15918:16347" placeholder="..." />
+                <marker date="1456537521655" expanded="true" signature="18882:19081" placeholder="..." />
+                <marker date="1456537521655" expanded="true" signature="18897:19079" placeholder="..." />
+                <marker date="1456537521655" expanded="true" signature="19007:19025" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addchild.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/families/addchild.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3649635">
+              <caret line="108" column="14" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
+              <folding>
+                <element signature="e#5380#5402#0#HTML" expanded="true" />
+                <element signature="e#5849#7457#0#HTML" expanded="false" />
+                <marker date="1456537540738" expanded="true" signature="4758:4956" placeholder="..." />
+                <marker date="1456537540738" expanded="true" signature="4773:4954" placeholder="..." />
+                <marker date="1456537540738" expanded="true" signature="4885:4902" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,7 +121,6 @@
         <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bills/indexef.blade.php" />
         <option value="$PROJECT_DIR$/public/js/printme/jquery-printme.js" />
-        <option value="$PROJECT_DIR$/resources/views/children/create.blade.php" />
         <option value="$PROJECT_DIR$/public/bs3/css/normalize.css" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/BillsController.php" />
         <option value="$PROJECT_DIR$/resources/views/families/index.blade.php" />
@@ -110,7 +134,6 @@
         <option value="$PROJECT_DIR$/resources/views/rooms/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/timesheets/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/children/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/families/addchild.blade.php" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/resources/views/partials/javascript-bottom.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/default.blade.php" />
@@ -136,6 +159,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/BranchesController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ClassroomsController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/RoomsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/children/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/families/addchild.blade.php" />
       </list>
     </option>
   </component>
@@ -480,27 +505,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7459854">
           <caret line="48" column="54" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6437956">
-          <caret line="172" column="0" selection-start-line="172" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.169492">
-          <caret line="553" column="0" selection-start-line="522" selection-start-column="14" selection-end-line="553" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/families/addchild.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.048175">
-          <caret line="65" column="48" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -866,9 +870,50 @@
     </entry>
     <entry file="file://C:/xampp/htdocs/integration/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33231708">
+        <state vertical-scroll-proportion="-3.6949153">
           <caret line="86" column="42" selection-start-line="86" selection-start-column="37" selection-end-line="86" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33231708">
+          <caret line="191" column="19" selection-start-line="191" selection-start-column="14" selection-end-line="191" selection-end-column="19" />
+          <folding>
+            <marker date="1456442420342" expanded="true" signature="9242:9446" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.1864405">
+          <caret line="457" column="6" selection-start-line="457" selection-start-column="6" selection-end-line="457" selection-end-column="56" />
+          <folding>
+            <element signature="e#23344#23366#0#HTML" expanded="true" />
+            <marker date="1456537521655" expanded="true" signature="13301:13499" placeholder="..." />
+            <marker date="1456537521655" expanded="true" signature="13316:13497" placeholder="..." />
+            <marker date="1456537521655" expanded="true" signature="13428:13445" placeholder="..." />
+            <marker date="1456537521655" expanded="true" signature="15918:16347" placeholder="..." />
+            <marker date="1456537521655" expanded="true" signature="18882:19081" placeholder="..." />
+            <marker date="1456537521655" expanded="true" signature="18897:19079" placeholder="..." />
+            <marker date="1456537521655" expanded="true" signature="19007:19025" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/families/addchild.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3649635">
+          <caret line="108" column="14" selection-start-line="108" selection-start-column="14" selection-end-line="108" selection-end-column="14" />
+          <folding>
+            <element signature="e#5380#5402#0#HTML" expanded="true" />
+            <element signature="e#5849#7457#0#HTML" expanded="false" />
+            <marker date="1456537540738" expanded="true" signature="4758:4956" placeholder="..." />
+            <marker date="1456537540738" expanded="true" signature="4773:4954" placeholder="..." />
+            <marker date="1456537540738" expanded="true" signature="4885:4902" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
