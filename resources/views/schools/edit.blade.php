@@ -1,5 +1,7 @@
 @extends('layouts.default')
-
+<script>
+    localStorage.classe ='';
+</script>
 
 
 
