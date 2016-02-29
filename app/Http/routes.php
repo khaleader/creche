@@ -124,6 +124,7 @@ Route::any('statistics/statusindex','StatisticsController@statusindex');
 
 // filter by month bills/show// filter by month bills/index
 Route::match(['get','post'],'monthindex','BillsController@monthindex');
+Route::match(['get','post'],'month','BillsController@month');
 
 // instant search ajax bills/index
 Route::match(['get','post'],'instantsearch','BillsController@searchinst');
