@@ -619,7 +619,7 @@ class ChildrenController extends Controller
             {
                 if($years >= $cat->age_de  && $years <= $cat->age_a)
                 {
-                    echo "Cet Enfant de ". $years. " Ans Va payer ".$cat->prix .' Dhs';
+                    echo "Cet Elève de ". $years. " Ans Va payer ".$cat->prix .' Dhs';
                     break;
                 }
 

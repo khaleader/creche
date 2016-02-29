@@ -524,12 +524,11 @@
                   $('#image-h').show();
               });
               $('#date_birth_child').blur(function () {
-                  var inputDate = new Date(this.value);
-                  var inputDate = inputDate.toLocaleDateString();
+                           var date = $(this).val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                   $.ajax({
                       url: '{{  URL::action('ChildrenController@getage')}}',
-                      data: 'inputd=' + inputDate + '&_token=' + CSRF_TOKEN,
+                      data: 'inputd=' + date + '&_token=' + CSRF_TOKEN,
                       type: 'post',
                       success: function (data) {
                           if (data == '') {
