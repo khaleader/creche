@@ -80,6 +80,7 @@
                             <th>La classe</th>
                             <th>Code classe</th>
                             <th>Capacité de salle</th>
+                            <th>Nombre d'élèves </th>
                             <th>Niveau</th>
                             <th>Branche</th>
                             <th class="no-print">Actions</th>
@@ -98,6 +99,7 @@
                             <td>{{  $cr->nom_classe }}</td>
                             <td>{{  $cr->code_classe }}</td>
                             <td>{{ $cr->capacite_classe }} élèves</td>
+                            <td> {{ $cr->children()->count() }}</td>
                             <td>{{  $cr->niveau }}</td>
                             <td>{{  $cr->branche    }}</td>
 
