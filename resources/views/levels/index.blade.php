@@ -61,6 +61,7 @@
                         <tr>
                             <th class="no-print"></th>
                             <th>Niveau</th>
+                            <th>Nombre d'élèves</th>
                             <th class="no-print">Actions</th>
 
                         </tr>
@@ -77,6 +78,7 @@
                                         </div>
                                     </div></td>
                                 <td>{{  $l->niveau }}</td>
+                                <td>{{ $l->children()->count() }}</td>
                                 <td class="no-print">
                                     <a href="{{  action('LevelsController@delete',[$l]) }}" class="actions_icons delete-level">
                                         <i class="fa fa-trash-o liste_icons"></i></a>

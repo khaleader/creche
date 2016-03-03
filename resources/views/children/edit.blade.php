@@ -75,7 +75,7 @@
                         <div class="form_ajout">
                             <select id="branche" name="branche" class="form_ajout_input">
 
-                                <option selected>Choisissez une branche</option>
+                                <option value="nobr" selected>Choisissez une branche</option>
                                 @foreach(\Auth::user()->branches as $branch)
                                     <option value="{{ $branch->id }}">{{ $branch->nom_branche }}</option>
                                 @endforeach

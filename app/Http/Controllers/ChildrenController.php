@@ -110,7 +110,12 @@ class ChildrenController extends Controller
                 $child->photo = $filename;
                 $child->family_id = $family->id;
                 $child->save();
+
+
                 if ($child->id) {
+                    $ch =Child::find($child->id);
+                    $ch->branches()->attach([$request->branche]);
+                    $ch->levels()->attach([$request->niveau]);
                     //classe
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
                     $cr->children()->attach([$child->id]);
@@ -184,6 +189,11 @@ class ChildrenController extends Controller
                 $child->save();
                 if($child->id)
                 {
+
+                    $ch =Child::find($child->id);
+                    $ch->branches()->attach([$request->branche]);
+                    $ch->levels()->attach([$request->niveau]);
+
                     $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
                     $cr->children()->attach([$child->id]);
 
@@ -470,9 +480,9 @@ class ChildrenController extends Controller
             // 'numero_portable'=> 'required',
          //    'adresse'=> 'required',
              'photo' => 'image',
-              'classe' => 'integer',
+              'classe' => 'required_with:niveau|integer',
              'branche' => 'integer',
-             'niveau' => 'integer'
+             'niveau' => 'required_with:branche|integer'
         ],
             [
                // 'numero_fixe.required' => "Le tel fixe est requis",
@@ -486,6 +496,11 @@ class ChildrenController extends Controller
             ]);
            if($validator->passes())
             {
+                $enfant = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $enfant->branches()->sync([$request->branche]);
+                $enfant->levels()->sync([$request->niveau]);
+
+
                if($request->transport == 1)
                {
                  if(Transport::where('user_id',\Auth::user()->id)->first()->somme > 0)
@@ -534,6 +549,8 @@ class ChildrenController extends Controller
                     $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                     $child->photo = $filename;
                     $child->save();
+
+
                 }else{
                     $pic = Child::findOrFail($id);
                     if(isset($pic->photo))

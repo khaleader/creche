@@ -63,6 +63,7 @@
                             <th  class="no-print"></th>
                             <th>Branche</th>
                             <th>Code de la branche</th>
+                            <th>Nombre d'élèves</th>
                             <th  class="no-print">Actions</th>
 
                         </tr>
@@ -80,6 +81,8 @@
                                 </div></td>
                             <td>{{  $branch->nom_branche }}</td>
                             <td>{{  $branch->code_branche }}</td>
+
+                            <td>{{ $branch->children()->count() }}</td>
                             <td>
                                 <a  class="no-print delete-branch" href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-trash-o liste_icons"></i></a>

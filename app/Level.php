@@ -22,4 +22,9 @@ class Level extends Model
   return $this->belongsToMany(Classroom::class,'branch_classroom_level');
  }
 
+ public function children()
+ {
+  return $this->belongsToMany(Child::class);
+ }
+
 }

@@ -112,6 +112,12 @@ class FamiliesController extends Controller
                 $child->f_id = $user->id;
                 $child->save();
                 if ($child->id) {
+
+                    $ch =Child::find($child->id);
+                    $ch->branches()->attach([$request->branche]);
+                    $ch->levels()->attach([$request->niveau]);
+
+
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
                     $cr->children()->attach([$child->id]);
 

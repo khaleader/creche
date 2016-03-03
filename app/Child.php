@@ -48,4 +48,14 @@ protected $dates = ['date_naissance','deleted_at','created_at'];
     {
         return $this->belongsToMany(Classroom::class);
     }
+
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class);
+    }
+
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class);
+    }
 }

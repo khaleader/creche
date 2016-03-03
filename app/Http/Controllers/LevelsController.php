@@ -166,9 +166,14 @@ class LevelsController extends Controller
         $ids =   array_unique($ids);
 
             $model = Level::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
-                ->get(['niveau']);
+                ->get(['id','niveau']);
             Excel::create('Niveaux', function ($excel) use ($model) {
                 $excel->sheet('Niveaux', function ($sheet) use ($model) {
+                    foreach($model as $level)
+                    {
+                        $level->nbr = $level->children()->count();
+                        unset($level->id);
+                    }
                     $sheet->fromModel($model);
                     // $sheet->setBorder('A1:B1', 'thin');
                     $sheet->setStyle(array(
@@ -179,7 +184,7 @@ class LevelsController extends Controller
                         )
                     ));
                     $sheet->setAllBorders('thin');
-                    $sheet->cells('A1',function($cells){
+                    $sheet->cells('A1:B1',function($cells){
                         $cells->setBackground('#97efee');
                         // header only
                         $cells->setFont(array(
@@ -190,7 +195,7 @@ class LevelsController extends Controller
                     });
 
                     $sheet->row(1, array(
-                        'Le Niveau'
+                        'Le Niveau',"Nombre d'élèves"
                     ));
 
 
@@ -208,10 +213,14 @@ class LevelsController extends Controller
         $ids =   array_unique($ids);
 
             $model = Level::whereIn('id',$ids)->where('user_id', \Auth::user()->id)
-                ->get(['niveau']);
+                ->get(['id','niveau']);
             Excel::create('Niveaux', function ($excel) use ($model,$ids) {
                 $excel->sheet('Niveaux', function ($sheet) use ($model,$ids) {
-
+                    foreach($model as $level)
+                    {
+                        $level->nbr = $level->children()->count();
+                        unset($level->id);
+                    }
                     $sheet->fromModel($model);
 
                     $sheet->setAllBorders('thin');
@@ -231,7 +240,7 @@ class LevelsController extends Controller
                         });
 
 
-                        $sheet->cells('A'.$i,function($cells){
+                        $sheet->cells('A'.$i.':'.'B'.$i,function($cells){
                             $cells->setValignment('middle');
                             $cells->setFontColor('#556b7b');
                             $cells->setFont(array(
@@ -243,7 +252,7 @@ class LevelsController extends Controller
                         });
                     }
                     // normal header
-                    $sheet->cells('A1',function($cells){
+                    $sheet->cells('A1:B1',function($cells){
                         $cells->setBackground('#e9f1f3');
                         $cells->setFontColor('#556b7b');
                         $cells->setFont(array(
@@ -256,7 +265,7 @@ class LevelsController extends Controller
 
 
                     $sheet->row(1, array(
-                        'Le Niveau'
+                        'Le Niveau',"Nombre d'élèves"
                     ));
 
 
