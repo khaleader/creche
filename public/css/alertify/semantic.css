@@ -24,7 +24,19 @@
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.6em;
   font-weight: 700;
+  text-indent: -9999px;
+  line-height: 0; /* Collapse the original line */
 }
+
+
+.ajs-header::after {
+  content: "Notification de Sécurité";
+  text-indent: 0;
+  display: block;
+  line-height: initial; /* New content takes up original line height */
+}
+
+
 .alertify .ajs-body {
   font-family: 'Roboto', sans-serif;
   color: #555;

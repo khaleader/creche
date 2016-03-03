@@ -98,7 +98,9 @@
                             <th></th>
                             <th> Nom complet</th>
                             <th class="hidden-phone">Date d'inscription</th>
+                            <th>Classe</th>
                             <th>Statut de paiement</th>
+
                             <th>Actions</th>
                             <th></th>
                         </tr>
@@ -123,6 +125,12 @@
 
                                 <td>{{  ucwords($child->nom_enfant) }}</td>
                                 <td>{{  \Carbon\Carbon::parse($child->created_at)->format('d-m-Y')  }} </td>
+                                <td>
+                                    @foreach($child->classrooms as $cr)
+                                        {{  $cr->nom_classe }}
+                                    @endforeach
+                                </td>
+
                                 <?php
 
                                 $counter =  App\Bill::where('child_id',$child->id)->where('status',0)->count(); ?>

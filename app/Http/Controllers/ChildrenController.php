@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Bill;
+use App\Branch;
 use App\CategoryBill;
 use App\Classroom;
 use App\Events\BillEvent;
@@ -11,6 +12,7 @@ use App\Family;
 use App\Child;
 use App\Http\Requests\ajouterEnfantRequest;
 use App\Http\Requests\FormValidationChildFamilyRequest;
+use App\Level;
 use App\Transport;
 use App\User;
 use Carbon\Carbon;
@@ -111,7 +113,7 @@ class ChildrenController extends Controller
                 if ($child->id) {
                     //classe
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
-                    $cr->children()->sync([$child->id]);
+                    $cr->children()->attach([$child->id]);
                     $bill = new Bill();
                     $bill->start = Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();
@@ -183,7 +185,7 @@ class ChildrenController extends Controller
                 if($child->id)
                 {
                     $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
-                    $cr->children()->sync([$child->id]);
+                    $cr->children()->attach([$child->id]);
 
                     $bill  = new Bill();
                     $bill->start =Carbon::now()->toDateString();
@@ -283,7 +285,7 @@ class ChildrenController extends Controller
                    if($child->id)
                    {
                        $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
-                       $cr->children()->sync([$child->id]);
+                       $cr->children()->attach([$child->id]);
 
                        $bill  = new Bill();
                        $bill->start =Carbon::now()->toDateString();
@@ -368,6 +370,40 @@ class ChildrenController extends Controller
         }
     }
 
+    // retourne le niveau dès le recoit de la branche  en ajax
+    public function getLevelWhenBranchId()
+    {
+        if(\Request::ajax())
+        {
+            $branch_id = \Input::get('branche_id');
+            $branch = Branch::where('id',$branch_id)->first();
+            foreach($branch->levels as $level)
+            {
+                echo '<option value="'.$level->id.'">'.$level->niveau.'</option>';
+            }
+
+        }
+    }
+
+    public function getClassroomWhenLevelId()
+    {
+        if(\Request::ajax()) {
+            $level_id = \Input::get('level_id');
+            $level = Level::where('id', $level_id)->first();
+            foreach ($level->classrooms as $cr) {
+                echo '<option value="' . $cr->id . '">' . $cr->nom_classe . '</option>';
+
+            }
+        }
+
+
+    }
+
+
+
+
+
+
 
     /**
      * Display the specified resource.
@@ -421,24 +457,31 @@ class ChildrenController extends Controller
 
        $validator = Validator::make([
                $request->all(),
-           'numero_fixe' =>$request->numero_fixe,
-           'numero_portable' =>$request->numero_portable,
-           'adresse' => $request->adresse,
+         //  'numero_fixe' =>$request->numero_fixe,
+          // 'numero_portable' =>$request->numero_portable,
+        //   'adresse' => $request->adresse,
            'photo' => $request->photo,
-           'classe' => $request->classe
+           'classe' => $request->classe,
+           'branche' => $request->branche,
+           'niveau' => $request->niveau
 
         ],[
-             'numero_fixe' => 'required',
-             'numero_portable'=> 'required',
-             'adresse'=> 'required',
+            // 'numero_fixe' => 'required',
+            // 'numero_portable'=> 'required',
+         //    'adresse'=> 'required',
              'photo' => 'image',
-              'classe' => 'integer'
+              'classe' => 'integer',
+             'branche' => 'integer',
+             'niveau' => 'integer'
         ],
             [
-                'numero_fixe.required' => "Le tel fixe est requis",
-                'numero_portable.required' => "Le tel portable est requis",
-                'adresse.required' => "L'adresse est requis",
-                'photo.image' => "L'image doit etre de type valide JPEG\PNG"
+               // 'numero_fixe.required' => "Le tel fixe est requis",
+             //   'numero_portable.required' => "Le tel portable est requis",
+             //   'adresse.required' => "L'adresse est requis",
+                'photo.image' => "L'image doit etre de type valide JPEG\PNG",
+                'branche.integer' => "vous devez choisir une branche",
+                'niveau.integer' => "vous devez choisir un niveau",
+                'classe.integer' => "vous devez choisir une classe"
 
             ]);
            if($validator->passes())
@@ -767,6 +810,11 @@ class ChildrenController extends Controller
                             } else {
                                 $child->status = 'Non Réglée';
                             }
+                            foreach($child->classrooms as $cr)
+                            {
+                                $child->classe = $cr->nom_classe;
+                            }
+
                             $child->created_at = $child->created_at->toDateString();
                             $child->id ='';
 
@@ -775,6 +823,7 @@ class ChildrenController extends Controller
                     $sheet->setWidth('B',20);
                     $sheet->setWidth('C',20);
                     $sheet->setWidth('D',20);
+                    $sheet->setWidth('E',20);
                     $sheet->fromModel($model);
                     $sheet->setStyle(array(
                         'font' => array(
@@ -784,7 +833,7 @@ class ChildrenController extends Controller
                     ));
                     $sheet->setAllBorders('thin');
                     $sheet->setAutoFilter();
-                    $sheet->cells('A1:D1',function($cells){
+                    $sheet->cells('A1:E1',function($cells){
                       $cells->setBackground('#97efee');
 
                         $cells->setFont(array(
@@ -794,7 +843,7 @@ class ChildrenController extends Controller
                         ));
                     });
                     $sheet->row(1, array('',
-                        'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
+                        'Nom Elève', 'Date d\'inscription', 'Status de Paiement ','Classe'
                     ));
 
                 });
@@ -825,6 +874,11 @@ class ChildrenController extends Controller
                     } else {
                         $child->status = 'Non Réglée';
                     }
+                    foreach($child->classrooms as $cr)
+                    {
+                        $child->classe = $cr->nom_classe;
+                    }
+
                     unset($child->created_at);
                    unset($child->id);
                 }
@@ -833,15 +887,12 @@ class ChildrenController extends Controller
                // $sheet->setWidth('D',20);
 
                 $sheet->fromModel($model);
-                $sheet->setWidth('A',1);
-                $sheet->setWidth('B',1);
-                $sheet->setWidth('C',1);
                 $sheet->setAllBorders('thin');
                 $sheet->setFontFamily('OpenSans');
                 $sheet->setFontSize(13);
                 $sheet->setFontBold(false);
 
-                for($i = 1; $i <= count($ids) +1 ; $i++)
+                for($i = 1; $i <= count($ids) + 1; $i++)
                 {
                     $sheet->setHeight($i, 25);
                     $sheet->row($i,function($rows){
@@ -850,7 +901,7 @@ class ChildrenController extends Controller
                     });
 
 
-                    $sheet->cells('A'.$i.':'.'C'.$i,function($cells){
+                    $sheet->cells('A'.$i.':'.'D'.$i,function($cells){
                       $cells->setValignment('middle');
                         $cells->setFontColor('#556b7b');
                         $cells->setFont(array(
@@ -862,7 +913,7 @@ class ChildrenController extends Controller
                     });
                 }
                 // normal header
-                $sheet->cells('A1:C1',function($cells){
+                $sheet->cells('A1:D1',function($cells){
                     $cells->setBackground('#e9f1f3');
                     $cells->setFontColor('#556b7b');
                     $cells->setFont(array(
@@ -877,7 +928,7 @@ class ChildrenController extends Controller
 
 
                 $sheet->row(1, array(
-                    'Nom Elève', 'Date d\'inscription', 'Status de Paiement'
+                    'Nom Elève','Date d\'inscription', 'Status de Paiement', 'Classe'
                 ));
 
             });

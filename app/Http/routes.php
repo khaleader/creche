@@ -69,7 +69,10 @@ Route::post('children/checktoreturn','ChildrenController@checktoreturn'); // che
 Route::get('children/exportEleve/{ids?}','ChildrenController@exportEleve');
 // PDF Export PDF children/index
 Route::get('children/exportPdf/{ids?}','ChildrenController@exportPdf');
-
+// retourne le niveau dès le recoit de la branche  en ajax
+Route::post('children/getLevelWhenBranchId','ChildrenController@getLevelWhenBranchId');
+// retourne le la classe dès le recoit de de niveau  en ajax
+Route::post('children/getClassroomWhenLevelId','ChildrenController@getClassroomWhenLevelId');
 
 
 Route::resource('children','ChildrenController');

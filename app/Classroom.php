@@ -46,6 +46,23 @@ class Classroom extends Model
 
 
 
+    public function branches()
+    {
+        return $this->belongsToMany(Branch::class,'branch_classroom_level');
+    }
+
+
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class,'branch_classroom_level');
+    }
+
+
+
+
+
+
+
 
 
 

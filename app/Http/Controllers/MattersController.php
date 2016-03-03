@@ -81,7 +81,8 @@ class MattersController extends Controller
                 'user_id'=>\Auth::user()->id
             ]);
 
-            return redirect()->back()->with('success','Informations bien enregistrées');
+            return redirect()->action('StatisticsController@gestion')
+                ->with('success','Informations bien enregistrées');
         }else{
             return redirect()->back()->withErrors($validator);
         }

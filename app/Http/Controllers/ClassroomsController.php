@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Child;
 use App\Classroom;
+use App\Level;
 use App\Matter;
 use App\Timesheet;
 use DB;
@@ -69,6 +70,8 @@ class ClassroomsController extends Controller
     public function store(Request $request)
     {
 
+
+
         $validator = Validator::make([
             $request->all(),
             'nom_classe' =>$request->nom_classe,
@@ -99,8 +102,8 @@ class ClassroomsController extends Controller
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-            $cr->niveau = $request->niveau;
-            $cr->branche = $request->branche;
+            $cr->niveau = Level::find($request->niveau)->niveau;
+            $cr->branche = Branch::find($request->branche)->nom_branche;
             $cr->user_id = \Auth::user()->id;
             $cr->save();
 
@@ -109,19 +112,31 @@ class ClassroomsController extends Controller
             $ts->classroom_id  = $cr->id;
             $ts->save();
 
+          $level = Level::find($request->niveau);
+            DB::table('branch_classroom_level')->insert([
+                'classroom_id' => $cr->id,
+                'branch_id' => $request->branche,
+                'level_id'=> $level->id
+            ]);
+
+
+
+
+
            if($cr)
             {
                 if(isset($request->select))
                 {
                     $classe =  Classroom::where('user_id',\Auth::user()->id)->where('id',$cr->id)->first();
-                    $classe->matters()->sync($request->select);
+                    $classe->matters()->attach($request->select);
                 }
 
             }
 
 
 
-            return redirect()->back()->with('success','Informations bien enregistrées');
+            return redirect()->action('StatisticsController@gestion')
+                ->with('success','Informations bien enregistrées');
         }else{
             return redirect()->back()->withErrors($validator);
         }

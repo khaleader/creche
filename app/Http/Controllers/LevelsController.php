@@ -66,7 +66,8 @@ class LevelsController extends Controller
             $level->niveau = $request->niveau;
             $level->user_id = \Auth::user()->id;
             $level->save();
-            return redirect()->back()->with('success','Bien Enregistré');
+            return redirect()->action('StatisticsController@gestion')
+                ->with('success','Informations bien enregistrées');
         }else{
             return redirect()->back()->withErrors($validator);
         }

@@ -69,6 +69,9 @@
                             <td><span><strong>Nombre de classe :</strong> 4 </span></td>
                         </tr>-->
                         <tr>
+                            <td><span><strong>Date D'inscription :</strong> {{ $teacher->created_at->format('d-m-Y') }} </span></td>
+                        </tr>
+                        <tr>
                            <!-- <td><i class="fa fa-envelope"></i></td>-->
                             <td><span><strong>Email :</strong> {{ $teacher->email }} </span></td>
                         </tr>

@@ -255,7 +255,7 @@
                         <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Le Transport * </label>
                             <div class="form_ajout">
-                                <select id="transport" name="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
+                                <select id="transport" name="transport" class="form_ajout_input">
                                     <option selected value="0">Non</option>
                                     <option value="1">Oui</option>
 
@@ -264,16 +264,42 @@
                             </div>
                         </div>
                         <div class="form_champ c">
-                            <label for="cname" class="control-label col-lg-3">La Classe * </label>
+                            <label for="cname" class="control-label col-lg-3">La Branche * </label>
                             <div class="form_ajout">
+                                <select id="branche" name="branche" class="form_ajout_input">
 
-                                {!!  Form::select('classe',
-                      App\Classroom::where('user_id',\Auth::user()->id)->
-                      lists('nom_classe','id') ,null,['class'=>'form_ajout_input','id'=>'classe']) !!}
+                                    <option selected>Choisissez une branche</option>
+                                    @foreach(\Auth::user()->branches as $branch)
+                                    <option value="{{ $branch->id }}">{{ $branch->nom_branche }}</option>
+                                      @endforeach
+
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">Le Niveau * </label>
+                            <div class="form_ajout">
+                                <select id="niveau" name="niveau" class="form_ajout_input">
+
+
+                                </select>
+
                             </div>
                         </div>
 
 
+                        <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">La Classe * </label>
+                            <div class="form_ajout">
+                                <select id="classe" name="classe" class="form_ajout_input">
+
+
+                                </select>
+
+                            </div>
+                        </div>
 
 
 
@@ -732,6 +758,45 @@
               });
               $('div.form_champ.only-for-email').mouseleave(function(){
                   $('.tooltips').css('visibility','hidden');
+              });
+
+
+
+              $('#niveau').prop('disabled','disabled');
+              $('#branche').on('change',function(){
+                var branche_id = $(this).val();
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.ajax({
+                      url: '{{  URL::action('ChildrenController@getLevelWhenBranchId')}}',
+                      data: 'branche_id=' + branche_id + '&_token=' + CSRF_TOKEN,
+                      type: 'post',
+                      success: function (data) {
+                          $('#niveau').prop('disabled','');
+                          $('#niveau').empty();
+                          $('#niveau').prepend('<option selected>selectionnez un niveau</option>');
+                          $('#niveau').append(data);
+                      }
+                  });
+
+              });
+
+
+              $('#classe').prop('disabled','disabled');
+              $('#niveau').on('change',function(){
+                  var level_id = $(this).val();
+                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  $.ajax({
+                      url: '{{  URL::action('ChildrenController@getClassroomWhenLevelId')}}',
+                      data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
+                      type: 'post',
+                      success: function (data) {
+                          $('#classe').prop('disabled','');
+                          $('#classe').empty();
+                          $('#classe').prepend('<option selected>selectionnez une classe</option>');
+                          $('#classe').append(data);
+                      }
+                  });
+
               });
 
 

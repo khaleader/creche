@@ -59,17 +59,26 @@ class FamiliesController extends Controller
                 $request->all(),
                 'nom_enfant' =>$request->nom_enfant,
                 'date_naissance' => $request->date_naissance,
-                'photo' => $request->photo
+                'photo' => $request->photo,
+                'classe' => $request->classe,
+                'branche' => $request->branche,
+                'niveau' => $request->niveau
 
             ], [
                 'nom_enfant' => 'required',
                 'date_naissance' => 'required',
                 'photo' => 'image',
+                'branche' => 'integer',
+                'niveau' => 'integer',
+                'classe' => 'integer'
             ],
                 [
                     'photo.image' => "L'image doit etre de type valide JPEG\PNG",
                     'nom_enfant.required' => 'Le Nom de L\'enfant est obligatoire',
                     'date_naissance.required' => 'La Date de Naissance est Obligatoire',
+                    'classe.integer' => "vous devez choisir une classe",
+                    'branche.integer' => "vous devez choisir une branche",
+                    'niveau.integer' => "vous devez choisir un niveau"
 
                 ]);
 

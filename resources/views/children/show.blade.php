@@ -52,6 +52,7 @@
             <header class="panel-heading wht-bg">
                 <h4 class="gen-case"> Informations générales
 
+
                 </h4>
                 <a class="delete-child" href="{{ action('ChildrenController@delete',[$child->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
                <!-- <a href="{{ action('ChildrenController@archive',[$child->id]) }}"><div class="btn_archiver">Archiver</div></a>-->
@@ -71,15 +72,36 @@
       -->                  <td><span><strong>Nom Mère :</strong> {{  $child->family->nom_mere }} </span></td>
                     </tr>
                     <tr>
-                        @foreach($child->classrooms as $cr)
                         <!--   <td><i class="fa fa-female"></i></td>
-         -->                  <td><span><strong> Classe :</strong> {{  $cr->nom_classe }} </span></td>
+         -->                  <td><span><strong>Date D'inscription</strong> {{  $child->created_at->format('d-m-Y') }} </span></td>
+                    </tr>
+
+                    <tr>
+                        @foreach($child->classrooms as $cr)
+                    <td><span><strong> Classe :</strong> {{  $cr->nom_classe }} </span></td>
                         @endforeach
                     </tr>
 
                     <tr>
-                    <!--    <td><i class="fa fa-envelope"></i></td>
-   -->                     <td><span><strong>Email :</strong> {{ $child->family->email_responsable  }} </span></td>
+                        @foreach($child->classrooms as $cr)
+                            @foreach($cr->branches as $br)
+                            <td><span><strong> Branche :</strong> {{  $br->nom_branche }} </span></td>
+                            @endforeach
+                        @endforeach
+                    </tr>
+
+                    <tr>
+                        @foreach($child->classrooms as $cr)
+                            @foreach($cr->levels as $level)
+                            <td><span><strong> Niveau :</strong> {{  $level->niveau }} </span></td>
+                        @endforeach
+                        @endforeach
+                    </tr>
+
+
+
+                    <tr>
+                    <td><span><strong>Email :</strong> {{ $child->family->email_responsable  }} </span></td>
                     </tr>
                     <tr>
                     <!--    <td><i class="fa fa-phone"></i></td>

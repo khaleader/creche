@@ -81,7 +81,7 @@
                             <div class="form_ajout">
                                 {!!  Form::select('niveau',
            App\Level::where('user_id',\Auth::user()->id)->
-           lists('niveau','niveau') ,null,['class'=>'form_ajout_input']) !!}
+           lists('niveau','id') ,null,['class'=>'form_ajout_input']) !!}
                            <!--     <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option>1 ère année bac</option>
                                     <option>2 ème année bac</option>
@@ -101,7 +101,7 @@
 
                                                 {!!  Form::select('branche',
                  App\Branch::where('user_id',\Auth::user()->id)->
-                 lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) !!}
+                 lists('nom_branche','id') ,null,['class'=>'form_ajout_input']) !!}
 
                             </div>
                         </div>

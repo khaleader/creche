@@ -7,7 +7,6 @@
 
 
 @section('content')
-    @include('partials.alert-errors')
     @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">

@@ -95,7 +95,9 @@
                             @endif
                         </tr>
 
-
+                        <tr>
+                            <td><span><strong>Date D'inscription </strong> {{ $family->created_at->format('d-m-Y') }} </span></td>
+                        </tr>
                         <tr>
                           <!--  <td><i class="fa fa-group"></i></td> -->
                             <td><span><strong>Nombre d'élèves inscrits : </strong> {{ $family->children->count() }} </span></td>

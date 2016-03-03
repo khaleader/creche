@@ -8,4 +8,18 @@ class Level extends Model
 {
  protected $guarded =['id'];
  public $timestamps = false;
+
+
+
+
+ public function branches()
+ {
+  return $this->belongsToMany(Branch::class,'branch_classroom_level');
+ }
+
+ public function classrooms()
+ {
+  return $this->belongsToMany(Classroom::class,'branch_classroom_level');
+ }
+
 }

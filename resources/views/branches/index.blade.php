@@ -81,7 +81,7 @@
                             <td>{{  $branch->nom_branche }}</td>
                             <td>{{  $branch->code_branche }}</td>
                             <td>
-                                <a  class="no-print" href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
+                                <a  class="no-print delete-branch" href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->

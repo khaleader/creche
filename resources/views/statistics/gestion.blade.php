@@ -2,7 +2,8 @@
 
 
 @section('content')
-
+    @include('partials.alert-errors')
+    @include('partials.alert-success')
     <div class="row">
         <div class="col-md-3">
             <section class="panel bloc2">
@@ -85,5 +86,18 @@
 
 
 
+
+@endsection
+
+@section('jquery')
+    <script>
+        $(function(){
+            $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
+                $(".alert-success").alert('close');
+                $('#loader-to').hide();
+            });
+        });
+
+    </script>
 
 @endsection

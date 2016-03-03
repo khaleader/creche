@@ -18,4 +18,10 @@ protected $fillable = ['nom_branche','code_branche','user_id'];
     {
         return $this->hasMany('App\Matter');
     }
+
+
+    public function levels()
+    {
+        return $this->belongsToMany(Level::class,'branch_classroom_level');
+    }
 }
