@@ -291,6 +291,9 @@
                 });
 
             });
+            $('#niveau').click(function(){
+                $('#classe').empty();
+            });
 
 
         });
