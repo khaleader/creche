@@ -18,7 +18,7 @@
         <div class="col-sm-3">
             <section class="panel">
                 <header class="panel-heading">
-                    Matières / Professeurs
+                    Matières
 
                 </header>
                 <div class="panel-body">
