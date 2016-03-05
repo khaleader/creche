@@ -181,11 +181,13 @@ class ClassroomsController extends Controller
             'code_classe' =>$request->code_classe,
             'capacite_classe' =>$request->capacite_classe,
             'niveau' =>$request->niveau,
-            'branche' => $request->branche
+            'branche' => $request->branche,
+            'select' => $request->select
         ],[
             'nom_classe' => 'required',
             'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
+            'select' => 'required'
 
         ],
             [
@@ -193,6 +195,7 @@ class ClassroomsController extends Controller
                 'code_classe.required' => "le Code de la classe est requis",
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
+                'select.required' => 'Vous devez cocher au moins une matière'
             ]);
 
         if($validator->passes())
@@ -201,10 +204,15 @@ class ClassroomsController extends Controller
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-            $cr->niveau = $request->niveau;
-            $cr->branche = $request->branche;
+           // $cr->niveau = $request->niveau;
+           // $cr->branche = $request->branche;
             $cr->user_id = \Auth::user()->id;
             $cr->save();
+
+            $classe =  Classroom::where('user_id',\Auth::user()->id)->where('id',$cr->id)->first();
+            $classe->matters()->sync($request->select);
+
+
             return redirect()->back()->with('success','Modifications réussies');
 
         }else{

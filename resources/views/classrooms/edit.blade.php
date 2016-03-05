@@ -22,6 +22,47 @@
 
                 </header>
                 <div class="panel-body">
+                <?php $matieres = App\Matter::where('user_id',\Auth::user()->id)->get();
+                    ?>
+                    <table class="table  table-hover general-table">
+
+                        {!!  Form::model($cr,['url'=> action('ClassroomsController@update',[$cr]),'method'=>'put']) !!}
+                        <tbody>
+                            @foreach($cr->matters as $mat)
+                                @foreach($matieres as $matiere)
+                                    @if($matiere->id == $mat->id)
+                            <tr>
+                                <td><div class="checkbox_liste2">
+                                        <input name="select[]" type="checkbox" checked  value="{{  $mat->id }}">
+                                    </div>
+                                    <span><strong>{{ $mat->nom_matiere }}</strong></span></td>
+                            </tr>
+                             @endif
+
+
+                              @endforeach
+                            @endforeach
+
+                            <?php
+                                    $mt = Auth::user()->matters()->whereNotIn('id',$cr->matters()->lists('id'))->get();
+                            ?>
+                                    @foreach($mt as $m)
+                                        <tr>
+                                            <td><div class="checkbox_liste2">
+                                                    <input name="select[]" type="checkbox"  value="{{  $m->id }}">
+                                                </div>
+                                                <span><strong>{{ $m->nom_matiere }}</strong></span></td>
+                                        </tr>
+                                @endforeach
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+
+             <!--   <div class="panel-body">
 
                     <table class="table  table-hover general-table">
 
@@ -31,23 +72,23 @@
 
                             <tr>
 
-                                <td><span><strong>{{ $m->nom_matiere }}  : </strong>
+                                <td><span><strong>{{-- $m->nom_matiere --}}  : </strong>
                                         <?php
 
-                                        $teachers = $m->teachers;
-                                        foreach($teachers as $y)
-                                        {
-                                            $ok =  DB::table('classroom_matter_teacher')
-                                                    ->where('classroom_id',$cr->id)
-                                                    ->where('matter_id',$m->id)
-                                                    ->where('teacher_id',$y->id)
-                                                    ->first();
-                                            if($ok)
-                                            {
-                                                echo $y->nom_teacher.'<br>';
-                                            }
+                                     //   $teachers = $m->teachers;
+                                     //   foreach($teachers as $y)
+                                     //   {
+                                        //    $ok =  DB::table('classroom_matter_teacher')
+                                                //    ->where('classroom_id',$cr->id)
+                                                //    ->where('matter_id',$m->id)
+                                                 //   ->where('teacher_id',$y->id)
+                                                  //  ->first();
+                                       //   if($ok)
+                                      //     {
+                                               // echo $y->nom_teacher.'<br>';
+                                        //  }
 
-                                        }
+                                     //   }
                                         ?>
                                 </span></td>
 
@@ -55,7 +96,7 @@
                         @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div> -->
 
 
 
@@ -69,7 +110,7 @@
 
 
         <div class="col-sm-9">
-            {!!  Form::model($cr,['url'=> action('ClassroomsController@update',[$cr]),'method'=>'put']) !!}
+
             <section class="panel">
                 <header class="panel-heading wht-bg">
                     <h4 class="gen-case"> Informations générales
@@ -104,35 +145,36 @@
                         </div>
                     </div>
 
-                    <div class="form_champ">
+                  <!-- <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Niveau</label>
                         <div class="form_ajout">
-                            {!!  Form::select('niveau',
-       App\Level::where('user_id',\Auth::user()->id)->
-       lists('niveau','niveau') ,null,['class'=>'form_ajout_input']) !!}
-                                    <!--     <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
+                            {{--  Form::select('niveau',
+                               App\Level::where('user_id',\Auth::user()->id)->
+                               lists('niveau','niveau') ,null,['class'=>'form_ajout_input']) --}}
+                                        <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
                                     <option>1 ère année bac</option>
                                     <option>2 ème année bac</option>
 
-                                </select>-->
+                                </select>
 
                         </div>
-                    </div>
-                    <div class="form_champ">
+                    </div> -->
+
+                   <!-- <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Branche</label>
                         <div class="form_ajout">
-                            <!-- <select class="form_ajout_input" placeholder="Choisissez le responsable">
+                           <select class="form_ajout_input" placeholder="Choisissez le responsable">
                                  <option>Science physique</option>
                                  <option>littéraire</option>
 
-                             </select>-->
+                             </select>
 
-                                            {!!  Form::select('branche',
-                App\Branch::where('user_id',\Auth::user()->id)->
-                lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) !!}
+                                            {{--  Form::select('branche',
+                                          App\Branch::where('user_id',\Auth::user()->id)->
+                                       lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) --}}
 
                         </div>
-                    </div>
+                    </div> -->
 
 
                     <button class="btn_form" type="submit">Enregistrer</button>
