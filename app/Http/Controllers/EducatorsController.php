@@ -52,8 +52,10 @@ class EducatorsController extends Controller
      */
     public function store(Request $request)
     {
-         // 1 of teacher
-        // 2 of matiere
+
+
+
+
         foreach($request->teacher as $t)
         {
           $array =  explode(',',$t);
@@ -70,13 +72,11 @@ class EducatorsController extends Controller
                     'teacher_id' => $array[0],
                     'matter_id' => $array[1],
                     'user_id' => \Auth::user()->id
-
-
                 ]);
             }
 
         }
-        return redirect()->back();
+        return redirect()->back()->with('success',"Répartition Réussie");
     }
 
     public function enregistrer(Request $request)

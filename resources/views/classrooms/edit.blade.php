@@ -14,6 +14,9 @@
 @section('content')
     @include('partials.alert-errors')
     @include('partials.alert-success')
+
+
+
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
@@ -145,36 +148,25 @@
                         </div>
                     </div>
 
-                  <!-- <div class="form_champ">
+                   <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Niveau</label>
                         <div class="form_ajout">
-                            {{--  Form::select('niveau',
+                            {!!   Form::select('niveau',
                                App\Level::where('user_id',\Auth::user()->id)->
-                               lists('niveau','niveau') ,null,['class'=>'form_ajout_input']) --}}
-                                        <select name="niveau" class="form_ajout_input" placeholder="Choisissez le responsable">
-                                    <option>1 ère année bac</option>
-                                    <option>2 ème année bac</option>
+                               lists('niveau','id') ,$lv[0],['class'=>'form_ajout_input']) !!}
 
-                                </select>
 
                         </div>
-                    </div> -->
+                    </div>
 
-                   <!-- <div class="form_champ">
+                   <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Branche</label>
                         <div class="form_ajout">
-                           <select class="form_ajout_input" placeholder="Choisissez le responsable">
-                                 <option>Science physique</option>
-                                 <option>littéraire</option>
-
-                             </select>
-
-                                            {{--  Form::select('branche',
-                                          App\Branch::where('user_id',\Auth::user()->id)->
-                                       lists('nom_branche','nom_branche') ,null,['class'=>'form_ajout_input']) --}}
-
+                       {!!  Form::select('branche',
+                        App\Branch::where('user_id',\Auth::user()->id)->
+                       lists('nom_branche','id') ,$br[0],['class'=>'form_ajout_input']) !!}
                         </div>
-                    </div> -->
+                    </div>
 
 
                     <button class="btn_form" type="submit">Enregistrer</button>

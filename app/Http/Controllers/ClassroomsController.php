@@ -163,7 +163,9 @@ class ClassroomsController extends Controller
     public function edit($id)
     {
         $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-        return view('classrooms.edit',compact('cr'));
+        $br = $cr->branches->lists('id');
+        $lv = $cr->levels->lists('id');
+        return view('classrooms.edit',compact('cr','br','lv'));
     }
 
     /**
@@ -187,15 +189,14 @@ class ClassroomsController extends Controller
             'nom_classe' => 'required',
             'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
-            'select' => 'required'
-
+            'select' => 'required',
         ],
             [
                 'nom_classe.required' => "le nom de la classe est requis",
                 'code_classe.required' => "le Code de la classe est requis",
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
-                'select.required' => 'Vous devez cocher au moins une matière'
+                'select.required' => 'Vous devez cocher au moins une matière',
             ]);
 
         if($validator->passes())
@@ -204,13 +205,19 @@ class ClassroomsController extends Controller
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-           // $cr->niveau = $request->niveau;
-           // $cr->branche = $request->branche;
+            $cr->niveau = Level::find($request->niveau)->niveau;
+            $cr->branche = Branch::find($request->branche)->nom_branche;
             $cr->user_id = \Auth::user()->id;
             $cr->save();
 
             $classe =  Classroom::where('user_id',\Auth::user()->id)->where('id',$cr->id)->first();
             $classe->matters()->sync($request->select);
+
+            $level = Level::find($request->niveau);
+            DB::table('branch_classroom_level')->where('classroom_id',$cr->id)->update([
+                'branch_id' => $request->branche,
+                'level_id'=> $level->id
+            ]);
 
 
             return redirect()->back()->with('success','Modifications réussies');

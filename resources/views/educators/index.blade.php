@@ -2,7 +2,8 @@
 
 @include('partials.alert-errors')
 @section('content')
-
+    @include('partials.alert-errors')
+    @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">
             <section class="panel">
@@ -76,6 +77,10 @@
     <script>
 
         $(function(){
+            $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
+                $(".alert-success").alert('close');
+                $('#loader-to').hide();
+            });
 
             $('#classe').prepend('<option selected>selectionnez s\'il vous plait</option>');
             $('#classe').change(function(){
