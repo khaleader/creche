@@ -33,11 +33,13 @@
                     </a>
                    @endif
             </li>
+            @if(Auth::user() && Auth::user()->isAdmin())
             <li>
                 {!! Form::open(['url' => action('FamiliesController@search'),'method'=> 'get']) !!}
                 <input name="terms" type="text" class="form-control search" placeholder="Chercher un élève, une famille ...">
                 {!! Form::close() !!}
             </li>
+            @endif
 
             <!-- user login dropdown start-->
             <li class="dropdown">
