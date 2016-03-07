@@ -58,7 +58,7 @@ class ClassroomsController extends Controller
         {
             $branch_id = \Input::get('branche_id');
             $branch = Branch::where('id',$branch_id)->first();
-            foreach($branch->levels as $level)
+            foreach($branch->levels->unique() as $level)
             {
                 echo '<li><a class="level" data-id="'. $level->id .'" href="#">'. $level->niveau .'</a></li>';
 
