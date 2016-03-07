@@ -395,7 +395,7 @@ class ChildrenController extends Controller
         {
             $branch_id = \Input::get('branche_id');
             $branch = Branch::where('id',$branch_id)->first();
-            foreach($branch->levels as $level)
+            foreach($branch->levels->unique() as $level)
             {
                 echo '<option value="'.$level->id.'">'.$level->niveau.'</option>';
             }
