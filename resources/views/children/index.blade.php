@@ -318,14 +318,14 @@ $('.table').print({
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'voulez vous vraiment supprimer ? ',
+                            'message': 'Voulez-vous vraiment supprimer cet élément ? ',
                             'transition': 'slide',
                             'onok': function(){
                                 window.location.href = href;
                                 alertify.success('bien Supprimé!');
                             },
                             'oncancel': function(){
-                                alertify.error('Pas Supprimé :)');
+
                             }
                         }).show();
 

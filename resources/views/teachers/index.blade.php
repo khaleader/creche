@@ -239,14 +239,14 @@ $(document).ready(function(){
         alertify.dialog('confirm')
                 .set({
                     'labels':{ok:'Oui', cancel:'Non'},
-                    'message': 'voulez vous vraiment supprimer ? ',
+                    'message': 'Voulez-vous vraiment supprimer cet élément ? ',
                     'transition': 'slide',
                     'onok': function(){
                         window.location.href = href;
                         alertify.success('bien supprimé!');
                     },
                     'oncancel': function(){
-                        alertify.error('Pas supprimé :)');
+
                     }
                 }).show();
     });
@@ -258,7 +258,7 @@ $(document).ready(function(){
         alertify.dialog('confirm')
                 .set({
                     'labels':{ok:'Oui', cancel:'Non'},
-                    'message': 'voulez vous vraiment archiver ? ',
+                    'message': 'Voulez vous vraiment archiver ? ',
                     'transition': 'fade',
                     'onok': function(){
                         window.location.href = href;

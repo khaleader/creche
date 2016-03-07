@@ -260,7 +260,7 @@ class SchoolsController extends Controller
            $user =  User::findOrFail(\Auth::user()->id);
              $user->password =  \Hash::make($request->password);
             $user->save();
-           return redirect()->back()->with('success','Le Mot De pass a bien été modifié');
+           return redirect()->back()->with('success','Le Mot De passe a bien été modifié !');
         }else{
            return redirect()->back()->withErrors([
                'Le Mot de pass Actuel est incorrect'

@@ -34,7 +34,7 @@
                             @else
                                 <div class="btn_upload">
                                 <span class="btn btn-white btn-file">
-                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Selectionner une image</span>
+                                                   <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Sélectionner une image</span>
                                                    <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
                                     {{--   Form::file('photo',null,['class'=>'default','id'=>'uploadFile']) --}}
                                     <input name="photo" type="file" class="default" id="uploadFile">

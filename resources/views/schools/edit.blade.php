@@ -202,7 +202,7 @@
                                         <label for="cname" class="control-label col-lg-3">Nombre de catégories</label>
                                         <div class="form_ajout">
                                             <select id="categories" name="categories" class="form_ajout_input" placeholder="Choisissez le responsable">
-                                                <option>Selectionnez La Categorie</option>
+                                                <option>Sélectionnez La Catégorie</option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>

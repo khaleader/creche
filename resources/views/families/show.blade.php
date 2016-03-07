@@ -121,7 +121,7 @@
                         </tr>
                         <tr>
                           <!--  <td><i class="fa fa-phone"></i></td> -->
-                            <td><span><strong>Num fix :</strong> {{ $family->numero_fixe }} </span></td>
+                            <td><span><strong>Num fixe :</strong> {{ $family->numero_fixe }} </span></td>
                         </tr>
                         <tr>
                           <!--  <td><i class="fa fa-mobile"></i></td> -->

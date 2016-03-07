@@ -131,7 +131,7 @@
                                 alertify.success('bien Supprimé!');
                             },
                             'oncancel': function(){
-                                alertify.error('Pas Supprimé :)');
+
                             }
                         }).show();
 

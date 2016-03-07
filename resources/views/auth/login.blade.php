@@ -47,9 +47,9 @@
         <img id="fille-login" src="{{ asset('images/fille.png') }}" alt="fille">
 
         {!!  Form::open(['action'=>'Auth\AuthController@postLogin']) !!}
-        <input type="text" name="email" placeholder="Enrez votre Email"><span class="login-email-ell">
+        <input type="text" name="email" placeholder="Entrez votre Email"><span class="login-email-ell">
                 <i class="fa fa-envelope"></i> </span>
-        <input type="password" name="pass" placeholder="Enrez votre mot de passe"><span class="login-pass-ell">
+        <input type="password" name="pass" placeholder="Entrez votre mot de passe"><span class="login-pass-ell">
                 <i class="fa fa-lock "></i> </span>
         <input {{  Request::old('remember') ? 'checked': '' }}    type="checkbox" name="remember"> <span id="checkbox-souvenir">Se Souvenir de moi</span>
         <button type="submit">Connexion</button>

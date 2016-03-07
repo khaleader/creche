@@ -57,7 +57,7 @@
                             <div class="fileupload-preview fileupload-exists thumbnail "></div>
                             <div class="btn_upload">
                            <span class="btn btn-white btn-file">
-                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>   Selectionner une image </span>
+                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>   Sélectionner une image </span>
                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
                            <input type="file" class="default" name="photo" id="uploadFile" />
                            </span>
@@ -73,7 +73,7 @@
                     <div class="panel-body bloc_informations">
                         <img src="{{ asset('images/enfants.png') }}" >
                         <span class="count"> &nbsp;{{   App\Child::where('user_id',\Auth::user()->id)->count() }}
-                        </span><p>Enfants</p>
+                        </span><p>Elèves</p>
                     </div>
                 </a>
             </section>
@@ -213,7 +213,7 @@
 
 
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Nom du pére * </label>
+                                <label for="cname" class="control-label col-lg-3">Nom du père * </label>
                                 <div class="form_ajout">
                                     <?php
                                     $array =  App\Family::where('user_id',\Auth::user()->id)->lists('nom_pere','nom_pere')->toArray();
@@ -244,7 +244,7 @@
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Le résponsable * </label>
+                                <label for="cname" class="control-label col-lg-3">Le responsable * </label>
                                 <div class="form_ajout">
                                     <select name="responsable" class="form_ajout_input" placeholder="Choisissez le responsable">
                                         <option value="1">Père</option>
@@ -315,14 +315,14 @@
                             </div>
 
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Numero fixe</label>
+                                <label for="cname" class="control-label col-lg-3">Numéro fixe</label>
                                 <div class="form_ajout">
                                     <input value="{{ Request::old('numero_fixe')?:'' }}" type="text" name="numero_fixe" class="form_ajout_input" placeholder="Entrez le numéro fix du responsable">
 
                                 </div>
                             </div>
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Numero portable</label>
+                                <label for="cname" class="control-label col-lg-3">Numéro portable</label>
                                 <div class="form_ajout">
                                     <input value="{{ Request::old('numero_portable')?:'' }}" type="text" name="numero_portable" class="form_ajout_input" placeholder="Entrez le numéro portable du responsable ">
 
@@ -521,8 +521,8 @@
 
 
 
-              $('select[name=classe]').prepend("<option selected>selectionnez la classe s'il vous plait</option>");
-              $('select[name=poste]').prepend("<option selected>selectionnez la matière s'il vous plait</option>");
+              $('select[name=classe]').prepend("<option selected>sélectionnez la classe s'il vous plait</option>");
+              $('select[name=poste]').prepend("<option selected>sélectionnez la matière s'il vous plait</option>");
              // $('#loader-parent').show();
               $('#loader-parent').hide();
               $('div.pdp').hide();
@@ -804,7 +804,10 @@
 
 
 
+                $('.username').click(function(){
 
+                    $('li.dropdown').toggleClass('open');
+                });
 
 
 

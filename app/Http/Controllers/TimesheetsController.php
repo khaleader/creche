@@ -124,7 +124,7 @@ class TimesheetsController extends Controller
         $lev = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
         $lev->timesheets()->delete();
         $lev->delete();
-        return redirect('timesheets')->with('success',"la classe et l'mploi du temps ont bien été supprimé");
+        return redirect('timesheets')->with('success',"la classe et l'emploi du temps ont bien été supprimé");
     }
 
     public function supprimer()

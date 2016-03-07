@@ -94,7 +94,7 @@
                         </tr>
                         <tr>
                            <!-- <td><i class="fa fa-phone"></i></td>
-      -->                      <td><span><strong>Num fix :</strong> {{ $child->family->numero_fixe }}</span></td>
+      -->                      <td><span><strong>Num fixe :</strong> {{ $child->family->numero_fixe }}</span></td>
                         </tr>
                         <tr>
                           <!--  <td><i class="fa fa-mobile"></i></td>

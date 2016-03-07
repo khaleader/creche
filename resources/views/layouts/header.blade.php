@@ -1,153 +1,67 @@
-
-  <div class="head fixed-top">
-    <div class="logo">
-        <a href="{{  url('/') }}">
-        <img src="{{    asset('images/logo.png')}}" alt="logo">
-
-        </a>
-    </div>
-    <ul class="menu_header">
-        <li class="menu_li">
-            <img src="{{ asset('images/tableau_de_bord.png')  }}" alt="">
-            <a href="{{ url('/') }}">
-                Tableau de bord</a>
-        </li>
-
-        <li class="menu_li"> <img src="{{ asset('images/qui_sommes_nous.png')  }}" alt="" id="qui_sommes_nous">
-            <a href="">Qui sommes nous ?</a></li>
-        <li class="menu_li"> <img src="{{ asset('images/contactez_nous.png')  }}" alt="" id="contactez_nous">
-            <a href="" >Contactez-nous</a></li>
-
-
-        <!--<li id="header_inbox_bar" class="menu_li">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img src="{{ asset('images/contactez_nous.png') }}" alt="" id="contactez_nous">
-                <span class="badge bg-important">4</span>
-                Boite de réception
-            </a>
-        </li>-->
-
-
-        @if(\Auth::user() && Auth::user()->isAdmin())
-            <li class="menu_li"> <img src="{{ asset('images/param.png')  }}" alt="" id="comment_ca_marche">
-                <a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}" >Paramètres</a>
-            </li>
-                @elseif(\Auth::user() && Auth::user()->isFamily())
-            <li class="menu_li"> <img src="{{ asset('images/param.png')  }}" alt="" id="comment_ca_marche">
-                <a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}" >Paramètres
-                </a>
-            </li>
-           @endif
-    </ul>
-    <div class="account" id="account">
-
-         @if(\Auth::user() && Auth::user()->isAdmin())
-            <a href="{{-- action('SchoolsController@edit',[\Auth::user()->id]) --}}">
-          @elseif(\Auth::user() && Auth::user()->isFamily())
-            <a href="{{-- action('SchoolsController@editef',[\Auth::user()->id]) --}}">
-           @endif
-         @if(Auth::user() && Auth::user()->isFamily())
-                <?php
-
-               $resp = \App\Family::where('email_responsable',Auth::user()->email)->first();
-                    if($resp->responsable == 0)
-                        {
-                            echo 'Bienvenue '.$resp->nom_mere;
-                        }else{
-                        echo 'Bienvenue '.$resp->nom_pere;
-                    }
-                  ?>
-             @elseif(Auth::user() && Auth::user()->isAdmin())
-             {{ 'Bienvenue '. \Auth::user()->name  }}
-             @else
-                    <a href="#"> {{ 'Bienvenue '.\Auth::user()->name  }}</a>
-
-
-
-            @endif
-        </a>
-       <img src="{{ \Auth::user()->photo ? asset('uploads/'.\Auth::user()->photo ):asset('images/user.png') }}" alt="user">
-
-</a>
-    </div>
-    <a class="deconnect" href="{{  action('Auth\AuthController@getLogout') }}"><img src="{{  asset('images/logout.png') }}"></a>
-</div>
 <header class="header fixed-top clearfix">
     <!--logo start-->
     <div class="brand">
-           {{--Route::current()->getUri()  --}}
-        @if(Route::current()->getUri() == '/')
-            <h2>{{  'Tableau de bord' }}</h2>
-        @elseif(Route::current()->getUri() == 'schools' or Request::is('schools/*'))
-            <h2>{{  'Ecoles' }}</h2>
-        @elseif(Route::current()->getUri() == 'schools/boite')
-            <h2>{{  "Demandes D'essai" }}</h2>
-        @elseif(Route::current()->getUri() == 'children/create' or Route::current()->getUri() == 'ajouter_enfant' )
-            <h2>{{  "inscription" }}</h2>
-        @elseif(Route::current()->getUri() == 'children' or Request::is('children/*'))
-            <h2>{{  "élèves" }}</h2>
-        @elseif(Route::current()->getUri() == 'families' or Request::is('families/*') )
-            <h2>{{  "familles" }}</h2>
-        @elseif(Route::current()->getUri() == 'teachers'   or Request::is('teachers/*'))
-            <h2>{{  "Professeurs et RH" }}</h2>
-        @elseif(Route::current()->getUri() == 'attendances' or Request::is('attendances/*'))
-            <h2>{{  "pointages" }}</h2>
-        @elseif(Route::current()->getUri() == 'bills' or Request::is('bills/*') )
-            <h2>{{  "factures" }}</h2>
-        @elseif(Route::current()->getUri() == 'statistics' or Request::is('statistics/*') )
-            <h2>{{ 'statistiques' }}</h2>
-        @elseif(Route::current()->getUri() == 'timesheets' or Request::is('timesheets/*') )
-            <h2>{{ 'Emploi Du Temps' }}</h2>
-        @elseif(Route::current()->getUri() == 'gestion' or Request::is('gestion/*') )
-            <h2>{{ 'Gestion' }}</h2>
-        @elseif(Route::current()->getUri() == 'classrooms' or Request::is('classrooms/*') )
-            <h2>{{ 'Classes' }}</h2>
-        @elseif(Route::current()->getUri() == 'matters' or Request::is('matters/*') )
-            <h2>{{ 'matières' }}</h2>
-        @elseif(Route::current()->getUri() == 'branches' or Request::is('branches/*') )
-            <h2>{{ 'branches' }}</h2>
-        @elseif(Route::current()->getUri() == 'rooms' or Request::is('rooms/*') )
-            <h2>{{ 'salles' }}</h2>
-        @elseif(Route::current()->getUri() == 'educators' or Request::is('educators/*') )
-            <h2>{{ 'RÉPARTITION PROFESSEURS' }}</h2>
-         @elseif(Route::current()->getUri() == 'levels' or Request::is('levels/*'))
-                      <h2>{{ 'niveaux' }}</h2>
-        @else
-           <h2>{{  'inconnu' }}</h2>
-        @endif
 
+        <img src="{{ asset('images/logo2.png') }}" id="logo">
         <div class="sidebar-toggle-box">
             <div class="fa fa-bars"></div>
         </div>
     </div>
     <!--logo end-->
-    @if(Auth::user() && Auth::user()->isOblivius())
-        <a class="bt_ajouter" href="{{ action('SchoolsController@create') }}">
-            <img src="{{ asset('images/plus.png') }}" id="icon_plus">
-            <span>Ajouter une école</span>
-        </a>
 
 
 
-    @endif
-
-  @if(Auth::user() && Auth::user()->isAdmin())
-    <a class="bt_ajouter" href="{{  action('ChildrenController@create') }}">
-        <img src="{{  asset('images/plus.png') }}" id="icon_plus">
-        <span>Inscription</span>
-    </a>
-    <div class="search-form">
-       {!! Form::open(['url' => action('FamiliesController@search'),'method'=> 'get']) !!}
-            <input type="text" name="terms" class="search-input" placeholder="Cherchez un élève, une famille ...">
-            <button type="submit">
-                <div class="fa fa-search"></div>
-            </button>
-       {!! Form::close() !!}
-    </div>
-    @endif
     <div class="top-nav clearfix">
         <!--search & user info start-->
+        <ul class="menu">
+            <li><a style="color: #687b8c" href="{{ url('/')  }}"><img src="{{ asset('images/tableau_de_bord.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Tableau de bord</a></li>
+            <li><a style="color: #687b8c;" href="#"><img src="{{ asset('images/comment_ca_marche.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Besoin d'aide ?</a></li>
+        </ul>
+        <ul class="nav pull-right top-menu">
+            <li>
+                @if(Auth::user() && Auth::user()->isAdmin())
+                <a href="{{  action('ChildrenController@create') }}" class="inscription"
+                   style="padding: 7px 15px;color:
+                   #555555;background-color:#f1c435;font-weight:bold;color:#fff;
+                   border-color:#f1c435;font-size: 13px;">Inscription
+                </a>
+                   @elseif(Auth::user() && Auth::user()->isOblivius())
+                    <a href="{{ action('SchoolsController@create') }}" class="inscription"
+                       style="padding: 7px 15px;color:
+                   #555555;background-color:#f1c435;font-weight:bold;color:#fff;
+                   border-color:#f1c435;font-size: 13px;">Ajouter une école
+                    </a>
+                   @endif
+            </li>
+            <li>
+                {!! Form::open(['url' => action('FamiliesController@search'),'method'=> 'get']) !!}
+                <input name="terms" type="text" class="form-control search" placeholder="Chercher un élève, une famille ...">
+                {!! Form::close() !!}
+            </li>
 
+            <!-- user login dropdown start-->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="" src="{{ \Auth::user()->photo ? asset('uploads/'.\Auth::user()->photo ):asset('images/user.png') }}">
+                    <span  class="username">{{ \Auth::user()->name }}</span>
+
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu extended logout">
+                    <li><a href="#">Mon profil</a></li>
+                    @if(\Auth::user() && Auth::user()->isAdmin())
+                    <li><a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">Paramètres</a></li>
+                    @elseif(\Auth::user() && Auth::user()->isFamily())
+                        <li><a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">Paramètres</a></li>
+                    @endif
+
+
+                    <li><a href="{{  action('Auth\AuthController@getLogout') }}">Déconnexion</a></li>
+                </ul>
+            </li>
+            <!-- user login dropdown end -->
+
+        </ul>
         <!--search & user info end-->
     </div>
 </header>
