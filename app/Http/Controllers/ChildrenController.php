@@ -346,6 +346,12 @@ class ChildrenController extends Controller
                     else
                        $class = 'label-danger';
                 }
+                foreach($enfant->classrooms as $cr)
+                {
+                  $classe =  $cr->nom_classe;
+                }
+
+
                 if($enfant->photo)
                    $photo =  asset('uploads/'.$enfant->photo);
                 else
@@ -360,7 +366,9 @@ class ChildrenController extends Controller
                                 </div></td>
                             <td><img class="avatar" src=" '. $photo .' "></td>
                             <td>'. $enfant->nom_enfant .'</td>
-                            <td>'.  $enfant->date_naissance->format('d-m-Y') .' </td>
+                            <td>'.  $enfant->created_at->format('d-m-Y') .' </td>
+                            <td>'.$classe.'</td>
+
                             <td class="paiement"><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
                             <td class="no-print">
                                 <a href="'.action('ChildrenController@delete',[$enfant]).'" class="actions_icons delete-child">
