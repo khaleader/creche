@@ -112,7 +112,7 @@
                                     <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
                                     <td>{{ $bill->child->nom_enfant  }}</td>
                                     <td>{{  $bill->start->format('d-m-Y') }}</td>
-                                    <td>{{  $bill->somme  }} Dhs</td>
+                                    <td>{{  $bill->somme  }},00 Dhs</td>
                                     <td><span class="label {{  $bill->status == 0 ? 'label-danger': 'label-success'  }}  label-mini">
                                    {{  $bill->status == 0 ? 'Non réglée': 'réglée' }} </span>
                                     </td>
