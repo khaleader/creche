@@ -241,6 +241,10 @@ Route::any('classrooms/addMatterandProfToCr/{id?}','ClassroomsController@addMatt
 Route::get('classrooms/exportExcel/{ids?}','ClassroomsController@exportExcel');
 // export pdf classrooms/index
 Route::get('classrooms/exportPdf/{ids?}','ClassroomsController@exportPdf');
+
+
+Route::post('classrooms/trierparniveau','ClassroomsController@trierparniveau'); // tri level ajax
+Route::post('classrooms/getlevel','ClassroomsController@getLevel'); // tri ajax
 Route::resource('classrooms','ClassroomsController');
 
 Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax

@@ -50,12 +50,29 @@
                             Trier par branche
                             <i class="fa fa-angle-down "></i>
                         </a>
-                        <ul class="dropdown-menu menu_actions br-action">
+                        <ul class="dropdown-menu menu_actions br-action branche-ul">
                             @foreach($branches as $b)
-                            <li><a href="#">{{ $b->nom_branche }}</a></li>
+                            <li><a class="branche" data-id="{{ $b->id }}" href="#">{{ $b->nom_branche }}</a></li>
                                 @endforeach
                         </ul>
                     </div>
+                        <!-- -->
+
+                        <div class="btn-group hidden-phone">
+                            <a data-toggle="dropdown" href="#" class="btn mini blue">
+                                trier par niveau
+                                <i class="fa fa-angle-down "></i>
+                            </a>
+                            <ul class="dropdown-menu menu_actions bill-months niveau">
+
+                            </ul>
+                        </div>
+
+
+
+
+
+
 
 
 
@@ -79,7 +96,7 @@
                             <th class="no-print"></th>
                             <th>La classe</th>
                             <th>Code classe</th>
-                            <th>Capacité de salle</th>
+                            <th>Capacité de Classe</th>
                             <th>Nombre d'élèves </th>
                             <th>Niveau</th>
                             <th>Branche</th>
@@ -214,7 +231,7 @@
             });
         });
 
-        $('.br-action a').click(function(){
+        $('.branche-ul a').click(function(){
             $('tbody').empty();
             var branche = $(this).text();
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -236,6 +253,55 @@
                 $('#exporter').attr('href',ExcelLink);
                 $('#pdf').attr('href',PdfLink);
             },  10000);
+
+
+            $('.branche').on('click',function(){
+             var branche_id = $(this).attr('data-id');
+           var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ClassroomsController@getLevel')}}',
+                    data: 'branche_id=' + branche_id + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('.niveau').empty();
+                    $('.niveau').append(data);
+                    }
+                });
+
+            });
+
+            $('body').on('click','.level',function(){
+                var level_id = $(this).attr('data-id');
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ClassroomsController@trierparniveau')}}',
+                    data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').empty();
+                        $('tbody').append(data);
+                    }
+                });
+
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             /* Excel avec le tri Awesome !*/
             var valuesExcel = '';

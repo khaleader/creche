@@ -50,6 +50,29 @@ class ClassroomsController extends Controller
         return view('classrooms.indexelc',compact('cr','id'));
     }
 
+
+    /*index tri */
+    public function getLevel()
+    {
+        if(\Request::ajax())
+        {
+            $branch_id = \Input::get('branche_id');
+            $branch = Branch::where('id',$branch_id)->first();
+            foreach($branch->levels as $level)
+            {
+                echo '<li><a class="level" data-id="'. $level->id .'" href="#">'. $level->niveau .'</a></li>';
+
+            }
+
+        }
+    }
+
+
+
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -288,8 +311,8 @@ class ClassroomsController extends Controller
     {
         if(\Request::ajax())
         {
-          $br =  \Input::get('branche');
-           $branches = Classroom::where('user_id',\Auth::user()->id)->where('branche',$br)->get();
+            $br =  \Input::get('branche');
+            $branches = Classroom::where('user_id',\Auth::user()->id)->where('branche',$br)->get();
             foreach ($branches as $branch) {
                 echo '         <tr>
                             <td class="no-print"><div class="minimal single-row">
@@ -301,6 +324,7 @@ class ClassroomsController extends Controller
                             <td> '.$branch->nom_classe.' </td>
                             <td> '. $branch->code_classe .'</td>
                             <td> '. $branch->capacite_classe.'  élèves</td>
+                             <td>'. $branch->children()->count().'</td>
                             <td> '. $branch->niveau .'</td>
                             <td>'. $branch->branche .'</td>
 
@@ -315,6 +339,45 @@ class ClassroomsController extends Controller
                         </tr>';
             }
         }
+    }
+
+
+
+    public function trierparniveau()
+    {
+        if(\Request::ajax())
+        {
+            $niveau =  \Input::get('level_id');
+            $niveaux = Level::where('user_id',\Auth::user()->id)->where('id',$niveau)->first();
+            foreach ($niveaux->classrooms as $branch) {
+                echo '         <tr>
+                            <td class="no-print"><div class="minimal single-row">
+                                    <div class="checkbox_liste ">
+                                        <input type="checkbox"  value="'.$branch->id.' " name="select[]">
+
+                                    </div>
+                                </div></td>
+                            <td> '.$branch->nom_classe.' </td>
+                            <td> '. $branch->code_classe .'</td>
+                            <td> '. $branch->capacite_classe.'  élèves</td>
+                            <td>'. $branch->children()->count().'</td>
+                            <td> '. $branch->niveau .'</td>
+                            <td>'. $branch->branche .'</td>
+
+                            <td class="no-print">
+                                <a href="'.  action('ClassroomsController@delete',[$branch]) .'" class="actions_icons delete-classe">
+                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
+                                </a>-->
+                            </td>
+
+                            <td class="no-print"><a href=""><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+            }
+        }
+
+
+
     }
 
 

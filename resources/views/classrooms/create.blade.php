@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="form_champ">
-                            <label for="cname" class="control-label col-lg-3">Capacité de salle</label>
+                            <label for="cname" class="control-label col-lg-3">Capacité de Classe</label>
                             <div class="form_ajout">
                                 <input type="text" name="capacite_classe" class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
 
