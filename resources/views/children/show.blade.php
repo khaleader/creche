@@ -73,7 +73,7 @@
                     </tr>
                     <tr>
                         <!--   <td><i class="fa fa-female"></i></td>
-         -->                  <td><span><strong>Date D'inscription</strong> {{  $child->created_at->format('d-m-Y') }} </span></td>
+         -->                  <td><span><strong>Date d'inscription</strong> {{  $child->created_at->format('d-m-Y') }} </span></td>
                     </tr>
 
                     <tr>

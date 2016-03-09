@@ -96,7 +96,7 @@
                         </tr>
 
                         <tr>
-                            <td><span><strong>Date D'inscription </strong> {{ $family->created_at->format('d-m-Y') }} </span></td>
+                            <td><span><strong>Date d'inscription </strong> {{ $family->created_at->format('d-m-Y') }} </span></td>
                         </tr>
                         <tr>
                           <!--  <td><i class="fa fa-group"></i></td> -->
