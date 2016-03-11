@@ -868,7 +868,7 @@ class ChildrenController extends Controller
                         ));
                     });
                     $sheet->row(1, array('',
-                        'Nom Elève', 'Date d\'inscription', 'Status de Paiement ','Classe'
+                        'Nom Elève', 'Date d\'inscription', 'Statut de Paiement ','Classe'
                     ));
 
                 });
@@ -953,7 +953,7 @@ class ChildrenController extends Controller
 
 
                 $sheet->row(1, array(
-                    'Nom Elève','Date d\'inscription', 'Status de Paiement', 'Classe'
+                    'Nom Elève','Date d\'inscription', 'Statut de Paiement', 'Classe'
                 ));
 
             });

@@ -50,7 +50,7 @@
                     <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu extended logout">
-                    <li><a href="#">Mon profil</a></li>
+                    <li><a href="#">profil</a></li>
                     @if(\Auth::user() && Auth::user()->isAdmin())
                     <li><a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">Paramètres</a></li>
                     @elseif(\Auth::user() && Auth::user()->isFamily())

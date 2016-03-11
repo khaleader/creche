@@ -550,7 +550,7 @@ class FamiliesController extends Controller
                         ));
                     });
                     $sheet->row(1, array(
-                        '', 'Responsable','Nom Père','Nom Mère','Status de Paiement'
+                        '', 'Responsable','Nom Père','Nom Mère','Statut de Paiement'
                     ));
 
                 });
@@ -647,7 +647,7 @@ class FamiliesController extends Controller
 
 
                     $sheet->row(1, array(
-                         'Responsable','Nom Père','Nom Mère','Status de Paiement'
+                         'Responsable','Nom Père','Nom Mère','Statut de Paiement'
                     ));
 
                 });
