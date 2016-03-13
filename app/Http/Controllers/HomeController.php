@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\Grade;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Gmail;
@@ -25,6 +26,25 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $grade =  Grade::where('user_id',\Auth::user()->id)->first();
+        if(!$grade)
+        {
+            $sc = new Grade();
+            $sc->name = 'Primaire';
+            $sc->user_id = \Auth::user()->id;
+            $sc->save();
+
+            $col = new Grade();
+            $col->name = 'Collège';
+            $col->user_id = \Auth::user()->id;
+            $col->save();
+
+            $lyc = new Grade();
+            $lyc->name = 'Lycée';
+            $lyc->user_id = \Auth::user()->id;
+            $lyc->save();
+
+        }
         $client = new Google_Client();
         $client->setClientId('548520090024-i8jmtdmdi5ijvj3mn2sbqe2u3a431gh6.apps.googleusercontent.com');
         $client->setClientSecret('IX-SilXd0ctCrKUX1a5oP9is');
@@ -44,6 +64,14 @@ class HomeController extends Controller
 
     }
 
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function help()
+    {
+        return view('help');
+    }
     /**
      * Show the form for creating a new resource.
      *

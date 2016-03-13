@@ -6236,12 +6236,12 @@ div.tagsinput span.tag {
 }
 .pdp{border-radius: 50%;
     border: 10px solid #eef3f7;
-    width: 150px;
+    height:  150px; /* 150px;*/
+    width:  150px; /* 150px;*/
     display: block;
     margin-left: auto;
     margin-right: auto;
     vertical-align: middle;
-    height: 150px;
     margin-bottom: 15px;
     height: 150px;
     background-position: center center;
@@ -7223,6 +7223,130 @@ td.drop.droppable{
 .bloc4_body{
     padding: 0px;
 }
+
+
+/*-----------------------------------------*/
+/*--------Dernières modifications----------*/
+/*-----------------------------------------*/
+
+.dropdown_actions{
+    float: right;
+    margin-top: 6px;
+}
+.dropdown-menu{
+    margin: 1px -60px 0;
+
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus{
+    background-color: #F1F2F7 !important;
+    color: #333;
+}
+.dropdown-menu>li>a{
+    color: #333;
+    font-size: 12px !important;
+}
+
+.bloc2 span{
+    display: inherit;
+    margin-top: 10px;
+    font-family: open sans;
+    font-size: 20px;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+
+}
+
+.nbr_matieres{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: #0fb4d2;
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.nbr_niveaux{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: #84e07b;
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.nbr_branches{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: #ff809b;
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.nbr_classes{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: #d9434e;
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.nbr_salles{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: #f59b43;
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+.nbr_cars{
+    height: 52px;
+    width: 52px;
+    border-radius: 50%;
+    background-color: #b377d9;
+    float: left;
+    margin-right: 10px;
+    margin-top: 7px;
+}
+#help{
+    float: left;
+    text-transform: none;
+}
+.sav{
+    background: url('../images/sav.jpg') no-repeat;
+    height: 276px;
+}
+
+.pagination_liste{
+    float: right;
+    margin-right: 25px;
+}
+
+.liste_footer p{
+    float: left;
+    margin-left: 25px;
+    margin-top: 25px;
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus, .pagination > li.active > a, .pagination > li.active > a:hover{
+    background-color: #7f64b5;
+    border-color: #7f64b5;
+}
+.inbox-pagination a.np-btn:hover{
+    background-color: #7f64b5;
+    border-color: #7f64b5;
+    color: #fff;
+
+}
+
+/*.pdp{
+    height: 80%;
+    width: 80%;
+}*/
 
 
 

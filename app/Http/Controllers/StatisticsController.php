@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Bill;
+use App\Branch;
 use App\Child;
+use App\Classroom;
 use App\Family;
+use App\Level;
+use App\Matter;
+use App\Room;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -111,7 +116,16 @@ class StatisticsController extends Controller
 
     public function gestion()
     {
-        return view('statistics.gestion');
+
+       $matter_count = Matter::where('user_id',\Auth::user()->id)->count();
+        $branch_count = Branch::where('user_id',\Auth::user()->id)->count();
+        $level_count = Level::where('user_id',\Auth::user()->id)->count();
+        $cr_count = Classroom::where('user_id',\Auth::user()->id)->count();
+        $room_count = Room::where('user_id',\Auth::user()->id)->count();
+
+
+
+        return view('statistics.gestion',compact('matter_count','branch_count','level_count','cr_count','room_count'));
     }
     /**
      * Show the form for creating a new resource.

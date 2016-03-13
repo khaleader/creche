@@ -47,12 +47,12 @@
                     </div>
                     <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
-                            Trier par branche
+                            Trier par niveau
                             <i class="fa fa-angle-down "></i>
                         </a>
-                        <ul class="dropdown-menu menu_actions br-action branche-ul">
-                            @foreach($branches as $b)
-                            <li><a class="branche" data-id="{{ $b->id }}" href="#">{{ $b->nom_branche }}</a></li>
+                        <ul class="dropdown-menu menu_actions br-action niveaux-ul">
+                            @foreach($niveaux as $niv)
+                            <li><a class="niveau" data-id="{{ $niv->id }}" href="#">{{ $niv->niveau }}</a></li>
                                 @endforeach
                         </ul>
                     </div>
@@ -60,10 +60,10 @@
 
                         <div class="btn-group hidden-phone">
                             <a data-toggle="dropdown" href="#" class="btn mini blue">
-                                trier par niveau
+                                trier par branche
                                 <i class="fa fa-angle-down "></i>
                             </a>
-                            <ul class="dropdown-menu menu_actions bill-months niveau">
+                            <ul class="dropdown-menu menu_actions bill-months branche">
 
                             </ul>
                         </div>
@@ -118,7 +118,7 @@
                             <td>{{ $cr->capacite_classe }} élèves</td>
                             <td> {{ $cr->children()->count() }}</td>
                             <td>{{  $cr->niveau }}</td>
-                            <td>{{  $cr->branche    }}</td>
+                            <td>{{  $cr->branche ? $cr->branche : '--'  }}</td>
 
                             <td class="no-print">
                                 <a href="{{  action('ClassroomsController@delete',[$cr]) }}" class="actions_icons delete-classe">
@@ -132,6 +132,23 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $classrooms->currentPage() -1) * $classrooms->perPage()  +1  }} à
+                            @if((($classrooms->currentPage() -1)  * $classrooms->perPage() + $classrooms->perPage()) > $classrooms->total()  )
+                                {{  $classrooms->total() }} sur
+                            @else
+                                {{ ($classrooms->currentPage() -1)  * $classrooms->perPage() + $classrooms->perPage() }} sur
+                            @endif
+                            {{ $classrooms->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $classrooms->render() !!}
+                        </div>
+                    </div>
+
+
+
                 </div>
             </section>
         </div>
@@ -210,34 +227,45 @@
                 {
                     status = true;
                     var valeur = $(this).val();
-                    $(this).val(valeur).closest('tr').fadeOut();
+                   // $(this).val(valeur).closest('tr').fadeOut();
                     boxes = $(this).val() + ',';
                     $('#boxes').append(boxes);
                 }
             });
-            if($('#boxes').text() ===  null)
+            if(boxes == null)
             {
-                alert('check please');
+                alertify.alert("cocher d'abord !");
                 return false;
             }
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '{{  URL::action('ClassroomsController@supprimer')}}',
-                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                type: 'post',
-                success: function (data) {
-                    console.log(data);
-                }
-            });
+
+            alertify.dialog('confirm')
+                    .set({
+                        'labels': {ok: 'Oui', cancel: 'Non'},
+                        'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                        'transition': 'zoom',
+                        'onok': function () {
+                            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                            $.ajax({
+                                url: '{{  URL::action('ClassroomsController@supprimer')}}',
+                                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                type: 'post',
+                                success: function (data) {
+                                    location.reload();
+                                }
+                            });
+                            alertify.success('bien supprimé!');
+                        }
+                    }).show();
+
         });
 
-        $('.branche-ul a').click(function(){
+        $('.niveaux-ul a').click(function(){
             $('tbody').empty();
-            var branche = $(this).text();
+            var niveau = $(this).text();
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 url: '{{  URL::action('ClassroomsController@trierparbranche')}}',
-                data: 'branche=' + branche + '&_token=' + CSRF_TOKEN,
+                data: 'niveau=' + niveau + '&_token=' + CSRF_TOKEN,
                 type: 'post',
                 success: function (data) {
                     $('tbody').append(data);
@@ -255,27 +283,27 @@
             },  10000);
 
 
-            $('.branche').on('click',function(){
-             var branche_id = $(this).attr('data-id');
+            $('.niveau').on('click',function(){
+             var niveau_id = $(this).attr('data-id');
            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('ClassroomsController@getLevel')}}',
-                    data: 'branche_id=' + branche_id + '&_token=' + CSRF_TOKEN,
+                    data: 'niveau_id=' + niveau_id + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
-                        $('.niveau').empty();
-                    $('.niveau').append(data);
+                        $('.branche').empty();
+                    $('.branche').append(data);
                     }
                 });
 
             });
 
-            $('body').on('click','.level',function(){
-                var level_id = $(this).attr('data-id');
+            $('body').on('click','.branch',function(){
+                var branch_id = $(this).attr('data-id');
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('ClassroomsController@trierparniveau')}}',
-                    data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
+                    data: 'branch_id=' + branch_id + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
                         $('tbody').empty();

@@ -207,6 +207,16 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(Timesheet::class,'user_id');
     }
 
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
 
 
 

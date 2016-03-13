@@ -37,12 +37,17 @@
         <div class="col-sm-9">
             <section class="panel">
                 <header class="panel-heading wht-bg">
-                    <h4 class="gen-case"> Informations générales
+                    <h4 class="gen-case"> Informations générales</h4>
 
-                    </h4>
-                    <a class="delete-teacher" href="{{ action('TeachersController@delete',[$teacher]) }}"><div class="btn_supprimer">Supprimer</div></a>
-                   <!-- <a href="{{ action('TeachersController@archive',[$teacher]) }}"><div class="btn_archiver">Archiver</div></a> -->
-                    <a href="{{ action('TeachersController@edit',[$teacher->id]) }}"><div class="btn_archiver">modifier</div></a>
+                    <div class="btn-group dropdown_actions">
+                        <button class="btn btn-white" type="button">Actions</button>
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu" style="left: 0;">
+                            <li><a  href="{{ action('TeachersController@edit',[$teacher->id]) }}">Modifier</a></li>
+                            <li><a class="delete-teacher" href="{{ action('TeachersController@delete',[$teacher]) }}">Supprimer</a></li>
+                        </ul>
+                    </div>
+
 
                 </header>
                 <div class="panel-body informations_general">
@@ -119,14 +124,14 @@
         alertify.dialog('confirm')
                 .set({
                     'labels':{ok:'Oui', cancel:'Non'},
-                    'message': 'voulez vous vraiment supprimer ? ',
+                    'message': 'voulez vous vraiment supprimer cet élément ? ',
                     'transition': 'fade',
                     'onok': function(){
                         window.location.href = href;
                         alertify.success('bien supprimé!');
                     },
                     'oncancel': function(){
-                        alertify.error('Pas supprimé :)');
+
                     }
                 }).show();
     });

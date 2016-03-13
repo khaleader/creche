@@ -132,6 +132,22 @@
 
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $children->currentPage() -1) * $children->perPage()  +1  }} à
+                            @if((($children->currentPage() -1)  * $children->perPage() + $children->perPage()) > $children->total()  )
+                                {{  $children->total() }} sur
+                            @else
+                                {{ ($children->currentPage() -1)  * $children->perPage() + $children->perPage() }} sur
+                            @endif
+                            {{ $children->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $children->render() !!}
+                        </div>
+                    </div>
+
+
                 </div>
             </section>
         </div>
@@ -202,25 +218,36 @@
                     {
                         status = true;
                         var valeur = $(this).val();
-                        $(this).val(valeur).closest('tr').fadeOut();
+                       // $(this).val(valeur).closest('tr').fadeOut();
                         boxes = $(this).val() + ',';
                         $('#boxes').append(boxes);
                     }
                 });
-                if($('#boxes').text() ===  null)
+                if(boxes == null)
                 {
-                    alert('check please');
+                    alertify.alert("cocher d'abord !");
                     return false;
                 }
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('ChildrenController@supprimer')}}',
-                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });
+
+                alertify.dialog('confirm')
+                        .set({
+                            'labels': {ok: 'Oui', cancel: 'Non'},
+                            'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                            'transition': 'zoom',
+                            'onok': function () {
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('ChildrenController@supprimer')}}',
+                                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        location.reload();
+                                    }
+                                });
+                                alertify.success('bien supprimé!');
+                            }
+                        }).show();
+
             });
             $('#archive-children').click(function(){
                 var boxes;

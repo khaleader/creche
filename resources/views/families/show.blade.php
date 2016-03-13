@@ -60,13 +60,18 @@
         <div class="col-sm-9">
             <section class="panel">
                 <header class="panel-heading wht-bg">
-                    <h4 class="gen-case"> Informations générales
+                    <h4 class="gen-case"> Informations générales  </h4>
 
-                    </h4>
-                    <a class="delete-family" href="{{ action('FamiliesController@delete',[$family->id]) }}"><div class="btn_supprimer">Supprimer</div></a>
-                   <!-- <a href="{{ action('FamiliesController@archive',[$family->id]) }}"><div class="btn_archiver">Archiver</div></a>-->
-                    <a href="{{ action('FamiliesController@edit',[$family->id]) }}"><div class="btn_archiver">modifier</div></a>
-                    <a href="{{ action('FamiliesController@addchild',[$family->id]) }}"><div style="width: 150px;" class="btn_archiver">Ajouter un Enfant</div></a>
+                    <div class="btn-group dropdown_actions">
+                        <button class="btn btn-white" type="button">Actions</button>
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu" style="left: 0;">
+                            <li><a  href="{{ action('FamiliesController@edit',[$family->id]) }}">Modifier</a></li>
+                            <li><a class="delete-family" href="{{action('FamiliesController@delete',[$family->id]) }}">Supprimer</a></li>
+                            <li><a  href="{{ action('FamiliesController@addchild',[$family->id]) }}">Ajouter un Elève</a></li>
+
+                        </ul>
+                    </div>
 
                 </header>
                 <div class="panel-body informations_general">
@@ -160,14 +165,14 @@
         alertify.dialog('confirm')
                 .set({
                     'labels':{ok:'Oui', cancel:'Non'},
-                    'message': 'voulez vous vraiment supprimer ? ',
+                    'message': 'voulez vous vraiment supprimer cet élément ? ',
                     'transition': 'fade',
                     'onok': function(){
                         window.location.href = href;
                         alertify.success('bien supprimé!');
                     },
                     'oncancel': function(){
-                        alertify.error('Pas supprimé :)');
+
                     }
                 }).show();
     });

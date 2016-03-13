@@ -160,6 +160,23 @@
 
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $cr->currentPage() -1) * $cr->perPage()  +1  }} à
+                            @if((($cr->currentPage() -1)  * $cr->perPage() + $cr->perPage()) > $cr->total()  )
+                                {{  $cr->total() }} sur
+                            @else
+                                {{ ($cr->currentPage() -1)  * $cr->perPage() + $cr->perPage() }} sur
+                            @endif
+                            {{ $cr->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $cr->render() !!}
+                        </div>
+                    </div>
+
+
+
                 </div>
             </section>
         </div>

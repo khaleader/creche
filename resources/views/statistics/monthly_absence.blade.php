@@ -106,6 +106,20 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $att->currentPage() -1) * $att->perPage()  +1  }} à
+                            @if((($att->currentPage() -1)  * $att->perPage() + $att->perPage()) > $att->total()  )
+                                {{  $att->total() }} sur
+                            @else
+                                {{ ($att->currentPage() -1)  * $att->perPage() + $att->perPage() }} sur
+                            @endif
+                            {{ $att->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $att->render() !!}
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

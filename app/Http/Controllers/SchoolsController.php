@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Child;
 use App\Events\SchoolSendEmailEvent;
 use App\Http\Requests\AddSchoolRequest;
+use App\Profile;
 use App\Transport;
 use App\User;
 use App\CategoryBill;
@@ -29,7 +30,7 @@ class SchoolsController extends Controller
         $this->middleware('auth');
         $this->middleware('Famille',['only'=> 'editef','updatepassef','upimage']);
         $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category',
-            'show_cat_bills','editef','updatepassef','upimage','upimageecole']]);
+            'show_cat_bills','editef','updatepassef','upimage','upimageecole','profile','editer']]);
 
 
     }
@@ -241,6 +242,67 @@ class SchoolsController extends Controller
         }else{
             return redirect()->back()->withErrors($validator);
         }
+    }
+
+
+
+    public function profile(Request $request,$id = null)
+    {
+        if(\Request::isMethod('get'))
+        {
+            return view('schools.profile');
+        }else{
+          $a_user = User::where('id',\Auth::user()->id)->first();
+            $a_user->name  = $request->name;
+            $a_user->nom_responsable  = $request->nom_responsable;
+            $a_user->tel_fixe  = $request->tel_fixe;
+            $a_user->adresse  = $request->adresse;
+            $a_user->ville  = $request->ville;
+            $a_user->save();
+
+            $image = $request->photo;
+            if(isset($image) && !empty($image))
+            {
+                $filename = $image->getClientOriginalName();
+                $path = public_path('uploads/' . $filename);
+                Image::make($image->getRealPath())->resize(313, 300)->save($path);
+                $user = User::where('id',\Auth::user()->id)->where('id',$id)->first();
+                $user->photo = $filename;
+                $user->save();
+            }else{
+                $pic = User::findOrFail(\Auth::user()->id);
+                if(isset($pic->photo))
+                {
+                    $filename = $pic->photo;
+                }else{
+                    $filename = null;
+                }
+                $pic->photo = $filename;
+                $pic->save();
+            }
+
+
+
+
+            $profile =  Profile::where('user_id',\Auth::user()->id)->first();
+          $profile->site_web = $request->site_web;
+            $profile->page_facebook = $request->page_facebook;
+            $profile->patente = $request->patente;
+            $profile->registre_du_commerce = $request->registre_du_commerce;
+            $profile->identification_fiscale = $request->identification_fiscale;
+            $profile->cnss = $request->cnss;
+            $profile->rib = $request->rib;
+            $profile->save();
+             return redirect()->back()->with('success','Modifications réussies');
+        }
+
+    }
+
+
+    public function editer($id)
+    {
+
+          return view('schools.editer');
     }
 
     public function updatepass(Request $request)

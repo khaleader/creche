@@ -91,6 +91,22 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $levels->currentPage() -1) * $levels->perPage()  +1  }} à
+                            @if((($levels->currentPage() -1)  * $levels->perPage() + $levels->perPage()) > $levels->total()  )
+                                {{  $levels->total() }} sur
+                            @else
+                                {{ ($levels->currentPage() -1)  * $levels->perPage() + $levels->perPage() }} sur
+                            @endif
+                            {{ $levels->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $levels->render() !!}
+                        </div>
+                    </div>
+
+
                 </div>
             </section>
         </div>
@@ -169,25 +185,37 @@
                     {
                         status = true;
                         var valeur = $(this).val();
-                        $(this).val(valeur).closest('tr').fadeOut();
+                       // $(this).val(valeur).closest('tr').fadeOut();
                         boxes = $(this).val() + ',';
                         $('#boxes').append(boxes);
                     }
                 });
-                if($('#boxes').text() ===  null)
+                if(boxes == null)
                 {
-                    alert('check please');
+                    alertify.alert("cocher d'abord !");
                     return false;
                 }
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('LevelsController@supprimer')}}',
-                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });
+
+                alertify.dialog('confirm')
+                        .set({
+                            'labels': {ok: 'Oui', cancel: 'Non'},
+                            'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                            'transition': 'zoom',
+                            'onok': function () {
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('LevelsController@supprimer')}}',
+                                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        location.reload();
+                                    }
+                                });
+                                alertify.success('bien supprimé!');
+
+                            }
+                        }).show();
+
             });
 
 

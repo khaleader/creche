@@ -58,6 +58,13 @@ class Classroom extends Model
     }
 
 
+    // only for primaire and collège
+    public function lesNiveaux()
+    {
+        return $this->belongsToMany(Level::class);
+    }
+
+
 
 
 

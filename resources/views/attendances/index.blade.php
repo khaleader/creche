@@ -129,12 +129,24 @@
                             <td><a href="{{  action('AttendancesController@show',[$child->id])  }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                       @endforeach
-
-
-
-
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $children->currentPage() -1) * $children->perPage()  +1  }} à
+                            @if((($children->currentPage() -1)  * $children->perPage() + $children->perPage()) > $children->total()  )
+                                {{  $children->total() }} sur
+                            @else
+                                {{ ($children->currentPage() -1)  * $children->perPage() + $children->perPage() }} sur
+                            @endif
+                            {{ $children->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $children->render() !!}
+                        </div>
+                    </div>
+
+
                 </div>
             </section>
         </div>

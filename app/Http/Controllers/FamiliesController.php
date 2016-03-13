@@ -68,23 +68,25 @@ class FamiliesController extends Controller
                 'nom_enfant' => 'required',
                 'date_naissance' => 'required',
                 'photo' => 'image',
-                'branche' => 'integer',
                 'niveau' => 'integer',
-                'classe' => 'integer'
+                'classe' => 'integer',
+                'grade' => 'integer'
             ],
                 [
                     'photo.image' => "L'image doit etre de type valide JPEG\PNG",
                     'nom_enfant.required' => 'Le Nom de L\'enfant est obligatoire',
                     'date_naissance.required' => 'La Date de Naissance est Obligatoire',
                     'classe.integer' => "vous devez choisir une classe",
-                    'branche.integer' => "vous devez choisir une branche",
-                    'niveau.integer' => "vous devez choisir un niveau"
+                    'niveau.integer' => "vous devez choisir un niveau",
+                    'grade.integer' => "Vous devez chosir un niveau global"
 
                 ]);
 
 
             // if the parent already in the database
             if ($validator->passes()) {
+                $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
+
 
             $child = new Child();
             $child->date_naissance = Carbon::parse($request->date_naissance);
@@ -114,7 +116,10 @@ class FamiliesController extends Controller
                 if ($child->id) {
 
                     $ch =Child::find($child->id);
-                    $ch->branches()->attach([$request->branche]);
+                    if($niveau_global == 'Lycée')
+                    {
+                        $ch->branches()->attach([$request->branche]);
+                    }
                     $ch->levels()->attach([$request->niveau]);
 
 

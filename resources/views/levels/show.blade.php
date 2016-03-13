@@ -8,7 +8,7 @@
                 <a href="{{ action('LevelsController@index') }}">
                     <div class="panel-body bloc_informations">
 
-                        <img src="{{ asset('images/branches.png') }}" ><span class="count">
+                        <img src="{{ asset('images/niveaux.png') }}" ><span class="count">
                           {{ \App\Level::where('user_id',\Auth::user()->id)->count() }}
                         </span><p>Niveaux</p>
                     </div></a>
@@ -24,11 +24,19 @@
         <div class="col-sm-9">
             <section class="panel">
                 <header class="panel-heading wht-bg">
-                    <h4 class="gen-case"> Informations générales
+                    <h4 class="gen-case"> Informations générales </h4>
 
-                    </h4>
-                    <a class="delete-level" href="{{ action('LevelsController@delete',[$level]) }}"><div class="btn2">Supprimer</div></a>
-                    <a href="{{ action('LevelsController@edit',[$level]) }}"><div class="btn2">Modifier</div></a>
+
+
+                    <div class="btn-group dropdown_actions">
+                        <button class="btn btn-white" type="button">Actions</button>
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu" style="left: 0;">
+                            <li><a  href="{{ action('LevelsController@edit',[$level]) }}">Modifier</a></li>
+                            <li><a class="delete-level" href="{{ action('LevelsController@delete',[$level]) }}">Supprimer</a></li>
+                        </ul>
+                    </div>
+
 
                 </header>
                 <div class="panel-body informations_general">
@@ -63,14 +71,14 @@
         alertify.dialog('confirm')
                 .set({
                     'labels':{ok:'Oui', cancel:'Non'},
-                    'message': 'voulez vous vraiment supprimer ? ',
+                    'message': 'voulez vous vraiment supprimer cet élément ? ',
                     'transition': 'fade',
                     'onok': function(){
                         window.location.href = href;
                         alertify.success('bien Supprimé!');
                     },
                     'oncancel': function(){
-                        alertify.error('Pas Supprimé :)');
+
                     }
                 }).show();
 

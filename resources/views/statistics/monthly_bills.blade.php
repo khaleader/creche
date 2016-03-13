@@ -149,13 +149,23 @@
                             </tr>
                         @endunless
                     @endforeach
-
-
-
-
                     </tbody>
-
                 </table>
+                <div class="row liste_footer">
+                    <p>
+                        {{( $bills->currentPage() -1) * $bills->perPage()  +1  }} à
+                        @if((($bills->currentPage() -1)  * $bills->perPage() + $bills->perPage()) > $bills->total()  )
+                            {{  $bills->total() }} sur
+                        @else
+                            {{ ($bills->currentPage() -1)  * $bills->perPage() + $bills->perPage() }} sur
+                        @endif
+                        {{ $bills->total() }} résultats</p>
+                    <div class="pagination_liste">
+
+                        {!!  $bills->render() !!}
+                    </div>
+                </div>
+
             </div>
         </section>
     </div>

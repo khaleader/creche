@@ -196,6 +196,21 @@
 
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $families->currentPage() -1) * $families->perPage()  +1  }} à
+                            @if((($families->currentPage() -1)  * $families->perPage() + $families->perPage()) > $families->total()  )
+                                {{  $families->total() }} sur
+                            @else
+                                {{ ($families->currentPage() -1)  * $families->perPage() + $families->perPage() }} sur
+                            @endif
+                            {{ $families->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $families->render() !!}
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -257,7 +272,7 @@
 
 
          /* delete by checkboxes  */
-        $('#delete-families').click(function(){
+            $('body').on('click','#delete-families',function(){
             var boxes;
             var status;
             $("input[name='select[]']").each(function(){
@@ -265,25 +280,40 @@
                 {
                     status = true;
                     var valeur = $(this).val();
-                    $(this).val(valeur).closest('tr').fadeOut();
+                   // $(this).val(valeur).closest('tr').fadeOut();
                     boxes = $(this).val() + ',';
                     $('#boxes').append(boxes);
                 }
             });
-            if($('#boxes').text() ===  null)
+            if(boxes == null)
             {
-                alert('check please');
+                alertify.alert("cocher d'abord !");
                 return false;
             }
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '{{  URL::action('FamiliesController@supprimer')}}',
-                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                type: 'post',
-                success: function (data) {
-                    console.log(data);
-                }
-            });
+
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                            'transition': 'zoom',
+                            'onok': function(){
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('FamiliesController@supprimer')}}',
+                                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        location.reload();
+                                    }
+                                });
+                                alertify.success('bien supprimé!');
+                            }
+
+
+                        }).show();
+
+
+
         });
 
 

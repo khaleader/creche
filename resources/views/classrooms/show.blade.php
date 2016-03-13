@@ -60,13 +60,23 @@
         <div class="col-sm-9">
             <section class="panel">
                 <header class="panel-heading wht-bg">
-                    <h4 class="gen-case"> Informations générales
+                    <h4 class="gen-case"> Informations générales  </h4>
 
-                    </h4>
-                    <a class="delete-classe" href="{{ action('ClassroomsController@delete',[$cr]) }}"><div class="btn2">Supprimer</div></a>
-                    <a href="{{ action('ClassroomsController@edit',[$cr]) }}"><div class="btn2">Modifier</div></a>
-                    <a href="{{ action('TimesheetsController@edit',[$cr]) }}"><div class="btn2">Emploi du temps</div></a>
-                    <a href="{{ action('ClassroomsController@addMatterandProfToCr',[$cr]) }}"> <div class="btn2">ajouter Un Professeur</div> </a>
+                    <div class="btn-group dropdown_actions">
+                        <button class="btn btn-white" type="button">Actions</button>
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu" style="left: -28px;">
+                            <li><a  href="{{ action('ClassroomsController@edit',[$cr]) }}">Modifier</a></li>
+                            <li><a class="delete-classe" href="{{ action('ClassroomsController@delete',[$cr]) }}">Supprimer</a></li>
+                            <li><a  href="{{ action('TimesheetsController@edit',[$cr]) }}">Emploi du temps</a></li>
+                            <li><a  href="{{ action('ClassroomsController@addMatterandProfToCr',[$cr]) }}">ajouter Un Professeur</a></li>
+
+
+                        </ul>
+                    </div>
+
+
+
 
                 </header>
                 <div class="panel-body informations_general">
@@ -120,14 +130,14 @@
             alertify.dialog('confirm')
                     .set({
                         'labels':{ok:'Oui', cancel:'Non'},
-                        'message': 'voulez vous vraiment supprimer ? ',
+                        'message': 'voulez vous vraiment supprimer cet élément ?  ',
                         'transition': 'fade',
                         'onok': function(){
                             window.location.href = href;
                             alertify.success('bien Supprimé!');
                         },
                         'oncancel': function(){
-                            alertify.error('Pas Supprimé :)');
+
                         }
                     }).show();
 

@@ -226,7 +226,7 @@
                                 alertify.success('bien supprimé!');
                             },
                             'oncancel': function(){
-                                alertify.error('Pas supprimé :)');
+
                             }
                         }).show();
             });

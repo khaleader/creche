@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Events;
-
+use App\Profile;
 use App\Bill;
 use App\Branch;
 use App\CategoryBill;
@@ -72,9 +72,15 @@ class SchoolSendEmailEvent extends Event
         $user->pays = $this->pays;
         $user->typeCompte = $this->typeCompte;
         $user->sexe = $this->sexe;
-        if($user->typeCompte == 1)
-        {
-            $user->save();
+         $user->save();
+
+           $profile = Profile::where('user_id',$user->id)->first();
+            if(!$profile)
+            {
+                $pr = new Profile();
+                $pr->user_id = $user->id;
+                $pr->save();
+            }
             if($user)
             {
                 $info = [
@@ -92,9 +98,11 @@ class SchoolSendEmailEvent extends Event
 
                 });
             }
-        }else {
+
+
+        /*else {
             $user->save();
-                /* sending email */
+              //  sending email
                 $info = [
                     'nom_resp' => $this->nomResponsable,
                     'sexe' => $this->sexe,
@@ -110,7 +118,7 @@ class SchoolSendEmailEvent extends Event
 
                 });
 
-                /* Sending Email */
+              //   Sending Email
 
 
 
@@ -629,7 +637,7 @@ class SchoolSendEmailEvent extends Event
 
 
 
-                }
+                } */
 
 
             }

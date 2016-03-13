@@ -93,22 +93,20 @@
                         </div>
 
                         <div class="form_champ c">
-                            <label for="cname" class="control-label col-lg-3">La Branche</label>
+                            <label for="cname" class="control-label col-lg-3">Niveau Global * </label>
                             <div class="form_ajout">
-                                <select id="branche" name="branche" class="form_ajout_input">
-
-                                    <option selected>Choisissez une branche</option>
-                                    @foreach(\Auth::user()->branches as $branch)
-                                        <option value="{{ $branch->id }}">{{ $branch->nom_branche }}</option>
+                                <select id="grade" name="grade" class="form_ajout_input">
+                                    <option selected>Sélectionnez</option>
+                                    @foreach(\Auth::user()->grades as $grade)
+                                        <option data-value="{{ $grade->name }}" value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
-
                                 </select>
-
                             </div>
                         </div>
 
+
                         <div class="form_champ c">
-                            <label for="cname" class="control-label col-lg-3">Le Niveau</label>
+                            <label for="cname" class="control-label col-lg-3">Le Niveau * </label>
                             <div class="form_ajout">
                                 <select id="niveau" name="niveau" class="form_ajout_input">
 
@@ -129,10 +127,29 @@
                             </div>
                         </div>
 
+                        <div class="form_champ c" id="branche-bloc">
+                            <label for="cname" class="control-label col-lg-3">La Branche * </label>
+                            <div class="form_ajout">
+                                <select id="branche" name="branche" class="form_ajout_input">
+
+                                    <option selected>Choisissez une branche</option>
+                                    @foreach(\Auth::user()->branches as $branch)
+                                        <option value="{{ $branch->id }}">{{ $branch->nom_branche }}</option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+                        </div>
+
+
+
+
+
 
                         <input type="hidden" name="familyid" value="{{ $family->id }}">
 
-                        <button class="btn_form" type="submit">Enregistrer</button>
+                        <button id="submit" class="btn_form" type="submit">Enregistrer</button>
                     </table>
                 </div>
             </section>
@@ -255,13 +272,40 @@
 
 
 
-            $('#niveau').prop('disabled','disabled');
-            $('#branche').on('change',function(){
-                var branche_id = $(this).val();
+            $('#branche').prop('disabled','disabled');
+            $('#classe').on('change',function(){
+                var classe_id = $(this).val();
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('ChildrenController@getLevelWhenBranchId')}}',
-                    data: 'branche_id=' + branche_id + '&_token=' + CSRF_TOKEN,
+                    url: '{{  URL::action('ChildrenController@getBranchWhenClassid')}}',
+                    data: 'classe_id=' + classe_id + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('#branche').prop('disabled','');
+                        $('#branche').empty();
+                        $('#branche').prepend('<option selected>selectionnez une branche</option>');
+                        $('#branche').append(data);
+                    }
+                });
+
+            });
+
+
+            $('#branche-bloc').hide();
+            $('#niveau').prop('disabled','disabled');
+            $('#grade').on('change',function(){
+                var grade_id = $(this).val();
+                var grade_text =  $(this).find('option:selected').text();
+                switch(grade_text)
+                {
+                    case 'Primaire': $('#branche-bloc').hide();  ;break;
+                    case 'Collège': $('#branche-bloc').hide();  ;break;
+                    case 'Lycée': $('#branche-bloc').show();  ;break;
+                }
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ChildrenController@getLevelWhenGradeIsChosen')}}',
+                    data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
                         $('#niveau').prop('disabled','');
@@ -270,7 +314,6 @@
                         $('#niveau').append(data);
                     }
                 });
-
             });
 
 
@@ -291,9 +334,21 @@
                 });
 
             });
-            $('#niveau').click(function(){
+           $('#niveau').click(function(){
                 $('#classe').empty();
             });
+
+            $('#submit').click(function(){
+                var grade = $('#grade option:selected').text();
+                if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
+                {
+                    alertify.alert('vous devez choisir une branche');
+                    return false;
+                }
+
+            });
+
+
 
 
         });

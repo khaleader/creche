@@ -10,6 +10,7 @@ use App\Events\BillEvent;
 use App\Events\SendEmailToRespAfterRegistrationEvent;
 use App\Family;
 use App\Child;
+use App\Grade;
 use App\Http\Requests\ajouterEnfantRequest;
 use App\Http\Requests\FormValidationChildFamilyRequest;
 use App\Level;
@@ -67,11 +68,11 @@ class ChildrenController extends Controller
      */
     public function store(FormValidationChildFamilyRequest $request)
     {
+        $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
+
         // famille for family profile
         $famille = Family::where('user_id',\Auth::user()->id)->where('email_responsable',$request->email_responsable)->first();
         if(!$famille) {
-
-
             $family = new Family();
             $family->nom_pere = ucfirst($request->nom_pere);
             $family->nom_mere = ucfirst($request->nom_mere);
@@ -114,7 +115,10 @@ class ChildrenController extends Controller
 
                 if ($child->id) {
                     $ch =Child::find($child->id);
-                    $ch->branches()->attach([$request->branche]);
+                    if($niveau_global == 'Lycée')
+                    {
+                        $ch->branches()->attach([$request->branche]);
+                    }
                     $ch->levels()->attach([$request->niveau]);
                     //classe
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
@@ -158,6 +162,9 @@ class ChildrenController extends Controller
 
             }
             return redirect()->back()->with('success', "l'élève et les parents ont bien été ajoutés! ");
+
+
+
         }else{
             // if the parent already in the database
             $child = new Child();
@@ -191,7 +198,11 @@ class ChildrenController extends Controller
                 {
 
                     $ch =Child::find($child->id);
-                    $ch->branches()->attach([$request->branche]);
+                    if($niveau_global == 'Lycée')
+                    {
+                        $ch->branches()->attach([$request->branche]);
+                    }
+
                     $ch->levels()->attach([$request->niveau]);
 
                     $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
@@ -388,16 +399,16 @@ class ChildrenController extends Controller
         }
     }
 
-    // retourne le niveau dès le recoit de la branche  en ajax
-    public function getLevelWhenBranchId()
+    // retourne la branche  dès le recoit de la classe  en ajax
+    public function getBranchWhenClassid()
     {
         if(\Request::ajax())
         {
-            $branch_id = \Input::get('branche_id');
-            $branch = Branch::where('id',$branch_id)->first();
-            foreach($branch->levels->unique() as $level)
+            $classe_id = \Input::get('classe_id');
+            $classe = Classroom::where('id',$classe_id)->first();
+            foreach($classe->branches->unique() as $branch)
             {
-                echo '<option value="'.$level->id.'">'.$level->niveau.'</option>';
+                echo '<option value="'.$branch->id.'">'.$branch->nom_branche.'</option>';
             }
 
         }
@@ -410,11 +421,31 @@ class ChildrenController extends Controller
             $level = Level::where('id', $level_id)->first();
             foreach ($level->classrooms as $cr) {
                 echo '<option value="' . $cr->id . '">' . $cr->nom_classe . '</option>';
+            }
+            foreach ($level->lesClasses as $cr) {
+                echo '<option value="' . $cr->id . '">' . $cr->nom_classe . '</option>';
 
             }
         }
 
 
+    }
+
+
+
+
+    //get level when grade is chosen
+
+    public function getLevelWhenGradeIsChosen()
+    {
+        if(\Request::ajax()) {
+            $grade_id = \Input::get('grade_id');
+            $grade = Grade::where('id', $grade_id)->first();
+            foreach ($grade->levels as $level) {
+                echo '<option value="' . $level->id . '">' . $level->niveau . '</option>';
+
+            }
+        }
     }
 
 
@@ -480,17 +511,18 @@ class ChildrenController extends Controller
         //   'adresse' => $request->adresse,
            'photo' => $request->photo,
            'classe' => $request->classe,
-           'branche' => $request->branche,
-           'niveau' => $request->niveau
+           'niveau' => $request->niveau,
+           'grade' => $request->grade
 
         ],[
             // 'numero_fixe' => 'required',
             // 'numero_portable'=> 'required',
          //    'adresse'=> 'required',
              'photo' => 'image',
-              'classe' => 'required_with:niveau|integer',
+             'classe' => 'required_with:niveau|integer',
              'branche' => 'integer',
-             'niveau' => 'required_with:branche|integer'
+             'niveau' => 'required_with:branche|integer',
+             'grade' => 'integer'
         ],
             [
                // 'numero_fixe.required' => "Le tel fixe est requis",
@@ -499,13 +531,18 @@ class ChildrenController extends Controller
                 'photo.image' => "L'image doit etre de type valide JPEG\PNG",
                 'branche.integer' => "vous devez choisir une branche",
                 'niveau.integer' => "vous devez choisir un niveau",
-                'classe.integer' => "vous devez choisir une classe"
+                'classe.integer' => "vous devez choisir une classe",
+                'grade.integer' => "vous devez choisir un niveau global",
 
             ]);
            if($validator->passes())
             {
+                $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
                 $enfant = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-                $enfant->branches()->sync([$request->branche]);
+                if($niveau_global == 'Lycée')
+                {
+                    $enfant->branches()->sync([$request->branche]);
+                }
                 $enfant->levels()->sync([$request->niveau]);
 
 

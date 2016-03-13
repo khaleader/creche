@@ -27,4 +27,16 @@ class Level extends Model
   return $this->belongsToMany(Child::class);
  }
 
+
+ public function grade()
+ {
+  return $this->belongsTo(Grade::class);
+ }
+
+ // only for primaire and collège
+ public function lesClasses()
+ {
+  return $this->belongsToMany(Classroom::class);
+ }
+
 }

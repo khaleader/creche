@@ -19,6 +19,7 @@
 use Illuminate\Contracts\Pagination\Paginator;
 
 Route::get('/','HomeController@index');
+Route::get('help','HomeController@help');
 
 
  /* SchoolsController*/
@@ -30,7 +31,8 @@ Route::match(['get','post'],'schools/fillcatbills','SchoolsController@show_cat_b
 Route::match(['get','post'],'schools/schoolbyalph','SchoolsController@schoolbyalph');
 Route::post('schools/upimage','SchoolsController@upimage'); // uploader ou changer l'image de compte famille
 Route::post('schools/upimageecole','SchoolsController@upimageecole'); // uploader ou changer l'image de compte ecole
-
+Route::any('schools/profile/{id?}','SchoolsController@profile');
+Route::get('schools/editer/{id}','SchoolsController@editer');
 
   /*
    * connexion login
@@ -69,11 +71,13 @@ Route::post('children/checktoreturn','ChildrenController@checktoreturn'); // che
 Route::get('children/exportEleve/{ids?}','ChildrenController@exportEleve');
 // PDF Export PDF children/index
 Route::get('children/exportPdf/{ids?}','ChildrenController@exportPdf');
-// retourne le niveau dès le recoit de la branche  en ajax
-Route::post('children/getLevelWhenBranchId','ChildrenController@getLevelWhenBranchId');
+// retourne la branche  dès le recoit de la classe  en ajax
+Route::post('children/getBranchWhenClassid','ChildrenController@getBranchWhenClassid');
 // retourne le la classe dès le recoit de de niveau  en ajax
 Route::post('children/getClassroomWhenLevelId','ChildrenController@getClassroomWhenLevelId');
 
+// retourne le niveau quand on recoit le niveau global
+Route::post('children/getLevelWhenGradeIsChosen','ChildrenController@getLevelWhenGradeIsChosen');
 
 Route::resource('children','ChildrenController');
 

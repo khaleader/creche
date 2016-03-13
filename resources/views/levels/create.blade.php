@@ -9,7 +9,7 @@
                 <a href="{{ action('LevelsController@index') }}">
                     <div class="panel-body bloc_informations">
 
-                        <img src="{{ asset('images/branches.png') }}" ><span class="count">
+                        <img src="{{ asset('images/niveaux.png') }}" ><span class="count">
                             {{ \App\Level::where('user_id',\Auth::user()->id)->count() }}
                         </span><p>niveaux</p>
                     </div></a>
@@ -29,6 +29,17 @@
                 </header>
                 <div class="panel-body informations_general">
                     {!! Form::open(['url'=> action('LevelsController@store')]) !!}
+
+
+                    <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Niveau global</label>
+                        <div class="form_ajout">
+                                        {!!  Form::select('grade',
+            App\Grade::where('user_id',\Auth::user()->id)->
+            lists('name','id') ,null,['class'=>'form_ajout_input']) !!}
+
+                        </div>
+                    </div>
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Nom du niveau</label>
                         <div class="form_ajout">
@@ -36,6 +47,8 @@
 
                         </div>
                     </div>
+
+
                     <button class="btn_form" type="submit">Enregistrer</button>
                     {!! Form::close() !!}
                 </div>

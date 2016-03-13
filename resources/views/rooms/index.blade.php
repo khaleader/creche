@@ -101,6 +101,21 @@
 
                         </tbody>
                     </table>
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $rooms->currentPage() -1) * $rooms->perPage()  +1  }} à
+                            @if((($rooms->currentPage() -1)  * $rooms->perPage() + $rooms->perPage()) > $rooms->total()  )
+                                {{  $rooms->total() }} sur
+                            @else
+                                {{ ($rooms->currentPage() -1)  * $rooms->perPage() + $rooms->perPage() }} sur
+                            @endif
+                            {{ $rooms->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $rooms->render() !!}
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -171,25 +186,36 @@
                 {
                     status = true;
                     var valeur = $(this).val();
-                    $(this).val(valeur).closest('tr').fadeOut();
+                 //   $(this).val(valeur).closest('tr').fadeOut();
                     boxes = $(this).val() + ',';
                     $('#boxes').append(boxes);
                 }
             });
-            if($('#boxes').text() ===  null)
+            if(boxes == null)
             {
-                alert('check please');
+                alertify.alert("cocher d'abord !");
                 return false;
             }
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '{{  URL::action('RoomsController@supprimer')}}',
-                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                type: 'post',
-                success: function (data) {
-                    console.log(data);
-                }
-            });
+
+            alertify.dialog('confirm')
+                    .set({
+                        'labels': {ok: 'Oui', cancel: 'Non'},
+                        'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                        'transition': 'zoom',
+                        'onok': function () {
+                            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                            $.ajax({
+                                url: '{{  URL::action('RoomsController@supprimer')}}',
+                                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                type: 'post',
+                                success: function (data) {
+                                    location.reload();
+                                }
+                            });
+                            alertify.success('bien supprimé!');
+                        }
+                    }).show();
+
         });
 
         var ExcelLink = $('#exporter').attr('href');

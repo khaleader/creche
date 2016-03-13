@@ -36,9 +36,11 @@ class ClassroomsController extends Controller
     {
         $classrooms = Classroom::where('user_id',\Auth::user()->id)->paginate(10);
         $branches = Branch::where('user_id',\Auth::user()->id)->get();
+        $niveaux = Level::where('user_id',\Auth::user()->id)->get();
         return view('classrooms.index')->with([
             'classrooms' => $classrooms,
-            'branches' => $branches
+            'branches' => $branches,
+            'niveaux' => $niveaux
         ]);
     }
 
@@ -56,11 +58,11 @@ class ClassroomsController extends Controller
     {
         if(\Request::ajax())
         {
-            $branch_id = \Input::get('branche_id');
-            $branch = Branch::where('id',$branch_id)->first();
-            foreach($branch->levels->unique() as $level)
+            $niveau_id = \Input::get('niveau_id');
+            $level = Level::where('id',$niveau_id)->first();
+            foreach($level->branches->unique() as $branch)
             {
-                echo '<li><a class="level" data-id="'. $level->id .'" href="#">'. $level->niveau .'</a></li>';
+                echo '<li><a class="branch" data-id="'. $branch->id .'" href="#">'. $branch->nom_branche .'</a></li>';
 
             }
 
@@ -101,13 +103,16 @@ class ClassroomsController extends Controller
             'code_classe' =>$request->code_classe,
             'capacite_classe' =>$request->capacite_classe,
             'niveau' =>$request->niveau,
-            'branche' => $request->branche
+            'branche' => $request->branche,
+            'grade' => $request->grade
 
 
         ],[
             'nom_classe' => 'required',
             'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
+            'grade' => 'required|integer',
+            'niveau' => 'required|integer'
 
         ],
             [
@@ -115,18 +120,28 @@ class ClassroomsController extends Controller
                 'code_classe.required' => "le Code de la classe est requis",
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
+                'niveau.integer' => "Le Niveau est requis",
+                'grade.integer' => "Le Niveau Global est requis",
             ]);
+
+
 
 
         if($validator->passes())
         {
-
+            $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
              $cr = new Classroom();
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
             $cr->niveau = Level::find($request->niveau)->niveau;
-            $cr->branche = Branch::find($request->branche)->nom_branche;
+            if(!is_null($cr->branche))
+            {
+                $cr->branche = Branch::find($request->branche)->nom_branche;
+            }else{
+                $cr->branche ='';
+            }
+
             $cr->user_id = \Auth::user()->id;
             $cr->save();
 
@@ -136,16 +151,16 @@ class ClassroomsController extends Controller
             $ts->save();
 
           $level = Level::find($request->niveau);
-            DB::table('branch_classroom_level')->insert([
-                'classroom_id' => $cr->id,
-                'branch_id' => $request->branche,
-                'level_id'=> $level->id
-            ]);
-
-
-
-
-
+            if($niveau_global == 'Lycée')
+            {
+                DB::table('branch_classroom_level')->insert([
+                    'classroom_id' => $cr->id,
+                    'branch_id' => $request->branche,
+                    'level_id'=> $level->id
+                ]);
+            }else{
+                $level->lesClasses()->attach([$cr->id]);
+            }
            if($cr)
             {
                 if(isset($request->select))
@@ -311,8 +326,8 @@ class ClassroomsController extends Controller
     {
         if(\Request::ajax())
         {
-            $br =  \Input::get('branche');
-            $branches = Classroom::where('user_id',\Auth::user()->id)->where('branche',$br)->get();
+            $niveau=  \Input::get('niveau');
+            $branches = Classroom::where('user_id',\Auth::user()->id)->where('niveau',$niveau)->get();
             foreach ($branches as $branch) {
                 echo '         <tr>
                             <td class="no-print"><div class="minimal single-row">
@@ -347,9 +362,9 @@ class ClassroomsController extends Controller
     {
         if(\Request::ajax())
         {
-            $niveau =  \Input::get('level_id');
-            $niveaux = Level::where('user_id',\Auth::user()->id)->where('id',$niveau)->first();
-            foreach ($niveaux->classrooms as $branch) {
+            $branch_id =  \Input::get('branch_id');
+            $branches = Branch::where('user_id',\Auth::user()->id)->where('id',$branch_id)->first();
+            foreach ($branches->classrooms as $branch) {
                 echo '         <tr>
                             <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
@@ -371,7 +386,7 @@ class ClassroomsController extends Controller
                                 </a>-->
                             </td>
 
-                            <td class="no-print"><a href=""><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="'.action('ClassroomsController@indexelc',[$branch]).'"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
             }
         }

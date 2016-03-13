@@ -3000,7 +3000,7 @@ input[type="button"].btn-block {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 57px;
   z-index: 1000;
   display: none;
   float: left;
@@ -4179,8 +4179,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   z-index: 2;
   color: #fff;
   cursor: default;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #7f64b5;
+  border-color: #7f64b5;
 }
 .pagination > .disabled > span,
 .pagination > .disabled > span:hover,
@@ -4190,7 +4190,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .pagination > .disabled > a:focus {
   color: #999;
   cursor: not-allowed;
-  background-color: #fff;
+  background-color: #eee;
   border-color: #ddd;
 }
 .pagination-lg > li > a,

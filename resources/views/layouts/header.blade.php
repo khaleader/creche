@@ -15,7 +15,7 @@
         <!--search & user info start-->
         <ul class="menu">
             <li><a style="color: #687b8c" href="{{ url('/')  }}"><img src="{{ asset('images/tableau_de_bord.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Tableau de bord</a></li>
-            <li><a style="color: #687b8c;" href="#"><img src="{{ asset('images/comment_ca_marche.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Besoin d'aide ?</a></li>
+            <li><a style="color: #687b8c;" href="{{ url('help') }}"><img src="{{ asset('images/comment_ca_marche.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Besoin d'aide ?</a></li>
         </ul>
         <ul class="nav pull-right top-menu">
             <li>
@@ -49,8 +49,13 @@
 
                     <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu extended logout">
-                    <li><a href="#">profil</a></li>
+                <ul class="dropdown-menu extended logout" style="margin: 1px 0px 0;">
+                    @if(\Auth::user() && Auth::user()->isAdmin())
+                        <li><a href="{{ action('SchoolsController@profile',[\Auth::user()->id]) }}">Profil</a></li>
+                    @elseif(\Auth::user() && Auth::user()->isFamily())
+                        <li><a href="#">Profil</a></li>
+                     @endif
+
                     @if(\Auth::user() && Auth::user()->isAdmin())
                     <li><a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">Paramètres</a></li>
                     @elseif(\Auth::user() && Auth::user()->isFamily())

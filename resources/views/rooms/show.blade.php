@@ -27,8 +27,19 @@
                     <h4 class="gen-case"> Informations générales
 
                     </h4>
-                    <a class="delete-room" href="{{ action('RoomsController@delete',[$room]) }}"><div class="btn2">Supprimer</div></a>
-                    <a href="{{ action('RoomsController@edit',[$room]) }}"><div class="btn2">Modifier</div></a>
+
+
+                    <div class="btn-group dropdown_actions">
+                        <button class="btn btn-white" type="button">Actions</button>
+                        <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                        <ul role="menu" class="dropdown-menu" style="left: 0;">
+                            <li><a  href="{{ action('RoomsController@edit',[$room]) }}">Modifier</a></li>
+                            <li><a class="delete-room" href="{{ action('RoomsController@delete',[$room]) }}">Supprimer</a></li>
+
+
+                        </ul>
+                    </div>
+
 
                 </header>
                 <div class="panel-body informations_general">
@@ -70,14 +81,14 @@
         alertify.dialog('confirm')
                 .set({
                     'labels':{ok:'Oui', cancel:'Non'},
-                    'message': 'voulez vous vraiment supprimer ? ',
+                    'message': 'voulez vous vraiment supprimer cet élément ? ',
                     'transition': 'fade',
                     'onok': function(){
                         window.location.href = href;
                         alertify.success('bien Supprimé!');
                     },
                     'oncancel': function(){
-                        alertify.error('Pas Supprimé :)');
+
                     }
                 }).show();
 

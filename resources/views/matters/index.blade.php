@@ -110,12 +110,26 @@
                             <td class="no-print"><a href="{{ action('MattersController@show',[$matter]) }}"><div  class="btn_details">Détails</div></a></td>
                         </tr>
                         @endforeach
-
-
-
-
                         </tbody>
                     </table>
+
+                    <div class="row liste_footer">
+                        <p>
+                            {{( $matters->currentPage() -1) * $matters->perPage()  +1  }} à
+                            @if((($matters->currentPage() -1)  * $matters->perPage() + $matters->perPage()) > $matters->total()  )
+                                {{  $matters->total() }} sur
+                            @else
+                                {{ ($matters->currentPage() -1)  * $matters->perPage() + $matters->perPage() }} sur
+                            @endif
+                            {{ $matters->total() }} résultats</p>
+                        <div class="pagination_liste">
+
+                            {!!  $matters->render() !!}
+                        </div>
+                    </div>
+
+
+
                 </div>
             </section>
         </div>
@@ -183,25 +197,37 @@
                 {
                     status = true;
                     var valeur = $(this).val();
-                    $(this).val(valeur).closest('tr').fadeOut();
+                   // $(this).val(valeur).closest('tr').fadeOut();
                     boxes = $(this).val() + ',';
                     $('#boxes').append(boxes);
                 }
             });
-            if($('#boxes').text() ===  null)
+            if(boxes == null)
             {
-                alert('check please');
+                alertify.alert("cocher d'abord !");
                 return false;
             }
-            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-            $.ajax({
-                url: '{{  URL::action('MattersController@supprimer')}}',
-                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                type: 'post',
-                success: function (data) {
-                    console.log(data);
-                }
-            });
+            alertify.dialog('confirm')
+                    .set({
+                        'labels': {ok: 'Oui', cancel: 'Non'},
+                        'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                        'transition': 'zoom',
+                        'onok': function () {
+                            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                            $.ajax({
+                                url: '{{  URL::action('MattersController@supprimer')}}',
+                                data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                type: 'post',
+                                success: function (data) {
+                                    location.reload();
+                                }
+                            });
+                            alertify.success('bien supprimé!');
+                        }
+                    }).show();
+
+
+
         });
 
 

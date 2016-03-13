@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade;
 use App\Level;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,26 @@ class LevelsController extends Controller
 
     public function index()
     {
+        $grade =  Grade::where('user_id',\Auth::user()->id)->first();
+        if(!$grade)
+        {
+           $sc = new Grade();
+            $sc->name = 'Primaire';
+            $sc->user_id = \Auth::user()->id;
+            $sc->save();
+
+            $col = new Grade();
+            $col->name = 'Collège';
+            $col->user_id = \Auth::user()->id;
+            $col->save();
+
+            $lyc = new Grade();
+            $lyc->name = 'Lycée';
+            $lyc->user_id = \Auth::user()->id;
+            $lyc->save();
+
+        }
+
       $levels = Level::where('user_id',\Auth::user()->id)->paginate(10);
         return view('levels.index',compact('levels'));
     }
@@ -65,6 +86,7 @@ class LevelsController extends Controller
             $level = new Level();
             $level->niveau = $request->niveau;
             $level->user_id = \Auth::user()->id;
+            $level->grade_id = $request->grade;
             $level->save();
             return redirect()->action('StatisticsController@gestion')
                 ->with('success','Informations bien enregistrées');

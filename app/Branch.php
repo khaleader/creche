@@ -30,4 +30,9 @@ protected $fillable = ['nom_branche','code_branche','user_id'];
         return $this->belongsToMany(Child::class);
     }
 
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class,'branch_classroom_level');
+    }
+
 }
