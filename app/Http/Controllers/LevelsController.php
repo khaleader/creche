@@ -137,6 +137,7 @@ class LevelsController extends Controller
 
             $l =  Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
             $l->niveau = $request->niveau;
+            $l->grade_id = $request->grade;
              $l->save();
               return redirect()->back()->with('success','Les Informations Ont bien été Enregistrés');
         }else{

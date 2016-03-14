@@ -147,31 +147,44 @@
 
                         </div>
                     </div>
-
-                   <div class="form_champ">
-                        <label for="cname" class="control-label col-lg-3">Niveau</label>
+                    <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Niveau global</label>
                         <div class="form_ajout">
-                            {!!   Form::select('niveau',
-                               App\Level::where('user_id',\Auth::user()->id)->
-                               lists('niveau','id') ,$lv[0],['class'=>'form_ajout_input']) !!}
-
+                            {!!
+                            Form::select('grade',
+                             App\Grade::where('user_id',\Auth::user()->id)->
+                             lists('name','id') ,null,['class'=>'form_ajout_input','id'=>'grade'])
+                             !!}
 
                         </div>
                     </div>
 
-                   <div class="form_champ">
+                    <div class="form_champ c">
+                        <label for="cname" class="control-label col-lg-3">Le Niveau</label>
+                        <div class="form_ajout">
+                            <select id="niveau" name="niveau" class="form_ajout_input">
+
+
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form_champ" id="branche-bloc">
                         <label for="cname" class="control-label col-lg-3">Branche</label>
                         <div class="form_ajout">
-                       {!!  Form::select('branche',
-                        App\Branch::where('user_id',\Auth::user()->id)->
-                       lists('nom_branche','id') ,$br[0],['class'=>'form_ajout_input']) !!}
+                            {!!  Form::select('branche',
+App\Branch::where('user_id',\Auth::user()->id)->
+lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !!}
                         </div>
                     </div>
+
+
+
 
 
                     <button class="btn_form" type="submit">Enregistrer</button>
                     <a  style="line-height:40px; text-align:center;margin-right: 10px;"
-                        class="btn_form" href="{{ URL::previous() }}">
+                        class="btn_form" href="{{ URL::action('ClassroomsController@show',[$cr]) }}">
                         Annuler
                     </a>
                     {!!  Form::close() !!}
@@ -229,11 +242,48 @@
                 type: 'post',
                 success: function (data) {
 
-
                 }
             });
 
         });
+
+      //  $('#branche').prepend("<option selected>sélectionnez s'il vous plait</option>");
+        $('#niveau').prop('disabled','disabled');
+        $('#grade').prepend("<option selected>sélectionnez s'il vous plait</option>");
+        $('#branche-bloc').hide();
+        $('#grade').on('change',function(){
+            var grade_id = $(this).val();
+            var grade_text =  $(this).find('option:selected').text();
+            switch(grade_text)
+            {
+                case 'Primaire': $('#branche-bloc').hide();  ;break;
+                case 'Collège': $('#branche-bloc').hide();  ;break;
+                case 'Lycée': $('#branche-bloc').show();  ;break;
+            }
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('ChildrenController@getLevelWhenGradeIsChosen')}}',
+                data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+                    $('#niveau').prop('disabled','');
+                    $('#niveau').empty();
+                    $('#niveau').prepend('<option selected>selectionnez un niveau</option>');
+                    $('#niveau').append(data);
+                }
+            });
+        });
+
+        $('#submit').click(function(){
+            var grade = $('#grade option:selected').text();
+            if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
+            {
+                alertify.alert('vous devez choisir une branche');
+                return false;
+            }
+
+        });
+
 
 
     </script>

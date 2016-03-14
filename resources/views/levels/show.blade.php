@@ -46,8 +46,14 @@
                         <tbody>
                         <tr>
 
+                            <td><span><strong>Niveau global: </strong>{{ $level->grade->name }}</span></td>
+                        </tr>
+
+                        <tr>
+
                             <td><span><strong>Nom du niveau : </strong>{{ $level->niveau }}</span></td>
                         </tr>
+
 
 
                         </tbody>

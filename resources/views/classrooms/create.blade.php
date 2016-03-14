@@ -167,8 +167,6 @@
             {
                 alertify.alert('vous devez choisir une branche');
                 return false;
-            }else{
-
             }
 
         });

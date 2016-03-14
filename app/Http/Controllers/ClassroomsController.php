@@ -135,7 +135,7 @@ class ClassroomsController extends Controller
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
             $cr->niveau = Level::find($request->niveau)->niveau;
-            if(!is_null($cr->branche))
+            if($niveau_global == 'Lycée')
             {
                 $cr->branche = Branch::find($request->branche)->nom_branche;
             }else{
@@ -215,6 +215,7 @@ class ClassroomsController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validator = Validator::make([
             $request->all(),
             'nom_classe' =>$request->nom_classe,
@@ -222,12 +223,16 @@ class ClassroomsController extends Controller
             'capacite_classe' =>$request->capacite_classe,
             'niveau' =>$request->niveau,
             'branche' => $request->branche,
-            'select' => $request->select
+            'select' => $request->select,
+             'grade' => $request->grade
+
         ],[
             'nom_classe' => 'required',
             'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
             'select' => 'required',
+            'grade' => 'required|integer',
+            'niveau' => 'required|integer'
         ],
             [
                 'nom_classe.required' => "le nom de la classe est requis",
@@ -235,16 +240,25 @@ class ClassroomsController extends Controller
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
                 'select.required' => 'Vous devez cocher au moins une matière',
+                'niveau.integer' => "Le Niveau est requis",
+                'grade.integer' => "Le Niveau Global est requis",
             ]);
 
         if($validator->passes())
         {
+            $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
            $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
             $cr->niveau = Level::find($request->niveau)->niveau;
-            $cr->branche = Branch::find($request->branche)->nom_branche;
+            if($niveau_global == 'Lycée')
+            {
+                $cr->branche = Branch::find($request->branche)->nom_branche;
+            }else{
+                $cr->branche ='';
+            }
+
             $cr->user_id = \Auth::user()->id;
             $cr->save();
 
@@ -252,10 +266,15 @@ class ClassroomsController extends Controller
             $classe->matters()->sync($request->select);
 
             $level = Level::find($request->niveau);
-            DB::table('branch_classroom_level')->where('classroom_id',$cr->id)->update([
-                'branch_id' => $request->branche,
-                'level_id'=> $level->id
-            ]);
+            if($niveau_global == 'Lycée')
+            {
+                DB::table('branch_classroom_level')->where('classroom_id', $cr->id)->update([
+                    'branch_id' => $request->branche,
+                    'level_id' => $level->id
+                ]);
+            }else{
+                $level->lesClasses()->sync([$cr->id]);
+            }
 
 
             return redirect()->back()->with('success','Modifications réussies');

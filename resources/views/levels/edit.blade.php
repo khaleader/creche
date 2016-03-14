@@ -30,6 +30,15 @@
                 <div class="panel-body informations_general">
                     {!! Form::model($level,['url'=> action('LevelsController@update',[$level]),'method' => 'put']) !!}
                     <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Niveau global</label>
+                        <div class="form_ajout">
+                       {!!  Form::select('grade',
+                App\Grade::where('user_id',\Auth::user()->id)->
+                lists('name','id') ,$level->grade->id,['class'=>'form_ajout_input']) !!}
+
+                        </div>
+                    </div>
+                    <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Nom du niveau</label>
                         <div class="form_ajout">
                             <input type="text" value="{{ $level->niveau }}" name="niveau" class="form_ajout_input" placeholder="Entrez le niveau">
@@ -38,7 +47,7 @@
                     </div>
                     <button class="btn_form" type="submit">Enregistrer</button>
                     <a  style="line-height:40px; text-align:center;margin-right: 10px;"
-                        class="btn_form" href="{{ URL::previous() }}">
+                        class="btn_form" href="{{ URL::action('LevelsController@show',[$level]) }}">
                         Annuler
                     </a>
                     {!! Form::close() !!}
