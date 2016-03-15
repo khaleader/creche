@@ -5,14 +5,17 @@
     @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">
-            <section class="panel">
-                <a href="{{ action('LevelsController@index') }}">
-                    <div class="panel-body bloc_informations">
-
-                        <img src="{{ asset('images/branches.png') }}" ><span class="count">
-                            {{ \App\Level::where('user_id',\Auth::user()->id)->count() }}
-                        </span><p>niveaux</p>
-                    </div></a>
+            <section class="panel bloc2">
+                <div class="panel-body">
+                    <a href="{{  action('LevelsController@index') }}">
+                        <div class="bloc_info2">
+                            <div class="nbr_niveaux">
+                                <span class="count"> {{ \App\Level::where('user_id',\Auth::user()->id)->count() }}</span>
+                            </div>
+                            <p>Niveaux</p>
+                        </div>
+                    </a>
+                </div>
             </section>
         </div>
 

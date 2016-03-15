@@ -281,7 +281,7 @@ $('.table').print({
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                            'message': 'Voulez-vous vraiment supprimer ces éléments ? ',
                             'transition': 'zoom',
                             'onok': function(){
 

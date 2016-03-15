@@ -140,7 +140,7 @@
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'voulez vous vraiment supprimer la classe et l\'emploi du temps associé ? ',
+                            'message': 'Voulez-vous vraiment supprimer la classe et l\'emploi du temps associé ? ',
                             'transition': 'fade',
                             'onok': function(){
                                 window.location.href = href;
@@ -175,7 +175,7 @@
                 alertify.dialog('confirm')
                         .set({
                             'labels': {ok: 'Oui', cancel: 'Non'},
-                            'message': 'voulez vous vraiment supprimer ces éléments ? ',
+                            'message': 'Voulez-vous vraiment supprimer ces classes et l\'emploi du temps associé ?',
                             'transition': 'zoom',
                             'onok': function () {
                                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

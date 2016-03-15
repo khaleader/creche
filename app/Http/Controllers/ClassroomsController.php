@@ -48,8 +48,8 @@ class ClassroomsController extends Controller
     {
         $cr =Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
         $id =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-        $cr =$cr->children()->paginate(10);
-        return view('classrooms.indexelc',compact('cr','id'));
+        $classroom = $cr->children()->paginate(10);
+        return view('classrooms.indexelc',compact('classroom','id'));
     }
 
 

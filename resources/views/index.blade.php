@@ -207,18 +207,7 @@ session_start();
                         </section>
                     </div>
 
-                    <div class="col-md-4">
-                        <section class="panel bloc " id="support">
-                            <div class="panel-body">
 
-                                <div class="bloc_info">
-                                    <span>Besoin d'aide ?</span>
-                                    <p>N'hésitez pas à appeler le </br>service après-vente</p>
-                                    <img src="images/phone.png" alt="phone"><label>06 10 15 85 99 </label>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
 
 
                 </div>

@@ -189,12 +189,10 @@
             });
             // supprimer select box
             $('body').on('click','#delete',function(e){
-                e.preventDefault();
-                var href = this.href;
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'voulez vous vraiment supprimer ? ',
+                            'message': 'voulez-vous vraiment supprimer ? ',
                             'transition': 'fade',
                             'onok': function(){
                                 var boxes;

@@ -4,14 +4,15 @@
 
     <div class="row">
         <div class="col-sm-3">
-            <section class="panel">
-                <a href="{{ action('BranchesController@index') }}">
-                    <div class="panel-body bloc_informations">
-
-                        <img src="{{ asset('images/branches.png') }}" ><span class="count">
-                          {{ \App\Branch::where('user_id',\Auth::user()->id)->count() }}
-                        </span><p>Branches</p>
-                    </div></a>
+            <section class="panel bloc2">
+                <div class="panel-body">
+                    <a href="{{  action('BranchesController@index') }}">
+                        <div class="bloc_info2">
+                            <div class="nbr_branches">
+                                <span class="count">    {{ \App\Branch::where('user_id',\Auth::user()->id)->count() }}</span>
+                            </div>
+                            <p>Branches</p></div>
+                    </a></div>
             </section>
         </div>
 

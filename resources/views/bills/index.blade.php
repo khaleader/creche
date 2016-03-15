@@ -391,7 +391,7 @@
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'voulez vous vraiment supprimer ? ',
+                            'message': 'voulez-vous vraiment supprimer ? ',
                             'transition': 'fade',
                             'onok': function(){
                                 window.location.href = href;

@@ -81,10 +81,10 @@
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="{{  str_replace('/?','?',$cr->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$classroom->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="{{   str_replace('/?','?',$cr->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$classroom->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -106,7 +106,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($cr as $child)
+                        @foreach($classroom as $child)
 
                             <tr id="{{  ucwords($child->nom_enfant) }}">
                                 <td><div class="minimal single-row">
@@ -162,16 +162,16 @@
                     </table>
                     <div class="row liste_footer">
                         <p>
-                            {{( $cr->currentPage() -1) * $cr->perPage()  +1  }} à
-                            @if((($cr->currentPage() -1)  * $cr->perPage() + $cr->perPage()) > $cr->total()  )
-                                {{  $cr->total() }} sur
+                            {{( $classroom->currentPage() -1) * $classroom->perPage()  + 1  }} à
+                            @if((($classroom->currentPage() -1)  * $classroom->perPage() + $classroom->perPage()) > $classroom->total()  )
+                                {{  $classroom->total() }} sur
                             @else
-                                {{ ($cr->currentPage() -1)  * $cr->perPage() + $cr->perPage() }} sur
+                                {{ ($classroom->currentPage() -1)  * $classroom->perPage() + $classroom->perPage() }} sur
                             @endif
-                            {{ $cr->total() }} résultats</p>
+                            {{ $classroom->total() }} résultats</p>
                         <div class="pagination_liste">
 
-                            {!!  $cr->render() !!}
+                            {!!  $classroom->render() !!}
                         </div>
                     </div>
 
@@ -197,7 +197,7 @@
                 });
             });
 
-            $('#delete-children').click(function(){
+            $('body').on('click','#delete-children',function(){
                 var boxes;
                 var status;
                 $("input[name='select[]']").each(function(){
@@ -205,25 +205,36 @@
                     {
                         status = true;
                         var valeur = $(this).val();
-                        $(this).val(valeur).closest('tr').fadeOut();
+                        // $(this).val(valeur).closest('tr').fadeOut();
                         boxes = $(this).val() + ',';
                         $('#boxes').append(boxes);
                     }
                 });
-                if($('#boxes').text() ===  null)
+                if(boxes == null)
                 {
-                    alert('check please');
+                    alertify.alert("cocher d'abord !");
                     return false;
                 }
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('ChildrenController@supprimer')}}',
-                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        console.log(data);
-                    }
-                });
+                alertify.dialog('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'Voulez-vous vraiment supprimer ces éléments ? ',
+                            'transition': 'zoom',
+                            'onok': function(){
+
+                                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                $.ajax({
+                                    url: '{{  URL::action('ChildrenController@supprimer')}}',
+                                    data: 'boxes=' + $('#boxes').text() + '&_token=' + CSRF_TOKEN,
+                                    type: 'post',
+                                    success: function (data) {
+                                        location.reload();
+                                    }
+                                });
+                                alertify.success('bien supprimé!');
+                            }
+
+                        }).show();
             });
 
 
@@ -273,7 +284,7 @@
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'voulez vous vraiment supprimer ? ',
+                            'message': 'Voulez-vous vraiment supprimer cet élément ? ',
                             'transition': 'fade',
                             'onok': function(){
                                 window.location.href = href;

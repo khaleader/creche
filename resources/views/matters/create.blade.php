@@ -10,15 +10,18 @@
     @include('partials.alert-success')
     <div class="row">
         <div class="col-sm-3">
-            <section class="panel">
+         <section class="panel bloc2">
+            <div class="panel-body">
                 <a href="{{ action('MattersController@index') }}">
-                    <div class="panel-body bloc_informations">
-
-                        <img src="{{ asset('images/matieres.png') }}" >
-                        <span class="count">{{ \App\Matter::where('user_id',\Auth::user()->id)->count() }}</span>
+                    <div class="bloc_info2">
+                        <div class="nbr_matieres">
+                            <span class="count">{{ \App\Matter::where('user_id',\Auth::user()->id)->count() }}</span>
+                        </div>
                         <p>Matières</p>
-                    </div></a>
-            </section>
+                    </div>
+                </a>
+            </div>
+         </section>
         </div>
 
 

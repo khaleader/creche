@@ -13,7 +13,9 @@
                             <div class="nbr_matieres">
                                 <span class="count">{{ $matter_count }}</span>
                             </div>
-                            <p>Matières</p></div></a>
+                            <p>Matières</p>
+                        </div>
+                    </a>
                 </div>
             </section>
         </div>
@@ -25,7 +27,9 @@
                             <div class="nbr_niveaux">
                                 <span class="count">{{ $level_count }}</span>
                             </div>
-                            <p>Niveaux</p></div></a>
+                            <p>Niveaux</p>
+                        </div>
+                    </a>
                 </div>
             </section>
         </div>
