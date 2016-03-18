@@ -7,7 +7,7 @@ overflow: hidden;
 }
 .sub-menu li{
     position: relative;
-    height:40px;
+    height:60px;
     background-color: #324565;
     width:100%;
     padding-left: 5px;
@@ -30,11 +30,12 @@ overflow: hidden;
 
 .sub-menu li span.title{
     color: #93a4c1;
+    font-size:15px;
     position: relative;
     z-index:10;
-    height:40px;
+    height:inherit;
     float: left;
-    line-height:40px;
+    line-height:60px;
     padding-left: 10px;
 }
 
@@ -47,24 +48,24 @@ overflow: hidden;
 }
 .sub-menu li span.badge{
     position: absolute;
-    right: 10px;
-    top: 10px;
+    right: 20px;
+    top: 21px;
 }
 
 
 .badge {
-    font-size: 11px!important;
-    font-weight: 300;
-    height: 18px;
+    font-size: 15px!important;
+    font-weight: bolder;
+    height: 30px;
+    width:30px;
     color: #fff;
     padding: 3px 6px;
-    -webkit-border-radius: 12px!important;
-    -moz-border-radius: 12px!important;
-    border-radius: 12px!important;
+    border-radius: 20px;
     text-shadow: none!important;
     text-align: center;
     float: right;
-    margin-top: 1px;
+   margin-top: -5px;
+    line-height: 22px;
     margin-right: 0;
 }
 .badge-success {

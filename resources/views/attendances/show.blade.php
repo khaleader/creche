@@ -35,7 +35,7 @@
                 <aside class="col-lg-3">
                     <h4 class="drg-event-title">Détails du pointage</h4>
                     <form action="#" >
-                        <ul class="informations_general pointages_raisons">
+                        <ul class="informations_general pointages_raisons" style="margin-top: 5px;">
                           <!--  <li class="datepicker "><span><strong>Raison : </strong></span>
                                 <select class="datetimepicker" >
                                     <option valeur="Normal">Absence justifiée</option>
@@ -215,7 +215,7 @@
 
            },
            eventRender: function(event, element) {
-               element.append("<span class='closeon'>X</span>");
+               element.append("<span  style='display: inline-block' class='closeon'>X</span>");
            },
            // delete event
            eventClick: function (calEvent, jsEvent, view) {

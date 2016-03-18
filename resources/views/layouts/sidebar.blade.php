@@ -25,7 +25,7 @@
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
                 </li>
-                <li style="position: relative;">
+                <li  style="position: relative;">
                     <a class="sidebar-gestion" href="{{  action('StatisticsController@gestion') }}">
                         <img src="{{  asset('images/inscription.png') }}" class="sidebar_icons">
                         <span>Gestion</span>
