@@ -27,7 +27,20 @@ $(document).ready(function(){
         $('.sub-menu').css('z-index','999999999');
        $('.sub-menu').show();
 
-
+       $('.sidebar-teacher').hover(function(){
+           $('.sub-menu').hide();
+           $('#main-content').css({
+               'position':'static',
+               'z-index': '0'
+           });
+       });
+        $('.sidebar-pointage').hover(function(){
+            $('.sub-menu').hide();
+            $('#main-content').css({
+                'position':'static',
+                'z-index': '0'
+            });
+        });
 
     });
     $('.sub-menu').mouseleave(function(){
