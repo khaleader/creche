@@ -90,9 +90,12 @@
                                 <td>{{  ucwords($t->child->nom_enfant) }}</td>
                                 <td>{{  \Carbon\Carbon::parse($t->start)->format('d-m-Y') }} </td>
                                 @if($t->title == 'Maladie')
-                                    <td><span class="label label-info label-mini">Non Justifiée</span></td>
+                                    <td><span style="background-color: {{ $t->color }}" class="label label-info label-mini">Non Justifiée</span></td>
+                                @elseif($t->title == 'Normal')
+                                    <td><span  style="background-color: {{ $t->color }}" class="label label-primary label-mini">Justifiée</span></td>
                                 @else
-                                    <td><span class="label label-primary label-mini">Justifiée</span></td>
+                                    <td><span  style="background-color: {{ $t->color }}" class="label label-primary label-mini">Retard</span></td>
+
                                 @endif
                                 <td>
                                     <a href="{{ action('StatisticsController@delete_att',[$t]) }}" class="actions_icons delete-att">

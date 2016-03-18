@@ -115,9 +115,12 @@ class AttendancesController extends Controller
                     {
                         $ev['title'] = 'Justifiée';
 
-                    }else{
+                    }elseif($ev['title'] == 'Maladie' && $ev['child_id'] == $id){
                         $ev['title'] = 'Non Justifiée';
+                    }else{
+                        $ev['title'] = 'Retard';
                     }
+                    $ev['allDay'] = false;
                 }
 
                // $events =array_unique($events);
@@ -125,6 +128,7 @@ class AttendancesController extends Controller
                     $resultat = json_encode($events);
 
                     $resultat = preg_replace('/"([^"]+)"\s*:\s*/', '$1:', $resultat);
+
 
                 return view('attendances.show')->with(['child'=>$child,'resultat'=>$resultat]);
             }
@@ -166,9 +170,12 @@ class AttendancesController extends Controller
                     {
                         $ev['title'] = 'Justifiée';
 
-                    }else{
+                    }elseif($ev['title'] == 'Maladie' ){
                         $ev['title'] = 'Non Justifiée';
+                    }else{
+                        $ev['title'] = 'Retard';
                     }
+                    $ev['allDay'] = false;
                 }
               //  $events =  $child->attendances;
                 $resultat = json_encode($events);
@@ -272,7 +279,8 @@ class AttendancesController extends Controller
         ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
             ->whereRaw('EXTRACT(day from start) = ?', [Carbon::now()->day])
             ->where('user_id',\Auth::user()->id)
-            ->count();
+            ->groupBy('child_id')
+            ->get()->count();
         return view('attendances.absenceToday',compact('abstoday','count'));
     }
 

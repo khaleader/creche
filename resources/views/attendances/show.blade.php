@@ -1,19 +1,18 @@
 @extends('layouts.default')
 
 @section('css')
-
+    <link rel="stylesheet" href="{{ asset('js\timepicki\timepicki.css') }}">
   <!-- <link rel="stylesheet" href="{{ asset('js/fullcalendar/bootstrap-fullcalendar.css') }}"> -->
    <link rel="stylesheet" href="{{ asset('js/fullcalendar/fullcalendar.css') }}">
 <link rel="stylesheet" href="{{ asset('js/fullcalendar/fullcalendar.print.css') }}" media="print">
+
+
 
 
 @stop
 
 
 @section('content')
-
-
-
     <section class="panel">
         <header class="panel-heading">
             Pointage calendrier
@@ -24,11 +23,37 @@
                 <section class="col-lg-9">
                     <div id="calendar"  class="has-toolbar"></div>
                 </section>
-          <aside class="col-lg-3">
+         <!-- <aside class="col-lg-3">
                     <h4 class="drg-event-title">Les raisons d'absence</h4>
                     <div id='external-events'>
                         <div valeur="Normal" class='external-event label label-primary'>Justifiée</div>
                         <div valeur="Maladie" class='external-event label label-info'>Non Justifiée</div>
+
+                    </div>
+                </aside>-->
+
+                <aside class="col-lg-3">
+                    <h4 class="drg-event-title">Détails du pointage</h4>
+                    <form action="#" >
+                        <ul class="informations_general pointages_raisons">
+                          <!--  <li class="datepicker "><span><strong>Raison : </strong></span>
+                                <select class="datetimepicker" >
+                                    <option valeur="Normal">Absence justifiée</option>
+                                    <option valeur="Maladie">Absence non justifiée</option>
+                                    <option>Retard</option>
+                                </select>
+
+                            </li>-->
+                            <li class="datepicker "><span><strong>De : </strong></span><input id="start" data-format="hh:mm:ss" type="text" class="datetimepicker timepicker"></li>
+                            <li class="datepicker"><span id="pickertime2"><strong>à : </strong></span><input id="fin" data-format="hh:mm:ss" type="text" class="datetimepicker timepicker"></li>
+                          <!--  <button class="btn_pointage" type="submit">Confirmer</button>-->
+                        </ul>
+
+                    </form>
+                    <div id='external-events'>
+                        <div valeur="Normal" class='external-event label just'>Justifiée</div>
+                        <div valeur="Maladie" class='external-event label non_just'>Non Justifiée</div>
+                        <div valeur="Retard" class='external-event label retard'>Retard</div>
 
                     </div>
                 </aside>
@@ -47,8 +72,11 @@
     <script src="{{  asset('js/fullcalendar/fr.js')  }}"></script>
 <!--<srcipt src="{{  asset('js/external-dragging-calendar.js') }}"></srcipt> -->
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js\timepicki\timepicki.js') }}"></script>
  <script>
    $(function(){
+
+
 
         $('#external-events .external-event').each(function(){
             // store data so the calendar knows to render an event upon drop
@@ -78,51 +106,91 @@
         });
 
 
+       var depart = '';
+       var finale = '';
+       var ledepart ='';
+       var lefinal = '';
+
        $('#calendar').fullCalendar({
-           selectOverlap:false,
+          // selectOverlap:false,
            header: {
                left: 'prev,next today',
                center: 'title',
-               right: 'month,basicWeek,basicDay'
+              right: 'month,basicWeek,basicDay'
+              // right: 'month,agendaWeek,agendaDay'
            },
 
            editable: true,
+           eventLimit: true,
+           views: {
+               agenda: {
+                   eventLimit: 6 // adjust to 6 only for agendaWeek/agendaDay
+               }
+           },
            droppable: true ,// this allows things to be dropped onto the calendar
                    events : <?php echo ($resultat) ? $resultat: "" ?>,
 
+
            drop: function(date, allDay) { // this function is called when something is dropped
+              depart = $('#start').val();
+               finale = $('#fin').val();
+
+               if(depart.length == 0 || finale.length == 0)
+               {
+                   alertify.alert('vous devez choisir le temps de départ et fin');
+                   return false;
+               }
+               var depart_heure = $.trim(depart.substr(0,2));
+               var depart_minute = $.trim(depart.substr(5,2));
+               var finale_heure = $.trim(finale.substr(0,2));
+               var finale_minute = $.trim(finale.substr(5,2));
+
+
+               var originalEventObject = $(this).data('eventObject');
+               var copiedEventObject = $.extend({}, originalEventObject);
+               var start =  copiedEventObject.start = date;
+               var start = moment(start).format("YYYY-MM-DD");
+
+               ledepart = start + ' ' + depart_heure+':'+depart_minute+':'+'00';
+               lefinal = start + ' ' + finale_heure+':'+finale_minute+':'+'00';
+
+
            // console.log(date._d);
                // retrieve the dropped element's stored Event Object
-               var originalEventObject = $(this).data('eventObject');
+             //  var originalEventObject = $(this).data('eventObject');
 
                // we need to copy it, so that multiple events don't have a reference to the same object
-               var copiedEventObject = $.extend({}, originalEventObject);
+            //   var copiedEventObject = $.extend({}, originalEventObject);
 
                // assign it the date that was reported
-             var start =  copiedEventObject.start = date;
-               var start = moment(start).format("YYYY-MM-DD HH:mm:ss");
-              var allDay = copiedEventObject.allDay = allDay;
-               var allDay = true;
+           //  var start =  copiedEventObject.start = date;
+              // var start = moment(start).format("YYYY-MM-DD HH:mm:ss");
+
+
+             //var allDay = copiedEventObject.allDay = allDay;
+             var allDay = false;
                var child_id = '{{  $child->id }}';
                var title =  copiedEventObject.title;
                var color;
                if(title == 'Normal')
                {
-                   color = '#7f64b5';
+                   color = '#84e07b';
+               }else if(title =='Maladie'){
+                   color ='#d9434e';
                }else{
-                   color ='#f1c435';
+                   color = '#0FB4D2';
                }
                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                $.ajax({
                    url: '{{ action('AttendancesController@pointage')  }}',
 
-                   data: 'title=' + title + '&start=' + start + '&end=' + null  + '&_token=' + CSRF_TOKEN
+                   data: 'title=' + title + '&start=' + ledepart + '&end=' + lefinal  + '&_token=' + CSRF_TOKEN
                    + '&color=' + color +  '&allDay=' + allDay +  '&child_id=' + child_id,
-
-
                    type: 'post',
                    success: function (response) {
                        alertify.success("Succès de l'opération");
+                       $('#start').val('');
+                       $('#fin').val('');
                    }
                });
 
@@ -132,10 +200,11 @@
                // render the event on the calendar
                // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
                $('#calendar').fullCalendar('renderEvent', {
-                   title: copiedEventObject.title == 'Normal' ? 'Justifiée': 'Non Justifiée',
-                   start: copiedEventObject.start,
-                   color:color,
-                   allDay:copiedEventObject.allDay
+                   title: copiedEventObject.title == 'Normal' ? 'Justifiée':
+                   copiedEventObject.title == 'Maladie'? 'Non Justifiée': 'Retard',
+                   start: ledepart,
+                   end: lefinal,
+                   color:color
                }, true);
 
                // is the "remove after drop" checkbox checked?
@@ -161,7 +230,22 @@
 
                    }
                });
-           }
+           },
+       });
+
+       $('#start').timepicki({
+           show_meridian:false,
+           increase_direction:'up',
+           start_time: ["08", "00", "AM"],
+           min_hour_value:0,
+           max_hour_value:23,
+       });
+       $('#fin').timepicki({
+           show_meridian:false,
+           increase_direction:'up',
+           start_time: ["09", "00", "AM"],
+           min_hour_value:0,
+           max_hour_value:23,
        });
    });
 

@@ -15,7 +15,10 @@
         <!--search & user info start-->
         <ul class="menu">
             <li><a style="color: #687b8c" href="{{ url('/')  }}"><img src="{{ asset('images/tableau_de_bord.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Tableau de bord</a></li>
+            @if(Auth::user() && Auth::user()->isAdmin())
+            <li><a style="color: #687b8c" href="{{ action('PlansController@index')  }}"><img src="{{ asset('images/planning.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Planning</a></li>
             <li><a style="color: #687b8c;" href="{{ url('help') }}"><img src="{{ asset('images/comment_ca_marche.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Besoin d'aide ?</a></li>
+              @endif
         </ul>
         <ul class="nav pull-right top-menu">
             <li>

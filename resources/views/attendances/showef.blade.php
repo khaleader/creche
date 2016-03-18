@@ -27,8 +27,9 @@
                 <aside class="col-lg-3">
                     <h4 class="drg-event-title">Les raisons d'absence</h4>
                     <div id='external-events'>
-                        <div valeur="Normal" class='external-event label label-primary'>Justifiée</div>
-                        <div valeur="Maladie" class='external-event label label-info'>Non Justifiée</div>
+                        <div valeur="Normal" class='external-event label just'>Justifiée</div>
+                        <div valeur="Maladie" class='external-event label non_just'>Non Justifiée</div>
+                        <div valeur="Retard" class='external-event label retard'>Retard</div>
 
                     </div>
                 </aside>
@@ -119,12 +120,13 @@
 
                 },
                 eventRender: function(event, element) {
-                    if(event.color == '#7f64b5')
+                    if(event.color == '#84e07b')
                     {
                         element.append("<span class='closeon'><i class='fa fa-check-circle'></i></span>");
-                    }else{
+                    }else if(event.color == '#d9434e'){
                         element.append("<span class='closeon'><i class='fa fa-exclamation-circle'></i></span>");
-
+                    }else{
+                        element.append("<span class='closeon'><i class='fa fa-clock-o'></i></span>");
                     }
 
                 }

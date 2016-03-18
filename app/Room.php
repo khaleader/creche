@@ -14,4 +14,10 @@ class Room extends Model
     {
         $this->belongsTo('App\User');
     }
+
+
+    public function matters()
+    {
+        return $this->belongsToMany(Matter::class);
+    }
 }

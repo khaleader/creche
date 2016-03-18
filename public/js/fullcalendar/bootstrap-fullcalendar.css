@@ -223,7 +223,8 @@ a.fc-event {
   overflow: hidden; }
 
 .fc-event-time, .fc-event-title {
-  padding: 0 1px; }
+  padding: 0 1px;
+}
 
 .fc .ui-resizable-handle {
   display: block;

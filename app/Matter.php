@@ -29,4 +29,14 @@ class Matter extends Model
         return $this->belongsToMany('App\Teacher');
     }
 
+    public function lesteachers()
+    {
+        return $this->belongsToMany(Teacher::class,'classroom_matter_teacher');
+    }
+
+    public function rooms()
+    {
+        return $this->belongsToMany(Room::class);
+    }
+
 }

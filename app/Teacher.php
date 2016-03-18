@@ -17,4 +17,9 @@ use SoftDeletes;
         return $this->belongsToMany('App\Matter');
     }
 
+    public function lesmatters()
+    {
+        return $this->belongsToMany(Matter::class,'classroom_matter_teacher');
+    }
+
 }

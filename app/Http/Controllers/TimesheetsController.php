@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Classroom;
+use App\Matter;
+use App\Room;
 use App\Timesheet;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use DB;
 
 class TimesheetsController extends Controller
 {
@@ -36,12 +39,52 @@ class TimesheetsController extends Controller
     {
         if(\Request::ajax())
         {
-
+            $salle_id =\Input::get('salle_id');
             $color =\Input::get('color');
           $time =  \Input::get('time');
             $dayname =  \Input::get('dayname');
            $cr_id = \Input::get('cr_id');
            $mat = \Input::get('matiere');
+            $matiere_id =  \Input::get('matiere_id');
+
+          $ts =  Timesheet::where('time',$time)
+               ->where('dayname',$dayname)
+                ->where('classroom_id',$cr_id)
+                ->where('user_id',\Auth::user()->id)
+                 ->where('matter_id','!=',0)
+                ->first();
+
+           if(isset($salle_id) && !empty($salle_id))
+           {
+               if($ts)
+               {
+                 $room =  Room::find($salle_id);
+                  $yes = DB::table('matter_room')->where('matter_id',$ts->matter_id)
+                       ->where('room_id',$salle_id)
+                       ->first();
+                   if(!$yes)
+                   {
+                       $room->matters()->attach([$ts->matter_id]);
+                   }
+
+               }
+           }
+
+
+         $livingDaylights = ['lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+           $times = [
+               '08:00:00',
+               '09:00:00',
+               '10:00:00',
+               '11:00:00',
+               '12:00:00',
+               '13:00:00',
+               '14:00:00',
+               '15:00:00',
+               '16:00:00',
+               '17:00:00',
+
+           ];
 
 
 
@@ -53,7 +96,9 @@ class TimesheetsController extends Controller
                $ts->user_id = \Auth::user()->id;
                $ts->time = $time;
                $ts->matiere = $mat;
+               $ts->matter_id = $matiere_id;
                $ts->color = $color;
+               $ts->dayname = $dayname;
                $ts->save();
            }elseif($dayname ==  'mardi'){
                $ts = new Timesheet();
@@ -62,7 +107,9 @@ class TimesheetsController extends Controller
                $ts->user_id = \Auth::user()->id;
                $ts->time = $time;
                $ts->matiere = $mat;
+               $ts->matter_id = $matiere_id;
                $ts->color = $color;
+               $ts->dayname = $dayname;
                $ts->save();
            }
            elseif($dayname ==  'mercredi'){
@@ -72,7 +119,9 @@ class TimesheetsController extends Controller
                $ts->user_id = \Auth::user()->id;
                $ts->time = $time;
                $ts->matiere = $mat;
+               $ts->matter_id = $matiere_id;
                $ts->color = $color;
+               $ts->dayname = $dayname;
                $ts->save();
            }
            elseif($dayname ==  'jeudi'){
@@ -82,7 +131,9 @@ class TimesheetsController extends Controller
                $ts->user_id = \Auth::user()->id;
                $ts->time = $time;
                $ts->matiere = $mat;
+               $ts->matter_id = $matiere_id;
                $ts->color = $color;
+               $ts->dayname = $dayname;
                $ts->save();
            }
            elseif($dayname ==  'vendredi'){
@@ -92,7 +143,9 @@ class TimesheetsController extends Controller
                $ts->user_id = \Auth::user()->id;
                $ts->time = $time;
                $ts->matiere = $mat;
+               $ts->matter_id = $matiere_id;
                $ts->color = $color;
+               $ts->dayname = $dayname;
                $ts->save();
            }
            elseif($dayname ==  'samedi'){
@@ -102,7 +155,9 @@ class TimesheetsController extends Controller
                $ts->user_id = \Auth::user()->id;
                $ts->time = $time;
                $ts->matiere = $mat;
+               $ts->matter_id = $matiere_id;
                $ts->color = $color;
+               $ts->dayname = $dayname;
                $ts->save();
            }
 

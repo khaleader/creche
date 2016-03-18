@@ -288,7 +288,7 @@ Route::post('educators/getmatters','EducatorsController@getmatters');
 Route::post('educators/getmatieres','EducatorsController@getmatieres');
 Route::resource('educators','EducatorsController');
 
-
+Route::resource('plans','PlansController');
 
 
 /* Gallery room */

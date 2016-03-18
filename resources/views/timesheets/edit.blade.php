@@ -107,7 +107,7 @@
                 @foreach($matieres as $mat)
                 <tr class="mat">
                     <td>
-                        <div color="{{ $mat->color }}" class="item francais" style="background-color:{{ $mat->color }};width:50px">{{ $mat->code_matiere }}</div>
+                        <div data-id="{{ $mat->id }}" color="{{ $mat->color }}" class="item francais" style="background-color:{{ $mat->color }};width:50px">{{ $mat->code_matiere }}</div>
                     </td>
                 </tr>
                  @endforeach
@@ -115,7 +115,7 @@
             <table class="classes forrooms">
                 @foreach($salles as $s)
                 <tr>
-                    <td><div color="{{ $s->color }}" style="color:white;  background-color:{{ $s->color }} !important;width:50px " class="item2">{{ $s->nom_salle }}</div></td>
+                    <td><div data-salle-id="{{ $s->id }}" color="{{ $s->color }}" style="color:white;  background-color:{{ $s->color }} !important;width:50px " class="item2">{{ $s->nom_salle }}</div></td>
                 </tr>
                 @endforeach
 
@@ -813,6 +813,9 @@
                     $(this).removeClass('over');
                 },
                 onDrop:function(e,source){
+
+                    var matiere_id = $(source).attr('data-id'); // id de la matiere
+                    var salle_id = $(source).attr('data-salle-id');
                     $(this).removeClass('over');
                     if ($(source).hasClass('assigned')){
                        var text = $(source).text();
@@ -823,15 +826,22 @@
                         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                         $.ajax({
                             url: '{{  URL::action('TimesheetsController@enregistrer')}}',
-                            data: 'time=' + time +  '&dayname=' + dayname  + + '&cr_id=' + '{{ $ts->classroom_id  }}' +
-                           '&matiere=' +  text  + '&color=' + color +  '&_token=' + CSRF_TOKEN,
+                            data: 'time=' + time +  '&dayname=' + dayname  +  '&cr_id=' + '{{ $ts->classroom_id  }}' +
+                           '&matiere=' +  text  + '&color=' + color +
+                            '&matiere_id=' + matiere_id +  '&salle_id=' + salle_id +
+                            '&_token=' + CSRF_TOKEN,
                             type: 'post',
                             success: function (data){
-
+                                if(data == 'no')
+                                {
+                                    alert('vous devez ajouter une salle à une matière');
+                                }
                             }
                         });
 
                     } else {
+                        var matiere_id = $(source).attr('data-id'); // id de la matiere
+                        var salle_id = $(source).attr('data-salle-id');
                        var text = $(source).text();
                         $(this).removeClass('over');
                         var c = $(source).clone().addClass('assigned');
@@ -846,10 +856,16 @@
                         $.ajax({
                             url: '{{  URL::action('TimesheetsController@enregistrer')}}',
                             data: 'time=' + time +  '&dayname=' + dayname  + '&cr_id=' + '{{ $ts->classroom_id  }}'
-                            +  '&matiere='  + text + '&color='+ color +  '&_token=' + CSRF_TOKEN,
+                            +  '&matiere='  + text + '&color='+
+                            color + '&matiere_id=' + matiere_id +  '&salle_id=' + salle_id +
+                            '&_token=' + CSRF_TOKEN,
                             type: 'post',
                             success: function (data) {
-
+                                if(data == 'no')
+                                {
+                                    alert('vous devez ajouter une salle à une matière');
+                                    return false;
+                                }
                             }
                         });
 

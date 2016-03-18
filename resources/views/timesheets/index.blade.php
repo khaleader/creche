@@ -84,7 +84,7 @@
                                     </div>
                                 </div></td>
                             <td>{{ $ts->nom_classe }}</td>
-                            <td>{{ $ts->branche }}</td>
+                            <td>{{ $ts->branche?:'--' }}</td>
                             <td>
                                 <a href="{{ action('TimesheetsController@delete',[$ts]) }}" class="actions_icons delete-ts">
                                     <i class="fa fa-trash-o liste_icons"></i></a>

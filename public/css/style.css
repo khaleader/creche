@@ -7347,8 +7347,60 @@ td.drop.droppable{
     height: 80%;
     width: 80%;
 }*/
+.datetimepicker{
+    border-radius: 3px;
+    height: 30px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    width: 72%;
+    float: right;
+}
 
+.datepicker{
 
+    height: 30px;
+    margin-top: 10px;
+}
+.datepicker span{
 
+    margin-top: 5px;
+    float: left;
+}
+#pickertime2 strong{
+    margin-top: 10px;
+}
+.pointages_raisons{
+    padding: 0px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+.timepicker{
+    background-image: url('../images/timepicker.png');
+    background-repeat: no-repeat;
+    background-position-x:right;
+    background-position-y:6px;
+}
+.btn_pointage{
+    height: 30px;
+    width: 90px;
+    float: right;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #f1c435;
+    text-align: center;
+    margin-top: 5px;
+    border: none;
+}
+.just{
+    background-color: #84e07b;
+}
+.non_just{
+    background-color: #d9434e;
+
+}
+.retard{
+    background-color: #0fb4d2;
+
+}
 
 
