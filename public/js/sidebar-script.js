@@ -18,4 +18,14 @@ $(document).ready(function(){
 
     });
 
+
+    $('.sidebar-gestion').hover(function(){
+       $('.sub-menu').show();
+
+
+    });
+    $('.sub-menu').mouseleave(function(){
+        $('.sub-menu').hide();
+    });
+
 });

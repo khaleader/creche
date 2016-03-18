@@ -12,7 +12,6 @@ session_start();
 @stop
 @section('content')
 
-
     @if(\Auth::user()->isAdmin() && \Auth::user()->typeCompte == 0)
     <div class="row">
         <div class="col-md-12">

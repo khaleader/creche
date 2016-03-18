@@ -545,6 +545,10 @@ ul.sidebar-menu li a.active i {
     -moz-transition:all .3s ease-in-out;
     -o-transition:all .3s ease-in-out;
     transition:all .3s ease-in-out;
+
+    /* new*/
+    position: relative;
+    z-index: -27;
 }
 .footer {
     min-height:60px;
@@ -572,6 +576,8 @@ ul.sidebar-menu li a.active i {
     margin-top:85px;
     padding:15px;
     width:100%;
+    position: relative;
+    z-index:1;
 
 }
 .brand {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Timesheet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -25,9 +26,49 @@ class PlansController extends Controller
      */
     public function index()
     {
-       $plans = Timesheet::where('user_id',\Auth::user()->id)->get();
+        if(Carbon::now()->isMonday())
+        {
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)
+                ->where('dayname','lundi')->paginate(10);
+            return view('plans.index',compact('plans'));
+        }elseif(Carbon::now()->isTuesday())
+        {
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)
+                ->where('dayname','mardi')->paginate(10);
+            return view('plans.index',compact('plans'));
+        }elseif(Carbon::now()->isWednesday())
+        {
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)
+                ->where('dayname','mercredi')->paginate(10);
+            return view('plans.index',compact('plans'));
+        }elseif(Carbon::now()->isThursday())
+        {
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)
+                ->where('dayname','jeudi')->paginate(10);
+            return view('plans.index',compact('plans'));
+        }elseif(Carbon::now()->isFriday())
+        {
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)
+                ->where('dayname','vendredi')->paginate(10);
+            return view('plans.index',compact('plans'));
+        }elseif(Carbon::now()->isSaturday())
+        {
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)
+                ->where('dayname','samedi')->paginate(10);
+            return view('plans.index',compact('plans'));
+        }else{
+            $plans = Timesheet::where('user_id',\Auth::user()->id)->paginate(10);
+            return view('plans.index',compact('plans'));
+        }
 
-       return view('plans.index',compact('plans'));
+
+
     }
 
     /**

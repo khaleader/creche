@@ -143,18 +143,22 @@
                         </tbody>
 
                     </table>
+
                     <div class="row liste_footer">
-                        <p>1 à 10 sur 34 résultats</p>
+                        <p>
+                            {{( $plans->currentPage() -1) * $plans->perPage()  +1  }} à
+                            @if((($plans->currentPage() -1)  * $plans->perPage() + $plans->perPage()) > $plans->total()  )
+                                {{  $plans->total() }} sur
+                            @else
+                                {{ ($plans->currentPage() -1)  * $plans->perPage() + $plans->perPage() }} sur
+                            @endif
+                            {{ $plans->total() }} résultats</p>
                         <div class="pagination_liste">
-                            <ul class="pagination pagination-sm pull-right">
-                                <li><a href="#">«</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li class="active"><a href="#">3</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
+
+                            {!!  $plans->render() !!}
                         </div>
                     </div>
+
                 </div>
             </section>
         </div>

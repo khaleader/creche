@@ -1,0 +1,73 @@
+.sub-menu{
+    position: absolute;
+    left: 210px;
+    top: -2px;
+    z-index: 50000000000000;
+    height:auto;
+overflow: hidden;
+}
+.sub-menu li{
+    position: relative;
+    height:40px;
+    background-color: #324565;
+    width:100%;
+    padding-left: 5px;
+
+}
+
+.sub-menu li  a.nav-link{
+    height:inherit;
+    width:inherit;
+    padding:0;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    -ms-transition: none !important;
+    transition: none !important;
+}
+.sub-menu li  a.nav-link:hover{
+    padding:0;
+}
+
+.sub-menu li span.title{
+    color: #93a4c1;
+    position: relative;
+    z-index:10;
+    height:40px;
+    float: left;
+    line-height:40px;
+    padding-left: 10px;
+}
+
+.sub-menu li  a.nav-link:hover span.title{
+    color: #93a4c1;
+    position: relative;
+    z-index:10;
+
+
+}
+.sub-menu li span.badge{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+.badge {
+    font-size: 11px!important;
+    font-weight: 300;
+    height: 18px;
+    color: #fff;
+    padding: 3px 6px;
+    -webkit-border-radius: 12px!important;
+    -moz-border-radius: 12px!important;
+    border-radius: 12px!important;
+    text-shadow: none!important;
+    text-align: center;
+    float: right;
+    margin-top: 1px;
+    margin-right: 0;
+}
+.badge-success {
+    background-color: #36c6d3;
+}

@@ -25,12 +25,62 @@
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
                 </li>
-                <li>
+                <li style="position: relative;">
                     <a class="sidebar-gestion" href="{{  action('StatisticsController@gestion') }}">
                         <img src="{{  asset('images/inscription.png') }}" class="sidebar_icons">
                         <span>Gestion</span>
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
+                    <ul class="sub-menu" style="display: none">
+                        <li class="nav-item start">
+                            <a href="{{ action('MattersController@index') }}" class="nav-link ">
+                                <span class="title">Matières</span>
+                                <span style="background-color: #0FB4D2" class="badge badge-success">
+                                    {{ \Auth::user()->matters()->count() }}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item start ">
+                            <a href="{{ action('LevelsController@index') }}" class="nav-link ">
+
+                                <span class="title">Niveaux</span>
+                                <span style="background-color: #84E07B" class="badge badge-success">
+                                            {{ \Auth::user()->leslevels()->count() }}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item start ">
+                            <a href="{{ action ('BranchesController@index') }}" class="nav-link ">
+
+                                <span class="title">Branches</span>
+                                <span style="background-color: #FF809B" class="badge badge-success">
+                                            {{ \Auth::user()->branches()->count() }}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item start ">
+                            <a href="{{ action('ClassroomsController@index') }}" class="nav-link ">
+
+                                <span class="title">Classes</span>
+                                <span style="background-color: #D9434E" class="badge badge-success">
+                                            {{ \Auth::user()->classrooms()->count() }}
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item start ">
+                            <a href="{{ action('RoomsController@index') }}" class="nav-link ">
+
+                                <span class="title">Salles</span>
+                                <span style="background-color:#F59B43 " class="badge badge-success">
+                                            {{ \Auth::user()->rooms()->count() }}
+                                </span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+
+
                 </li>
                 <li>
                     <a  class="sidebar-pointage" href="{{  action('AttendancesController@index')  }}">

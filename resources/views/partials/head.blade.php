@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('css/msc-style.css') }}" />
     <script src="{{   asset('js/msc-script.js') }}"></script>
             <link rel="stylesheet" href="{{ asset('css/clndr.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}" />
 
 
 
