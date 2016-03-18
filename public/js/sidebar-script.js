@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    $('ul.sidebar-menu a').each(function(){
 
+    $('ul.sidebar-menu a').each(function(){
     if(localStorage.classe == $(this).attr('class'))
     {
         $(this).parent().addClass('active-for-sidebar');
@@ -8,9 +8,27 @@ $(document).ready(function(){
     });
 
 
+    $('.sub-menu a').each(function(){
+        if(localStorage.link == $(this).attr('href'))
+        {
+            $('.sidebar-gestion').parent().addClass('active-for-sidebar');
+        }
+    });
 
-    $('ul.sidebar-menu li a').click(function(e){
+    $('.sub-menu a').click(function(){
+        localStorage.classe = '';
+        localStorage.link =$(this).attr('href');
 
+        $('.sidebar-gestion').parent().addClass('active-for-sidebar');
+
+    });
+
+
+
+
+
+    $('ul.sidebar-menu > li > a').click(function(e){
+        localStorage.link ='';
         localStorage.classe =  $(this).attr('class');
         var ul = $(this).parent().parent();
        // ul.children('li').not(this).removeClass('active-for-sidebar');
