@@ -2,7 +2,6 @@
     position: absolute;
     left: 210px;
     top: -2px;
-    z-index: 50000000000000;
     height:auto;
 overflow: hidden;
 }

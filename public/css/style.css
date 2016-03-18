@@ -547,8 +547,7 @@ ul.sidebar-menu li a.active i {
     transition:all .3s ease-in-out;
 
     /* new*/
-    position: relative;
-    z-index: -27;
+
 }
 .footer {
     min-height:60px;

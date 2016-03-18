@@ -20,12 +20,22 @@ $(document).ready(function(){
 
 
     $('.sidebar-gestion').hover(function(){
+        $('#main-content').css({
+           'position':'relative',
+            'z-index': '-25'
+        });
+        $('.sub-menu').css('z-index','999999999');
        $('.sub-menu').show();
+
 
 
     });
     $('.sub-menu').mouseleave(function(){
         $('.sub-menu').hide();
+        $('#main-content').css({
+            'position':'static',
+            'z-index': '0'
+        });
     });
 
 });
