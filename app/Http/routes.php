@@ -79,6 +79,9 @@ Route::post('children/getClassroomWhenLevelId','ChildrenController@getClassroomW
 // retourne le niveau quand on recoit le niveau global
 Route::post('children/getLevelWhenGradeIsChosen','ChildrenController@getLevelWhenGradeIsChosen');
 
+// retourne la class de la crèche en ajax
+Route::post('children/getclassforcreche','ChildrenController@getclassforcreche');
+
 Route::resource('children','ChildrenController');
 
 /**********************   FamiliesController *********************/
@@ -288,6 +291,8 @@ Route::post('educators/getmatters','EducatorsController@getmatters');
 Route::post('educators/getmatieres','EducatorsController@getmatieres');
 Route::resource('educators','EducatorsController');
 
+//trier par jour en ajax
+Route::post('plans/trierparjour','PlansController@trierparjour');
 Route::resource('plans','PlansController');
 
 

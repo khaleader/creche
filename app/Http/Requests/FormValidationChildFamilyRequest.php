@@ -32,7 +32,7 @@ class FormValidationChildFamilyRequest extends Request
             'nom_pere'=>'required|min:3',
             'nom_mere'=>'required|min:3',
             'email_responsable'=>'required|email',
-            'niveau' => 'integer',
+          //  'niveau' => 'integer',
             'grade' => 'required|integer',
            // 'adresse'=>'required',
            // 'numero_fixe'=>'required',
@@ -59,7 +59,7 @@ class FormValidationChildFamilyRequest extends Request
             'cin.required' => "Le Numéro CIN est obligatoire",
             'cin.unique' => 'Ce Numéro de Cin est dèja pris ',
             'classe.integer' => "vous devez choisir une classe",
-            'niveau.integer' => "vous devez choisir un niveau",
+         //   'niveau.integer' => "vous devez choisir un niveau",
             'grade.integer' => "le Niveau global est requis",
         ];
     }

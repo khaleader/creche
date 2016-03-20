@@ -119,7 +119,16 @@ class ChildrenController extends Controller
                     {
                         $ch->branches()->attach([$request->branche]);
                     }
-                    $ch->levels()->attach([$request->niveau]);
+                    if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
+                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
+                    {
+                        $ch->levels()->attach([$request->niveau]);
+                    }
+                    /*if($niveau_global == 'Crèche')
+                    {
+                        $ch->classrooms()->attach([$request->classe]);
+                    }*/
+
                     //classe
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
                     $cr->children()->attach([$child->id]);
@@ -202,8 +211,16 @@ class ChildrenController extends Controller
                     {
                         $ch->branches()->attach([$request->branche]);
                     }
+                    if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
+                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
+                    {
+                        $ch->levels()->attach([$request->niveau]);
+                    }
+                    if($niveau_global == 'Crèche')
+                    {
+                        $ch->classrooms()->attach([$request->classe]);
+                    }
 
-                    $ch->levels()->attach([$request->niveau]);
 
                     $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$request->classe)->first();
                     $cr->children()->attach([$child->id]);
@@ -519,9 +536,9 @@ class ChildrenController extends Controller
             // 'numero_portable'=> 'required',
          //    'adresse'=> 'required',
              'photo' => 'image',
-             'classe' => 'required_with:niveau|integer',
-             'branche' => 'integer',
-             'niveau' => 'required_with:branche|integer',
+             //'classe' => 'required|integer',
+            // 'branche' => 'integer',
+            // 'niveau' => 'required_with:branche|integer',
              'grade' => 'integer'
         ],
             [
@@ -529,9 +546,9 @@ class ChildrenController extends Controller
              //   'numero_portable.required' => "Le tel portable est requis",
              //   'adresse.required' => "L'adresse est requis",
                 'photo.image' => "L'image doit etre de type valide JPEG\PNG",
-                'branche.integer' => "vous devez choisir une branche",
-                'niveau.integer' => "vous devez choisir un niveau",
-                'classe.integer' => "vous devez choisir une classe",
+               // 'branche.integer' => "vous devez choisir une branche",
+              //  'niveau.integer' => "vous devez choisir un niveau",
+               // 'classe.integer' => "vous devez choisir une classe",
                 'grade.integer' => "vous devez choisir un niveau global",
 
             ]);
@@ -543,8 +560,16 @@ class ChildrenController extends Controller
                 {
                     $enfant->branches()->sync([$request->branche]);
                 }
-                $enfant->levels()->sync([$request->niveau]);
+                if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
+                    || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
+                {
+                    $enfant->levels()->sync([$request->niveau]);
+                }
 
+              /*  if($niveau_global == 'Crèche')
+                {
+                    $enfant->classrooms()->sync([$request->classe]);
+                }*/
 
                if($request->transport == 1)
                {
@@ -628,6 +653,21 @@ class ChildrenController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function getclassforcreche()
+    {
+        if(\Request::ajax())
+        {
+            $grade_id = \Input::get('grade_id');
+            $grade = Grade::where('id', $grade_id)->first();
+            foreach ($grade->classrooms as $cr) {
+                echo '<option value="' . $cr->id . '">' . $cr->nom_classe . '</option>';
+
+            }
+        }
     }
 
 

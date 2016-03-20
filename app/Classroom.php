@@ -58,10 +58,16 @@ class Classroom extends Model
     }
 
 
-    // only for primaire and collège
+    // only for primaire and collège and maternelle
     public function lesNiveaux()
     {
         return $this->belongsToMany(Level::class);
+    }
+
+    // only for creche
+    public function grades()
+    {
+        return $this->belongsToMany(Grade::class);
     }
 
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Classroom;
+use App\Matter;
 use App\Timesheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -63,12 +65,84 @@ class PlansController extends Controller
                 ->where('dayname','samedi')->paginate(10);
             return view('plans.index',compact('plans'));
         }else{
-            $plans = Timesheet::where('user_id',\Auth::user()->id)->paginate(10);
+            $plans = Timesheet::where('user_id',\Auth::user()->id)->where('matter_id','!=',0)->paginate(10);
             return view('plans.index',compact('plans'));
         }
 
 
 
+    }
+
+
+
+    public function trierparjour()
+    {
+        if(\Request::ajax())
+        {
+            $jour_text = \Input::get('jour_text');
+           $plans = Timesheet::where('user_id',\Auth::user()->id)->where('dayname',$jour_text)
+                ->where('matter_id','!=',0)->get();
+            foreach ($plans as $plan) {
+                echo '<tr>';
+                        echo'    <td> '.Classroom::where('id',$plan->classroom_id)->first()->nom_classe .'</td>';
+
+                              echo '  <td>
+                                    '.Matter::where('id',$plan->matter_id)
+                                ->first()->nom_matiere .'
+                                </td>';
+
+                         echo '   <td>';
+                                foreach (Matter::where('id',$plan->matter_id)->first()->lesteachers  as $item)
+                                    echo $item->nom_teacher;
+
+                       echo  '</td>';
+
+                           echo '<td>';
+                         echo substr(Carbon::parse($plan->time)->toTimeString(),0,-3);
+                             echo '</td>';
+                               echo '<td>';
+
+
+                                  $salle =Timesheet::where("classroom_id",$plan->classroom_id)
+                                                  ->where("time",$plan->time)
+                                                   ->where("user_id",\Auth::user()->id)
+                                                    ->where("color","#525252")
+                                                      ->where("dayname",$plan->dayname)
+                                                    ->first();
+                                    if($salle)
+                                    echo  $salle->matiere;
+                          echo '</td>';
+
+                           echo '<td>';
+
+                                $classroom = Classroom::where('id',$plan->classroom_id)->first();
+                                foreach($classroom->lesNiveaux as $niveau)
+                                {
+                                  echo $niveau->niveau;
+                                }
+                                foreach($classroom->levels as $niveau)
+                                {
+                                    echo $niveau->niveau;
+                                }
+                          echo '</td>';
+                           echo '<td>';
+
+                                $classroom = Classroom::where('id',$plan->classroom_id)->first();
+                                if($classroom->branches->isEmpty())
+                                    {
+                                     echo '--';
+                                    }else{
+                                    foreach($classroom->branches as $br)
+                                    {
+                                      echo $br->nom_branche;
+                                    }
+                                }
+                            echo '</td>';
+                       echo ' </tr>';
+            }
+
+
+        }
     }
 
     /**

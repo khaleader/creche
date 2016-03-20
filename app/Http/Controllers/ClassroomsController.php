@@ -112,7 +112,6 @@ class ClassroomsController extends Controller
             'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
             'grade' => 'required|integer',
-            'niveau' => 'required|integer'
 
         ],
             [
@@ -134,7 +133,13 @@ class ClassroomsController extends Controller
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-            $cr->niveau = Level::find($request->niveau)->niveau;
+            if($niveau_global !== 'Crèche')
+            {
+                $cr->niveau = Level::find($request->niveau)->niveau;
+            }else{
+                $cr->niveau ='--';
+            }
+
             if($niveau_global == 'Lycée')
             {
                 $cr->branche = Branch::find($request->branche)->nom_branche;
@@ -158,6 +163,8 @@ class ClassroomsController extends Controller
                     'branch_id' => $request->branche,
                     'level_id'=> $level->id
                 ]);
+            }elseif($niveau_global == 'Crèche'){
+                 $cr->grades()->attach([$request->grade]);
             }else{
                 $level->lesClasses()->attach([$cr->id]);
             }
@@ -232,7 +239,7 @@ class ClassroomsController extends Controller
             'capacite_classe' => 'required|integer',
             'select' => 'required',
             'grade' => 'required|integer',
-            'niveau' => 'required|integer'
+
         ],
             [
                 'nom_classe.required' => "le nom de la classe est requis",
@@ -240,7 +247,6 @@ class ClassroomsController extends Controller
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
                 'select.required' => 'Vous devez cocher au moins une matière',
-                'niveau.integer' => "Le Niveau est requis",
                 'grade.integer' => "Le Niveau Global est requis",
             ]);
 
@@ -251,7 +257,13 @@ class ClassroomsController extends Controller
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-            $cr->niveau = Level::find($request->niveau)->niveau;
+            if($niveau_global !== 'Crèche')
+            {
+                $cr->niveau = Level::find($request->niveau)->niveau;
+            }else{
+                $cr->niveau ='--';
+            }
+
             if($niveau_global == 'Lycée')
             {
                 $cr->branche = Branch::find($request->branche)->nom_branche;
@@ -272,7 +284,11 @@ class ClassroomsController extends Controller
                     'branch_id' => $request->branche,
                     'level_id' => $level->id
                 ]);
-            }else{
+            }elseif($niveau_global == 'Crèche')
+            {
+              $cr->grades()->sync([$request->grade]);
+            }
+            else{
                 $level->lesClasses()->sync([$cr->id]);
             }
 
@@ -302,6 +318,7 @@ class ClassroomsController extends Controller
     {
        $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
      DB::table('classroom_matter_teacher')->where('user_id',\Auth::user()->id)->where('classroom_id',$id)->delete();
+        $cr->timesheets()->delete();
         $cr->delete();
         return redirect('classrooms')->with('success',"la classe a bien été supprimé");
     }
@@ -317,7 +334,7 @@ class ClassroomsController extends Controller
             {
                 $b =   Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                  DB::table('classroom_matter_teacher')->where('user_id',\Auth::user()->id)->where('classroom_id',$id)->delete();
-
+                $b->timesheets()->delete();
                 $b->delete();
 
             }

@@ -116,14 +116,17 @@
 
             <section class="panel">
                 <header class="panel-heading wht-bg">
-                    <h4 class="gen-case"> Informations générales
-
+                    <h4 class="gen-case"> Informations générale
                     </h4>
+
+
+
 
                     <a href="{{ action('TimesheetsController@edit',[$cr]) }}"><div class="btn2">Emploi du temps</div></a>
 
                 </header>
                 <div class="panel-body informations_general">
+
 
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Nom de la classe</label>
@@ -148,7 +151,15 @@
                         </div>
                     </div>
                     <div class="form_champ">
-                        <label for="cname" class="control-label col-lg-3">Niveau global</label>
+                        <label for="cname" class="control-label col-lg-3">Niveau global
+                            @foreach($cr->lesNiveaux as $niv)
+                                <strong style="background-color: #337AB7" class="label label-primary">  {{  $niv->grade->name  }} </strong>
+                            @endforeach
+                            @foreach($cr->levels as $niv)
+                                <strong style="background-color: #337AB7" class="label label-primary">  {{  $niv->grade->name  }} </strong>
+                            @endforeach
+
+                        </label>
                         <div class="form_ajout">
                             {!!
                             Form::select('grade',
@@ -159,8 +170,16 @@
                         </div>
                     </div>
 
-                    <div class="form_champ c">
-                        <label for="cname" class="control-label col-lg-3">Le Niveau</label>
+                    <div class="form_champ c" id="niveau-bloc">
+                        <label for="cname" class="control-label col-lg-3">Le Niveau
+                            @foreach($cr->lesNiveaux as $niv)
+                               <strong style="background-color: #337AB7" class="label label-primary"> {{ $niv->niveau }}</strong>
+                            @endforeach
+                            @foreach($cr->levels as $niv)
+                                <strong style="background-color: #337AB7" class="label label-primary"> {{ $niv->niveau }}</strong>
+                            @endforeach
+
+                        </label>
                         <div class="form_ajout">
                             <select id="niveau" name="niveau" class="form_ajout_input">
 
@@ -170,7 +189,11 @@
                         </div>
                     </div>
                     <div class="form_champ" id="branche-bloc">
-                        <label for="cname" class="control-label col-lg-3">Branche</label>
+                        <label for="cname" class="control-label col-lg-3">Branche
+                            @foreach($cr->branches as $br)
+                                <strong style="background-color: #337AB7" class="label label-primary">  {{  $br->nom_branche  }} </strong>
+                            @endforeach
+                        </label>
                         <div class="form_ajout">
                             {!!  Form::select('branche',
 App\Branch::where('user_id',\Auth::user()->id)->
@@ -182,7 +205,7 @@ lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !
 
 
 
-                    <button class="btn_form" type="submit">Enregistrer</button>
+                    <button id="submit" class="btn_form" type="submit">Enregistrer</button>
                     <a  style="line-height:40px; text-align:center;margin-right: 10px;"
                         class="btn_form" href="{{ URL::action('ClassroomsController@show',[$cr]) }}">
                         Annuler
@@ -256,9 +279,12 @@ lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !
             var grade_text =  $(this).find('option:selected').text();
             switch(grade_text)
             {
-                case 'Primaire': $('#branche-bloc').hide();  ;break;
-                case 'Collège': $('#branche-bloc').hide();  ;break;
-                case 'Lycée': $('#branche-bloc').show();  ;break;
+                case 'Primaire': $('#branche-bloc').hide(); $('#niveau-bloc').show()  ;break;
+                case 'Collège': $('#branche-bloc').hide();  $('#niveau-bloc').show()   ;break;
+                case 'Lycée': $('#branche-bloc').show();  $('#niveau-bloc').show()   ;break;
+                case 'Crèche' :$('#branche-bloc').hide(); $('#niveau-bloc').hide();  ;break;
+                case 'Maternelle' :$('#branche-bloc').hide(); $('#niveau-bloc').show();  ;break;
+
             }
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
@@ -274,11 +300,36 @@ lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !
             });
         });
 
+
+
+
+
         $('#submit').click(function(){
             var grade = $('#grade option:selected').text();
+            if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
             if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
             {
                 alertify.alert('vous devez choisir une branche');
+                return false;
+            }
+
+            if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
+            if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
+            if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
                 return false;
             }
 

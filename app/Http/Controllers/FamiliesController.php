@@ -120,7 +120,17 @@ class FamiliesController extends Controller
                     {
                         $ch->branches()->attach([$request->branche]);
                     }
-                    $ch->levels()->attach([$request->niveau]);
+                    if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
+                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
+                    {
+                        $ch->levels()->attach([$request->niveau]);
+                    }
+
+                  /*  if($niveau_global == 'Crèche')
+                    {
+                        $ch->classrooms()->attach([$request->classe]);
+                    }*/
+
 
 
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();

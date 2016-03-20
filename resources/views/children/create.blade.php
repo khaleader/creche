@@ -178,17 +178,9 @@
                                     <span class="tooltip-content clearfix" style="padding-left:20px;"><span class="tooltip-text">
                                             Si L'email se génère automatiqement
                                             ca veut dire que ce responsable est déjà enregistré
-                                            et il a déjà un(e) élève enregistré(e). <br>
-                                            Dans ce cas vous allez ajouter un(e) nouveau ou (nouvelle) élève. <br>
-                                            Les champs A remplir  Sont: <br>
-                                            Nom de l'élève <br>
-                                            Date de naissance <br>
-                                            Les champs A selectionner  Sont : <br>
-                                            Le Sexe <br>
-                                            La Classe <br>
-                                            Le Transport <br>
-                                            Et pour que les autres champs se remplissent automatiquement
-                                            cliquez deux fois sur cet email et mettez la souris dans n'importe quel champ
+                                               et vous pouvez facilement aller dans le profil du parent <br>
+                                            et dans la partie Actions choisissez ajouter un élève pour ajouter
+                                            l'élève
 
 
 
@@ -277,7 +269,7 @@
                         </div>
 
 
-                        <div class="form_champ c">
+                        <div id="niveau-bloc" class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Le Niveau * </label>
                             <div class="form_ajout">
                                 <select id="niveau" name="niveau" class="form_ajout_input">
@@ -798,14 +790,59 @@
 
               $('#branche-bloc').hide();
               $('#niveau').prop('disabled','disabled');
-              $('#grade').on('change',function(){
+              $('#grade').on('change',function() {
                   var grade_id = $(this).val();
-                 var grade_text =  $(this).find('option:selected').text();
-                  switch(grade_text)
-                  {
-                      case 'Primaire': $('#branche-bloc').hide();  ;break;
-                      case 'Collège': $('#branche-bloc').hide();  ;break;
-                      case 'Lycée': $('#branche-bloc').show();  ;break;
+                  var grade_text = $(this).find('option:selected').text();
+
+                  if (grade_text == 'Crèche') {
+                      $('#branche-bloc').hide();
+                      $('#niveau-bloc').hide();
+                      $('#classe').prop('disabled', '');
+
+                      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                      $.ajax({
+                          url: '{{  URL::action('ChildrenController@getclassforcreche')}}',
+                          data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
+                          type: 'post',
+                          success: function (data) {
+                              $('#classe').empty();
+                              $('#classe').prepend('<option selected>selectionnez une classe</option>');
+                              $('#classe').append(data);
+                          }
+                      });
+                  } else {
+
+                  switch (grade_text) {
+                      case 'Primaire':
+                          $('#branche-bloc').hide();
+                          $('#niveau-bloc').show()
+                          $('#classe').prop('disabled', 'disabled');
+                          ;
+                          break;
+                      case 'Collège':
+                          $('#branche-bloc').hide();
+                          $('#niveau-bloc').show()
+                          $('#classe').prop('disabled', 'disabled');
+                          ;
+                          break;
+                      case 'Lycée':
+                          $('#branche-bloc').show();
+                          $('#niveau-bloc').show()
+                          $('#classe').prop('disabled', 'disabled');
+                          ;
+                          break;
+                      case 'Crèche' :
+                          $('#branche-bloc').hide();
+                          $('#niveau-bloc').hide();
+                          $('#classe').prop('disabled', '');
+                          ;
+                          break;
+                      case 'Maternelle' :
+                          $('#branche-bloc').hide();
+                          $('#niveau-bloc').show();
+                          $('#classe').prop('disabled', 'disabled');
+                          ;
+                          break;
                   }
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                   $.ajax({
@@ -813,13 +850,16 @@
                       data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
                       type: 'post',
                       success: function (data) {
-                          $('#niveau').prop('disabled','');
+                          $('#niveau').prop('disabled', '');
                           $('#niveau').empty();
                           $('#niveau').prepend('<option selected>selectionnez un niveau</option>');
                           $('#niveau').append(data);
                       }
                   });
+              }
               });
+
+
 
               $('#classe').prop('disabled','disabled');
               $('#niveau').on('change',function(){
@@ -853,14 +893,45 @@
 
 
                  $('#submit').click(function(){
-                    var grade = $('#grade option:selected').text();
-                      if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
+                     var grade = $('#grade option:selected').text();
+                     if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
                      {
-                       alertify.alert('vous devez choisir une branche');
-                       return false;
-                     }else{
+                         alertify.alert('vous devez choisir un niveau');
+                         return false;
+                     }
+                     if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
+                     {
+                         alertify.alert('vous devez choisir une branche');
+                         return false;
+                     }
+
+                     if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
+                     {
+                         alertify.alert('vous devez choisir un niveau');
+                         return false;
+                     }
+                     if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
+                     {
+                         alertify.alert('vous devez choisir un niveau');
+                         return false;
+                     }
+                     if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
+                     {
+                         alertify.alert('vous devez choisir un niveau');
+                         return false;
+                     }
+                     if(grade == 'Crèche' && !$.isNumeric($('#classe').val()))
+                     {
+                         alertify.alert('vous devez choisir une classe');
+                         return false;
+                     }
+                     if($.isNumeric($('#niveau').val()) && !$.isNumeric($('#classe').val()))
+                     {
+                         alertify.alert('vous devez choisir une classe');
+                         return false;
+                     }
                           showLoader();
-                      }
+
 
                  });
 

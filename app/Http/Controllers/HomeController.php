@@ -29,6 +29,17 @@ class HomeController extends Controller
         $grade =  Grade::where('user_id',\Auth::user()->id)->first();
         if(!$grade)
         {
+            $creche = new Grade();
+            $creche->name = 'Crèche';
+            $creche->user_id = \Auth::user()->id;
+            $creche->save();
+
+            $mater = new Grade();
+            $mater->name = 'Maternelle';
+            $mater->user_id = \Auth::user()->id;
+            $mater->save();
+            $sc = new Grade();
+
             $sc = new Grade();
             $sc->name = 'Primaire';
             $sc->user_id = \Auth::user()->id;

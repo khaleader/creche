@@ -15,7 +15,7 @@
 @section('content')
     <section class="panel">
         <header class="panel-heading">
-            Pointage calendrier
+            Pointage calendrier de <strong> {{ $child->nom_enfant }}</strong>
         </header>
         <div class="panel-body">
             <!-- page start-->

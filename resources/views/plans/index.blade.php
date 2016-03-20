@@ -10,7 +10,7 @@
 
                 </header>
                 <div class="liste_actions">
-                    <div class="btn-group hidden-phone">
+                  <!--  <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
                             Mois
                             <i class="fa fa-angle-down "></i>
@@ -19,15 +19,19 @@
                             <li><a href="#">Janvier</a></li>
                             <li><a href="#">Février</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                     <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
                             Jour
                             <i class="fa fa-angle-down "></i>
                         </a>
-                        <ul class="dropdown-menu menu_actions">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
+                        <ul class="dropdown-menu menu_actions jours">
+                            <li><a href="#">lundi</a></li>
+                            <li><a href="#">mardi</a></li>
+                            <li><a href="#">mercredi</a></li>
+                            <li><a href="#">jeudi</a></li>
+                            <li><a href="#">vendredi</a></li>
+                            <li><a href="#">samedi</a></li>
                         </ul>
                     </div>
                     <div class="btn-group hidden-phone">
@@ -45,10 +49,10 @@
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
+                        <a class="np-btn" href="{{  str_replace('/?','?',$plans->previousPageUrl())  }}"><i class="fa fa-angle-left  pagination-left"></i></a>
                     </li>
                     <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+                        <a class="np-btn" href="{{   str_replace('/?','?',$plans->nextPageUrl())  }}"><i class="fa fa-angle-right pagination-right"></i> </a>
                     </li>
                 </ul>
 
@@ -167,3 +171,49 @@
 
 
 @endsection
+
+
+
+@section('jquery')
+    <script>
+        $(function(){
+
+            $('.jours a').click(function(){
+                var jour_text =   $(this).text();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('PlansController@trierparjour')}}',
+                    data: 'jour_text=' + jour_text + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').empty();
+                        $('tbody').append(data);
+                    }
+                });
+
+
+
+            });
+
+
+
+
+
+
+
+        });
+
+
+
+    </script>
+
+
+@endsection
+
+
+
+
+
+
+
+

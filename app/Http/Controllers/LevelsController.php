@@ -29,9 +29,18 @@ class LevelsController extends Controller
     public function index()
     {
         $grade =  Grade::where('user_id',\Auth::user()->id)->first();
-        if(!$grade)
-        {
-           $sc = new Grade();
+        if(!$grade) {
+            $creche = new Grade();
+            $creche->name = 'Crèche';
+            $creche->user_id = \Auth::user()->id;
+            $creche->save();
+
+            $mater = new Grade();
+            $mater->name = 'Maternelle';
+            $mater->user_id = \Auth::user()->id;
+            $mater->save();
+            $sc = new Grade();
+
             $sc->name = 'Primaire';
             $sc->user_id = \Auth::user()->id;
             $sc->save();
@@ -46,7 +55,10 @@ class LevelsController extends Controller
             $lyc->user_id = \Auth::user()->id;
             $lyc->save();
 
+
         }
+
+
 
       $levels = Level::where('user_id',\Auth::user()->id)->paginate(10);
         return view('levels.index',compact('levels'));

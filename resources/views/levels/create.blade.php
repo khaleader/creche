@@ -38,7 +38,7 @@
                         <label for="cname" class="control-label col-lg-3">Niveau global</label>
                         <div class="form_ajout">
                                         {!!  Form::select('grade',
-            App\Grade::where('user_id',\Auth::user()->id)->
+            App\Grade::where('user_id',\Auth::user()->id)->where('name','!=','Crèche')->
             lists('name','id') ,null,['class'=>'form_ajout_input']) !!}
 
                         </div>
@@ -76,14 +76,16 @@
 
 @section('jquery')
     <script>
+$(function(){
+    $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){
+        $(".alert-danger").alert('close');
+    });
+    $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
+        $(".alert-success").alert('close');
+    });
 
-        $(".alert-danger").fadeTo(10000, 500).slideUp(500, function(){
-            $(".alert-danger").alert('close');
-        });
-        $(".alert-success").fadeTo(3000, 500).slideUp(500, function(){
-            $(".alert-success").alert('close');
+});
 
-        });
 
     </script>
 

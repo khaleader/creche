@@ -88,7 +88,7 @@
                         </div>
                     </div>
 
-                    <div class="form_champ c">
+                    <div class="form_champ c" id="niveau-bloc">
                         <label for="cname" class="control-label col-lg-3">Le Niveau</label>
                         <div class="form_ajout">
                             <select id="niveau" name="niveau" class="form_ajout_input">
@@ -143,9 +143,11 @@
             var grade_text =  $(this).find('option:selected').text();
             switch(grade_text)
             {
-                case 'Primaire': $('#branche-bloc').hide();  ;break;
-                case 'Collège': $('#branche-bloc').hide();  ;break;
-                case 'Lycée': $('#branche-bloc').show();  ;break;
+                case 'Primaire': $('#branche-bloc').hide(); $('#niveau-bloc').show()  ;break;
+                case 'Collège': $('#branche-bloc').hide();  $('#niveau-bloc').show()   ;break;
+                case 'Lycée': $('#branche-bloc').show();  $('#niveau-bloc').show()   ;break;
+                case 'Crèche' :$('#branche-bloc').hide(); $('#niveau-bloc').hide();  ;break;
+                case 'Maternelle' :$('#branche-bloc').hide(); $('#niveau-bloc').show();  ;break;
             }
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
@@ -163,11 +165,34 @@
 
         $('#submit').click(function(){
             var grade = $('#grade option:selected').text();
+            if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
             if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
             {
                 alertify.alert('vous devez choisir une branche');
                 return false;
             }
+
+            if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
+            if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
+            if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
+            {
+                alertify.alert('vous devez choisir un niveau');
+                return false;
+            }
+
+
 
         });
 

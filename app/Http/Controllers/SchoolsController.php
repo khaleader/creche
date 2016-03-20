@@ -565,6 +565,7 @@ class SchoolsController extends Controller
                  $school->lesrooms()->delete(); // -> direct delete
                  $school->lesclassrooms()->delete(); // -> direct delete
                 $school->leslevels()->delete(); // -> direct delete
+                $school->grades()->delete();
                 DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
                  $school->lestimesheets()->delete(); // -> direct delete
 
@@ -717,6 +718,7 @@ class SchoolsController extends Controller
         $school->lesrooms()->delete(); // -> direct delete
         $school->lesclassrooms()->delete(); // -> direct delete
         $school->leslevels()->delete(); // -> direct delete
+        $school->grades()->delete();
         DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
         $school->lestimesheets()->delete(); // -> direct delete
 

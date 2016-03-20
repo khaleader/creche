@@ -15,4 +15,10 @@ class Grade extends Model
     {
         return $this->hasMany(Level::class);
     }
+
+    // only for creche
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class);
+    }
 }
