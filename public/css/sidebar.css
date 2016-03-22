@@ -68,6 +68,12 @@ overflow: hidden;
     line-height: 22px;
     margin-right: 0;
 }
+
+.badge img{
+    margin-top: -3px;
+    margin-left: -6px;
+    background-color: #324565;
+}
 .badge-success {
     background-color: #36c6d3;
 }

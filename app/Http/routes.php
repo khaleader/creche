@@ -130,7 +130,12 @@ Route::match(['get','post'],'status','BillsController@status');
 // filter status bills/index
 Route::match(['get','post'],'statusindex','BillsController@statusindex');
 // for statistics only
-Route::any('statistics/statusindex','StatisticsController@statusindex');
+Route::any('statistics/statusindex','StatisticsController@statusindex'); // new index
+
+
+Route::get('statistics/graphs','StatisticsController@graphs');
+Route::get('stats','StatisticsController@statistics');
+
 
 // filter by month bills/show// filter by month bills/index
 Route::match(['get','post'],'monthindex','BillsController@monthindex');
@@ -295,6 +300,13 @@ Route::resource('educators','EducatorsController');
 Route::post('plans/trierparjour','PlansController@trierparjour');
 Route::resource('plans','PlansController');
 
+//bus export excel buses/index
+Route::get('buses/exportExcel/{ids?}','BusesController@exportExcel');
+//bus pdf excel levels/index
+Route::get('buses/exportPdf/{ids?}','BusesController@exportPdf');
+Route::post('buses/supprimer','BusesController@supprimer');  //ajax supprimer
+Route::get('buses/delete/{id}','BusesController@delete'); // supprimer un bus by click
+Route::resource('buses','BusesController');
 
 /* Gallery room */
 

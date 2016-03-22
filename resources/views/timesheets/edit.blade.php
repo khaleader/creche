@@ -751,18 +751,10 @@
 
                     }
                 });
-
             });
             $('td > div.item').hover(function(){
                 $(this).css('cursor','pointer');
             });
-
-
-
-
-
-
-
             $('.left .item').draggable({
                 revert:true,
                 proxy:'clone'
@@ -874,6 +866,7 @@
                         });
                     }
                 }
+
             });
             $('.left').droppable({
                 accept:'.assigned',

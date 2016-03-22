@@ -10,7 +10,7 @@ class Attendance extends Model
 use SoftDeletes;
 
  protected $guarded =['id'];
-protected $dates = ['start','deleted_at'];
+protected $dates = ['start','end','deleted_at'];
 
 
     public function child()

@@ -31,7 +31,7 @@
                         <span>Gestion</span>
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
-                    <ul class="sub-menu" style="display: none">
+                    <ul class="sub-menu sub-menu-gestion" style="display: none">
                         <li class="nav-item start">
                             <a href="{{ action('MattersController@index') }}" class="nav-link ">
                                 <span class="title">Matières</span>
@@ -76,11 +76,7 @@
                                 </span>
                             </a>
                         </li>
-
-
                     </ul>
-
-
                 </li>
                 <li>
                     <a  class="sidebar-pointage" href="{{  action('AttendancesController@index')  }}">
@@ -98,11 +94,30 @@
 
                 </li>
                 <li>
-                    <a class="sidebar-statistiques" href="{{  action('StatisticsController@index') }}">
+                    <a class="sidebar-statistiques" href="{{  action('StatisticsController@statistics') }}">
                         <img src="{{  asset('images/statistiques.png') }}" class="sidebar_icons">
                         <span>Statistiques</span>
                         <img src="{{  asset('images/sidebar_plus.png') }}" class="sidebar_plus">
                     </a>
+                    <ul class="sub-menu sub-menu-stats" style="display: none" >
+                        <li class="nav-item start">
+                            <a href="{{ action('StatisticsController@index') }}" class="nav-link ">
+                                <span class="title">Statistiques</span>
+                                <span style="background-color: #0FB4D2" class="badge">
+                            <img src="{{ asset('images\statistiques-icon.png') }}" alt="chart icon">
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item start ">
+                            <a href="{{ action('StatisticsController@graphs') }}" class="nav-link ">
+
+                                <span class="title">Graphiques</span>
+                                <span class="badge">
+                                      <img src="{{ asset('images\chart-icon.png') }}" alt="chart icon">
+                                </span>
+                            </a>
+                        </li>
+                        </ul>
                 </li>
 
                 @endif

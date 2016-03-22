@@ -218,6 +218,11 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
+    public function buses()
+    {
+        return $this->hasMany(Bus::class);
+    }
+
 
 
 }

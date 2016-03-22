@@ -29,6 +29,16 @@ class StatisticsController extends Controller
         $this->middleware('admin',['except'=> 'forgetpass']);
     }
 
+    public function statistics()
+    {
+        return view('statistics.statistics');
+    }
+
+    public function graphs()
+    {
+        return view('statistics.graphs');
+    }
+
     /**
      * Display a listing of the resource.
      *

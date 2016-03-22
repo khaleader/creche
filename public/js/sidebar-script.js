@@ -42,27 +42,57 @@ $(document).ready(function(){
            'position':'relative',
             'z-index': '-25'
         });
-        $('.sub-menu').css('z-index','999999999');
-       $('.sub-menu').show();
-
-       $('.sidebar-teacher').hover(function(){
-           $('.sub-menu').hide();
-           $('#main-content').css({
-               'position':'static',
-               'z-index': '0'
-           });
-       });
-        $('.sidebar-pointage').hover(function(){
-            $('.sub-menu').hide();
-            $('#main-content').css({
-                'position':'static',
-                'z-index': '0'
-            });
-        });
-
+        $('.sub-menu-gestion').css('z-index','999999999');
+       $('.sub-menu-gestion').show();
     });
-    $('.sub-menu').mouseleave(function(){
-        $('.sub-menu').hide();
+
+    $('.sidebar-teacher').hover(function(){
+        $('.sub-menu-gestion').hide();
+        $('#main-content').css({
+            'position':'static',
+            'z-index': '0'
+        });
+    });
+    $('.sidebar-pointage').hover(function(){
+        $('.sub-menu-gestion').hide();
+        $('#main-content').css({
+            'position':'static',
+            'z-index': '0'
+        });
+    });
+
+
+    $('.sub-menu-gestion').mouseleave(function(){
+        $('.sub-menu-gestion').hide();
+        $('#main-content').css({
+            'position':'static',
+            'z-index': '0'
+        });
+    });
+
+
+
+    /**********************statistics******************************/
+
+    $('.sidebar-statistiques').hover(function(){
+        $('#main-content').css({
+            'position':'relative',
+            'z-index': '-25'
+        });
+        $('.sub-menu-stats').css('z-index','999999999');
+        $('.sub-menu-stats').show();
+    });
+
+    $('.sidebar-factures').hover(function(){
+        $('.sub-menu-stats').hide();
+        $('#main-content').css({
+            'position':'static',
+            'z-index': '0'
+        });
+    });
+
+    $('.sub-menu-stats').mouseleave(function(){
+        $('.sub-menu-stats').hide();
         $('#main-content').css({
             'position':'static',
             'z-index': '0'
