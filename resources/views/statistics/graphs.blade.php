@@ -10,7 +10,7 @@
     @stop
 @section('content')
 
-   <!-- <div class="row">
+   <div class="row">
         <div class="col-md-12">
             <section class="panel bloc_setting">
                 <div class="panel-body">
@@ -20,49 +20,36 @@
                                 Trier par année
                                 <i class="fa fa-angle-down "></i>
                             </a>
-                            <ul class="dropdown-menu menu_actions" id="years-statistics">
-                                <li><a data-year="2015" href="#">2015</a></li>
-                                <li><a data-year="2016" href="#">2016</a></li>
-                                <li><a data-year="2017" href="#">2017</a></li>
-                                <li><a data-year="2018" href="#">2018</a></li>
-                                <li><a data-year="2019" href="#">2019</a></li>
-                                <li><a data-year="2020" href="#">2020</a></li>
-                                <li><a data-year="2021" href="#">2021</a></li>
-                                <li><a data-year="2022" href="#">2022</a></li>
-                                <li><a data-year="2023" href="#">2023</a></li>
+            <ul class="dropdown-menu menu_actions" id="years-statistics">
+<li><a data-year="2015,2016" href="{{ action('StatisticsController@graphs',['2015/2016']) }}">2015-2016</a></li>
+<li><a data-year="2016,2017" href="{{ action('StatisticsController@graphs',['2016/2017']) }}">2016-2017</a></li>
+<li><a data-year="2017,2018" href="{{ action('StatisticsController@graphs',['2017/2018']) }}">2017-2018</a></li>
+<li><a data-year="2018,2019" href="{{ action('StatisticsController@graphs',['2018/2019']) }}">2018-2019</a></li>
+<li><a data-year="2019,2020" href="{{ action('StatisticsController@graphs',['2019/2020']) }}">2019-2020</a></li>
+<li><a data-year="2020,2021" href="{{ action('StatisticsController@graphs',['2020/2021']) }}">2020-2021</a></li>
+<li><a data-year="2021,2022" href="{{ action('StatisticsController@graphs',['2021/2022']) }}">2021-2022</a></li>
+<li><a data-year="2022,2023" href="{{ action('StatisticsController@graphs',['2022/2023']) }}">2022-2023</a></li>
+<li><a data-year="2023,2024" href="{{ action('StatisticsController@graphs',['2023/2024']) }}">2023-2024</a></li>
 
                             </ul>
                         </div>
-                        <div class="btn-group hidden-phone">
-                            <a data-toggle="dropdown" href="#" class="btn mini blue">
-                                Mois
-                                <i class="fa fa-angle-down "></i>
-                            </a>
-                            <ul class="dropdown-menu menu_actions" id="months-statistics">
-                                <li><a data-month="1" href="#">Janvier</a></li>
-                                <li><a data-month="2" href="#">Février</a></li>
-                                <li><a data-month="3" href="#">Mars</a></li>
-                                <li><a data-month="4" href="#">Avril</a></li>
-                                <li><a data-month="5" href="#">Mai</a></li>
-                                <li><a data-month="6" href="#">Juin</a></li>
-                                <li><a data-month="7" href="#">Juillet</a></li>
-                                <li><a data-month="8" href="#">Aout</a></li>
-                                <li><a data-month="9" href="#">Septembre</a></li>
-                                <li><a data-month="10" href="#">Octobre</a></li>
-                                <li><a data-month="11" href="#">Novembre</a></li>
-                                <li><a data-month="12" href="#">Décembre</a></li>
-                            </ul>
-                        </div>
+
                     </div>
                     <div style="float: right">
-                        <strong style="font-size: 15px;text-transform: capitalize" id="show-month"></strong>
-                        <strong style="font-size: 15px" id="show-year"></strong>
+                        <strong style="font-size: 15px;text-transform: capitalize">
+                            @if(isset($year1) && isset($year2))
+                                {{  $year1.'-'.$year2 }}
+                            @endif
+                        </strong>
+
+
+
                     </div>
                 </div>
 
             </section>
         </div>
-    </div> -->
+    </div>
 
 
 
@@ -71,11 +58,9 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                  Les inscriptions en {{ Carbon\Carbon::now()->year }}
+                    LES INSCRIPTIONS pour l'année scolaire 2015/2016
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
                          </span>
                 </header>
                 <div class="panel-body">
@@ -100,11 +85,9 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    Les Cas de pointages par nombres mensuel
+                    Rapport sur les absences par mois
                     <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
                          </span>
                 </header>
                 <div class="panel-body">
@@ -128,11 +111,9 @@
         <div class="col-md-6">
             <section class="panel">
                 <header class="panel-heading">
-                   Les Cas de pointages par nombres annuel
+                    Rapport sur les absences par type
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
                          </span>
                 </header>
                 <div class="panel-body">
@@ -153,11 +134,9 @@
         <div class="col-md-6">
             <section class="panel">
                 <header class="panel-heading">
-                    Statistiques des heures de pointages annuel
+                    Rapport sur les factures
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
                          </span>
                 </header>
                 <div class="panel-body">
@@ -175,42 +154,10 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <section class="panel">
-                <header class="panel-heading">
-                   La somme des factures Réglées Et Non Réglées Par Mois
-                    <span class="tools pull-right">
-                            <a href="javascript:;" class="fa fa-chevron-down"></a>
-                            <a href="javascript:;" class="fa fa-cog"></a>
-                            <a href="javascript:;" class="fa fa-times"></a>
-                         </span>
-                </header>
-                <div class="panel-body">
-
-
-                    <div class="chartJS">
-
-                        <canvas id="radar-chart-js"  height="90px"></canvas>
-
-
-                    </div>
 
 
 
-                </div>
-            </section>
-        </div>
 
-    </div>
-
-
-
-<?php
-$countJust='';
-$countNonjust = '';
-$countRet = '';
-?>
 
 @endsection
 
@@ -222,25 +169,52 @@ $countRet = '';
 
         var dataPie = [
             {
-                value: '{{ json_encode(\Auth::user()->attendances()
-                  ->whereRaw('EXTRACT(year from start) = ?', [Carbon\Carbon::now()->year])
-                ->where('title','Maladie')->count())  }}',
+                value:
+                     @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                    {{ json_encode(\Auth::user()->attendances()
+                    ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                ->where('title','Maladie')->count())  }}
+
+                        @else
+                                 {{ json_encode(\Auth::user()->attendances()
+                  ->whereYear('start','=', [\Carbon\Carbon::now()->year])
+                ->where('title','Maladie')->count())  }}
+                     @endif
+,
                 color:"#D9434E",
                 highlight: "#d1575f",
                 label: "Non Justifié"
             },
             {
-                value: '{{ json_encode(\Auth::user()->attendances()
-                   ->whereRaw('EXTRACT(year from start) = ?', [Carbon\Carbon::now()->year])
-                ->where('title','Normal')->count())  }}',
+                value:
+                        @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                {{ json_encode(\Auth::user()->attendances()
+                    ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                ->where('title','Normal')->count())  }}
+
+                @else
+                {{ json_encode(\Auth::user()->attendances()
+                  ->whereYear('start','=', [\Carbon\Carbon::now()->year])
+                ->where('title','Normal')->count())  }}
+                @endif
+,
                 color: "#84E07B",
                 highlight: "#96d88f",
                 label: "Justifié"
             },
             {
-                value: '{{ json_encode(\Auth::user()->attendances()
-                   ->whereRaw('EXTRACT(year from start) = ?', [Carbon\Carbon::now()->year])
-                ->where('title','Retard')->count())  }}',
+                value:
+                        @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+               {{ json_encode(\Auth::user()->attendances()
+                    ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                ->where('title','Retard')->count()) }}
+
+                @else
+                       {{ json_encode(\Auth::user()->attendances()
+                  ->whereYear('start','=',[\Carbon\Carbon::now()->year])
+                ->where('title','Retard')->count())  }}
+                @endif
+                ,
                 color: "#46BFBD",
                 highlight: "#5AD3D1",
                 label: "Retard"
@@ -250,51 +224,61 @@ $countRet = '';
         var dataDoughnut = [
             {
                 value:
-               @foreach(\Auth::user()->attendances as $att)
+                  @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                       {{
+                  preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                 ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                  ->where('status',0)
+                  ->sum("somme")))
+                               }}
+                  @else
 
-                        @if($att->title == 'Normal')
-                        <?php $countJust +=  \Carbon\Carbon::parse($att->start)->diffInHours($att->end) ?>
-                         @endif
+                   '{{
+                  preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                  ->whereYear('start','=',[\Carbon\Carbon::now()->year])
+                  ->where('status',0)
+                  ->sum("somme")))
+                               }}'
 
-                @endforeach
-            '{{  $countJust }}',
-                color: "#84E07B",
-                highlight: "#96d88f",
-                label: "Justifié"
-            },{
-                value:
-                @foreach(\Auth::user()->attendances as $att)
 
-                   @if($att->title == 'Maladie')
-                   <?php $countNonjust +=  \Carbon\Carbon::parse($att->start)->diffInHours($att->end)  ?>
-                    @endif
+                @endif
 
-           @endforeach
-       '{{  $countNonjust }}',
+                ,
+
                 color: "#D9434E",
                 highlight: "#d1575f",
-                label: "Non Justifié"
+                label: "Factures Non Réglées"
             },{
                 value:
-                @foreach(\Auth::user()->attendances as $att)
+                        @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                                 {{
+                            preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                           ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                            ->where('status',1)
+                            ->sum("somme")))
+                                         }},
+                            @else
 
-                   @if($att->title == 'Retard')
-                   <?php $countRet +=\Carbon\Carbon::parse($att->start)->diffInHours($att->end)  ?>
-                    @endif
-
-           @endforeach
-       '{{  $countRet }}',
-                color: "#46BFBD",
-                highlight: "#5AD3D1",
-                label: "Retard"
+                             '{{
+                  preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                  ->whereYear('start','=',[\Carbon\Carbon::now()->year])
+                  ->where('status',1)
+                  ->sum("somme")))
+                               }}'
+,
+                @endif
+                color: "#84E07B",
+                highlight: "#96d88f",
+                label: "Factures Réglées"
             }
         ];
 
         //inscriptions anuelle
         var dataLine = {
-            labels: ["Janvier", "Février", "Mars",
+            labels: ['Septembre','Octobre','Novembre','Décembre',
+                "Janvier", "Février", "Mars",
                  "Avril", "Mai", "Juin", "Juillet",
-                    'Aout','Septembre','Octobre','Novembre','Décembre'
+                    'Aout'
             ],
             datasets: [
                 {
@@ -306,14 +290,36 @@ $countRet = '';
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [
-                   @for($i =1;$i<=12;$i++)
-                    {{
-                           json_encode(\Auth::user()->children()->
+                     @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                              @for($i =9;$i<=12;$i++)
+                          {{   json_encode(\Auth::user()->children()
+                            ->whereRaw('EXTRACT(month from created_at)= ?',[$i])
+                              ->whereRaw('EXTRACT(year from created_at)= ?',[$year1])
+                               ->count()).',' }}
+                               @endfor
+                                    @for($i = 1;$i<=8;$i++)
+                         {{   json_encode(\Auth::user()->children()->
+                           whereRaw('EXTRACT(month from created_at) = ?', [$i])
+                 ->whereRaw('EXTRACT(year from created_at)= ?',[$year2])
+                      ->count()).',' }}
+
+                     @endfor
+                     @else
+                   @for($i =9;$i<=12;$i++)
+                           {{   json_encode(\Auth::user()->children()->
         whereRaw('EXTRACT(month from created_at) = ?', [$i])
         ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
-        ->count()).','
-                      }}
-                      @endfor
+        ->count()).',' }}
+                    @endfor
+                    @for($i = 1;$i<=8;$i++)
+                         {{   json_encode(\Auth::user()->children()->
+        whereRaw('EXTRACT(month from created_at) = ?', [$i])
+        ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+        ->count()).',' }}
+
+                     @endfor
+                     @endif
+
                       ]
                 }
 
@@ -322,9 +328,10 @@ $countRet = '';
 
            // pointages mensuelle
         var dataBar = {
-            labels: ["Janvier", "Février", "Mars",
+            labels: ['Septembre','Octobre','Novembre','Décembre',
+                "Janvier", "Février", "Mars",
                 "Avril", "Mai", "Juin", "Juillet",
-                'Aout','Septembre','Octobre','Novembre','Décembre'
+                'Aout',
             ],
             datasets: [
                 {
@@ -334,15 +341,43 @@ $countRet = '';
                     highlightFill: "#84E07B",
                     highlightStroke: "rgba(220,220,220,1)",
                     data: [
-                        @for($i =1;$i<=12;$i++)
-                        {{
-                            json_encode(\Auth::user()->attendances()->where('title','Normal')
-                     ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                     ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
-                    ->count()).','
-                          }}
-                          @endfor
-                        ]
+                        @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                              @for($i =9;$i<=12;$i++)
+                       {{
+                           json_encode(\Auth::user()->attendances()->where('title','Normal')
+                    ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                    ->whereRaw('EXTRACT(year from created_at)= ?',[$year1])
+                   ->count()).','
+                         }}
+                         @endfor
+                           @for($i =1;$i<=8;$i++)
+                       {{
+                           json_encode(\Auth::user()->attendances()->where('title','Normal')
+                    ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                    ->whereRaw('EXTRACT(year from created_at)= ?',[$year2])
+                   ->count()).','
+                         }}
+                         @endfor
+                        @else
+
+                    @for($i =9;$i<=12;$i++)
+                       {{
+                           json_encode(\Auth::user()->attendances()->where('title','Normal')
+                    ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                    ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                   ->count()).','
+                         }}
+                         @endfor
+                           @for($i =1;$i<=8;$i++)
+                       {{
+                           json_encode(\Auth::user()->attendances()->where('title','Normal')
+                    ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                    ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                   ->count()).','
+                         }}
+                         @endfor
+                         @endif
+                       ]
                 },
                 {
                     label: "Non Justifié",
@@ -351,15 +386,45 @@ $countRet = '';
                     highlightFill: "#84E07B",
                     highlightStroke: "rgba(220,220,220,1)",
                     data: [
-                        @for($i =1;$i<=12;$i++)
-                        {{
-                            json_encode(\Auth::user()->attendances()->where('title','Maladie')
-                     ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                     ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
-                    ->count()).','
-                          }}
-                          @endfor
-                        ]
+                        @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                                 @for($i =9;$i<=12;$i++)
+                          {{
+                              json_encode(\Auth::user()->attendances()->where('title','Maladie')
+                       ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                       ->whereRaw('EXTRACT(year from created_at)= ?',[$year1])
+                      ->count()).','
+                            }}
+                            @endfor
+                              @for($i =1;$i<=8;$i++)
+                          {{
+                              json_encode(\Auth::user()->attendances()->where('title','Maladie')
+                       ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                       ->whereRaw('EXTRACT(year from created_at)= ?',[$year2])
+                      ->count()).','
+                            }}
+                            @endfor
+                           @else
+
+                       @for($i =9;$i<=12;$i++)
+                          {{
+                              json_encode(\Auth::user()->attendances()->where('title','Maladie')
+                       ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                       ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                      ->count()).','
+                            }}
+                            @endfor
+                              @for($i =1;$i<=8;$i++)
+                          {{
+                              json_encode(\Auth::user()->attendances()->where('title','Maladie')
+                       ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                       ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                      ->count()).','
+                            }}
+                            @endfor
+                            @endif
+
+
+                           ]
                 },
                 {
                     label: "Retard",
@@ -368,15 +433,43 @@ $countRet = '';
                     highlightFill: "#84E07B",
                     highlightStroke: "rgba(220,220,220,1)",
                     data: [
-                        @for($i =1;$i<=12;$i++)
-                        {{
-                            json_encode(\Auth::user()->attendances()->where('title','Retard')
-                     ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                     ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
-                    ->count()).','
-                          }}
-                          @endfor
-                        ]
+                        @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
+                          @for($i =9;$i<=12;$i++)
+                   {{
+                       json_encode(\Auth::user()->attendances()->where('title','Retard')
+                ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                ->whereRaw('EXTRACT(year from created_at)= ?',[$year1])
+               ->count()).','
+                     }}
+                     @endfor
+                       @for($i =1;$i<=8;$i++)
+                   {{
+                       json_encode(\Auth::user()->attendances()->where('title','Retard')
+                ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                ->whereRaw('EXTRACT(year from created_at)= ?',[$year2])
+               ->count()).','
+                     }}
+                     @endfor
+                    @else
+
+                @for($i =9;$i<=12;$i++)
+                   {{
+                       json_encode(\Auth::user()->attendances()->where('title','Retard')
+                ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+               ->count()).','
+                     }}
+                     @endfor
+                       @for($i =1;$i<=8;$i++)
+                   {{
+                       json_encode(\Auth::user()->attendances()->where('title','Retard')
+                ->whereRaw('EXTRACT(month from start) = ?', [$i])
+                ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+               ->count()).','
+                     }}
+                     @endfor
+                     @endif
+                 ]
                 }
             ]
         };
@@ -444,7 +537,7 @@ var pie = document.getElementById("pie-chart-js").getContext("2d");
 var donut =  document.getElementById("donut-chart-js").getContext("2d");
 var line =  document.getElementById("line-chart-js").getContext("2d");
 var bar =  document.getElementById("bar-chart-js").getContext("2d");
-var radar =  document.getElementById("radar-chart-js").getContext("2d");
+//var radar =  document.getElementById("radar-chart-js").getContext("2d");
 
 
 
@@ -452,8 +545,16 @@ new Chart(line).Line(dataLine,options);
 new Chart(pie).Pie(dataPie,options);
 new Chart(donut).Doughnut(dataDoughnut,options);
 new Chart(bar).Bar(dataBar,options);
-new Chart(radar).Radar(dataRadar,options);
+//new Chart(radar).Radar(dataRadar,options);
 
+
+
+
+
+        $('#years-statistics > li > a').click(function(){
+            var annee_scolaire =$(this).attr('data-year');
+
+        });
 
 </script>
 

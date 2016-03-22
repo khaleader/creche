@@ -34,9 +34,15 @@ class StatisticsController extends Controller
         return view('statistics.statistics');
     }
 
-    public function graphs()
+    public function graphs($year1 = null,$year2 = null)
     {
-        return view('statistics.graphs');
+        if(is_null($year1) && is_null($year2))
+        {
+            return view('statistics.graphs');
+        }else{
+            return view('statistics.graphs',compact('year1','year2'));
+        }
+
     }
 
     /**
@@ -526,6 +532,7 @@ class StatisticsController extends Controller
             }
         }
     }
+
 
 
 

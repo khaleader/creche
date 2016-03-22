@@ -133,7 +133,7 @@ Route::match(['get','post'],'statusindex','BillsController@statusindex');
 Route::any('statistics/statusindex','StatisticsController@statusindex'); // new index
 
 
-Route::get('statistics/graphs','StatisticsController@graphs');
+Route::get('statistics/graphs/{year1?}/{year2?}','StatisticsController@graphs');
 Route::get('stats','StatisticsController@statistics');
 
 

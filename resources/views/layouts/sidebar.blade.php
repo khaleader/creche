@@ -102,7 +102,7 @@
                     <ul class="sub-menu sub-menu-stats" style="display: none" >
                         <li class="nav-item start">
                             <a href="{{ action('StatisticsController@index') }}" class="nav-link ">
-                                <span class="title">Statistiques</span>
+                                <span class="title">Chiffres</span>
                                 <span style="background-color: #0FB4D2" class="badge">
                             <img src="{{ asset('images\statistiques-icon.png') }}" alt="chart icon">
                                 </span>
@@ -111,7 +111,7 @@
                         <li class="nav-item start ">
                             <a href="{{ action('StatisticsController@graphs') }}" class="nav-link ">
 
-                                <span class="title">Graphiques</span>
+                                <span class="title">Rapports</span>
                                 <span class="badge">
                                       <img src="{{ asset('images\chart-icon.png') }}" alt="chart icon">
                                 </span>
