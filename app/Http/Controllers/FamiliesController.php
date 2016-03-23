@@ -93,8 +93,10 @@ class FamiliesController extends Controller
             $child->nom_enfant = $request->nom_enfant;
             $child->sexe = $request->sexe;
             $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
+             $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
 
-            $child->transport = $request->transport;
+
+                $child->transport = $request->transport;
             $child->user_id = \Auth::user()->id;
 
             $image = \Input::file('photo');

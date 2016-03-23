@@ -165,6 +165,18 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">Nationalité * </label>
+                            <div class="form_ajout">
+                                {!!  Form::select('nationalite',
+                        DB::table('countries')->
+                       lists('nom_fr_fr','id') ,144,['class'=>'form_ajout_input','id'=>'nationalite']) !!}
+
+                            </div>
+                        </div>
+
+
                         <div class="form_champ only-for-email">
                             <?php
                             $emails =  App\Family::where('user_id',\Auth::user()->id)->lists('email_responsable','email_responsable')->toArray();
@@ -256,6 +268,13 @@
 
                             </div>
                         </div>
+
+
+
+
+
+
+
                         <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Niveau Global * </label>
                             <div class="form_ajout">
@@ -426,6 +445,17 @@
 
                                 </div>
                             </div>
+                            <div class="form_champ c">
+                                <label for="cname" class="control-label col-lg-3">Nationalité * </label>
+                                <div class="form_ajout">
+                                    {!!  Form::select('nationalite',
+                            DB::table('countries')->
+                           lists('nom_fr_fr','id') ,144,['class'=>'form_ajout_input','id'=>'nationalite']) !!}
+
+                                </div>
+                            </div>
+
+
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Email *</label>
                                 <div class="form_ajout">

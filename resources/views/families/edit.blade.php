@@ -108,7 +108,7 @@
                         </div>
                         <button class="btn_form" type="submit">Modifier</button>
                         <a  style="line-height:40px; text-align:center;margin-right: 10px;"
-                            class="btn_form" href="{{ URL::previous() }}">
+                            class="btn_form" href="{{ URL::action('FamiliesController@show',[$family]) }}">
                             Annuler
                         </a>
                     </table>

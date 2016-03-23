@@ -96,6 +96,7 @@ class ChildrenController extends Controller
 
                 $child->nom_enfant = ucfirst($request->nom_enfant);
                 $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
+                $child->nationalite = \DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
                 $child->user_id = \Auth::user()->id;
 
                 $image = Input::file('photo');
@@ -181,6 +182,7 @@ class ChildrenController extends Controller
             $child->nom_enfant = $request->nom_enfant ;
             $child->sexe = $request->sexe;
             $child->age_enfant =$child->date_naissance->diffInYears(Carbon::now());
+            $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
 
             $child->transport = $request->transport;
             $child->user_id = \Auth::user()->id;
@@ -556,6 +558,8 @@ class ChildrenController extends Controller
             {
                 $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
                 $enfant = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+                $enfant->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+                $enfant->save();
                 if($niveau_global == 'Lycée')
                 {
                     $enfant->branches()->sync([$request->branche]);
@@ -571,12 +575,15 @@ class ChildrenController extends Controller
                     $enfant->classrooms()->sync([$request->classe]);
                 }*/
 
+
                if($request->transport == 1)
                {
                  if(Transport::where('user_id',\Auth::user()->id)->first()->somme > 0)
                  {
                      $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-                   if($child->transport == 0)
+                     $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+                     $child->save();
+                     if($child->transport == 0)
                    {
                     $bill = Bill::where('child_id',$child->id)->orderBy('id','desc')->first();
                        $bill->somme = ($bill->somme) + (Transport::where('user_id',\Auth::user()->id)->first()->somme);
@@ -598,6 +605,7 @@ class ChildrenController extends Controller
                        $bill->somme = ($bill->somme) - (Transport::where('user_id',\Auth::user()->id)->first()->somme);
                        $bill->save();
                        $child->transport = 0;
+                       $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
                        $child->save();
 
                    }
@@ -618,6 +626,7 @@ class ChildrenController extends Controller
                     Image::make($image->getRealPath())->resize(313, 300)->save($path);
                     $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                     $child->photo = $filename;
+                    $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
                     $child->save();
 
 
@@ -630,6 +639,8 @@ class ChildrenController extends Controller
                         $filename = null;
                     }
                     $pic->photo = $filename;
+                    $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+
                     $pic->save();
                 }
 

@@ -110,7 +110,12 @@
 
                     </tr>
 
-
+                    <tr>
+                        <td><span><strong>Sexe :</strong> {{ $child->sexe  }} </span></td>
+                    </tr>
+                    <tr>
+                        <td><span><strong>Nationalité :</strong> {{ $child->nationalite  }} </span></td>
+                    </tr>
 
                     <tr>
                     <td><span><strong>Email :</strong> {{ $child->family->email_responsable  }} </span></td>

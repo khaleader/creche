@@ -122,7 +122,7 @@
                     <div class="chartJS">
 
 
-                        <canvas  id="pie-chart-js" height="90px" ></canvas>
+                        <canvas  id="pie-chart-js" width="612" height="262px" ></canvas>
 
                     </div>
 
@@ -143,7 +143,7 @@
 
 
                     <div class="chartJS">
-                        <canvas id="donut-chart-js"  height="90px" ></canvas>
+                        <canvas id="donut-chart-js" width="612"  height="262px" ></canvas>
 
 
 

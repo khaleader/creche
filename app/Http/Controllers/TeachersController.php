@@ -55,6 +55,7 @@ class TeachersController extends Controller
         $teacher->poste = Matter::where('user_id',\Auth::user()->id)->where('id',$request->poste)->first()->nom_matiere;
         $teacher->fonction = $request->fonction;
         $teacher->sexe = $request->sexe;
+        $teacher->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
         $teacher->email = $request->email;
         $teacher->num_fix = $request->num_fix;
         $teacher->num_portable = $request->num_portable;
@@ -77,6 +78,7 @@ class TeachersController extends Controller
             $teacher->email = $request->email;
             $teacher->num_fix = $request->num_fix;
             $teacher->num_portable = $request->num_portable;
+            $teacher->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
             $teacher->adresse = $request->adresse;
             $teacher->cin = $request->cin;
             $teacher->salaire = $request->salaire;
@@ -165,6 +167,8 @@ class TeachersController extends Controller
                  $teacher->photo = $filename;
                  $teacher->num_fix =$request->num_fix;
                  $teacher->num_portable =$request->num_portable;
+                 $teacher->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+
                  $teacher->adresse =$request->adresse;
                  $teacher->salaire = $request->salaire;
                  $teacher->save();
@@ -179,6 +183,7 @@ class TeachersController extends Controller
                  $teacher->num_fix =$request->num_fix;
                  $teacher->num_portable =$request->num_portable;
                  $teacher->adresse =$request->adresse;
+                 $teacher->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
                  $teacher->salaire = $request->salaire;
                  $teacher->photo = $filename;
                  $teacher->save();

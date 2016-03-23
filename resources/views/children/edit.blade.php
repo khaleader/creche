@@ -69,6 +69,15 @@
 
                         </div>
                     </div>
+                    <div class="form_champ c">
+                        <label for="cname" class="control-label col-lg-3">Nationalité * </label>
+                        <div class="form_ajout">
+                            {!!  Form::select('nationalite',
+                    DB::table('countries')->
+                   lists('nom_fr_fr','id') ,144,['class'=>'form_ajout_input','id'=>'nationalite']) !!}
+
+                        </div>
+                    </div>
 
                     <div class="form_champ c">
                         <label for="cname" class="control-label col-lg-3">Niveau Global * </label>
@@ -215,7 +224,7 @@
                     </div>
                     <button id="submit" class="btn_form" type="submit">Modifier</button>
                     <a  style="line-height:40px; text-align:center;margin-right: 10px;"
-                            class="btn_form" href="{{ URL::previous() }}">
+                            class="btn_form" href="{{ URL::action('ChildrenController@show',[$child]) }}">
                         Annuler
                     </a>
                 </table>

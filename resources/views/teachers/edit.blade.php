@@ -86,6 +86,15 @@
                                 <input type="text" disabled value="{{ $teacher->sexe }}" name="sexe" class="form_ajout_input" >
                             </div>
                         </div>
+                        <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">Nationalité * </label>
+                            <div class="form_ajout">
+                                {!!  Form::select('nationalite',
+                        DB::table('countries')->
+                       lists('nom_fr_fr','id') ,144,['class'=>'form_ajout_input','id'=>'nationalite']) !!}
+
+                            </div>
+                        </div>
 
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Email</label>
@@ -133,7 +142,7 @@
                         </div>
                         <button class="btn_form" type="submit">Modifier</button>
                         <a  style="line-height:40px; text-align:center;margin-right: 10px;"
-                            class="btn_form" href="{{ URL::previous() }}">
+                            class="btn_form" href="{{ URL::action('TeachersController@show',[$teacher]) }}">
                             Annuler
                         </a>
                     </table>
