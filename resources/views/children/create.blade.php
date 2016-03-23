@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('js\codrops\PageLoadingEffects\css\component.css') }}" />
     <script src="{{ asset('js\codrops\PageLoadingEffects\js\snap.svg-min.js') }}"></script>
+    <link rel="stylesheet" href="{{asset('js\bootstrap-datepicker\css\datepicker.css')  }}">
     <style>
         #loader-parent{
             position: fixed;
@@ -150,7 +151,9 @@
                             <div class="form_champ c">
                                 <label for="cname"  class="control-label col-lg-3">Date de naissance * </label>
                                 <div class="form_ajout">
-                                    <input id="date_birth_child"  value="{{ Request::old('date_naissance')?:'' }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" >
+                                    <input   id="date_birth_child"
+                                           value="{{ Request::old('date_naissance')?:'' }}"
+                                           type="date" name="date_naissance" class="form_ajout_input foronlydate" >
                                     <div class="icone_input"><i class="fa fa-"></i></div>
 
                                 </div>
@@ -531,6 +534,8 @@
         <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\classie.js') }}"></script>
         <script src="{{ asset('js\codrops\Notification-Styles-Inspiration\js\modernizr.custom.js') }}"></script>
         <script src="{{ asset('js\codrops\PageLoadingEffects\js\svgLoader.js') }}"></script>
+        <script src="{{ asset('js\bootstrap-datepicker\js\bootstrap-datepicker.js') }}"></script>
+        <script src="{{ asset('js\bootstrap-datepicker\js\datepicker.en.js') }}"></script>
 
         <!-- codrops -->
     <script>
@@ -586,7 +591,7 @@
                   $('input[type="file"]').prop('disabled', false);
                   $('#image-h').show();
               });
-              $('#date_birth_child').blur(function () {
+            $('#date_birth_child').blur(function () {
                            var date = $(this).val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                   $.ajax({
@@ -614,8 +619,12 @@
                               $('#prices').append(data);
                           }
                       }
+
                   });
+
+
               });
+
 
             /*  $('input[name=cin]').keyup(function(){
                   var cin = $(this).val();
@@ -968,9 +977,9 @@
 
 
 
+              });
 
 
 
-          });
     </script>
 @stop

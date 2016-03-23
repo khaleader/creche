@@ -171,12 +171,16 @@
             {
                 value:
                      @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
-                    {{ json_encode(\Auth::user()->attendances()
-                    ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
-                ->where('title','Maladie')->count())  }}
+                  {{ json_encode(\Auth::user()->attendances()
+                    ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                     ->whereIn(DB::raw('YEAR(start)'),[$year1])
+                ->where('title','Maladie')->count()) +   json_encode(\Auth::user()->attendances()
+                     ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                     ->whereIn(DB::raw('YEAR(start)'),[$year2])
+                ->where('title','Maladie')->count()) }}
 
-                        @else
-                                 {{ json_encode(\Auth::user()->attendances()
+                @else
+                  {{ json_encode(\Auth::user()->attendances()
                   ->whereYear('start','=', [\Carbon\Carbon::now()->year])
                 ->where('title','Maladie')->count())  }}
                      @endif
@@ -188,9 +192,13 @@
             {
                 value:
                         @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
-                {{ json_encode(\Auth::user()->attendances()
-                    ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
-                ->where('title','Normal')->count())  }}
+                 {{ json_encode(\Auth::user()->attendances()
+                    ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                     ->whereIn(DB::raw('YEAR(start)'),[$year1])
+                ->where('title','Normal')->count()) +   json_encode(\Auth::user()->attendances()
+                     ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                     ->whereIn(DB::raw('YEAR(start)'),[$year2])
+                ->where('title','Normal')->count()) }}
 
                 @else
                 {{ json_encode(\Auth::user()->attendances()
@@ -206,7 +214,11 @@
                 value:
                         @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
                {{ json_encode(\Auth::user()->attendances()
-                    ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                    ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                     ->whereIn(DB::raw('YEAR(start)'),[$year1])
+                ->where('title','Retard')->count()) +   json_encode(\Auth::user()->attendances()
+                     ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                     ->whereIn(DB::raw('YEAR(start)'),[$year2])
                 ->where('title','Retard')->count()) }}
 
                 @else
@@ -225,12 +237,17 @@
             {
                 value:
                   @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
-                       {{
-                  preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
-                 ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
-                  ->where('status',0)
-                  ->sum("somme")))
-                               }}
+                      {{
+                            preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                           ->whereIn(DB::raw('YEAR(start)'),[$year1])
+                            ->where('status',0)
+                            ->sum("somme"))) +    preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                           ->whereIn(DB::raw('YEAR(start)'),[$year2])
+                            ->where('status',0)
+                            ->sum("somme")))
+                                         }}
                   @else
 
                    '{{
@@ -247,13 +264,18 @@
 
                 color: "#D9434E",
                 highlight: "#d1575f",
-                label: "Factures Non Réglées"
+                label: "Somme des Factures Non Réglées En DH"
             },{
                 value:
                         @if(isset($year1) &&  !is_null($year1) && isset($year2) && !is_null($year2))
                                  {{
                             preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
-                           ->whereIn(DB::raw('YEAR(start)'),[$year1,$year2])
+                             ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                           ->whereIn(DB::raw('YEAR(start)'),[$year1])
+                            ->where('status',1)
+                            ->sum("somme"))) +    preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                           ->whereIn(DB::raw('YEAR(start)'),[$year2])
                             ->where('status',1)
                             ->sum("somme")))
                                          }},
@@ -269,7 +291,7 @@
                 @endif
                 color: "#84E07B",
                 highlight: "#96d88f",
-                label: "Factures Réglées"
+                label: "Somme des Factures Réglées En DH"
             }
         ];
 
@@ -283,10 +305,10 @@
             datasets: [
                 {
                     label: "Les Inscriptions",
-                    fillColor: "rgba(151,187,205,0.2)",
+                    fillColor: "rgba(37, 119, 181,0.3)",
                     strokeColor: "rgba(151,187,205,1)",
                     pointColor: "rgba(151,187,205,1)",
-                    pointStrokeColor: "#fff",
+                    pointStrokeColor: "#0B62A4",
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [
