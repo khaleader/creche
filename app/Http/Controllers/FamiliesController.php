@@ -491,13 +491,14 @@ class FamiliesController extends Controller
 
     public function search()
     {
-        $child = Child::where('nom_enfant', 'LIKE', '%'. \Input::get('terms') .'%')
-            ->where('user_id',\Auth::user()->id)
+        $child = Child::where('user_id',\Auth::user()->id)
+         ->where('nom_enfant', 'LIKE',\Input::get('terms') .'%')
+
             ->get();
 
-        $family = Family::where('nom_pere', 'LIKE', '%'. \Input::get('terms') .'%')
-            ->where('user_id',\Auth::user()->id)
-            ->orWhere('nom_mere', 'LIKE', '%'. \Input::get('terms') .'%')
+        $family = Family::where('user_id',\Auth::user()->id)
+            ->where('nom_pere', 'LIKE',\Input::get('terms') .'%')
+            ->orWhere('nom_mere', 'LIKE', \Input::get('terms') .'%')
             ->get();
 
 

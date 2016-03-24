@@ -17,6 +17,9 @@ a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-not-end{
 a.fc-day-grid-event.fc-h-event.fc-event.fc-not-start.fc-end{
     height:15px;
 }
+#title, #start, #fin{
+    padding-left: 10px;
+}
         .occ-timepicker{
             width:98%;
             margin-right: 5%;
@@ -72,13 +75,20 @@ a.fc-day-grid-event.fc-h-event.fc-event.fc-not-start.fc-end{
                           </li>-->
                         <strong>Titre </strong>
 
-                        <li class="datepicker "><span></span><input id="title" name="title"  type="text" class="datetimepicker    occ-timepicker"></li>
+                        <li class="datepicker ">
+                            <span></span>
+                            <input id="title" name="title" placeholder="Le Titre de L'événement"
+                                   type="text" class="datetimepicker    occ-timepicker"></li>
 
                         <strong>De : </strong>
 
-                        <li class="datepicker "><span></span><input id="start" name="start"  type="text" class="datetimepicker timepicker   occ-timepicker"></li>
+                        <li class="datepicker "><span>
+
+                            </span><input id="start" name="start" placeholder="Date de Départ"
+                                          type="text" class="datetimepicker timepicker   occ-timepicker"></li>
                         <strong>à : </strong>
-                        <li class="datepicker"><span id="pickertime2"></span><input name="end" id="fin" data-format="hh:mm:ss" type="text" class="datetimepicker timepicker occ-timepicker"></li>
+                        <li class="datepicker"><span id="pickertime2"></span>
+                            <input placeholder="Date de Fin" name="end" id="fin" data-format="hh:mm:ss" type="text" class="datetimepicker timepicker occ-timepicker"></li>
                         <!--  <button class="btn_pointage" type="submit">Confirmer</button>-->
                     </ul>
 
@@ -128,7 +138,7 @@ a.fc-day-grid-event.fc-h-event.fc-event.fc-not-start.fc-end{
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer" style="margin-left: -30px">
+                    <div class="modal-footer" style="margin-left: -30px;padding-right: 10px">
                         <button class="btn btn-danger btn-o hide-event">
                             Cacher
                         </button>

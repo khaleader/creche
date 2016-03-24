@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/sidebar-script.js" afterPath="$PROJECT_DIR$/public/js/sidebar-script.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css" afterPath="$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/occasions/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/occasions/show.blade.php" />
     </list>
     <ignored path="creche.iws" />
@@ -33,22 +34,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sidebar-script.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/js/sidebar-script.js">
+      <file leaf-file-name="bootstrap-datetimepicker.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2027972">
-              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+            <state vertical-scroll-proportion="-1.244186">
+              <caret line="207" column="52" selection-start-line="207" selection-start-column="52" selection-end-line="207" selection-end-column="52" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sidebar.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
+      <file leaf-file-name="header.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8">
-              <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+            <state vertical-scroll-proportion="-8.7">
+              <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FamiliesController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.34744525">
+              <caret line="494" column="38" selection-start-line="494" selection-start-column="38" selection-end-line="494" selection-end-column="38" />
+              <folding>
+                <marker date="1458826306827" expanded="true" signature="7649:9008" placeholder="..." />
+                <marker date="1458826306827" expanded="true" signature="7699:7991" placeholder="..." />
+                <marker date="1458826306827" expanded="true" signature="7731:7986" placeholder="..." />
+                <marker date="1458826306827" expanded="true" signature="7797:7947" placeholder="..." />
+                <marker date="1458826306827" expanded="true" signature="8369:8817" placeholder="..." />
+                <marker date="1458826306827" expanded="true" signature="8498:8580" placeholder="..." />
+                <marker date="1458826306827" expanded="true" signature="8617:8781" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8">
+              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+              <folding>
+                <element signature="e#6147#6193#0#HTML" expanded="true" />
+                <marker date="1458821581862" expanded="true" signature="9329:9350" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,7 +129,6 @@
         <option value="$PROJECT_DIR$/database/migrations/2016_03_23_004726_add_nationalite_to_children.php" />
         <option value="$PROJECT_DIR$/database/migrations/2016_03_23_004808_add_nationalite_to_teachers.php" />
         <option value="$PROJECT_DIR$/resources/views/families/addchild.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
         <option value="$PROJECT_DIR$/resources/views/children/show.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ChildrenController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TeachersController.php" />
@@ -118,13 +149,14 @@
         <option value="$PROJECT_DIR$/public/js/bootstrap-datepicker/js/bootstrap-datetimepicker.js" />
         <option value="$PROJECT_DIR$/public/css/style.css" />
         <option value="$PROJECT_DIR$/public/js/bootstrap-datepicker/js/moment.js" />
-        <option value="$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css" />
         <option value="$PROJECT_DIR$/database/migrations/2016_03_23_234448_create_occasions_table.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/OccasionsController.php" />
         <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/occasions/show.blade.php" />
         <option value="$PROJECT_DIR$/public/js/sidebar-script.js" />
+        <option value="$PROJECT_DIR$/resources/views/occasions/show.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
       </list>
     </option>
   </component>
@@ -589,7 +621,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="32" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -659,16 +691,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/buses/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16642335">
-          <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
-          <folding>
-            <marker date="1458560556416" expanded="true" signature="5498:5738" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/buses/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5080292">
@@ -873,22 +895,6 @@
             <marker date="1458694547159" expanded="true" signature="4764:4946" placeholder="..." />
             <marker date="1458694547159" expanded="true" signature="4779:4944" placeholder="..." />
             <marker date="1458694547159" expanded="true" signature="4872:4888" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.597561">
-          <caret line="95" column="15" selection-start-line="95" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding>
-            <marker date="1458732008811" expanded="true" signature="7649:9008" placeholder="..." />
-            <marker date="1458732008811" expanded="true" signature="7699:7991" placeholder="..." />
-            <marker date="1458732008811" expanded="true" signature="7731:7986" placeholder="..." />
-            <marker date="1458732008811" expanded="true" signature="7797:7947" placeholder="..." />
-            <marker date="1458732008811" expanded="true" signature="8369:8817" placeholder="..." />
-            <marker date="1458732008811" expanded="true" signature="8498:8580" placeholder="..." />
-            <marker date="1458732008811" expanded="true" signature="8617:8781" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -1248,14 +1254,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46569344">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47408536">
@@ -1284,14 +1282,6 @@
             <marker date="1458289107731" expanded="true" signature="10117:10199" placeholder="..." />
             <marker date="1458289107731" expanded="true" signature="10235:10402" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4861314">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1351,19 +1341,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1270073">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
-          <folding>
-            <marker date="1458820218406" expanded="true" signature="8976:8997" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/sidebar.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8">
+        <state vertical-scroll-proportion="0.34160584">
           <caret line="33" column="17" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
           <folding />
         </state>
@@ -1374,6 +1354,57 @@
         <state vertical-scroll-proportion="0.2027972">
           <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/bootstrap-datetimepicker/css/datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8">
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding>
+            <element signature="e#6147#6193#0#HTML" expanded="true" />
+            <marker date="1458821581862" expanded="true" signature="9329:9350" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.244186">
+          <caret line="207" column="52" selection-start-line="207" selection-start-column="52" selection-end-line="207" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.7">
+          <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34744525">
+          <caret line="494" column="38" selection-start-line="494" selection-start-column="38" selection-end-line="494" selection-end-column="38" />
+          <folding>
+            <marker date="1458826306827" expanded="true" signature="7649:9008" placeholder="..." />
+            <marker date="1458826306827" expanded="true" signature="7699:7991" placeholder="..." />
+            <marker date="1458826306827" expanded="true" signature="7731:7986" placeholder="..." />
+            <marker date="1458826306827" expanded="true" signature="7797:7947" placeholder="..." />
+            <marker date="1458826306827" expanded="true" signature="8369:8817" placeholder="..." />
+            <marker date="1458826306827" expanded="true" signature="8498:8580" placeholder="..." />
+            <marker date="1458826306827" expanded="true" signature="8617:8781" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
