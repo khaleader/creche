@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php" />
-    </list>
+    <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'" />
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -31,63 +29,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="bootstrap-datetimepicker.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/bootstrap-datepicker/css/bootstrap-datetimepicker.css">
+      <file leaf-file-name="sidebar-script.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/sidebar-script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.244186">
-              <caret line="207" column="52" selection-start-line="207" selection-start-column="52" selection-end-line="207" selection-end-column="52" />
+            <state vertical-scroll-proportion="-1.3790209">
+              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/header.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.7">
-              <caret line="40" column="71" selection-start-line="40" selection-start-column="71" selection-end-line="40" selection-end-column="71" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FamiliesController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/FamiliesController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.529927">
-              <caret line="501" column="29" selection-start-line="501" selection-start-column="29" selection-end-line="501" selection-end-column="29" />
-              <folding>
-                <marker date="1458827961331" expanded="true" signature="7649:9008" placeholder="..." />
-                <marker date="1458827961331" expanded="true" signature="7699:7991" placeholder="..." />
-                <marker date="1458827961331" expanded="true" signature="7731:7986" placeholder="..." />
-                <marker date="1458827961331" expanded="true" signature="7797:7947" placeholder="..." />
-                <marker date="1458827961331" expanded="true" signature="8369:8817" placeholder="..." />
-                <marker date="1458827961331" expanded="true" signature="8498:8580" placeholder="..." />
-                <marker date="1458827961331" expanded="true" signature="8617:8781" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/families/search.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="29.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8">
-              <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-              <folding>
-                <element signature="e#6147#6193#0#HTML" expanded="true" />
-                <marker date="1458821581862" expanded="true" signature="9329:9350" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -1348,14 +1295,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/sidebar-script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2027972">
-          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/bootstrap-datetimepicker/css/datetimepicker.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1366,7 +1305,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8">
+        <state vertical-scroll-proportion="0.2540146">
           <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
           <folding>
             <element signature="e#6147#6193#0#HTML" expanded="true" />
@@ -1393,7 +1332,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/families/search.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="29.0">
+        <state vertical-scroll-proportion="-1.2700729">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -1412,6 +1351,14 @@
             <marker date="1458827961331" expanded="true" signature="8498:8580" placeholder="..." />
             <marker date="1458827961331" expanded="true" signature="8617:8781" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/sidebar-script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3790209">
+          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
