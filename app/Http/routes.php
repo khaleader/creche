@@ -308,6 +308,19 @@ Route::post('buses/supprimer','BusesController@supprimer');  //ajax supprimer
 Route::get('buses/delete/{id}','BusesController@delete'); // supprimer un bus by click
 Route::resource('buses','BusesController');
 
+
+/*      occasions    */
+Route::post('occasions/insertOcc','OccasionsController@insertOcc');
+Route::post('occasions/delOcc','OccasionsController@delOcc');
+Route::resource('occasions','OccasionsController');
+
+
+
+
+
+
+
+
 /* Gallery room */
 
 Route::get('gallery',function(){

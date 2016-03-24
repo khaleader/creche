@@ -6,6 +6,10 @@
 @yield('loader')
 <section id="container">
 
+    <!--right sidebar start-->
+  @yield('right-sidebar')
+    <!--right sidebar end-->
+
     <!--header start-->
    @include('layouts.header')
     <!--header end-->
@@ -18,6 +22,8 @@
 
     <!--main content start-->
     <section id="main-content">
+
+
         <section class="wrapper">
             @yield('content')
         </section>
