@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('ul.sidebar-menu a').each(function(){
+    $('ul.sidebar-menu > a').each(function(){
     if(localStorage.classe == $(this).attr('class'))
     {
         $(this).parent().addClass('active-for-sidebar');
