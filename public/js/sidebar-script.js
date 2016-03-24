@@ -9,9 +9,9 @@ $(document).ready(function(){
 
 
     $('.sub-menu a').each(function(){
-        if(localStorage.link == $(this).attr('href'))
+        if(localStorage.link === $(this).attr('href'))
         {
-            $('.sidebar-gestion').parent().addClass('active-for-sidebar');
+            $(this).parent('li').parent('ul').parent('li').addClass('active-for-sidebar');
         }
     });
 
@@ -19,7 +19,7 @@ $(document).ready(function(){
         localStorage.classe = '';
         localStorage.link =$(this).attr('href');
 
-        $('.sidebar-gestion').parent().addClass('active-for-sidebar');
+        $(this).parent().addClass('active-for-sidebar');
 
     });
 

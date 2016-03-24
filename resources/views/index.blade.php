@@ -2,6 +2,9 @@
 session_start();
  ?>
 @extends('layouts.default')
+<script>
+    localStorage.classe ='';
+</script>
 @section('css')
 
 
