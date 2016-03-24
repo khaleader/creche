@@ -493,13 +493,15 @@ class FamiliesController extends Controller
     {
         $child = Child::where('user_id',\Auth::user()->id)
          ->where('nom_enfant', 'LIKE',\Input::get('terms') .'%')
-
             ->get();
 
-        $family = Family::where('user_id',\Auth::user()->id)
+        $familp = Family::where('user_id',\Auth::user()->id)
             ->where('nom_pere', 'LIKE',\Input::get('terms') .'%')
-            ->orWhere('nom_mere', 'LIKE', \Input::get('terms') .'%')
             ->get();
+        $familym = Family::where('user_id',\Auth::user()->id)
+            ->where('nom_mere', 'LIKE',\Input::get('terms') .'%')
+            ->get();
+        $family = $familp->merge($familym);
 
 
         return view('families.search')->with(['child'=>$child,'family'=>$family]);
