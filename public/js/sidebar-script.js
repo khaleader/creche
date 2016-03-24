@@ -17,6 +17,7 @@ $(document).ready(function(){
 
     $('.sub-menu a').click(function(){
         localStorage.classe = '';
+        localStorage.link ='';
         localStorage.link =$(this).attr('href');
 
         $(this).parent().addClass('active-for-sidebar');
@@ -29,6 +30,7 @@ $(document).ready(function(){
 
     $('ul.sidebar-menu > li > a').click(function(e){
         localStorage.link ='';
+        localStorage.classe ='';
         localStorage.classe =  $(this).attr('class');
         var ul = $(this).parent().parent();
        // ul.children('li').not(this).removeClass('active-for-sidebar');
