@@ -1,6 +1,7 @@
 @extends('layouts.default')
 <script>
     localStorage.classe ='';
+    localStorage.link = '';
 </script>
 @section('css')
     <link rel="stylesheet" href="{{ asset('js\bootstrap-datepicker\css\bootstrap-datetimepicker.css')  }}" type="text/css">

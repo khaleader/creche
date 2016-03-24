@@ -1,6 +1,7 @@
 @extends('layouts.default')
 <script>
     localStorage.classe ='';
+    localStorage.link ='';
 </script>
 
 

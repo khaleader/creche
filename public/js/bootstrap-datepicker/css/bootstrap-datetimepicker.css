@@ -3,6 +3,10 @@
  * ! version : 4.7.14
  * https://github.com/Eonasdan/bootstrap-datetimepicker/
  */
+
+.timepicker-picker{
+  background-color: white;
+}
 .bootstrap-datetimepicker-widget {
   list-style: none;
   height:150%;
@@ -219,8 +223,10 @@
 }
 .bootstrap-datetimepicker-widget table {
   width: 100%;
-  margin: 0;
-  background-color: white;
+  margin:0;
+  position: relative;
+  right:10px;
+  background-color: #ffffff;
 
 }
 .bootstrap-datetimepicker-widget table td,
