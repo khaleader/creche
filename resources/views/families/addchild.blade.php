@@ -311,14 +311,14 @@
                 var grade_id = $(this).val();
                 var grade_text = $(this).find('option:selected').text();
 
-                if (grade_text == 'Crèche') {
+              /*  if (grade_text == 'Crèche') {
                     $('#branche-bloc').hide();
                     $('#niveau-bloc').hide();
                     $('#classe').prop('disabled', '');
 
                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                     $.ajax({
-                        url: '{{  URL::action('ChildrenController@getclassforcreche')}}',
+                        url: '{{--  URL::action('ChildrenController@getclassforcreche')--}}',
                         data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
                         type: 'post',
                         success: function (data) {
@@ -327,7 +327,7 @@
                             $('#classe').append(data);
                         }
                     });
-                } else {
+                } else {*/
 
                     switch (grade_text) {
                         case 'Primaire':
@@ -350,8 +350,8 @@
                             break;
                         case 'Crèche' :
                             $('#branche-bloc').hide();
-                            $('#niveau-bloc').hide();
-                            $('#classe').prop('disabled', '');
+                            $('#niveau-bloc').show();
+                            $('#classe').prop('disabled', 'disabled');
                             ;
                             break;
                         case 'Maternelle' :
@@ -373,7 +373,7 @@
                             $('#niveau').append(data);
                         }
                     });
-                }
+              //  }
             });
 
 

@@ -146,7 +146,7 @@
                 case 'Primaire': $('#branche-bloc').hide(); $('#niveau-bloc').show()  ;break;
                 case 'Collège': $('#branche-bloc').hide();  $('#niveau-bloc').show()   ;break;
                 case 'Lycée': $('#branche-bloc').show();  $('#niveau-bloc').show()   ;break;
-                case 'Crèche' :$('#branche-bloc').hide(); $('#niveau-bloc').hide();  ;break;
+                case 'Crèche' :$('#branche-bloc').hide(); $('#niveau-bloc').show();  ;break;
                 case 'Maternelle' :$('#branche-bloc').hide(); $('#niveau-bloc').show();  ;break;
             }
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

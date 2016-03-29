@@ -133,12 +133,9 @@ class ClassroomsController extends Controller
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-            if($niveau_global !== 'Crèche')
-            {
-                $cr->niveau = $request->niveau;
-            }else{
-                $cr->niveau ='';
-            }
+
+            $cr->niveau = $request->niveau;
+
 
             if($niveau_global == 'Lycée')
             {
@@ -163,9 +160,8 @@ class ClassroomsController extends Controller
                     'branch_id' => $request->branche,
                     'level_id'=> $level->id
                 ]);
-            }elseif($niveau_global == 'Crèche'){
-                 $cr->grades()->attach([$request->grade]);
-            }else{
+            }
+            else{
                 $level->lesClasses()->attach([$cr->id]);
             }
            if($cr)

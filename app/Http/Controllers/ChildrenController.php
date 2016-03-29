@@ -125,7 +125,7 @@ class ChildrenController extends Controller
                         $ch->branches()->attach([$request->branche]);
                     }
                     if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
-                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
+                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée' || $niveau_global == 'Crèche')
                     {
                         $ch->levels()->attach([$request->niveau]);
                     }
@@ -224,7 +224,7 @@ class ChildrenController extends Controller
                         $ch->branches()->attach([$request->branche]);
                     }
                     if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
-                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
+                        || $niveau_global == 'Collège' || $niveau_global == 'Lycée' || $niveau_global == 'Crèche')
                     {
                         $ch->levels()->attach([$request->niveau]);
                     }
