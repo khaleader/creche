@@ -53,7 +53,7 @@
 
                     <button class="btn_form" type="submit">Enregistrer</button>
                     <a  style="line-height:40px; text-align:center;margin-right: 10px;"
-                        class="btn_form" href="{{ URL::previous() }}">
+                        class="btn_form" href="{{ URL::action('RoomsController@show',[$room]) }}">
                         Annuler
                     </a>
                     {!! Form::close() !!}

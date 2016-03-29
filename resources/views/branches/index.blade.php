@@ -19,7 +19,7 @@
                         </ul>
                     </div>
                 </header>
-                <div class="liste_actions">
+          <!--   <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
                             <input type="checkbox" class="select-all">
@@ -42,10 +42,10 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-branches" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                            <!--<li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>-->
+                            <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
@@ -60,7 +60,7 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th  class="no-print"></th>
+                           <!-- <th  class="no-print"></th> -->
                             <th>Branche</th>
                             <th>Code de la branche</th>
                             <th>Nombre d'élèves</th>
@@ -73,7 +73,7 @@
                         @foreach($branches as $branch)
 
                         <tr>
-                            <td  class="no-print"><div class="minimal single-row">
+                           <td style="display: none" class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox" value="{{ $branch->id }}" name="select[]" >
 
@@ -84,8 +84,8 @@
 
                             <td>{{ $branch->children()->count() }}</td>
                             <td>
-                                <a  class="no-print delete-branch" href="{{  action('BranchesController@delete',[$branch]) }}" class="actions_icons delete-branch">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a  class="no-print delete-branch" href="{{  action('BranchesController@edit',[$branch]) }}" class="actions_icons delete-branch">
+                                    <i class="fa fa-edit liste_icons"></i></a>
                                 <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
@@ -166,11 +166,11 @@
             alertify.dialog('confirm')
                     .set({
                         'labels':{ok:'Oui', cancel:'Non'},
-                        'message': 'Voulez-vous vraiment supprimer cet élément ? ',
+                        'message': 'Voulez-vous vraiment modifier cet élément ? ',
                         'transition': 'fade',
                         'onok': function(){
                             window.location.href = href;
-                            alertify.success('bien Supprimé!');
+
                         },
                         'oncancel': function(){
 

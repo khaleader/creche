@@ -35,7 +35,7 @@
                         <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
                         <ul role="menu" class="dropdown-menu" style="left: 0;">
                             <li><a  href="{{ action('BranchesController@edit',[$branch]) }}">Modifier</a></li>
-                            <li><a class="delete-branch" href="{{ action('BranchesController@delete',[$branch]) }}">Supprimer</a></li>
+                          <!--  <li><a class="delete-branch" href="{{-- action('BranchesController@delete',[$branch]) --}}">Supprimer</a></li> -->
                         </ul>
                     </div>
 

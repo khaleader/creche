@@ -35,4 +35,11 @@ protected $fillable = ['nom_branche','code_branche','user_id'];
         return $this->belongsToMany(Classroom::class,'branch_classroom_level');
     }
 
+
+    // on create school we link levels and branches
+    public function onlevels()
+    {
+        return $this->belongsToMany(Level::class);
+    }
+
 }

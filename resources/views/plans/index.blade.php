@@ -39,9 +39,12 @@
                             Trier par salle
                             <i class="fa fa-angle-down "></i>
                         </a>
-                        <ul class="dropdown-menu menu_actions">
-                            <li><a href="#">Salle 1</a></li>
-                            <li><a href="#">Salle 2</a></li>
+                        <ul class="dropdown-menu menu_actions rooms">
+                            <?php $rooms = Auth::user()->rooms()->get();  ?>
+                            @foreach($rooms as $room)
+                            <li><a room-value="{{ $room->id }}" href="#">{{ $room->nom_salle }}</a></li>
+                                @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -101,7 +104,7 @@
                                                       ->where('dayname',$plan->dayname)
                                                     ->first();
                                     if($salle)
-                                    echo $salle->matiere;
+                                    echo \Auth::user()->rooms()->where('id',$salle->room_id)->first()->nom_salle;
 
                                 ?>
 
@@ -131,7 +134,13 @@
                                     }else{
                                     foreach($classroom->branches as $br)
                                     {
-                                      echo $br->nom_branche;
+                                        if($br->nom_branche)
+                                            {
+                                                echo $br->nom_branche;
+                                            }else{
+                                                   echo '--';
+                                        }
+
                                     }
                                 }
 
@@ -188,11 +197,23 @@
                     success: function (data) {
                         $('tbody').empty();
                         $('tbody').append(data);
+                        $('.liste_footer').hide();
                     }
                 });
-
-
-
+            });
+            $('.rooms a').click(function(){
+              var room_id =  $(this).attr('room-value');
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url : '{{ URL::action('PlansController@trierparsalle')  }}',
+                    data: 'room_id=' + room_id + '&_token=' + CSRF_TOKEN,
+                   type: 'post',
+                    success:function(data){
+                        $('tbody').empty(data);
+                        $('tbody').append(data);
+                        $('.liste_footer').hide();
+                    }
+                });
             });
 
 

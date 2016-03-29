@@ -7408,4 +7408,49 @@ td.drop.droppable{
 
 }
 
+.calendarpicker{
+    border-radius: 3px;
+    height: 30px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    width: 80%;
+    float: right;
+    margin-right: 20px;
+}
 
+.picker{
+    height: 30px;
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.picker span{
+
+    margin-top: 5px;
+}
+
+.calpicker{
+    background-image: url('../images/calendarpicker.png');
+    background-repeat: no-repeat;
+    background-position-x:right;
+    background-position-y:6px;
+}
+
+.type_label{
+    margin-top: 10px;
+    margin-left: 4%;
+    color: #6c549e;
+    float: left;
+    margin-right: 88px;
+}
+
+.type_choice{
+    display: inline-block;
+    width: 35%;
+    float: left;
+    padding-top: 5px;
+}
+.picker strong{
+    float: left;
+    margin-top: 4px;
+}

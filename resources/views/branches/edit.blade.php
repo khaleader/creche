@@ -37,7 +37,7 @@
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Nom de la branche</label>
                         <div class="form_ajout">
-                            <input type="text" value="{{ $branch->nom_branche }}" name="nom_branche" class="form_ajout_input" placeholder="Entrez le nom de la branche">
+                            <input disabled type="text" value="{{ $branch->nom_branche }}" name="nom_branche" class="form_ajout_input" placeholder="Entrez le nom de la branche">
 
                         </div>
                     </div>

@@ -99,6 +99,7 @@ class TimesheetsController extends Controller
                $ts->matter_id = $matiere_id;
                $ts->color = $color;
                $ts->dayname = $dayname;
+               $ts->room_id = $salle_id ?:0;
                $ts->save();
            }elseif($dayname ==  'mardi'){
                $ts = new Timesheet();
@@ -110,6 +111,7 @@ class TimesheetsController extends Controller
                $ts->matter_id = $matiere_id;
                $ts->color = $color;
                $ts->dayname = $dayname;
+               $ts->room_id = $salle_id ?:0;
                $ts->save();
            }
            elseif($dayname ==  'mercredi'){
@@ -122,6 +124,7 @@ class TimesheetsController extends Controller
                $ts->matter_id = $matiere_id;
                $ts->color = $color;
                $ts->dayname = $dayname;
+               $ts->room_id = $salle_id ?:0;
                $ts->save();
            }
            elseif($dayname ==  'jeudi'){
@@ -134,6 +137,7 @@ class TimesheetsController extends Controller
                $ts->matter_id = $matiere_id;
                $ts->color = $color;
                $ts->dayname = $dayname;
+               $ts->room_id = $salle_id ?:0;
                $ts->save();
            }
            elseif($dayname ==  'vendredi'){
@@ -146,6 +150,7 @@ class TimesheetsController extends Controller
                $ts->matter_id = $matiere_id;
                $ts->color = $color;
                $ts->dayname = $dayname;
+               $ts->room_id = $salle_id ?:0;
                $ts->save();
            }
            elseif($dayname ==  'samedi'){
@@ -158,6 +163,7 @@ class TimesheetsController extends Controller
                $ts->matter_id = $matiere_id;
                $ts->color = $color;
                $ts->dayname = $dayname;
+               $ts->room_id = $salle_id ?:0;
                $ts->save();
            }
 

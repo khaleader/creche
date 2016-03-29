@@ -135,14 +135,14 @@ class ClassroomsController extends Controller
             $cr->capacite_classe = $request->capacite_classe;
             if($niveau_global !== 'Crèche')
             {
-                $cr->niveau = Level::find($request->niveau)->niveau;
+                $cr->niveau = $request->niveau;
             }else{
-                $cr->niveau ='--';
+                $cr->niveau ='';
             }
 
             if($niveau_global == 'Lycée')
             {
-                $cr->branche = Branch::find($request->branche)->nom_branche;
+                $cr->branche = $request->branche;
             }else{
                 $cr->branche ='';
             }
@@ -302,6 +302,19 @@ class ClassroomsController extends Controller
 
     }
 
+    // only for lycée get the branche when level is chosen
+    public function getBranchWhenLevelIsChosen()
+    {
+        if(\Request::ajax()) {
+            $niveau_id = \Input::get('niveau_id');
+            $level = Level::where('user_id',\Auth::user()->id)->where('id', $niveau_id)->first();
+            foreach ($level->onbranches as $branch) {
+                echo '<option value="' . $branch->id . '">' . $branch->nom_branche . '</option>';
+
+            }
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -358,35 +371,47 @@ class ClassroomsController extends Controller
         }
     }
 
-    public function trierparbranche()
+    public function trierparniveau()
     {
         if(\Request::ajax())
         {
-            $niveau=  \Input::get('niveau');
-            $branches = Classroom::where('user_id',\Auth::user()->id)->where('niveau',$niveau)->get();
-            foreach ($branches as $branch) {
+            $niveau_id=  \Input::get('niveau_id');
+            $niveaux = Classroom::where('user_id',\Auth::user()->id)->where('niveau',$niveau_id)->get();
+            foreach ($niveaux as $level) {
+                if($level->niveau)
+                {
+                    $niveau = \Auth::user()->leslevels()->where('id',$level->niveau)->first()->niveau;
+                }else{
+                    $niveau ='--';
+                }
+                if($level->branche)
+                {
+                    $branche = \Auth::user()->branches()->where('id',$level->branche)->first()->nom_branche;
+                }else{
+                    $branche ='--';
+                }
                 echo '         <tr>
                             <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
-                                        <input type="checkbox"  value="'.$branch->id.' " name="select[]">
+                                        <input type="checkbox"  value="'.$level->id.' " name="select[]">
 
                                     </div>
                                 </div></td>
-                            <td> '.$branch->nom_classe.' </td>
-                            <td> '. $branch->code_classe .'</td>
-                            <td> '. $branch->capacite_classe.'  élèves</td>
-                             <td>'. $branch->children()->count().'</td>
-                            <td> '. $branch->niveau .'</td>
-                            <td>'. $branch->branche .'</td>
+                            <td> '.$level->nom_classe.' </td>
+                            <td> '. $level->code_classe .'</td>
+                            <td> '. $level->capacite_classe.'  élèves</td>
+                             <td>'. $level->children()->count().'</td>
+                            <td> '. $niveau .'</td>
+                            <td>'. $branche .'</td>
 
                             <td class="no-print">
-                                <a href="'.  action('ClassroomsController@delete',[$branch]) .'" class="actions_icons delete-classe">
+                                <a href="'.  action('ClassroomsController@delete',[$level]) .'" class="actions_icons delete-classe">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
                                 <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
 
-                            <td class="no-print"><a href=""><div  class="btn_details">Détails</div></a></td>
+                            <td class="no-print"><a href="'.action('ClassroomsController@indexelc',[$level]).'"><div  class="btn_details">Détails</div></a></td>
                         </tr>';
             }
         }
@@ -394,14 +419,28 @@ class ClassroomsController extends Controller
 
 
 
-    public function trierparniveau()
+    public function trierparbranche()
     {
         if(\Request::ajax())
         {
             $branch_id =  \Input::get('branch_id');
             $branches = Branch::where('user_id',\Auth::user()->id)->where('id',$branch_id)->first();
             foreach ($branches->classrooms as $branch) {
-                echo '         <tr>
+                if($branch->niveau)
+                {
+                    $niveau = \Auth::user()->leslevels()->where('id',$branch->niveau)->first()->niveau;
+                }else{
+                    $niveau ='--';
+                }
+                if($branch->branche)
+                {
+                    $branche = \Auth::user()->branches()->where('id',$branch->branche)->first()->nom_branche;
+                }else{
+                    $branche ='--';
+                }
+
+
+                echo '<tr>
                             <td class="no-print"><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input type="checkbox"  value="'.$branch->id.' " name="select[]">
@@ -412,8 +451,8 @@ class ClassroomsController extends Controller
                             <td> '. $branch->code_classe .'</td>
                             <td> '. $branch->capacite_classe.'  élèves</td>
                             <td>'. $branch->children()->count().'</td>
-                            <td> '. $branch->niveau .'</td>
-                            <td>'. $branch->branche .'</td>
+                            <td> '. $niveau.'</td>
+                            <td>'. $branche .'</td>
 
                             <td class="no-print">
                                 <a href="'.  action('ClassroomsController@delete',[$branch]) .'" class="actions_icons delete-classe">
@@ -456,6 +495,18 @@ class ClassroomsController extends Controller
                 ->get(['nom_classe','code_classe','capacite_classe','niveau','branche']);
             Excel::create('La liste des Classes', function ($excel) use ($model) {
                 $excel->sheet('La liste des Classes', function ($sheet) use ($model) {
+                    foreach ($model as $item) {
+                        if($item->niveau)
+                        $item->niveau = \Auth::user()->leslevels()->where('id',$item->niveau)->first()->niveau;
+                        else
+                            $item->niveau ='--';
+                         if($item->branche)
+                        $item->branche = \Auth::user()->branches()->where('id',$item->branche)->first()->nom_branche;
+                        else
+                            $item->branche = '--';
+                    }
+
+
                     $sheet->fromModel($model);
                     // $sheet->setBorder('A1:B1', 'thin');
                     $sheet->setStyle(array(
@@ -493,6 +544,17 @@ class ClassroomsController extends Controller
                 ->get(['nom_classe','code_classe','capacite_classe','niveau','branche']);
             Excel::create('La liste des Classes', function ($excel) use ($model,$ids) {
                 $excel->sheet('La liste des Classes', function ($sheet) use ($model,$ids) {
+
+                    foreach ($model as $item) {
+                        if($item->niveau)
+                            $item->niveau = \Auth::user()->leslevels()->where('id',$item->niveau)->first()->niveau;
+                        else
+                            $item->niveau ='--';
+                        if($item->branche)
+                            $item->branche = \Auth::user()->branches()->where('id',$item->branche)->first()->nom_branche;
+                        else
+                            $item->branche = '--';
+                    }
                     $sheet->setWidth('A',15);
                     $sheet->setWidth('B',15);
                     $sheet->setWidth('C',15);

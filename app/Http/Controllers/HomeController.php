@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Attendance;
+use App\Bill;
+use App\Child;
 use App\Grade;
+use App\PriceBill;
+use App\SchoolYear;
+use App\Transport;
+use App\User;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Gmail;
@@ -26,36 +32,47 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $grade =  Grade::where('user_id',\Auth::user()->id)->first();
-        if(!$grade)
+
+
+
+
+
+
+
+
+
+
+
+         $aboutfacture = '';
+      //  $check =  \Auth::user()->created_at->addMinutes(10);
+        $next_month = Carbon::now()->firstOfMonth()->addMonth()->toDateString();
+       $ok = \Auth::user()->schoolyears()->where('current',1)->first();
+        if($ok)
         {
-            $creche = new Grade();
-            $creche->name = 'Crèche';
-            $creche->user_id = \Auth::user()->id;
-            $creche->save();
-
-            $mater = new Grade();
-            $mater->name = 'Maternelle';
-            $mater->user_id = \Auth::user()->id;
-            $mater->save();
-            $sc = new Grade();
-
-            $sc = new Grade();
-            $sc->name = 'Primaire';
-            $sc->user_id = \Auth::user()->id;
-            $sc->save();
-
-            $col = new Grade();
-            $col->name = 'Collège';
-            $col->user_id = \Auth::user()->id;
-            $col->save();
-
-            $lyc = new Grade();
-            $lyc->name = 'Lycée';
-            $lyc->user_id = \Auth::user()->id;
-            $lyc->save();
-
+            if($ok->type == 'Trim')
+            {
+                if(Carbon::parse($next_month)->between($ok->startch1,$ok->endch3))
+                {
+                    $aboutfacture = 'yes';
+                }else{
+                    $aboutfacture = 'no';
+                }
+            }
+            if($ok->type == 'Semis')
+            {
+                if(Carbon::parse($next_month)->between($ok->startch1,$ok->endch2))
+                {
+                    $aboutfacture = 'yes';
+                }else{
+                    $aboutfacture = 'no';
+                }
+            }
         }
+
+
+
+      Grade::AddGradesAndLevels(\Auth::user()->id);
+
         $client = new Google_Client();
         $client->setClientId('548520090024-i8jmtdmdi5ijvj3mn2sbqe2u3a431gh6.apps.googleusercontent.com');
         $client->setClientSecret('IX-SilXd0ctCrKUX1a5oP9is');
@@ -77,7 +94,8 @@ class HomeController extends Controller
         return view('index')->with([
             'client'=> $client,
             'service'=> $service,
-            'count' => $count
+            'count' => $count,
+            'aboutfacture' => $aboutfacture
         ]);
 
     }

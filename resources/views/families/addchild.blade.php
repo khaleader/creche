@@ -81,16 +81,7 @@
                             </div>
                         </div>
 
-                        <div class="form_champ">
-                            <label for="cname" class="control-label col-lg-3">Le Transport</label>
-                            <div class="form_ajout">
-                                <select name="transport" id="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
-                                    <option selected value="0">Non</option>
-                                    <option value="1">Oui</option>
-                                </select>
 
-                            </div>
-                        </div>
                         <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Nationalité * </label>
                             <div class="form_ajout">
@@ -150,11 +141,22 @@
 
                             </div>
                         </div>
+                        <div class="form_champ">
+                            <label for="cname" class="control-label col-lg-3">Le Transport</label>
+                            <div class="form_ajout">
+                                <select name="transport" id="transport" class="form_ajout_input" placeholder="Choisissez le responsable">
+                                    <option selected value="0">Non</option>
+                                    <option value="1">Oui</option>
+                                </select>
 
-
-
-
-
+                            </div>
+                        </div>
+                        <div class="form_champ c ">
+                            <label for="cname" class="control-label col-lg-3">Reduction </label>
+                            <div class="form_ajout">
+                                <input  value="{{ Request::old('reduction')?:'' }}" type="text" name="reduction" class="form_ajout_input" placeholder="Entrez le prix de reduction">
+                            </div>
+                        </div>
 
                         <input type="hidden" name="familyid" value="{{ $family->id }}">
 
@@ -180,36 +182,39 @@
                 $(".alert-success").alert('close');
             });
 
-            $('#date_birth_child').blur(function () {
-               var date = $(this).val();
+            // verification des des types des périodes
+            $('input[name=nom_enfant]').blur(function(){
+                var now = '{{  Carbon\Carbon::now() }}';
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('ChildrenController@getage')}}',
-                    data: 'inputd=' + date + '&_token=' + CSRF_TOKEN,
+                    url: '{{ URL::action('SchoolYearsController@verifyRange') }}',
+                    data: 'now=' + now + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {
-                        if (data == '') {
-                            alertify.set('notifier', 'position', 'bottom-right');
-                            alertify.set('notifier', 'delay', 60);
-                            alertify.error("Attention la catégorie pour cet age n'est pas encore crée veuillez la créer S'il Vous plait >>> Redirection Automatique");
+                        if(data == 'regler')
+                        {
+                            alertify.set('notifier', 'position', 'bottom-left');
+                            alertify.set('notifier', 'delay', 20);
+                            alertify.error("Veuillez sélectionner l'année scolaire et le type des périodes"
+                                    + " Redirection Automatique Après 10 seconds ");
                             window.setTimeout(function(){
                                 location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
-                            },5000);
-
-                            //location.reload();
-
-                        } else {
-                            alertify.set('notifier', 'position', 'bottom-right');
-                            alertify.set('notifier', 'delay', 30);
-                            alertify.warning(data);
-                            var data = data.substr(-7);
-                            var data = data.substr(0, 3);
-                            $('#prices').empty();
-                            $('#prices').append(data);
+                            },10000);
+                        }else if(data == 'no'){
+                            alertify.set('notifier', 'position', 'bottom-left');
+                            alertify.set('notifier', 'delay', 20);
+                            alertify.error("vous ne pouvez pas générer une facture selon les types " +
+                                    "de périodes actuels régler les dates s'il vous plait ");
+                            window.setTimeout(function(){
+                                location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                            },10000);
                         }
                     }
                 });
+
             });
+
+
 
             $('#transport').change(function () {
                 var trans = $(this).val();
@@ -246,7 +251,7 @@
                                 }else{
                                     alertify.set('notifier', 'position', 'bottom-left');
                                     alertify.set('notifier', 'delay', 20);
-                                    alertify.error("Veuillez préciser la date de naissance ");
+                                    alertify.error("Veuillez selectionner un niveau ");
                                 }
                             }
                         }
@@ -375,20 +380,50 @@
             $('#classe').prop('disabled','disabled');
             $('#niveau').on('change',function(){
                 var level_id = $(this).val();
+                level_id =  parseInt(level_id);
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('ChildrenController@getClassroomWhenLevelId')}}',
-                    data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        $('#classe').prop('disabled','');
-                        $('#classe').empty();
-                        $('#classe').prepend('<option selected>selectionnez une classe</option>');
-                        $('#classe').append(data);
-                    }
-                });
+                if($.isNumeric(level_id)) {
+                    // check price of level
+                    $.ajax({
+                        url: '{{  URL::action('PriceBillsController@checkPriceOfLevel')}}',
+                        data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
+                        type: 'post',
+                        success: function (data) {
+                            if (data !== 'no') {
+                                alertify.set('notifier', 'position', 'bottom-left');
+                                alertify.set('notifier', 'delay', 10);
+                                alertify.success("cet élève va payer " + data + " Dhs");
+                                $('#prices').empty().append(data);
+                            } else {
+                                alertify.set('notifier', 'position', 'bottom-right');
+                                alertify.set('notifier', 'delay', 30);
+                                alertify.error("vous n'avez pas encore rempli un " +
+                                        "prix pour ce niveau >> Redirection Automatique  Après 10 secondes pour ajouter le prix à ce niveau");
+                                window.setTimeout(function () {
+                                    location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                                }, 10000);
 
+                            }
+
+                        }
+                    });
+
+
+                    // get classe
+                    $.ajax({
+                        url: '{{  URL::action('ChildrenController@getClassroomWhenLevelId')}}',
+                        data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
+                        type: 'post',
+                        success: function (data) {
+                            $('#classe').prop('disabled','');
+                            $('#classe').empty();
+                            $('#classe').prepend('<option selected>selectionnez une classe</option>');
+                            $('#classe').append(data);
+                        }
+                    });
+                }
             });
+
            $('#niveau').click(function(){
                 $('#classe').empty();
             });

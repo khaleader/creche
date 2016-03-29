@@ -46,7 +46,7 @@
 <script src="{{  asset('bs3/js/bootstrap.js') }}"></script>
 
 
-
+<script src="{{ asset('js\jquery-cookie\jquery.cookie.js')}}"></script>
 
 <!--common script init for all pages-->
 <script src="{{ asset('js/scripts.js')}}"></script>

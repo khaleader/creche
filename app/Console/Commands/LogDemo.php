@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\CategoryBill;
+use App\PriceBill;
+use App\SchoolYear;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Console\Command;
@@ -48,9 +50,107 @@ class LogDemo extends Command
 
     public function handle()
     {
-        if(Carbon::now()->toDateString() == Carbon::now()->endOfMonth()->toDateString())
+        if(Carbon::now()->toDateString() == Carbon::now()->startOfMonth()->toDateString())
         {
-       $enfants =  Child::has('bills')->get();
+
+            $users = User::where('type','ecole')->get();
+            foreach($users as $user)
+            {
+               $sc = SchoolYear::where('user_id',$user->id)->where('current',1)->first();
+                if($sc->type == 'Semis' && Carbon::now()->between($sc->startch1,$sc->endch2))
+                {
+                    foreach($user->children as $child)
+                    {
+                        foreach($child->bills as $bill)
+                        {
+                            $getChild = Bill::where('child_id',$bill->child_id)
+                                ->where('reduction',0)
+                                ->orderBy('id','desc')->first();
+                            if($getChild)
+                            {
+                                $facture = new Bill();
+                                $facture->start = $getChild->end->toDateString();
+                                $facture->end =$getChild->end->addMonth()->toDateString();
+                                $facture->status = 0;
+                                $facture->user_id = $getChild->user_id;
+
+                                $enfant = Child::where('user_id',$getChild->user_id)->where('id',$getChild->child_id)->first();
+                                $taman = '';
+                                $transportStatus = $enfant->transport;
+                                foreach($enfant->levels as $level)
+                                {
+                                    $getPriceOfLevel = PriceBill::where('niveau',$level->id)
+                                        ->where('user_id',$getChild->user_id)->first();
+                                    $taman = $getPriceOfLevel->prix;
+
+                                }
+                                $transportStatus == 0 ?
+                                    $facture->somme =  $taman : ($facture->somme = $taman + Transport::where('user_id',$getChild->user_id)->first()->somme);
+
+
+                                $facture->nbrMois = $getChild->nbrMois;
+                                $facture->reductionPrix = null;
+                                $facture->school_year_id = $getChild->school_year_id;
+                                $facture->reduction = 0;
+                                $facture->child_id =$getChild->child_id;
+                                $facture->f_id = $getChild->f_id;
+                                $facture->save();
+                                break;
+                            }
+
+                        }
+                    }
+                }elseif($sc->type == 'Trim' && Carbon::now()->between($sc->startch1,$sc->endch3))
+                {
+                    foreach($user->children as $child)
+                    {
+                        foreach($child->bills as $bill)
+                        {
+                            $getChild = Bill::where('child_id',$bill->child_id)
+                                ->orderBy('id','desc')
+                                ->where('reduction',0)
+                                ->first();
+                            if($getChild)
+                            {
+                                $facture = new Bill();
+                                $facture->start = $getChild->end->toDateString();
+                                $facture->end =$getChild->end->addMonth()->toDateString();
+                                $facture->status = 0;
+                                $facture->user_id = $getChild->user_id;
+
+                                $enfant = Child::where('user_id',$getChild->user_id)->where('id',$getChild->child_id)->first();
+                                $taman = '';
+                                $transportStatus = $enfant->transport;
+                                foreach($enfant->levels as $level)
+                                {
+                                    $getPriceOfLevel = PriceBill::where('niveau',$level->id)
+                                        ->where('user_id',$getChild->user_id)->first();
+                                    $taman = $getPriceOfLevel->prix;
+
+                                }
+                                $transportStatus == 0 ?
+                                    $facture->somme =  $taman : ($facture->somme = $taman + Transport::where('user_id',$getChild->user_id)->first()->somme);
+
+
+                                $facture->nbrMois = $getChild->nbrMois;
+                                $facture->reductionPrix = null;
+                                $facture->school_year_id = $getChild->school_year_id;
+                                $facture->reduction = 0;
+                                $facture->child_id =$getChild->child_id;
+                                $facture->f_id = $getChild->f_id;
+                                $facture->save();
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+
+
+
+     /*  $enfants =  Child::has('bills')->get();
         foreach($enfants as $e)
         {
             foreach($e->bills as $b)
@@ -75,9 +175,9 @@ class LogDemo extends Command
 
 
             }
+        }*/
         }
-        }
-       // Log::info('hello world je suis khalid bouslami');
+
 
 
 

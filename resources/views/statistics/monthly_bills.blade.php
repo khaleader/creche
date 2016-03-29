@@ -185,50 +185,221 @@
                 });
             });
 
+
+            // action régler une facture make status 1
             $('#regler-bills').click(function(){
                 var boxes;
                 $("input[name='select[]']").each(function(){
                     if($(this).is(':checked'))
                     {
+
                         var valeur = $(this).val();
                         // $(this).val(valeur).closest('tr').fadeOut();
                         boxes = $(this).val() + ',';
                         $('#boxesregler').append(boxes);
                     }
                 });
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('BillsController@regler')}}',
-                    data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        location.reload();
-                        // console.log(data);
-                    }
-                });
+                if(boxes == null)
+                {
+                    alertify.alert("cocher d'abord !");
+                    return false;
+                }
+                if(!$.cookie('reglercookie'))
+                {
+                    alertify.prompt('tapez le mot de pass de confirmation','',function(e,value){
+                        var pass = value;
+                        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                        $.ajax({
+                            url: '{{  URL::action('BillsController@checkpassofregler')}}',
+                            data: 'pass=' + pass + '&_token=' + CSRF_TOKEN,
+                            type: 'post',
+                            success: function(data){
+                                if(data == 'oui')
+                                {
+                                    alertify.confirm('confirm')
+                                            .set({
+                                                'labels':{ok:'Oui', cancel:'Non'},
+                                                'message': 'ne pas demander le mot de pass une autre fois dans cette session ? ',
+                                                'transition': 'fade',
+                                                'onok': function(){
+                                                    $.cookie('reglercookie',1);
+                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            location.reload();
+                                                            // console.log(data);
+                                                        }
+                                                    });
+                                                },
+                                                'oncancel': function(){
+                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            location.reload();
+                                                            // console.log(data);
+                                                        }
+                                                    });
+                                                }
+                                            }).show();
+                                }else{
+                                    alertify.alert('Mot de pass incorrect');
+                                    return false;
+                                }
+                            }
+                        });
+                    }).set({
+                        'type':'password',
+                        'labels':{ok:'Oui', cancel:'Non'},
+                    });
+                }else{
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url: '{{  URL::action('BillsController@regler')}}',
+                        data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                        type: 'post',
+                        success: function (data) {
+                            location.reload();
+                            // console.log(data);
+                        }
+                    });
+                }
             });
+
+            // action non  pas régler une facture and make status 0
             $('#non-regler-bills').click(function () {
                 var boxes;
                 $("input[name='select[]']").each(function(){
                     if($(this).is(':checked'))
                     {
+
                         var valeur = $(this).val();
                         // $(this).val(valeur).closest('tr').fadeOut();
                         boxes = $(this).val() + ',';
                         $('#boxesnonregler').append(boxes);
                     }
                 });
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('BillsController@nonregler')}}',
-                    data: 'nonregler=' + $('#boxesnonregler').text() + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        location.reload();
-                    }
-                });
-            });
+                if(boxes == null)
+                {
+                    alertify.alert("cocher d'abord !");
+                    return false;
+                }
 
+                if(!$.cookie('nepasreglercookie'))
+                {
+                    alertify.prompt('tapez le mot de pass de confirmation','',function(e,value){
+                        var pass = value;
+                        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                        $.ajax({
+                            url: '{{  URL::action('BillsController@checkpassofregler')}}',
+                            data: 'pass=' + pass + '&_token=' + CSRF_TOKEN,
+                            type: 'post',
+                            success: function(data){
+                                if(data == 'oui')
+                                {
+                                    alertify.confirm('confirm')
+                                            .set({
+                                                'type' :'password',
+                                                'labels':{ok:'Oui', cancel:'Non'},
+                                                'message': 'ne pas demander le mot de pass une autre fois dans cette session ? ',
+                                                'transition': 'fade',
+                                                'onok': function(){
+                                                    $.cookie('nepasreglercookie',1);
+                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@nonregler')}}',
+                                                        data: 'nonregler=' + $('#boxesnonregler').text() + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            location.reload();
+                                                        }
+                                                    });
+
+                                                },
+                                                'oncancel': function(){
+                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@nonregler')}}',
+                                                        data: 'nonregler=' + $('#boxesnonregler').text() + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            location.reload();
+                                                        }
+                                                    });
+                                                }
+                                            }).show();
+                                }else{
+                                    alertify.alert('Mot de pass incorrect');
+                                    return false;
+                                }
+                            }
+                        });
+                    }).set({
+                        'type':'password',
+                        'labels':{ok:'Oui', cancel:'Non'},
+                    });
+                }else{
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                    $.ajax({
+                        url: '{{  URL::action('BillsController@nonregler')}}',
+                        data: 'nonregler=' + $('#boxesnonregler').text() + '&_token=' + CSRF_TOKEN,
+                        type: 'post',
+                        success: function (data) {
+                            location.reload();
+                        }
+                    });
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            });
 
 
 

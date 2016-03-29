@@ -9,6 +9,7 @@ use App\Classroom;
 use App\Family;
 use App\Http\Requests\AddSchoolRequest;
 use App\Http\Requests\ajouterEnfantRequest;
+use App\PriceBill;
 use App\Transport;
 use App\User;
 use Carbon\Carbon;
@@ -142,18 +143,22 @@ class FamiliesController extends Controller
                     $bill->start = Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();
                     $bill->status = 0;
-                    if ($request->transport == 1) {
-                        if (Transport::where('user_id', \Auth::user()->id)->exists()) {
-                            $transport_somme = Transport::where('user_id', \Auth::user()->id)->first()->somme;
-                            $bill_somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                            $bill->somme = $transport_somme + $bill_somme;
-                        } else {
-                            $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                        }
-                    } else {
-                        $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
+
+                    if(isset($request->reduction) &&  !empty($request->reduction)  && !is_null($request->reduction))
+                    {
+                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport,$request->reduction);
+                        $bill->reductionPrix = $request->reduction;
+                        $bill->reduction = 1;
+                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+
+                    }else{
+                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport);
+                        $bill->reduction = 0;
+                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
                     }
 
+
+                    $bill->nbrMois =1;
                     $bill->child_id = $child->id;
                     $bill->f_id = $user->id;
                     $bill->user_id = \Auth::user()->id;

@@ -31,14 +31,14 @@
 
 
 
-                    <div class="btn-group dropdown_actions">
+                   <!-- <div class="btn-group dropdown_actions">
                         <button class="btn btn-white" type="button">Actions</button>
                         <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
                         <ul role="menu" class="dropdown-menu" style="left: 0;">
-                            <li><a  href="{{ action('LevelsController@edit',[$level]) }}">Modifier</a></li>
-                            <li><a class="delete-level" href="{{ action('LevelsController@delete',[$level]) }}">Supprimer</a></li>
+                            <li><a  href="{{-- action('LevelsController@edit',[$level]) --}}">Modifier</a></li>
+                            <li><a class="delete-level" href="{{-- action('LevelsController@delete',[$level]) --}}">Supprimer</a></li>
                         </ul>
-                    </div>
+                    </div>-->
 
 
                 </header>

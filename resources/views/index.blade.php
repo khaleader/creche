@@ -30,7 +30,25 @@ session_start();
     </div>
 @endif
 
+    @if(\Auth::user()->isAdmin() && \Auth::user()->typeCompte == 1)
+        <div class="row">
 
+            <div class="col-md-12">
+                @if($aboutfacture == 'no')
+
+                        <div class="col-sm-12">
+                            <div class="alert  alert-danger alert-dismissable" style="margin-top: 5px">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                {{ 'aucune facture ne va être généré le mois prochain  veuillez régler le type des périodes'
+                                }}
+                            </div>
+                        </div>
+
+                @endif
+            </div>
+        </div>
+    @endif
 <div class="row">
     @if(Auth::user() && Auth::user()->isOblivius())
         <div class="col-md-4">

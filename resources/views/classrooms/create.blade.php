@@ -134,9 +134,9 @@
 
         });
 
-        $('#branche').prepend("<option selected>sélectionnez s'il vous plait</option>");
+        $('#branche').prepend("<option selected>quelle Branche ?</option>");
         $('#niveau').prop('disabled','disabled');
-        $('#grade').prepend("<option selected>sélectionnez s'il vous plait</option>");
+        $('#grade').prepend("<option selected>Quel Niveau Global ?</option>");
         $('#branche-bloc').hide();
         $('#grade').on('change',function(){
             var grade_id = $(this).val();
@@ -157,10 +157,30 @@
                 success: function (data) {
                     $('#niveau').prop('disabled','');
                     $('#niveau').empty();
-                    $('#niveau').prepend('<option selected>selectionnez un niveau</option>');
+                    $('#niveau').prepend('<option selected>Quel Niveau ?</option>');
                     $('#niveau').append(data);
                 }
             });
+        });
+
+
+        $('#niveau').on('change',function(){
+          var niveau_text = $('#niveau option:selected').text();
+            if(niveau_text == 'Tronc Commun' || niveau_text == '1ère Baccalauréat' || niveau_text == 'Baccalaureat')
+            {
+                var niveau_id = $(this).val();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ClassroomsController@getBranchWhenLevelIsChosen')}}',
+                    data: 'niveau_id=' + niveau_id + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('#branche').empty();
+                        $('#branche').prepend('<option selected>Quelle Branche ?</option>');
+                        $('#branche').append(data);
+                    }
+                });
+            }
         });
 
         $('#submit').click(function(){

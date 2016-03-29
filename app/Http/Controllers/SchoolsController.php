@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Child;
 use App\Events\SchoolSendEmailEvent;
 use App\Http\Requests\AddSchoolRequest;
+use App\PriceBill;
 use App\Profile;
 use App\Transport;
 use App\User;
@@ -29,7 +30,8 @@ class SchoolsController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('Famille',['only'=> 'editef','updatepassef','upimage']);
-        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category',
+        $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_price_bills',
+            'price_bills_store',
             'show_cat_bills','editef','updatepassef','upimage','upimageecole','profile','editer']]);
 
 
@@ -427,6 +429,83 @@ class SchoolsController extends Controller
         }
     }
 
+
+    /**
+     *
+     */
+    public function show_price_bills()
+    {
+        if(\Request::ajax())
+        {
+            $niveau_id =  Input::get('niveau_id');
+            $checkPrice =  PriceBill::where('user_id',\Auth::user()->id)
+                ->where('niveau',$niveau_id)
+                ->where('ann_scol','2015-2016')
+                 ->first();
+            if($checkPrice)
+            {
+                echo json_encode($checkPrice);
+                die();
+            }else{
+                $tab = [
+                    'prix'=> '',
+
+                ];
+                echo json_encode($tab);
+                die();
+            }
+
+
+        }
+    }
+
+
+    public function price_bills_store(Request $request)
+    {
+        $trans = Transport::where('user_id',\Auth::user()->id)->first();
+        if($trans)
+        {
+
+            $trans->somme = $request->somme;
+            $trans->save();
+
+        }
+        else{
+            Transport::create([
+                'somme' => $request->somme,
+                'user_id' => \Auth::user()->id
+            ]);
+        }
+
+        $niveau_id = $request->niveau;
+        $price = $request->price;
+        $user_id = \Auth::user()->id;
+        $ann_scol = '2015-2016';
+
+
+        $checkPrice =  PriceBill::where('user_id',$user_id)
+            ->where('niveau',$niveau_id)
+            ->where('ann_scol',$ann_scol)
+            ->first();
+        if($checkPrice)
+        {
+            $checkPrice->prix = $price;
+            $checkPrice->save();
+        }else{
+            $priceBill = new PriceBill();
+            $priceBill->niveau = $niveau_id;
+            $priceBill->prix = $price;
+            $priceBill->ann_scol = $ann_scol;
+            $priceBill->user_id = $user_id;
+            $priceBill->save();
+        }
+        return redirect()->back()->with('success','Bien enregistré');
+    }
+
+
+
+
+
     public function editef($id)
     {
       if(\Auth::user() && \Auth::user()->isFamily())
@@ -565,7 +644,11 @@ class SchoolsController extends Controller
                  $school->lesrooms()->delete(); // -> direct delete
                  $school->lesclassrooms()->delete(); // -> direct delete
                 $school->leslevels()->delete(); // -> direct delete
-                $school->grades()->delete();
+                $school->grades()->delete();  // -> direct delete
+                $school->occasions()->delete();  // -> direct delete
+                $school->buses()->delete();
+                $school->profile()->delete();
+                $school->pricebills()->delete();
                 DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
                  $school->lestimesheets()->delete(); // -> direct delete
 
@@ -718,7 +801,11 @@ class SchoolsController extends Controller
         $school->lesrooms()->delete(); // -> direct delete
         $school->lesclassrooms()->delete(); // -> direct delete
         $school->leslevels()->delete(); // -> direct delete
-        $school->grades()->delete();
+        $school->grades()->delete();  // -> direct delete
+        $school->occasions()->delete();  // -> direct delete
+        $school->profile()->delete();
+        $school->buses()->delete();
+        $school->pricebills()->delete();
         DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
         $school->lestimesheets()->delete(); // -> direct delete
 

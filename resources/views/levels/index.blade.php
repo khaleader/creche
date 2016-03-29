@@ -18,7 +18,7 @@
                     </div>
 
                 </header>
-                <div class="liste_actions">
+               <!-- <div class="liste_actions">
                     <div class="chk-all">
                         <div class="pull-left mail-checkbox ">
                             <input type="checkbox" class="select-all">
@@ -41,10 +41,10 @@
                         </a>
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="delete-levels" href="#"><i class="fa fa-trash-o"></i>Supprimer</a></li>
-                         <!--   <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li> -->
+                           <li><a href="#"><i class="fa fa-archive"></i>Archiver</a></li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
                 <ul class="unstyled inbox-pagination liste_arrow">
 
                     <li>
@@ -59,10 +59,10 @@
                     <table class="table  table-hover general-table table_enfants">
                         <thead>
                         <tr>
-                            <th class="no-print"></th>
+                            <!--<th class="no-print"></th>-->
                             <th>Niveau</th>
                             <th>Nombre d'élèves</th>
-                            <th class="no-print">Actions</th>
+                           <!-- <th class="no-print">Actions</th>-->
 
                         </tr>
                         </thead>
@@ -71,7 +71,7 @@
                         @foreach($levels as $l)
 
                             <tr>
-                                <td class="no-print"><div class="minimal single-row">
+                                <td style="display: none" class="no-print"><div class="minimal single-row">
                                         <div class="checkbox_liste ">
                                             <input type="checkbox" value="{{ $l->id }}" name="select[]" >
 
@@ -79,12 +79,12 @@
                                     </div></td>
                                 <td>{{  $l->niveau }}</td>
                                 <td>{{ $l->children()->count() }}</td>
-                                <td class="no-print">
-                                    <a href="{{  action('LevelsController@delete',[$l]) }}" class="actions_icons delete-level">
-                                        <i class="fa fa-trash-o liste_icons"></i></a>
-                                    <!--<a href="#"><i class="fa fa-archive liste_icons"></i>
-                                    </a>-->
-                                </td>
+                              <!--  <td class="no-print">
+                                    <a href="{{--  action('LevelsController@edit',[$l]) --}}" class="actions_icons delete-level">
+                                        <i class="fa fa-edit liste_icons"></i></a>
+                                   <a href="#"><i class="fa fa-archive liste_icons"></i>
+                                    </a>
+                                </td>-->
                                 <td class="no-print"><a href="{{ action('LevelsController@show',[$l]) }}"><div  class="btn_details">Détails</div></a></td>
 
                             </tr>
@@ -164,11 +164,11 @@
                 alertify.dialog('confirm')
                         .set({
                             'labels':{ok:'Oui', cancel:'Non'},
-                            'message': 'Voulez-vous vraiment supprimer cet élément ?  ',
+                            'message': 'Voulez-vous vraiment modifier cet élément ?  ',
                             'transition': 'fade',
                             'onok': function(){
                                 window.location.href = href;
-                                alertify.success('bien Supprimé!');
+
                             },
                             'oncancel': function(){
 

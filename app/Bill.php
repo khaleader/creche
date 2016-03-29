@@ -24,6 +24,11 @@ use SoftDeletes;
         return $this->belongsTo('App\User');
     }
 
+    public function schoolyear()
+    {
+        return $this->belongsTo(SchoolYear::class);
+    }
+
 
 
 

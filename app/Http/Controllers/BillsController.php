@@ -49,6 +49,18 @@ class BillsController extends Controller
         return view('bills.indexnr', compact('bills'));
     }
 
+    public function checkpassofregler()
+    {
+        if(\Request::ajax())
+        {
+            $pass =\Input::get('pass');
+            if($pass == \Hash::check($pass,\Auth::user()->getAuthPassword()))
+            {
+                echo 'oui';
+            }
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      *

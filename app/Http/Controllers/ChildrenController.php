@@ -14,6 +14,7 @@ use App\Grade;
 use App\Http\Requests\ajouterEnfantRequest;
 use App\Http\Requests\FormValidationChildFamilyRequest;
 use App\Level;
+use App\PriceBill;
 use App\Transport;
 use App\User;
 use Carbon\Carbon;
@@ -66,8 +67,11 @@ class ChildrenController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FormValidationChildFamilyRequest $request)
+
+    public function store(FormValidationChildFamilyRequest $request )
     {
+
+
         $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
 
         // famille for family profile
@@ -133,25 +137,31 @@ class ChildrenController extends Controller
                     //classe
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
                     $cr->children()->attach([$child->id]);
+
+
                     $bill = new Bill();
                     $bill->start = Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();
                     $bill->status = 0;
-                    if ($request->transport == 1) {
-                        if (Transport::where('user_id', \Auth::user()->id)->exists()) {
-                            $transport_somme = Transport::where('user_id', \Auth::user()->id)->first()->somme;
-                            $bill_somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                            $bill->somme = $transport_somme + $bill_somme;
-                        } else {
-                            $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                        }
-                    } else {
-                        $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
+                    if(isset($request->reduction) &&  !empty($request->reduction)  && !is_null($request->reduction))
+                    {
+                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport,$request->reduction);
+                        $bill->reductionPrix = $request->reduction;
+                        $bill->reduction = 1;
+                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+
+                    }else{
+                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport);
+                        $bill->reduction = 0;
+                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
                     }
 
+
+                    $bill->nbrMois =1;
                     $bill->child_id = $child->id;
                     $bill->user_id = \Auth::user()->id;
                     $bill->save();
+
 
                     $enfant = Child::findOrFail($child->id);
                     if ($father->responsable == 0)
@@ -231,20 +241,20 @@ class ChildrenController extends Controller
                     $bill->start =Carbon::now()->toDateString();
                     $bill->end = Carbon::now()->addMonth()->toDateString();
                     $bill->status = 0;
-                    if($request->transport == 1)
-                    {
-                        if(Transport::where('user_id',\Auth::user()->id)->exists())
-                        {
-                            $transport_somme =  Transport::where('user_id',\Auth::user()->id)->first()->somme;
-                            $bill_somme =CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                            $bill->somme = $transport_somme + $bill_somme;
-                        }else{
-                            $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                        }
-                    }else{
-                        $bill->somme = CategoryBill::getYear(Carbon::parse($request->date_naissance));
-                    }
 
+                    if(isset($request->reduction) &&  !empty($request->reduction)  && !is_null($request->reduction))
+                    {
+                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport,$request->reduction);
+                        $bill->reductionPrix = $request->reduction;
+                        $bill->reduction = 1;
+                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+
+                    }else{
+                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport);
+                        $bill->reduction = 0;
+                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                    }
+                    $bill->nbrMois =1;
                     $bill->child_id =$child->id;
                     $bill->f_id = $user->id;
                     $bill->user_id = \Auth::user()->id;
@@ -437,7 +447,7 @@ class ChildrenController extends Controller
     {
         if(\Request::ajax()) {
             $level_id = \Input::get('level_id');
-            $level = Level::where('id', $level_id)->first();
+            $level = Level::where('id', $level_id)->where('user_id',\Auth::user()->id)->first();
             foreach ($level->classrooms as $cr) {
                 echo '<option value="' . $cr->id . '">' . $cr->nom_classe . '</option>';
             }
@@ -581,37 +591,19 @@ class ChildrenController extends Controller
                  if(Transport::where('user_id',\Auth::user()->id)->first()->somme > 0)
                  {
                      $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-                     $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+                     $child->transport = 1;
                      $child->save();
-                     if($child->transport == 0)
-                   {
-                    $bill = Bill::where('child_id',$child->id)->orderBy('id','desc')->first();
-                       $bill->somme = ($bill->somme) + (Transport::where('user_id',\Auth::user()->id)->first()->somme);
-                       $bill->save();
-                       $child->transport = 1;
-                       $child->save();
 
-                    }
                    }else{
                        return redirect()->back()->withErrors(["Vous n'avez pas encore précisé un prix pour le transport"]);
                    }
                }elseif($request->transport == 0)
                {
                    $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-                   if($child->transport == 1)
-                   {
-                       // anuuler le transport
-                       $bill = Bill::where('child_id',$child->id)->orderBy('id','desc')->first();
-                       $bill->somme = ($bill->somme) - (Transport::where('user_id',\Auth::user()->id)->first()->somme);
-                       $bill->save();
-                       $child->transport = 0;
-                       $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+                       $child->transport = $request->transport;
                        $child->save();
-
-                   }
                }
                 $child->classrooms()->sync([$request->classe]);
-
                $family = Family::where('email_responsable',$request->em)->first();
                 $family->adresse = $request->adresse;
                 $family->numero_fixe  =$request->numero_fixe;
@@ -640,7 +632,6 @@ class ChildrenController extends Controller
                     }
                     $pic->photo = $filename;
                     $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
-
                     $pic->save();
                 }
 

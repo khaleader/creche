@@ -260,17 +260,7 @@
                                     </select>
                                 </div>
                             </div>
-                        <div class="form_champ c">
-                            <label for="cname" class="control-label col-lg-3">Le Transport * </label>
-                            <div class="form_ajout">
-                                <select id="transport" name="transport" class="form_ajout_input">
-                                    <option selected value="0">Non</option>
-                                    <option value="1">Oui</option>
 
-                                </select>
-
-                            </div>
-                        </div>
 
 
 
@@ -327,6 +317,22 @@
 
                             </div>
                         </div>
+                        <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">Le Transport * </label>
+                            <div class="form_ajout">
+                                <select id="transport" name="transport" class="form_ajout_input">
+                                    <option selected value="0">Non</option>
+                                    <option value="1">Oui</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form_champ c ">
+                            <label for="cname" class="control-label col-lg-3">Reduction </label>
+                            <div class="form_ajout">
+                                <input  value="{{ Request::old('reduction')?:'' }}" type="text" name="reduction" class="form_ajout_input" placeholder="Entrez le prix de reduction">
+                            </div>
+                        </div>
+
 
 
 
@@ -373,6 +379,7 @@
 
                         </div>
                         <?php
+                            /*
                         $check = App\CategoryBill::where('user_id',\Auth::user()->id)->get();
                         if($check->isEmpty())
                         {
@@ -384,7 +391,7 @@
                       "options de paiement > Selectionnez une Catégorie pour remplir l\'intervalle de l\'age et les prix :)");
 
                         </script>';
-                        }
+                        }*/
                         ?>
 
 
@@ -591,64 +598,52 @@
                   $('input[type="file"]').prop('disabled', false);
                   $('#image-h').show();
               });
-            $('#date_birth_child').blur(function () {
-                           var date = $(this).val();
-                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                  $.ajax({
-                      url: '{{  URL::action('ChildrenController@getage')}}',
-                      data: 'inputd=' + date + '&_token=' + CSRF_TOKEN,
-                      type: 'post',
-                      success: function (data) {
-                          if (data == '') {
-                              alertify.set('notifier', 'position', 'bottom-right');
-                              alertify.set('notifier', 'delay', 60);
-                              alertify.error("Attention la catégorie pour cet age n'est pas encore crée veuillez la créer S'il Vous plait >>> Redirection Automatique");
-                              window.setTimeout(function(){
-                                  location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
-                              },5000);
-
-                              //location.reload();
-
-                          } else {
-                              alertify.set('notifier', 'position', 'bottom-right');
-                              alertify.set('notifier', 'delay', 30);
-                              alertify.warning(data);
-                              var data = data.substr(-7);
-                              var data = data.substr(0, 3);
-                              $('#prices').empty();
-                              $('#prices').append(data);
-                          }
-                      }
-
-                  });
 
 
-              });
+
+                    $('input[name=reduction]').blur(function(){
+                       var reduct =$(this).val();
+                        var price =$('#prices').text();
+                        alertify.set('notifier', 'position', 'bottom-left');
+                        alertify.set('notifier', 'delay', 20);
+                        alertify.warning("Le Prix avec la  reduction est : " + (parseInt(price - reduct)));
+                    });
+
+                     // verification  des types des périodes
+             $('input[name=nom_enfant]').blur(function(){
+                 var now = '{{  Carbon\Carbon::now() }}';
+                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                 $.ajax({
+                     url: '{{ URL::action('SchoolYearsController@verifyRange') }}',
+                     data: 'now=' + now + '&_token=' + CSRF_TOKEN,
+                     type: 'post',
+                     success: function (data) {
+                        if(data == 'regler')
+                        {
+                            alertify.set('notifier', 'position', 'bottom-left');
+                            alertify.set('notifier', 'delay', 20);
+                            alertify.error("Veuillez sélectionner l'année scolaire et le type des périodes"
+                                    + " Redirection Automatique Après 10 seconds ");
+                            window.setTimeout(function(){
+                                location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                            },10000);
+                        }else if(data == 'no'){
+                            alertify.set('notifier', 'position', 'bottom-left');
+                            alertify.set('notifier', 'delay', 20);
+                            alertify.error("vous ne pouvez pas générer une facture selon les types " +
+                                    "de périodes actuels régler les dates s'il vous plait ");
+                            window.setTimeout(function(){
+                                location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                            },10000);
+                        }
+                     }
+                 });
+
+             });
 
 
-            /*  $('input[name=cin]').keyup(function(){
-                  var cin = $(this).val();
-                 var email_resp = $('input[name=email_responsable]').val();
-                  var fix = $('input[name=numero_fixe]').val();
-                  var portable = $('input[name=numero_portable]').val();
-                  var nom_pere = $('input[name=nom_pere]').val();
-                  var nom_mere = $('input[name=nom_mere]').val();
 
-                  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                  $.ajax({
-                     url :'{{-- URL::action('ChildrenController@checktoreturn')  --}}',
-                      data : 'email_resp=' + email_resp + '&fix=' + fix + '&portable=' +portable + '&nom_pere=' + nom_pere
-                               + '&nom_mere=' + nom_mere + '&cin=' + cin + '&_token=' + CSRF_TOKEN,
-                      type: 'post',
-                      success : function(data){
-                             if(data ==  'here')
-                             {
-                                 var href = '{{-- URL::action('ChildrenController@create_enfant')  --}}';
-                                 window.location.href = href;
-                             }
-                      }
-                  });
-              });*/
+
               $('#transport').change(function () {
                   var trans = $(this).val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -677,6 +672,7 @@
                                                  alertify.set('notifier', 'position', 'bottom-left');
                                                  alertify.set('notifier', 'delay', 30);
                                                  alertify.success("Le Total à Payer (+Transport) est :" + data + " Dhs");
+                                                 $('#prices').empty().append(data);
 
                                              }
                                          }
@@ -684,7 +680,7 @@
                                  }else{
                                      alertify.set('notifier', 'position', 'bottom-left');
                                      alertify.set('notifier', 'delay', 20);
-                                     alertify.error("Veuillez préciser la date de naissance ");
+                                     alertify.error("Veuillez selectionner un niveau ");
                                  }
                              }
                           }
@@ -695,6 +691,8 @@
 
                   }
               });
+
+
               $('.nav-tabs  a').click(function (e) {
                   e.preventDefault();
                   $(this).tab('show');
@@ -903,7 +901,36 @@
               $('#classe').prop('disabled','disabled');
               $('#niveau').on('change',function(){
                   var level_id = $(this).val();
+                      level_id =  parseInt(level_id);
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                  if($.isNumeric(level_id)) {
+                      // check price of level
+                      $.ajax({
+                          url: '{{  URL::action('PriceBillsController@checkPriceOfLevel')}}',
+                          data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
+                          type: 'post',
+                          success: function (data) {
+                              if (data !== 'no') {
+                                  alertify.set('notifier', 'position', 'bottom-left');
+                                  alertify.set('notifier', 'delay', 10);
+                                  alertify.success("cet élève va payer " + data + " Dhs");
+                                  $('#prices').empty().append(data);
+                              } else {
+                                  alertify.set('notifier', 'position', 'bottom-right');
+                                  alertify.set('notifier', 'delay', 30);
+                                  alertify.error("vous n'avez pas encore rempli un " +
+                                          "prix pour ce niveau >> Redirection Automatique  Après 10 secondes pour ajouter le prix à ce niveau");
+                                  window.setTimeout(function () {
+                                      location.href = '{{ URL::action('SchoolsController@edit',[\Auth::user()->id])  }}'
+                                  }, 10000);
+
+                              }
+
+                          }
+                      });
+
+
+                       // get classe
                   $.ajax({
                       url: '{{  URL::action('ChildrenController@getClassroomWhenLevelId')}}',
                       data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
@@ -915,7 +942,7 @@
                           $('#classe').append(data);
                       }
                   });
-
+              }
               });
 
               $('#niveau').click(function(){

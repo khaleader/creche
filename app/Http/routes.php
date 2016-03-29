@@ -34,6 +34,9 @@ Route::post('schools/upimageecole','SchoolsController@upimageecole'); // uploade
 Route::any('schools/profile/{id?}','SchoolsController@profile');
 Route::get('schools/editer/{id}','SchoolsController@editer');
 
+Route::post('schools/show_price_bills','SchoolsController@show_price_bills');
+Route::post('schools/price_bills_store','SchoolsController@price_bills_store');
+
   /*
    * connexion login
    * */
@@ -158,7 +161,7 @@ Route::post('schools/debloquer','SchoolsController@debloquer');
 Route::post('schools/offess','SchoolsController@offess'); // status trier officiel or essai
 Route::get('schools/delete/{id}','SchoolsController@delete');
 
-
+Route::post('bills/checkpassofregler','BillsController@checkpassofregler'); // vérifie le mot de pass avant de régler
 Route::get('bills/indexnr','BillsController@indexnr'); // index factures non réglées
 Route::post('bills/filterByYear','BillsController@filterByYear'); // filter by year
 Route::post('bills/filterByYearef','BillsController@filterByYearef'); // filter by year compte famille
@@ -242,7 +245,7 @@ Route::resource('rooms','RoomsController');
 
 Route::post('classrooms/detach','ClassroomsController@detach'); // detach from the 3 relations cr-matter-teacher
 Route::get('classrooms/indexelc/{id}','ClassroomsController@indexelc'); // afficher les élèves d'une classe
-Route::post('classrooms/trierparbranche','ClassroomsController@trierparbranche'); //trier par branche  ajax
+Route::post('classrooms/trierparniveau','ClassroomsController@trierparniveau'); //trier par niveau  ajax
 Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax
 Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete classe by click
 Route::get('classrooms/indexef','ClassroomsController@indexef'); // index classrooms compte famille
@@ -255,8 +258,11 @@ Route::get('classrooms/exportExcel/{ids?}','ClassroomsController@exportExcel');
 Route::get('classrooms/exportPdf/{ids?}','ClassroomsController@exportPdf');
 
 
-Route::post('classrooms/trierparniveau','ClassroomsController@trierparniveau'); // tri level ajax
+Route::post('classrooms/trierparbranche','ClassroomsController@trierparbranche'); // tri level ajax
 Route::post('classrooms/getlevel','ClassroomsController@getLevel'); // tri ajax
+
+
+Route::post('classrooms/getBranchWhenLevelIsChosen','ClassroomsController@getBranchWhenLevelIsChosen');
 Route::resource('classrooms','ClassroomsController');
 
 Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax
@@ -298,6 +304,8 @@ Route::resource('educators','EducatorsController');
 
 //trier par jour en ajax
 Route::post('plans/trierparjour','PlansController@trierparjour');
+//trier par salle en ajax
+Route::post('plans/trierparsalle','PlansController@trierparsalle');
 Route::resource('plans','PlansController');
 
 //bus export excel buses/index
@@ -316,9 +324,15 @@ Route::resource('occasions','OccasionsController');
 
 
 
+/* SchoolYears */
+Route::post('schoolsyears/verifyRange','SchoolYearsController@verifyRange');
+Route::post('schoolyears/getdates','SchoolYearsController@getdates');
+Route::resource('schoolyears','SchoolYearsController');
 
-
-
+/*  PriceBills */
+//check if a price exists for a level
+Route::post('pricebills/checkPriceOfLevel','PriceBillsController@checkPriceOfLevel');
+Route::resource('pricebills','PriceBillsController');
 
 
 /* Gallery room */

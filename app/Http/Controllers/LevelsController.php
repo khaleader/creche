@@ -28,39 +28,8 @@ class LevelsController extends Controller
 
     public function index()
     {
-        $grade =  Grade::where('user_id',\Auth::user()->id)->first();
-        if(!$grade) {
-            $creche = new Grade();
-            $creche->name = 'Crèche';
-            $creche->user_id = \Auth::user()->id;
-            $creche->save();
 
-            $mater = new Grade();
-            $mater->name = 'Maternelle';
-            $mater->user_id = \Auth::user()->id;
-            $mater->save();
-            $sc = new Grade();
-
-            $sc->name = 'Primaire';
-            $sc->user_id = \Auth::user()->id;
-            $sc->save();
-
-            $col = new Grade();
-            $col->name = 'Collège';
-            $col->user_id = \Auth::user()->id;
-            $col->save();
-
-            $lyc = new Grade();
-            $lyc->name = 'Lycée';
-            $lyc->user_id = \Auth::user()->id;
-            $lyc->save();
-
-
-        }
-
-
-
-      $levels = Level::where('user_id',\Auth::user()->id)->paginate(10);
+      $levels = Level::where('user_id',\Auth::user()->id)->paginate(12);
         return view('levels.index',compact('levels'));
     }
 
@@ -125,11 +94,11 @@ class LevelsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    /*public function edit($id)
     {
       $level =  Level::where('user_id',\Auth::user()->id)->where('id',$id)->first();
         return view('levels.edit',compact('level'));
-    }
+    }*/
 
     /**
      * Update the specified resource in storage.

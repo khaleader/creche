@@ -300,6 +300,25 @@ lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !
             });
         });
 
+        $('#niveau').on('change',function(){
+            var niveau_text = $('#niveau option:selected').text();
+            if(niveau_text == 'Tronc Commun' || niveau_text == '1ère Baccalauréat' || niveau_text == 'Baccalaureat')
+            {
+                var niveau_id = $(this).val();
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('ClassroomsController@getBranchWhenLevelIsChosen')}}',
+                    data: 'niveau_id=' + niveau_id + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('#branche').empty();
+                        $('#branche').prepend('<option selected>Quelle Branche ?</option>');
+                        $('#branche').append(data);
+                    }
+                });
+            }
+        });
+
 
 
 

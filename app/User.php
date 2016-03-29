@@ -222,6 +222,20 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(Bus::class);
     }
+    public function occasions()
+    {
+        return $this->hasMany(Occasion::class);
+    }
+
+    public function pricebills()
+    {
+        return $this->hasMany(PriceBill::class);
+    }
+
+    public function schoolyears()
+    {
+        return $this->hasMany(SchoolYear::class);
+    }
 
 
 

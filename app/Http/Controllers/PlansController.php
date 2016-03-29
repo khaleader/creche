@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classroom;
 use App\Matter;
+use App\Room;
 use App\Timesheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -110,7 +111,7 @@ class PlansController extends Controller
                                                       ->where("dayname",$plan->dayname)
                                                     ->first();
                                     if($salle)
-                                    echo  $salle->matiere;
+                                        echo \Auth::user()->rooms()->where('id',$salle->room_id)->first()->nom_salle;
                           echo '</td>';
 
                            echo '<td>';
@@ -145,6 +146,91 @@ class PlansController extends Controller
         }
     }
 
+
+    public function trierparsalle()
+    {
+
+        if(\Request::ajax())
+        {
+        $room_id = \Input::get('room_id');
+
+
+
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->where('matter_id','!=',0)->get();
+
+
+
+            foreach ($plans as $plan) {
+                $salle = Timesheet::where("classroom_id", $plan->classroom_id)
+                    ->where("time", $plan->time)
+                    ->where("user_id", \Auth::user()->id)
+                    ->where("color", "#525252")
+                    ->where("dayname", $plan->dayname)
+                    ->first();
+                if($salle->room_id == $room_id)
+                {
+                        echo '<tr>';
+                        echo '    <td> ' . Classroom::where('id', $plan->classroom_id)->first()->nom_classe . '</td>';
+
+                        echo '  <td>
+                                    ' . Matter::where('id', $plan->matter_id)
+                                ->first()->nom_matiere . '
+                                </td>';
+
+                        echo '   <td>';
+                        foreach (Matter::where('id', $plan->matter_id)->first()->lesteachers as $item)
+                            echo $item->nom_teacher;
+
+                        echo '</td>';
+
+                        echo '<td>';
+                        echo substr(Carbon::parse($plan->time)->toTimeString(), 0, -3);
+                        echo '</td>';
+                        echo '<td>';
+
+
+                        $salle = Timesheet::where("classroom_id", $plan->classroom_id)
+                            ->where("time", $plan->time)
+                            ->where("user_id", \Auth::user()->id)
+                            ->where("color", "#525252")
+                            ->where("dayname", $plan->dayname)
+                            ->first();
+                        if ($salle)
+                            echo \Auth::user()->rooms()->where('id',$salle->room_id)->first()->nom_salle;
+                        echo '</td>';
+
+                        echo '<td>';
+
+                        $classroom = Classroom::where('id', $plan->classroom_id)->first();
+                        foreach ($classroom->lesNiveaux as $niveau) {
+                            echo $niveau->niveau;
+                        }
+                        foreach ($classroom->levels as $niveau) {
+                            echo $niveau->niveau;
+                        }
+                        echo '</td>';
+                        echo '<td>';
+
+                        $classroom = Classroom::where('id', $plan->classroom_id)->first();
+                        if ($classroom->branches->isEmpty()) {
+                            echo '--';
+                        } else {
+                            foreach ($classroom->branches as $br) {
+                                echo $br->nom_branche;
+                            }
+                        }
+                        echo '</td>';
+                        echo ' </tr>';
+
+                }
+            }
+
+
+        }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -152,7 +238,10 @@ class PlansController extends Controller
      */
     public function create()
     {
-        //
+        if(\Request::ajax())
+        {
+
+        }
     }
 
     /**

@@ -117,8 +117,8 @@
                             <td>{{  $cr->code_classe }}</td>
                             <td>{{ $cr->capacite_classe }} élèves</td>
                             <td> {{ $cr->children()->count() }}</td>
-                            <td>{{  $cr->niveau }}</td>
-                            <td>{{  $cr->branche ? $cr->branche : '--'  }}</td>
+                            <td>{{  $cr->niveau ? \Auth::user()->leslevels()->where('id',$cr->niveau)->first()->niveau : '--' }}</td>
+                            <td>{{  $cr->branche ? \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche : '--'  }}</td>
 
                             <td class="no-print">
                                 <a href="{{  action('ClassroomsController@delete',[$cr]) }}" class="actions_icons delete-classe">
@@ -261,11 +261,11 @@
 
         $('.niveaux-ul a').click(function(){
             $('tbody').empty();
-            var niveau = $(this).text();
+            var niveau_id = $(this).attr('data-id');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
-                url: '{{  URL::action('ClassroomsController@trierparbranche')}}',
-                data: 'niveau=' + niveau + '&_token=' + CSRF_TOKEN,
+                url: '{{  URL::action('ClassroomsController@trierparniveau')}}',
+                data: 'niveau_id=' + niveau_id + '&_token=' + CSRF_TOKEN,
                 type: 'post',
                 success: function (data) {
                     $('tbody').append(data);
@@ -302,7 +302,7 @@
                 var branch_id = $(this).attr('data-id');
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
-                    url: '{{  URL::action('ClassroomsController@trierparniveau')}}',
+                    url: '{{  URL::action('ClassroomsController@trierparbranche')}}',
                     data: 'branch_id=' + branch_id + '&_token=' + CSRF_TOKEN,
                     type: 'post',
                     success: function (data) {

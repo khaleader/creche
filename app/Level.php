@@ -21,6 +21,14 @@ class Level extends Model
  {
   return $this->belongsToMany(Classroom::class,'branch_classroom_level');
  }
+ // on create school we link levels and branches
+
+ public function onbranches()
+ {
+  return $this->belongsToMany(Branch::class);
+ }
+
+
 
  public function children()
  {
