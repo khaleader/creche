@@ -63,7 +63,7 @@
 
                                 <span class="title">Classes</span>
                                 <span style="background-color: #D9434E" class="badge badge-success">
-                                           {{ \Auth::user()->classrooms()->count() }}
+                                           {{ \Auth::user()->classrooms()->CurrentYear()->count() }}
 
                                 </span>
                             </a>
