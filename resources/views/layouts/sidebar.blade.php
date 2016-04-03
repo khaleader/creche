@@ -63,11 +63,8 @@
 
                                 <span class="title">Classes</span>
                                 <span style="background-color: #D9434E" class="badge badge-success">
-                                              @if(\App\SchoolYear::getSchoolYearId())
-                                            {{ \Auth::user()->classrooms()->CurrentYear()->count() }}
-                                                  @else
                                            {{ \Auth::user()->classrooms()->count() }}
-                                               @endif
+
                                 </span>
                             </a>
                         </li>
