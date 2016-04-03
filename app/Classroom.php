@@ -72,7 +72,10 @@ class Classroom extends Model
 
 
 
-
+    public function scopeCurrentYear($query)
+    {
+        $query->where('school_year_id',SchoolYear::getSchoolYearId());
+    }
 
 
 

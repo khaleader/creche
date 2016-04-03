@@ -7,6 +7,7 @@ use App\Child;
 use App\Classroom;
 use App\Level;
 use App\Matter;
+use App\SchoolYear;
 use App\Timesheet;
 use DB;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class ClassroomsController extends Controller
     }
     public function index()
     {
-        $classrooms = Classroom::where('user_id',\Auth::user()->id)->paginate(10);
+        $classrooms = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->paginate(10);
         $branches = Branch::where('user_id',\Auth::user()->id)->get();
         $niveaux = Level::where('user_id',\Auth::user()->id)->get();
         return view('classrooms.index')->with([
@@ -135,6 +136,7 @@ class ClassroomsController extends Controller
             $cr->capacite_classe = $request->capacite_classe;
 
             $cr->niveau = $request->niveau;
+            $cr->school_year_id = SchoolYear::getSchoolYearId();
 
 
             if($niveau_global == 'Lycée')
@@ -150,6 +152,7 @@ class ClassroomsController extends Controller
            $ts = new Timesheet();
             $ts->user_id = \Auth::user()->id;
             $ts->classroom_id  = $cr->id;
+            $ts->school_year_id = SchoolYear::getSchoolYearId();
             $ts->save();
 
           $level = Level::find($request->niveau);

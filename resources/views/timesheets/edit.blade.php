@@ -139,7 +139,9 @@
                     <td class="title">18:00</td>
                 </tr>
                 <?php
-                $kda = App\Timesheet::where('classroom_id',$ts->classroom_id)->where('user_id',\Auth::user()->id)->get();
+                $kda = App\Timesheet::where('classroom_id',$ts->classroom_id)
+                        ->CurrentYear()
+                        ->where('user_id',\Auth::user()->id)->get();
                 ?>
                 <tr>
                     <td class="time"  data-day='lundi' >Lundi</td>

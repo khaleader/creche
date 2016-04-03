@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Classroom;
 use App\Matter;
 use App\Room;
+use App\SchoolYear;
 use App\Timesheet;
 use Illuminate\Http\Request;
 
@@ -24,14 +25,14 @@ class TimesheetsController extends Controller
     public function index()
     {
 
-        $tsheets = Classroom::where('user_id',\Auth::user()->id)->paginate(10);
+        $tsheets = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->paginate(10);
         return view('timesheets.index',compact('tsheets'));
     }
 
     public function edit($id)
     {
-      $ts = Timesheet::where('user_id',\Auth::user()->id)->where('classroom_id',$id)->first();
-      $cr =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+      $ts = Timesheet::where('user_id',\Auth::user()->id)->CurrentYear()->where('classroom_id',$id)->first();
+      $cr =  Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->where('id',$id)->first();
         return view('timesheets.edit',compact('ts','cr'));
     }
 
@@ -100,6 +101,7 @@ class TimesheetsController extends Controller
                $ts->color = $color;
                $ts->dayname = $dayname;
                $ts->room_id = $salle_id ?:0;
+               $ts->school_year_id  = SchoolYear::getSchoolYearId();
                $ts->save();
            }elseif($dayname ==  'mardi'){
                $ts = new Timesheet();
@@ -112,6 +114,7 @@ class TimesheetsController extends Controller
                $ts->color = $color;
                $ts->dayname = $dayname;
                $ts->room_id = $salle_id ?:0;
+               $ts->school_year_id  = SchoolYear::getSchoolYearId();
                $ts->save();
            }
            elseif($dayname ==  'mercredi'){
@@ -125,6 +128,7 @@ class TimesheetsController extends Controller
                $ts->color = $color;
                $ts->dayname = $dayname;
                $ts->room_id = $salle_id ?:0;
+               $ts->school_year_id  = SchoolYear::getSchoolYearId();
                $ts->save();
            }
            elseif($dayname ==  'jeudi'){
@@ -138,6 +142,7 @@ class TimesheetsController extends Controller
                $ts->color = $color;
                $ts->dayname = $dayname;
                $ts->room_id = $salle_id ?:0;
+               $ts->school_year_id  = SchoolYear::getSchoolYearId();
                $ts->save();
            }
            elseif($dayname ==  'vendredi'){
@@ -151,6 +156,7 @@ class TimesheetsController extends Controller
                $ts->color = $color;
                $ts->dayname = $dayname;
                $ts->room_id = $salle_id ?:0;
+               $ts->school_year_id  = SchoolYear::getSchoolYearId();
                $ts->save();
            }
            elseif($dayname ==  'samedi'){
@@ -164,6 +170,7 @@ class TimesheetsController extends Controller
                $ts->color = $color;
                $ts->dayname = $dayname;
                $ts->room_id = $salle_id ?:0;
+               $ts->school_year_id  = SchoolYear::getSchoolYearId();
                $ts->save();
            }
 

@@ -13,4 +13,9 @@ class Timesheet extends Model
     {
         return $this->belongsTo('App\Classroom');
     }
+
+    public function scopeCurrentYear($query)
+    {
+        $query->where('school_year_id',SchoolYear::getSchoolYearId());
+    }
 }

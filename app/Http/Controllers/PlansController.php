@@ -33,40 +33,41 @@ class PlansController extends Controller
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','lundi')->paginate(10);
+                ->where('dayname','lundi')->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isTuesday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','mardi')->paginate(10);
+                ->where('dayname','mardi')->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isWednesday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','mercredi')->paginate(10);
+                ->where('dayname','mercredi')->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isThursday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','jeudi')->paginate(10);
+                ->where('dayname','jeudi')->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isFriday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','vendredi')->paginate(10);
+                ->where('dayname','vendredi')->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isSaturday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','samedi')->paginate(10);
+                ->where('dayname','samedi')->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }else{
-            $plans = Timesheet::where('user_id',\Auth::user()->id)->where('matter_id','!=',0)->paginate(10);
+            $plans = Timesheet::where('user_id',\Auth::user()->id)->where('matter_id','!=',0)
+                ->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }
 
@@ -81,7 +82,7 @@ class PlansController extends Controller
         if(\Request::ajax())
         {
             $jour_text = \Input::get('jour_text');
-           $plans = Timesheet::where('user_id',\Auth::user()->id)->where('dayname',$jour_text)
+           $plans = Timesheet::where('user_id',\Auth::user()->id)->CurrentYear()->where('dayname',$jour_text)
                 ->where('matter_id','!=',0)->get();
             foreach ($plans as $plan) {
                 echo '<tr>';
@@ -108,6 +109,7 @@ class PlansController extends Controller
                                                   ->where("time",$plan->time)
                                                    ->where("user_id",\Auth::user()->id)
                                                     ->where("color","#525252")
+                                                      ->CurrentYear()
                                                       ->where("dayname",$plan->dayname)
                                                     ->first();
                                     if($salle)
@@ -116,7 +118,7 @@ class PlansController extends Controller
 
                            echo '<td>';
 
-                                $classroom = Classroom::where('id',$plan->classroom_id)->first();
+                                $classroom = Classroom::where('id',$plan->classroom_id)->CurrentYear()->first();
                                 foreach($classroom->lesNiveaux as $niveau)
                                 {
                                   echo $niveau->niveau;
@@ -128,7 +130,7 @@ class PlansController extends Controller
                           echo '</td>';
                            echo '<td>';
 
-                                $classroom = Classroom::where('id',$plan->classroom_id)->first();
+                                $classroom = Classroom::where('id',$plan->classroom_id)->CurrentYear()->first();
                                 if($classroom->branches->isEmpty())
                                     {
                                      echo '--';
@@ -167,11 +169,12 @@ class PlansController extends Controller
                     ->where("user_id", \Auth::user()->id)
                     ->where("color", "#525252")
                     ->where("dayname", $plan->dayname)
+                    ->CurrentYear()
                     ->first();
                 if($salle->room_id == $room_id)
                 {
                         echo '<tr>';
-                        echo '    <td> ' . Classroom::where('id', $plan->classroom_id)->first()->nom_classe . '</td>';
+                        echo '    <td> ' . Classroom::where('id', $plan->classroom_id)->CurrentYear()->first()->nom_classe . '</td>';
 
                         echo '  <td>
                                     ' . Matter::where('id', $plan->matter_id)
@@ -194,6 +197,7 @@ class PlansController extends Controller
                             ->where("time", $plan->time)
                             ->where("user_id", \Auth::user()->id)
                             ->where("color", "#525252")
+                            ->CurrentYear()
                             ->where("dayname", $plan->dayname)
                             ->first();
                         if ($salle)
@@ -202,7 +206,7 @@ class PlansController extends Controller
 
                         echo '<td>';
 
-                        $classroom = Classroom::where('id', $plan->classroom_id)->first();
+                        $classroom = Classroom::where('id', $plan->classroom_id)->CurrentYear()->first();
                         foreach ($classroom->lesNiveaux as $niveau) {
                             echo $niveau->niveau;
                         }
@@ -212,7 +216,7 @@ class PlansController extends Controller
                         echo '</td>';
                         echo '<td>';
 
-                        $classroom = Classroom::where('id', $plan->classroom_id)->first();
+                        $classroom = Classroom::where('id', $plan->classroom_id)->CurrentYear()->first();
                         if ($classroom->branches->isEmpty()) {
                             echo '--';
                         } else {
