@@ -15,6 +15,11 @@ use SoftDeletes;
 
 
 
+    public function scopeCurrentYear($query)
+    {
+        $query->where('school_year_id',SchoolYear::getSchoolYearId());
+    }
+
     public function child()
     {
         return $this->belongsTo('App\Child')->withTrashed();

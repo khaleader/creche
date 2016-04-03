@@ -78,7 +78,7 @@
                                         </div>
                                     </div></td>
                                 <td>{{  $l->niveau }}</td>
-                                <td>{{ $l->children()->count() }}</td>
+                                <td>{{ $l->children()->CurrentYear()->count() }}</td>
                               <!--  <td class="no-print">
                                     <a href="{{--  action('LevelsController@edit',[$l]) --}}" class="actions_icons delete-level">
                                         <i class="fa fa-edit liste_icons"></i></a>

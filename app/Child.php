@@ -9,8 +9,17 @@ class Child extends Model
 {
 
 use SoftDeletes;
-    protected $guarded =['id'];
+protected $guarded =['id'];
 protected $dates = ['date_naissance','deleted_at','created_at'];
+
+
+
+    public function scopeCurrentYear($query)
+    {
+        $query->where('school_year_id',SchoolYear::getSchoolYearId());
+    }
+
+
 
 
     public function setDateNaissanceAttribute($date)
@@ -58,4 +67,7 @@ protected $dates = ['date_naissance','deleted_at','created_at'];
     {
         return $this->belongsToMany(Branch::class);
     }
+
+
+
 }

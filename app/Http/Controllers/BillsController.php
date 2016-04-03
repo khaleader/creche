@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Bill;
 use App\Child;
 use App\Events\ReglerBillEvent;
+use App\SchoolYear;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -39,13 +40,13 @@ class BillsController extends Controller
     public function index()
     {
 
-        $bills =\Auth::user()->bills()->orderBy('start','desc')->paginate(10);
+        $bills =\Auth::user()->bills()->CurrentYear()->orderBy('start','desc')->paginate(10);
         return view('bills.index', compact('bills'));
     }
 
     public function indexnr()
     {
-        $bills =\Auth::user()->bills()->where('status',0)->paginate(10);
+        $bills =\Auth::user()->bills()->CurrentYear()->where('status',0)->paginate(10);
         return view('bills.indexnr', compact('bills'));
     }
 
@@ -90,7 +91,6 @@ class BillsController extends Controller
      */
     public function show($id)
     {
-
         $child = Child::findOrFail($id);
         if(!empty($child))
         {
@@ -101,8 +101,6 @@ class BillsController extends Controller
         }else{
            app:abort(404);
         }
-
-
     }
 
     // factures details
@@ -256,7 +254,10 @@ class BillsController extends Controller
         if (\Request::ajax()) {
             $status = \Input::get('status');
             if ($status == 0) {
-                $bills = Bill::where('status', 0)->where('user_id',\Auth::user()->id)->get();
+                $bills = Bill::where('status', 0)
+                    ->where('user_id',\Auth::user()->id)
+                    ->CurrentYear()
+                    ->get();
                 foreach ($bills as $bill) {
                       if($bill->child->photo)
                       {
@@ -437,6 +438,7 @@ class BillsController extends Controller
             $mois = \Input::get('month');
             $bills = Bill::whereRaw('EXTRACT(month from start) = ?', [$mois])
                 ->where('user_id',\Auth::user()->id)
+                ->CurrentYear()
                 ->get();
             foreach ($bills as $bill) {
                 if ($bill->status == 0) {
@@ -548,6 +550,7 @@ class BillsController extends Controller
            $terms =   ucfirst(\Input::get('terms'));
           $child = Child::where('nom_enfant', 'LIKE','%'. $terms .'%')
               ->where('user_id',\Auth::user()->id)
+              ->CurrentYear()
               ->get();
             if($child->count())
             {

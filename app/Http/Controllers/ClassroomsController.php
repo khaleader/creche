@@ -48,7 +48,7 @@ class ClassroomsController extends Controller
     {
         $cr =Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
         $id =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-        $classroom = $cr->children()->paginate(10);
+        $classroom = $cr->children()->CurrentYear()->paginate(10);
         return view('classrooms.indexelc',compact('classroom','id'));
     }
 
@@ -390,7 +390,7 @@ class ClassroomsController extends Controller
                             <td> '.$level->nom_classe.' </td>
                             <td> '. $level->code_classe .'</td>
                             <td> '. $level->capacite_classe.'  élèves</td>
-                             <td>'. $level->children()->count().'</td>
+                             <td>'. $level->children()->CurrentYear()->count().'</td>
                             <td> '. $niveau .'</td>
                             <td>'. $branche .'</td>
 
@@ -440,7 +440,7 @@ class ClassroomsController extends Controller
                             <td> '.$branch->nom_classe.' </td>
                             <td> '. $branch->code_classe .'</td>
                             <td> '. $branch->capacite_classe.'  élèves</td>
-                            <td>'. $branch->children()->count().'</td>
+                            <td>'. $branch->children()->CurrentYear()->count().'</td>
                             <td> '. $niveau.'</td>
                             <td>'. $branche .'</td>
 

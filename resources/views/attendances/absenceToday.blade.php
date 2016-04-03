@@ -45,6 +45,7 @@
                         <ul class="dropdown-menu menu_actions">
                             <li><a id="normale" href="#">Justifiée</a></li>
                             <li><a id="maladie" href="#">Non Justifiée</a></li>
+                            <li><a id="retard" href="#">Retard</a></li>
                         </ul>
                     </div>
 
@@ -161,6 +162,19 @@
             $('#maladie').click(function(){
                 $('tbody').empty();
                 var  status = 'Maladie';
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('AttendancesController@absence_raison_today')}}',
+                    data: 'status=' + status + '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('tbody').append(data);
+                    }
+                });
+            });
+            $('#retard').click(function(){
+                $('tbody').empty();
+                var  status = 'Retard';
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     url: '{{  URL::action('AttendancesController@absence_raison_today')}}',

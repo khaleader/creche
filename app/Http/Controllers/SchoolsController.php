@@ -6,6 +6,7 @@ use App\Events\SchoolSendEmailEvent;
 use App\Http\Requests\AddSchoolRequest;
 use App\PriceBill;
 use App\Profile;
+use App\SchoolYear;
 use App\Transport;
 use App\User;
 use App\CategoryBill;
@@ -31,7 +32,7 @@ class SchoolsController extends Controller
         $this->middleware('auth');
         $this->middleware('Famille',['only'=> 'editef','updatepassef','upimage']);
         $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_price_bills',
-            'price_bills_store',
+            'price_bills_store','promotion',
             'show_cat_bills','editef','updatepassef','upimage','upimageecole','profile','editer']]);
 
 
@@ -47,6 +48,14 @@ class SchoolsController extends Controller
         $client->addScope('https://mail.google.com');
         $service = new Google_Service_Gmail($client);
        return view('schools.boite')->with(['client'=> $client, 'service'=> $service]);
+    }
+
+
+    public function promotion()
+    {
+
+       $total =  SchoolYear::countTotalYear();
+        return view('schools.promotion',compact('total'));
     }
 
 
@@ -454,8 +463,6 @@ class SchoolsController extends Controller
                 echo json_encode($tab);
                 die();
             }
-
-
         }
     }
 
@@ -649,6 +656,12 @@ class SchoolsController extends Controller
                 $school->buses()->delete();
                 $school->profile()->delete();
                 $school->pricebills()->delete();
+                $school->PromotionsStatuses()->delete();
+                $school->schoolyears()->delete();
+                $school->PromotionsAdvances()->delete();
+                $school->PromotionsExceptionals()->delete();
+
+
                 DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
                  $school->lestimesheets()->delete(); // -> direct delete
 
@@ -806,8 +819,15 @@ class SchoolsController extends Controller
         $school->profile()->delete();
         $school->buses()->delete();
         $school->pricebills()->delete();
+        $school->PromotionsStatuses()->delete();
+        $school->schoolyears()->delete();
+        $school->PromotionsAdvances()->delete();
+        $school->PromotionsExceptionals()->delete();
+
+
         DB::table('classroom_matter_teacher')->where('user_id',$school->id)->delete(); // -> direct download
         $school->lestimesheets()->delete(); // -> direct delete
+
 
         // the last part is to delete The School
         $school->delete();

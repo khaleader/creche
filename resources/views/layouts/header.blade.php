@@ -62,6 +62,7 @@
                     @if(\Auth::user() && Auth::user()->isAdmin())
                     <li><a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">Paramètres</a></li>
                     <li><a href="{{ action('OccasionsController@show',[\Auth::user()->id]) }}">Evénements</a></li>
+                        <li><a href="{{  action('SchoolsController@promotion',[\Auth::user()->id]) }}">Promotions</a></li>
                     @elseif(\Auth::user() && Auth::user()->isFamily())
                         <li><a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">Paramètres</a></li>
                     @endif

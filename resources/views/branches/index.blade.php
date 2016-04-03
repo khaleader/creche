@@ -82,7 +82,7 @@
                             <td>{{  $branch->nom_branche }}</td>
                             <td>{{  $branch->code_branche }}</td>
 
-                            <td>{{ $branch->children()->count() }}</td>
+                            <td>{{ $branch->children()->CurrentYear()->count() }}</td>
                             <td>
                                 <a  class="no-print delete-branch" href="{{  action('BranchesController@edit',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-edit liste_icons"></i></a>

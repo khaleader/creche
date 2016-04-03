@@ -117,6 +117,17 @@
                                 </span>
                             </a>
                         </li>
+                        <li class="nav-item start ">
+                            <a href="{{ action('StatisticsController@archive') }}" class="nav-link ">
+
+                                <span class="title">Archive</span>
+                                <span class="badge">
+                                      <img style="height: 30px;width: 30px" src="{{ asset('images\archivestats.png') }}" alt="chart icon">
+                                </span>
+                            </a>
+                        </li>
+
+
                         </ul>
                 </li>
 

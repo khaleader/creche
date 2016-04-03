@@ -68,12 +68,25 @@ class PriceBill extends Model
                 }
             }
         }
+    }
 
 
+    public static function countWhenNoPromotion($type,$priceNormal)
+    {
+          return $type * $priceNormal;
+    }
+
+    public static function countWhenNoPromotionButReduction($type,$priceNormal,$reduction)
+    {
+        $total_reduction = $type * $reduction;
+        return  ($priceNormal * $type) - $total_reduction;
+    }
 
 
-
-
+    public static function getNiveauPrice($niveau)
+    {
+        $price = \Auth::user()->pricebills()->where('niveau',$niveau)->first();
+        return $price->prix;
     }
 
 

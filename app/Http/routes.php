@@ -136,6 +136,9 @@ Route::match(['get','post'],'statusindex','BillsController@statusindex');
 Route::any('statistics/statusindex','StatisticsController@statusindex'); // new index
 
 
+
+Route::post('history/trierenfantparlettre','StatisticsController@enfbyalph');
+Route::get('archives/{year1?}/{year2?}','StatisticsController@archive');
 Route::get('statistics/graphs/{year1?}/{year2?}','StatisticsController@graphs');
 Route::get('stats','StatisticsController@statistics');
 
@@ -160,6 +163,8 @@ Route::post('schools/bloquer','SchoolsController@bloquer');
 Route::post('schools/debloquer','SchoolsController@debloquer');
 Route::post('schools/offess','SchoolsController@offess'); // status trier officiel or essai
 Route::get('schools/delete/{id}','SchoolsController@delete');
+route::any('schools/promotion/{id?}','SchoolsController@promotion');
+
 
 Route::post('bills/checkpassofregler','BillsController@checkpassofregler'); // vérifie le mot de pass avant de régler
 Route::get('bills/indexnr','BillsController@indexnr'); // index factures non réglées
@@ -335,6 +340,22 @@ Route::post('pricebills/checkPriceOfLevel','PriceBillsController@checkPriceOfLev
 Route::resource('pricebills','PriceBillsController');
 
 
+Route::post('promotionstatuses/resetallblocks','PromotionStatusesController@resetallblocks');
+Route::post('promotionstatuses/setbloc1','PromotionStatusesController@setbloc1');
+Route::post('promotionstatuses/setbloc2','PromotionStatusesController@setbloc2');
+Route::post('promotionstatuses/setGlobal','PromotionStatusesController@setGlobal');
+Route::post('promotionstatuses/checkglobal','PromotionStatusesController@checkglobal');
+Route::post('promotionstatuses/checkbloc1','PromotionStatusesController@checkbloc1');
+Route::post('promotionstatuses/checkbloc2','PromotionStatusesController@checkbloc2');
+
+Route::resource('promotionstatuses','PromotionStatusesController');
+
+
+
+Route::post('promotionadvances/showPriceOfPromotion','PromotionAdvancesController@showPriceOfPromotion');
+Route::resource('promotionadvances','PromotionAdvancesController');
+Route::post('promotionexceptionals/getData','PromotionExceptionalsController@getData');
+Route::resource('promotionexceptionals','PromotionExceptionalsController');
 /* Gallery room */
 
 Route::get('gallery',function(){

@@ -54,7 +54,9 @@ class GenerateBillReduction extends Command
                         {
                             $getChild = Bill::where('child_id',$bill->child_id)
                                 ->where('reduction',1)
+                                ->where('school_year_id',$sc->id)
                                 ->orderBy('id','desc')
+                                ->where('nbrMois',1)
                                 ->first();
                             if($getChild)
                             {
@@ -108,6 +110,8 @@ class GenerateBillReduction extends Command
                         {
                             $getChild = Bill::where('child_id',$bill->child_id)
                                 ->where('reduction',1)
+                                ->where('school_year_id',$sc->id)
+                                ->where('nbrMois',1)
                                 ->orderBy('id','desc')
                                 ->first();
                             if($getChild)
@@ -160,32 +164,6 @@ class GenerateBillReduction extends Command
 
 
 
-            /*  $enfants =  Child::has('bills')->get();
-               foreach($enfants as $e)
-               {
-                   foreach($e->bills as $b)
-                   {
-                      $d = Bill::where('child_id',$b->child_id)->orderBy('id','desc')->first();
-                      $bill = new Bill();
-                       $bill->start =$d->end->toDateString();
-                       $nextMonth7 =$d->end->addMonth()->toDateString();
-                       if(Carbon::parse($nextMonth7)->month == 7)
-                       {
-                           $bill->end = Carbon::parse($nextMonth7)->addMonths(2)->toDateString();
-                       }else{
-                           $bill->end = $nextMonth7;
-                       }
-                       $bill->status = 0;
-                       $bill->user_id = $d->user_id;
-                       $bill->somme =  $d->somme;
-                       $bill->child_id =$d->child_id;
-                       $bill->f_id = $d->f_id;
-                       $bill->save();
-                       break;
-
-
-                   }
-               }*/
         }
 
 

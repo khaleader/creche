@@ -14,6 +14,12 @@ protected  $dates = ['deleted_at'];
 use SoftDeletes;
 
 
+
+    public function scopeCurrentYear($query)
+    {
+        $query->where('school_year_id',SchoolYear::getSchoolYearId());
+    }
+
     public function children()
     {
         return $this->hasMany('App\Child')->withTrashed();

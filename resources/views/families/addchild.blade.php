@@ -93,6 +93,20 @@
                         </div>
 
                         <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">Paiement</label>
+                            <div class="form_ajout">
+                                <select name="nbr_month" class="form_ajout_input" >
+                                    <option value="1">Mensuel (1 Mois)</option>
+                                    <option value="3">Trimestriel (3 Mois)</option>
+                                    <option value="6">Semistriel (6 Mois)</option>
+                                    <option value="{{ \App\SchoolYear::countTotalYear() }}">{{ 'Annuel ('.\App\SchoolYear::countTotalYear(). 'Mois)' }}</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form_champ c">
                             <label for="cname" class="control-label col-lg-3">Niveau Global * </label>
                             <div class="form_ajout">
                                 <select id="grade" name="grade" class="form_ajout_input">
@@ -151,12 +165,16 @@
 
                             </div>
                         </div>
-                        <div class="form_champ c ">
-                            <label for="cname" class="control-label col-lg-3">Reduction </label>
-                            <div class="form_ajout">
-                                <input  value="{{ Request::old('reduction')?:'' }}" type="text" name="reduction" class="form_ajout_input" placeholder="Entrez le prix de reduction">
-                            </div>
-                        </div>
+                        @unless(\App\PromotionExceptional::checkExceptionalPromotion())
+                            @unless(\App\PromotionExceptional::checkExcTimeOfPromotionIfExpired())
+                                <div class="form_champ c ">
+                                    <label for="cname" class="control-label col-lg-3">Reduction </label>
+                                    <div class="form_ajout">
+                                        <input  value="{{ Request::old('reduction')?:'' }}" type="text" name="reduction" class="form_ajout_input" placeholder="Entrez le prix de reduction">
+                                    </div>
+                                </div>
+                            @endunless
+                        @endunless
 
                         <input type="hidden" name="familyid" value="{{ $family->id }}">
 
@@ -216,12 +234,12 @@
 
 
 
-            $('#transport').change(function () {
+           /* $('#transport').change(function () {
                 var trans = $(this).val();
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 if (trans == 1) {
                     $.ajax({
-                        url: '{{  URL::action('ChildrenController@checktransport')}}',
+                        url: '{{--  URL::action('ChildrenController@checktransport')--}}',
                         data: 'status=' + 1 + '&_token=' + CSRF_TOKEN,
                         type: 'post',
                         success: function (data) {
@@ -235,7 +253,7 @@
                                     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                                     var prix = $('#prices').text();
                                     $.ajax({
-                                        url: '{{  URL::action('ChildrenController@total')}}',
+                                        url: '{{--  URL::action('ChildrenController@total')--}}',
                                         data: 'prix=' + prix + '&_token=' + CSRF_TOKEN,
                                         type: 'post',
                                         success: function (data) {
@@ -261,7 +279,7 @@
 
 
                 }
-            });
+            });*/
 
 
 
@@ -390,10 +408,10 @@
                         type: 'post',
                         success: function (data) {
                             if (data !== 'no') {
-                                alertify.set('notifier', 'position', 'bottom-left');
+                               /* alertify.set('notifier', 'position', 'bottom-left');
                                 alertify.set('notifier', 'delay', 10);
                                 alertify.success("cet élève va payer " + data + " Dhs");
-                                $('#prices').empty().append(data);
+                                $('#prices').empty().append(data);*/
                             } else {
                                 alertify.set('notifier', 'position', 'bottom-right');
                                 alertify.set('notifier', 'delay', 30);
@@ -471,9 +489,21 @@
             });
 
 
+            @if(\App\PromotionAdvance::checkAdvancePromotion())
+                $('select[name=nbr_month]').change(function(){
+
+                if($(this).val() >=3)
+                {
+                    $('input[name=reduction]').parent().parent().hide();
+                }else{
+                    $('input[name=reduction]').parent().parent().show();
+                }
 
 
-        });
+            });
+            @endif
+
+});
 
 
     </script>

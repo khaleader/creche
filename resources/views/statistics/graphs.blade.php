@@ -59,7 +59,7 @@
         <div class="col-sm-12">
             <section class="panel">
                 <header class="panel-heading">
-                    LES INSCRIPTIONS pour l'année scolaire 2015/2016
+                    LES INSCRIPTIONS pour l'année scolaire {{ \App\SchoolYear::getFirstYear().'-'.\App\SchoolYear::getSecondYear() }}
                         <span class="tools pull-right">
                             <a href="javascript:;" class="fa fa-chevron-down"></a>
                          </span>
@@ -182,7 +182,11 @@
 
                 @else
                   {{ json_encode(\Auth::user()->attendances()
-                  ->whereYear('start','=', [\Carbon\Carbon::now()->year])
+                   ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                  ->whereYear('start','=', [\App\SchoolYear::getFirstYear()])
+                ->where('title','Maladie')->count()) + json_encode(\Auth::user()->attendances()
+                     ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                     ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getSecondYear()])
                 ->where('title','Maladie')->count())  }}
                      @endif
 ,
@@ -202,8 +206,12 @@
                 ->where('title','Normal')->count()) }}
 
                 @else
-                {{ json_encode(\Auth::user()->attendances()
-                  ->whereYear('start','=', [\Carbon\Carbon::now()->year])
+                      {{ json_encode(\Auth::user()->attendances()
+                   ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                  ->whereYear('start','=', [\App\SchoolYear::getFirstYear()])
+                ->where('title','Normal')->count()) + json_encode(\Auth::user()->attendances()
+                     ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                     ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getSecondYear()])
                 ->where('title','Normal')->count())  }}
                 @endif
 ,
@@ -223,8 +231,12 @@
                 ->where('title','Retard')->count()) }}
 
                 @else
-                       {{ json_encode(\Auth::user()->attendances()
-                  ->whereYear('start','=',[\Carbon\Carbon::now()->year])
+                          {{ json_encode(\Auth::user()->attendances()
+                   ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                  ->whereYear('start','=', [\App\SchoolYear::getFirstYear()])
+                ->where('title','Retard')->count()) + json_encode(\Auth::user()->attendances()
+                     ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                     ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getSecondYear()])
                 ->where('title','Retard')->count())  }}
                 @endif
                 ,
@@ -252,10 +264,15 @@
                   @else
 
                    '{{
-                  preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
-                  ->whereYear('start','=',[\Carbon\Carbon::now()->year])
-                  ->where('status',0)
-                  ->sum("somme")))
+                    preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                           ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getFirstYear()])
+                            ->where('status',0)
+                            ->sum("somme"))) +    preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                           ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getSecondYear()])
+                            ->where('status',0)
+                            ->sum("somme")))
                                }}'
 
 
@@ -283,10 +300,15 @@
                             @else
 
                              '{{
-                  preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
-                  ->whereYear('start','=',[\Carbon\Carbon::now()->year])
-                  ->where('status',1)
-                  ->sum("somme")))
+                   preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[9,10,11,12])
+                           ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getFirstYear()])
+                            ->where('status',1)
+                            ->sum("somme"))) +    preg_replace("/[^a-zA-Z0-9_.-\s]/", "",json_encode(\Auth::user()->bills()
+                             ->whereIn(DB::raw('MONTH(start)'),[1,2,3,4,5,6,7,8])
+                           ->whereIn(DB::raw('YEAR(start)'),[\App\SchoolYear::getSecondYear()])
+                            ->where('status',1)
+                            ->sum("somme")))
                                }}'
 ,
                 @endif
@@ -331,13 +353,13 @@
                    @for($i =9;$i<=12;$i++)
                            {{   json_encode(\Auth::user()->children()->
         whereRaw('EXTRACT(month from created_at) = ?', [$i])
-        ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+        ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getFirstYear()])
         ->count()).',' }}
                     @endfor
                     @for($i = 1;$i<=8;$i++)
                          {{   json_encode(\Auth::user()->children()->
         whereRaw('EXTRACT(month from created_at) = ?', [$i])
-        ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+        ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getSecondYear()])
         ->count()).',' }}
 
                      @endfor
@@ -387,7 +409,7 @@
                        {{
                            json_encode(\Auth::user()->attendances()->where('title','Normal')
                     ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                    ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                    ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getFirstYear()])
                    ->count()).','
                          }}
                          @endfor
@@ -395,7 +417,7 @@
                        {{
                            json_encode(\Auth::user()->attendances()->where('title','Normal')
                     ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                    ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                    ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getSecondYear()])
                    ->count()).','
                          }}
                          @endfor
@@ -432,7 +454,7 @@
                           {{
                               json_encode(\Auth::user()->attendances()->where('title','Maladie')
                        ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                       ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                       ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getFirstYear()])
                       ->count()).','
                             }}
                             @endfor
@@ -440,7 +462,7 @@
                           {{
                               json_encode(\Auth::user()->attendances()->where('title','Maladie')
                        ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                       ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                       ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getSecondYear()])
                       ->count()).','
                             }}
                             @endfor
@@ -479,7 +501,7 @@
                    {{
                        json_encode(\Auth::user()->attendances()->where('title','Retard')
                 ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getFirstYear()])
                ->count()).','
                      }}
                      @endfor
@@ -487,7 +509,7 @@
                    {{
                        json_encode(\Auth::user()->attendances()->where('title','Retard')
                 ->whereRaw('EXTRACT(month from start) = ?', [$i])
-                ->whereRaw('EXTRACT(year from created_at)= ?',[\Carbon\Carbon::now()->year])
+                ->whereRaw('EXTRACT(year from created_at)= ?',[\App\SchoolYear::getSecondYear()])
                ->count()).','
                      }}
                      @endfor

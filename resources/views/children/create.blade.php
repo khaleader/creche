@@ -262,6 +262,19 @@
                             </div>
 
 
+                        <div class="form_champ c">
+                            <label for="cname" class="control-label col-lg-3">Paiement</label>
+                            <div class="form_ajout">
+                                <select name="nbr_month" class="form_ajout_input" >
+                                    <option value="1">Mensuel (1 Mois)</option>
+                                    <option value="3">Trimestriel (3 Mois)</option>
+                                    <option value="6">Semistriel (6 Mois)</option>
+                                    <option value="{{ \App\SchoolYear::countTotalYear() }}">{{ 'Annuel ('.\App\SchoolYear::countTotalYear(). 'Mois)' }}</option>
+
+                                </select>
+                            </div>
+                        </div>
+
 
 
 
@@ -326,12 +339,17 @@
                                 </select>
                             </div>
                         </div>
+
+                        @unless(\App\PromotionExceptional::checkExceptionalPromotion())
+                            @unless(\App\PromotionExceptional::checkExcTimeOfPromotionIfExpired())
                         <div class="form_champ c ">
                             <label for="cname" class="control-label col-lg-3">Reduction </label>
                             <div class="form_ajout">
                                 <input  value="{{ Request::old('reduction')?:'' }}" type="text" name="reduction" class="form_ajout_input" placeholder="Entrez le prix de reduction">
                             </div>
                         </div>
+                        @endunless
+                        @endunless
 
 
 
@@ -601,13 +619,13 @@
 
 
 
-                    $('input[name=reduction]').blur(function(){
+                   /* $('input[name=reduction]').blur(function(){
                        var reduct =$(this).val();
                         var price =$('#prices').text();
                         alertify.set('notifier', 'position', 'bottom-left');
                         alertify.set('notifier', 'delay', 20);
                         alertify.warning("Le Prix avec la  reduction est : " + (parseInt(price - reduct)));
-                    });
+                    });*/
 
 
                      // verification  des types des périodes
@@ -645,12 +663,12 @@
 
 
 
-              $('#transport').change(function () {
+            /*  $('#transport').change(function () {
                   var trans = $(this).val();
                   var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                   if (trans == 1) {
                       $.ajax({
-                          url: '{{  URL::action('ChildrenController@checktransport')}}',
+                          url: '{{--   URL::action('ChildrenController@checktransport')--}}',
                           data: 'status=' + 1 + '&_token=' + CSRF_TOKEN,
                           type: 'post',
                           success: function (data) {
@@ -691,7 +709,7 @@
 
 
                   }
-              });
+              }); */
 
 
               $('.nav-tabs  a').click(function (e) {
@@ -912,10 +930,10 @@
                           type: 'post',
                           success: function (data) {
                               if (data !== 'no') {
-                                  alertify.set('notifier', 'position', 'bottom-left');
+                                /*  alertify.set('notifier', 'position', 'bottom-left');
                                   alertify.set('notifier', 'delay', 10);
                                   alertify.success("cet élève va payer " + data + " Dhs");
-                                  $('#prices').empty().append(data);
+                                  $('#prices').empty().append(data);*/
                               } else {
                                   alertify.set('notifier', 'position', 'bottom-right');
                                   alertify.set('notifier', 'delay', 30);
@@ -998,11 +1016,22 @@
                          return false;
                      }
                           showLoader();
-
-
                  });
 
 
+                   @if(\App\PromotionAdvance::checkAdvancePromotion())
+                   $('select[name=nbr_month]').change(function(){
+
+                      if($(this).val() >=3)
+                      {
+                          $('input[name=reduction]').parent().parent().hide();
+                      }else{
+                          $('input[name=reduction]').parent().parent().show();
+                      }
+
+
+                   });
+                    @endif
 
 
               });

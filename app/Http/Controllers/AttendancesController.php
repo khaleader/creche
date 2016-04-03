@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Attendance;
 use App\Child;
+use App\SchoolYear;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -31,7 +32,7 @@ class AttendancesController extends Controller
      */
     public function index()
     {
-       $children = \Auth::user()->children()->paginate(10);
+       $children = \Auth::user()->children()->where('school_year_id',SchoolYear::getSchoolYearId())->paginate(10);
         return view('attendances.index',compact('children'));
     }
 
@@ -41,7 +42,10 @@ class AttendancesController extends Controller
         if(\Request::ajax())
         {
             $caracter = \Input::get('caracter');
-            $enfants =   Child::where('nom_enfant', 'LIKE', $caracter .'%')->where('user_id',\Auth::user()->id)->get();
+            $enfants =   Child::where('nom_enfant', 'LIKE', $caracter .'%')
+                ->where('user_id',\Auth::user()->id)
+                ->CurrentYear()
+                ->get();
             foreach($enfants as $enfant)
             {
                 if($enfant->photo)
@@ -270,9 +274,9 @@ class AttendancesController extends Controller
 
     public function absenceToday()
     {
-        $abstoday = Attendance::whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
-           ->whereRaw('EXTRACT(month from start) = ?', [Carbon::now()->month])
-            ->whereRaw('EXTRACT(day from start) = ?', [Carbon::now()->day])
+        $abstoday = Attendance::whereYear('start','=', [Carbon::now()->year])
+           ->whereMonth('start','=', [Carbon::now()->month])
+            ->whereDay('start','=' ,[Carbon::now()->day])
             ->where('user_id',\Auth::user()->id)
             ->paginate(10);
         $count = Attendance::whereRaw('EXTRACT(year from start) = ?', [Carbon::now()->year])
@@ -304,9 +308,13 @@ class AttendancesController extends Controller
                 if ($t->title == 'Maladie') {
                     $class = 'label-info';
                     $text = 'Non Justifiée';
-                } else {
+                } elseif($t->title == 'Normal') {
                     $class = 'label-primary';
                     $text = 'Justifiée';
+                }else{
+                    $class = 'retard';
+                    $text = 'Retard';
+
                 }
                 echo '  <tr>
                             <td><div class="minimal single-row">

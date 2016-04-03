@@ -11,6 +11,7 @@ use App\Family;
 use App\Level;
 use App\Matter;
 use App\Room;
+use App\SchoolYear;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -34,6 +35,84 @@ class StatisticsController extends Controller
         return view('statistics.statistics');
     }
 
+    public function archive($year1 = null,$year2 = null)
+    {
+        if(is_null($year1) && is_null($year2))
+        {
+            $children =  \Auth::user()->children()->where('school_year_id','=',SchoolYear::getSchoolYearId())->orderBy('id','desc')->paginate(10);
+            return view('statistics.archive',compact('children'));
+        }else{
+            $annee = $year1.'-'.$year2;
+            $schoolYear = SchoolYear::where('user_id',\Auth::user()->id)
+                ->where('ann_scol',$annee)
+                ->where('current',1)->first();
+            $children =  \Auth::user()->children()->where('school_year_id',$schoolYear->id)->paginate(10);
+            return view('statistics.archive',compact("children","year1","year2"));
+        }
+
+    }
+
+
+
+
+    public function enfbyalph()
+    {
+        if(\Request::ajax())
+        {
+            $caracter = \Input::get('caracter');
+            $enfants =   Child::where('nom_enfant', 'LIKE', $caracter .'%')
+                ->where('user_id',\Auth::user()->id)
+                ->where('school_year_id','=',SchoolYear::getSchoolYearId())
+                ->get();
+            foreach($enfants as $enfant)
+            {
+                foreach($enfant->bills as $e)
+                {
+                    if($e->status == 1)
+                        $class = 'label-success';
+                    else
+                        $class = 'label-danger';
+                }
+                foreach($enfant->classrooms as $cr)
+                {
+                    $classe =  $cr->nom_classe;
+                }
+
+
+                if($enfant->photo)
+                    $photo =  asset('uploads/'.$enfant->photo);
+                else
+                    $photo =  asset('images/avatar4.jpg');
+
+                echo ' <tr>
+
+                            <td><img class="avatar" src=" '. $photo .' "></td>
+                            <td>'. $enfant->nom_enfant .'</td>
+                            <td>'.  $enfant->created_at->format('d-m-Y') .' </td>
+                          <td class="paiement"><span class="label '.$class.' label-mini"><i class="fa fa-money"></i></span></td>
+
+                            <td>'.$classe.'</td>
+
+
+
+                            <td class="no-print"><a href="'. action('ChildrenController@show',[$enfant->id]).'"><div  class="btn_details">Détails</div></a></td>
+                        </tr>';
+            }
+
+
+
+            //  echo json_encode($enfants);
+            //die();
+        }
+    }
+
+
+
+
+
+
+
+            // graphs
     public function graphs($year1 = null,$year2 = null)
     {
         if(is_null($year1) && is_null($year2))
@@ -164,26 +243,34 @@ class StatisticsController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // show children profile for History / archive
     public function show($id)
     {
-        //
+        $child =  \Auth::user()->children()->where('id',$id)->first();
+        if($child)
+        {
+            return view('statistics.show',compact('child'));
+
+        }else{
+            return  response("Vous n'etes pas autorisé à voir cette page", 401);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+
+    // show bills History/Archive
     public function edit($id)
     {
-        //
+        $child =  \Auth::user()->children()->where('id',$id)->first();
+        if($child)
+        {
+            return view('statistics.edit',compact('child'));
+
+        }else{
+            return  response("Vous n'etes pas autorisé à voir cette page", 401);
+        }
     }
 
     /**

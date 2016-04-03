@@ -236,7 +236,18 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany(SchoolYear::class);
     }
-
+     public function PromotionsStatuses()
+     {
+      return $this->hasMany(PromotionStatus::class);
+     }
+    public function PromotionsAdvances()
+    {
+        return $this->hasMany(PromotionAdvance::class);
+    }
+    public function PromotionsExceptionals()
+    {
+        return $this->hasMany(PromotionExceptional::class);
+    }
 
 
 }

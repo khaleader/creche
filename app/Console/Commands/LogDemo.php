@@ -65,7 +65,10 @@ class LogDemo extends Command
                         {
                             $getChild = Bill::where('child_id',$bill->child_id)
                                 ->where('reduction',0)
-                                ->orderBy('id','desc')->first();
+                                ->where('school_year_id',$sc->id)
+                                ->where('nbrMois',1)
+                                ->orderBy('id','desc')
+                                ->first();
                             if($getChild)
                             {
                                 $facture = new Bill();
@@ -107,8 +110,10 @@ class LogDemo extends Command
                         foreach($child->bills as $bill)
                         {
                             $getChild = Bill::where('child_id',$bill->child_id)
-                                ->orderBy('id','desc')
                                 ->where('reduction',0)
+                                ->where('school_year_id',$sc->id)
+                                ->where('nbrMois',1)
+                                ->orderBy('id','desc')
                                 ->first();
                             if($getChild)
                             {

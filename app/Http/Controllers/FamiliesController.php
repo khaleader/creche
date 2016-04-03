@@ -10,6 +10,8 @@ use App\Family;
 use App\Http\Requests\AddSchoolRequest;
 use App\Http\Requests\ajouterEnfantRequest;
 use App\PriceBill;
+use App\PromotionAdvance;
+use App\PromotionExceptional;
 use App\Transport;
 use App\User;
 use Carbon\Carbon;
@@ -44,7 +46,7 @@ class FamiliesController extends Controller
 
     public function index()
     {
-       $families = \Auth::user()->families()->paginate(10);
+       $families = \Auth::user()->families()->CurrentYear()->paginate(10);
        return view('families.index',compact('families'));
     }
 
@@ -56,6 +58,43 @@ class FamiliesController extends Controller
           $family =  Family::where('user_id',\Auth::user()->id)->where('id',$id)->first();
             return view('families.addchild',compact('family'));
         }elseif(\Request::isMethod('post')) {
+            // promotion Exceptional check
+            if(PromotionExceptional::checkExceptionalPromotion())
+            {
+                if(PromotionExceptional::checkExcTimeOfPromotionIfExpired())
+                {
+                    if(PromotionExceptional::checkExcPriceandReturnIt() == 'no')
+                    {
+                        return redirect()->back()->withErrors("la promotion Exceptionnelle est active mais aucun prix n'est défini")->withInput();
+                    }else{
+                        $prix_exc =  PromotionExceptional::checkExcPriceandReturnIt();
+                    }
+                }else{
+                    return redirect()->back()->withErrors("la promotion Exceptionnelle est active mais la durée est expirée");
+                }
+            }
+
+            // promotion advanced check
+            $prix_advance ='';
+            if(PromotionAdvance::checkAdvancePromotion())
+            {
+                if($request->nbr_month > 1 )
+                {
+                    if(PromotionAdvance::checkAdvIfPriceIsSet($request->nbr_month) !== false)
+                    {
+                        $prix_advance = PromotionAdvance::checkAdvIfPriceIsSet($request->nbr_month);
+                    }else{
+                        return redirect()->back()->withErrors("Aucun prix n'est
+                    défini pour cette Promotion de ".$request->nbr_month.' Mois');
+
+                    }
+                }
+            }
+
+
+
+
+
             $validator = Validator::make([
                 $request->all(),
                 'nom_enfant' =>$request->nom_enfant,
@@ -95,7 +134,7 @@ class FamiliesController extends Controller
             $child->sexe = $request->sexe;
             $child->age_enfant = $child->date_naissance->diffInYears(Carbon::now());
              $child->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
-
+             $child->school_year_id = SchoolYear::getSchoolYearId();
 
                 $child->transport = $request->transport;
             $child->user_id = \Auth::user()->id;
@@ -140,25 +179,77 @@ class FamiliesController extends Controller
                     $cr->children()->attach([$child->id]);
 
                     $bill = new Bill();
-                    $bill->start = Carbon::now()->toDateString();
-                    $bill->end = Carbon::now()->addMonth()->toDateString();
                     $bill->status = 0;
 
-                    if(isset($request->reduction) &&  !empty($request->reduction)  && !is_null($request->reduction))
+                    if(!PromotionAdvance::checkAdvancePromotion()  && !PromotionExceptional::checkExceptionalPromotion())
                     {
-                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport,$request->reduction);
-                        $bill->reductionPrix = $request->reduction;
+                        if(isset($request->reduction) &&  !empty($request->reduction)  && !is_null($request->reduction))
+                        {
+                            $bill->start = Carbon::now()->toDateString();
+                            $bill->end = Carbon::now()->addMonths($request->nbr_month)->toDateString();
+                            $bill->somme =  PriceBill::countWhenNoPromotionButReduction($request->nbr_month,PriceBill::assignPrice($request->niveau,$request->transport),$request->reduction);
+                            $bill->reductionPrix = $request->reduction;
+                            $bill->reduction = 1;
+                            $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                            $bill->nbrMois =$request->nbr_month;
+
+                        }else{
+                            $bill->start = Carbon::now()->toDateString();
+                            $bill->end = Carbon::now()->addMonths($request->nbr_month)->toDateString();
+                            $bill->somme = PriceBill::countWhenNoPromotion($request->nbr_month,PriceBill::assignPrice($request->niveau,$request->transport));
+                            $bill->reduction = 0;
+                            $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                            $bill->nbrMois =$request->nbr_month;
+                        }
+                    }
+
+                    if(PromotionAdvance::checkAdvancePromotion())
+                    {
+                        if($request->nbr_month >=3)
+                        {
+                            $bill->start = Carbon::now()->toDateString();
+                            $bill->end = Carbon::now()->addMonths($request->nbr_month)->toDateString();
+                            $bill->somme =PromotionAdvance::countAccordingTo($prix_advance,PriceBill::assignPrice($request->niveau,$request->transport),$request->nbr_month);
+                            $bill->reduction = 1;
+                            $bill->reductionPrix  = $prix_advance;
+                            $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                            $bill->nbrMois =$request->nbr_month;
+                        }
+                        if($request->nbr_month == 1)
+                        {
+                            if(isset($request->reduction) &&  !empty($request->reduction)  && !is_null($request->reduction))
+                            {
+                                $bill->start = Carbon::now()->toDateString();
+                                $bill->end = Carbon::now()->addMonths($request->nbr_month)->toDateString();
+                                $bill->somme =  PriceBill::countWhenNoPromotionButReduction($request->nbr_month,PriceBill::assignPrice($request->niveau,$request->transport),$request->reduction);
+                                $bill->reductionPrix = $request->reduction;
+                                $bill->reduction = 1;
+                                $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                                $bill->nbrMois =$request->nbr_month;
+
+                            }else{
+                                $bill->start = Carbon::now()->toDateString();
+                                $bill->end = Carbon::now()->addMonths($request->nbr_month)->toDateString();
+                                $bill->somme = PriceBill::countWhenNoPromotion($request->nbr_month,PriceBill::assignPrice($request->niveau,$request->transport));
+                                $bill->reduction = 0;
+                                $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                                $bill->nbrMois =$request->nbr_month;
+                            }
+                        }
+                    }
+                    if(PromotionExceptional::checkExceptionalPromotion())
+                    {
+                        $bill->start = Carbon::now()->toDateString();
+                        $bill->end = Carbon::now()->addMonths($request->nbr_month)->toDateString();
+                        $bill->somme = PromotionExceptional::countAccordingTo($request->nbr_month,PriceBill::assignPrice($request->niveau,$request->transport),$prix_exc);
+                        $bill->reductionPrix  = $prix_exc;
                         $bill->reduction = 1;
                         $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
-
-                    }else{
-                        $bill->somme =PriceBill::assignPrice($request->niveau,$request->transport);
-                        $bill->reduction = 0;
-                        $bill->school_year_id = \Auth::user()->schoolyears()->where('current',1)->first()->id;
+                        $bill->nbrMois =$request->nbr_month;
                     }
 
 
-                    $bill->nbrMois =1;
+
                     $bill->child_id = $child->id;
                     $bill->f_id = $user->id;
                     $bill->user_id = \Auth::user()->id;
@@ -187,6 +278,7 @@ class FamiliesController extends Controller
                 ->where('nom_pere', 'LIKE', $caracter .'%')
                 ->where('responsable',1)->orWhere('nom_mere', 'LIKE', $caracter .'%')
                  ->where('responsable',0)
+                ->CurrentYear()
                 ->get();
                 $count =0;
 

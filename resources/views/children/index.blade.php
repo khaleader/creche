@@ -165,7 +165,7 @@
                             </td>
                           <?php
 
-                          $counter =  App\Bill::where('child_id',$child->id)->where('status',0)->count(); ?>
+                          $counter =  \Auth::user()->bills()->where('child_id',$child->id)->where('status',0)->count(); ?>
 
                             <td class="paiement">
                                 @if(App\Bill::all()->count() == 0)

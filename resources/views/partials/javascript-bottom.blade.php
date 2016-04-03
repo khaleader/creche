@@ -47,7 +47,7 @@
 
 
 <script src="{{ asset('js\jquery-cookie\jquery.cookie.js')}}"></script>
-
+<script src="{{ asset('js\bootstrap-switch.js') }}"></script>
 <!--common script init for all pages-->
 <script src="{{ asset('js/scripts.js')}}"></script>
 <script src="{{ asset('js/sidebar-script.js') }}"></script>

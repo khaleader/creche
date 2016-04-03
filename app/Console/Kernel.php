@@ -20,6 +20,12 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\TruncateJobs::class,
         \App\Console\Commands\checkOfficielAndEssai::class,
         \App\Console\Commands\GenerateBillReduction::class,
+        \App\Console\Commands\GenarateBillsThreeMonths::class,
+        \App\Console\Commands\GenerateBillsThreeMonthsNormal::class,
+        \App\Console\Commands\GenarateBillsSixMonths::class,
+        \App\Console\Commands\GenerateBillsSixMonthsNormal::class
+
+
     ];
 
     /**
@@ -35,6 +41,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('truncate:jobs')->dailyAt('23:00');
         $schedule->command('check:OfficielEssai')->dailyAt('23:00');
         $schedule->command('check:generateBillReduction')->dailyAt('23:00');
+        $schedule->command('GenarateBills:billsThreeMonths')->dailyAt('23:00');
+        $schedule->command('GenerateBills:ThreeMonthsNormal')->dailyAt('23:00');
+        $schedule->command('GenerateBills:SixMonths')->dailyAt('23:00');
+        $schedule->command('GenerateBills:SixMonthsNormal')->dailyAt('23:00');
+
+
 
 
 

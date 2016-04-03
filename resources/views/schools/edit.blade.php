@@ -285,7 +285,14 @@
                             <section class="panel">
                                 {!! Form::open(['url'=>action('SchoolYearsController@store')]) !!}
                                     <div class="form_champ">
-                                        <label for="cname" class="control-label col-lg-3">Sélectionnez une année scolaire</label>
+                                        <label for="cname" class="control-label col-lg-3">
+                                            Sélectionnez une année scolaire
+                                           <!-- <strong  class="tooltip-annee" title="quand vous créez une nouvelle année scolaire ca veut
+                                            dire que tout ce que vous voyez dans l'application est en relation avec cette année scolaire
+                                             donc l'année scolaire précédente est renvoyé automatiquement à l'historique">
+                                             <i class="fa fa-info-circle"></i>
+                                            </strong>-->
+                                        </label>
                                         <div class="form_ajout">
 
                                                 <?php
@@ -719,8 +726,12 @@
                 $(".alert-danger").alert('close');
                 $('#loader-to').hide();
             });
-
+            var position = { my: 'center top', at: 'center bottom+10' };
         $('.tooltip-type').tooltip();
+           /* $('.tooltip-annee').tooltip(
+                    'option', 'position', position
+
+            );*/
         });
     </script>
     @stop
