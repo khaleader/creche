@@ -68,7 +68,13 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
 
     public static function getSchoolYearId()
     {
-        return \Auth::user()->schoolyears()->where('current',1)->first()->id;
+        $sc = \Auth::user()->schoolyears()->where('current',1)->first();
+        if($sc)
+        {
+            return $sc->id;
+        }else{
+            return redirect()->action('SchoolsController@edit',[\Auth::user()->id]);
+        }
     }
 
     public static function getFirstYear()
