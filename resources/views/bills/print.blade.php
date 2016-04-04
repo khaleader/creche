@@ -126,7 +126,7 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <span id="MP">Mode de paiement :</br> Espèces</span>
+                    <span id="MP">Mode de paiement :</br> {{ $bill->mode }}</span>
                     <div class="col-md-3 col-xs-5 invoice-block pull-right">
                         <ul class="unstyled amounts">
 
@@ -143,7 +143,7 @@
                 <div class="row">
                     <div class="invoice_remarque">
                         <h3>Merci beaucoup !</h3>
-                        <p>école Hassania</p></div></div>
+                        <p>école {{ Auth::user()->name }} </p></div></div>
 
             </div>
 

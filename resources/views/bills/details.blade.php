@@ -113,7 +113,7 @@
                     </tbody>
                 </table>
                 <div class="row">
-                    <span id="MP">Mode de paiement :</br> Espèces</span>
+                    <span id="MP">Mode de paiement :</br> {{ $bill->mode }}</span>
                     <div class="col-md-3 col-xs-5 invoice-block pull-right">
                         <ul class="unstyled amounts">
 
