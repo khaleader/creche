@@ -123,13 +123,6 @@
 @section('jquery')
     <script>
         $(function(){
-            if($.cookie('admin'))
-            {
-
-            }else{
-                window.location.href = '{{ action('HomeController@index') }}';
-            }
-
 
             $('#ok').click(function(){
                 var id_rh = $(this).attr('valeur');
