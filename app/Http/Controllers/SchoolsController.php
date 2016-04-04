@@ -104,11 +104,13 @@ class SchoolsController extends Controller
           }elseif(\Request::isMethod('post'))
           {
               $validator = Validator::make($request->all(),[
+                  'rh' => 'required',
                   'pass' => 'required|min:6|confirmed',
               ],[
                   'pass.required'=>'Le champ Clé d\'utilisation  est Requis',
                   'pass.min' => 'Le champ Clé d\'utilisation doit avoir au minimum 6 caractères',
                   'pass.confirmed' => "la confirmation n'est pas identique  ",
+                  'rh.required' => "L'utilisateur est requis"
 
               ]);
 
