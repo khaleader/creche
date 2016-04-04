@@ -55,10 +55,23 @@ class BillsController extends Controller
         if(\Request::ajax())
         {
             $pass =\Input::get('pass');
-            if($pass == \Hash::check($pass,\Auth::user()->getAuthPassword()))
+            if(isset($pass) && !empty($pass))
             {
-                echo 'oui';
+                $user = \Auth::user()->teachers()->
+                whereIn('fonction',['rh','Administrateur'])->whereNotNull('pass')->get();
+                foreach ($user as $item) {
+                    if($item->pass == $pass)
+                    {
+                        echo  'oui';
+                        break;
+                    }
+                }
             }
+
+
+
+
+
         }
     }
 
@@ -148,6 +161,7 @@ class BillsController extends Controller
                  $bills->child->Family->responsable
               ));
                 $bills->status = 1;
+                $bills->mode = \Input::get('mode');
                 $bills->save();
 
             }

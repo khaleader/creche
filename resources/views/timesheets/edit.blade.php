@@ -12,8 +12,12 @@
             background: none;
         }
 
-
+        @page {
+            size: auto;   /* auto is the initial value */
+            margin:  0 auto;  /* this affects the margin in the printer settings */
+        }
         @media print {
+
           div.left.droppable{
               display: none;
           }
@@ -101,10 +105,10 @@
         <div class="left" style="width: 80px;">
             <table>
                 <?php
-                $matieres = \App\Matter::where('user_id',\Auth::user()->id)->get();
+                $matieres = \Auth::user()->matters()->get();
                     $salles = \App\Room::where('user_id',\Auth::user()->id)->get();
                 ?>
-                @foreach($matieres as $mat)
+                @foreach($cr->matters as $mat)
                 <tr class="mat">
                     <td>
                         <div data-id="{{ $mat->id }}" color="{{ $mat->color }}" class="item francais" style="background-color:{{ $mat->color }};width:50px">{{ $mat->code_matiere }}</div>

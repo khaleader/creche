@@ -118,19 +118,16 @@
                                 </span>
                             </a>
                         </li>
-                        <li class="nav-item start ">
-                            <a href="{{ action('StatisticsController@archive') }}" class="nav-link ">
-
-                                <span class="title">Archive</span>
-                                <span class="badge">
-                                      <img style="height: 30px;width: 30px" src="{{ asset('images\archivestats.png') }}" alt="chart icon">
-                                </span>
-                            </a>
-                        </li>
-
-
                         </ul>
                 </li>
+
+                    <li>
+                        <a  class="sidebar-archive" href="{{  action('StatisticsController@archive')  }}">
+                            <img src=" {{ asset('images/archivestats.png')  }}" class="sidebar_icons">
+                            <span>Archive</span>
+                            <img src=" {{ asset('images/sidebar_plus.png')  }}" class="sidebar_plus">
+                        </a>
+                    </li>
 
                 @endif
                   @if(Auth::user() and Auth::user()->isOblivius())

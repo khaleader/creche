@@ -74,7 +74,7 @@
                 <a href="{{ action('ChildrenController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{ asset('images/enfants.png') }}" >
-                        <span class="count"> &nbsp;{{   App\Child::where('user_id',\Auth::user()->id)->count() }}
+                        <span class="count"> &nbsp;{{   App\Child::where('user_id',\Auth::user()->id)->CurrentYear()->count() }}
                         </span><p>Elèves</p>
                     </div>
                 </a>
@@ -83,7 +83,7 @@
                 <a href="{{ action('FamiliesController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{  asset('images/familles.png') }}" ><span class="count">&nbsp;
-                             {{  App\Family::where('user_id',\Auth::user()->id)->count() }}
+                             {{  App\Family::where('user_id',\Auth::user()->id)->CurrentYear()->count() }}
                         </span><p>Familles</p>
                     </div>
                 </a>
@@ -93,7 +93,9 @@
                 <a href="{{   action('TeachersController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{  asset('images/professeurs.png') }}" >
-                        <span class="count">{{  App\Teacher::where('user_id',\Auth::user()->id)->count()  }}</span>
+                        <span class="count">{{  App\Teacher::where('user_id',\Auth::user()->id)
+                        ->whereIn('fonction',['professeur'])
+                        ->count()  }}</span>
                         <p>Professeurs</p>
                     </div>
                 </a>
@@ -423,15 +425,35 @@
                         <!--password  -->
                         <div id="password" class="tab-pane">
                            {!! Form::open(['url'=>action('TeachersController@store')]) !!}
+
+
+                            @unless(\Auth::user()->teachers()->where('fonction','Administrateur')->first())
+                                <div class="form_champ">
+                                    <label for="cname" class="control-label col-lg-3">Admin</label>
+                                    <div class="form_ajout">
+                                        <input value="Administrateur" type="text" name="admin" class="form_ajout_input" placeholder="" readonly>
+                                    </div>
+                                </div>
+                            @endunless
+
+                            @unless(\Auth::user()->teachers()->where('fonction','Administrateur')->first())
                                 <div class="form_champ">
                                     <label for="cname" class="control-label col-lg-3">Nom complet *</label>
                                     <div class="form_ajout">
-                                        <input value="{{ Request::old('nom_teacher')?:'' }}" type="text" name="nom_teacher" class="form_ajout_input" placeholder="Entrez le nom complet">
-
+                                        <input value="{{ \Auth::user()->name }}" type="text" name="nom_teacher" class="form_ajout_input" placeholder="Entrez le nom complet">
                                     </div>
                                 </div>
+                            @else
+                                    <div class="form_champ">
+                                        <label for="cname" class="control-label col-lg-3">Nom complet *</label>
+                                        <div class="form_ajout">
+                                            <input value="{{ Request::old('nom_teacher')?:'' }}" type="text" name="nom_teacher" class="form_ajout_input" placeholder="Entrez le nom complet">
+                                        </div>
+                                    </div>
+
+                            @endunless
                             <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Date de naissance *</label>
+                                <label for="cname" class="control-label col-lg-3">Date de naissance </label>
                                 <div class="form_ajout">
                                     <input type="date" value="{{ Request::old('date_naissance')?:'' }}" name="date_naissance" class="form_ajout_input" placeholder="Entrez la date de naissance ">
                                     <div class="icone_input"><i class="fa fa-"></i></div>
@@ -483,14 +505,30 @@
                                 </div>
                             </div>
 
-
+                              @unless(\Auth::user()->teachers()->where('fonction','Administrateur')->first())
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Email *</label>
                                 <div class="form_ajout">
-                                    <input type="text" value="{{ Request::old('email')?:'' }}" name="email" class="form_ajout_input" placeholder="Entrez l'email ">
+                                    <input type="text"
+                                           value="{{ \Auth::user()->email }}"
+                                           name="email" class="form_ajout_input"
+                                           placeholder="Entrez l'email ">
 
                                 </div>
                             </div>
+                             @else
+                                    <div class="form_champ">
+                                        <label for="cname" class="control-label col-lg-3">Email *</label>
+                                        <div class="form_ajout">
+                                            <input type="text"
+                                                   value="{{ Request::old('email')?:'' }}"
+                                                   name="email" class="form_ajout_input"
+                                                   placeholder="Entrez l'email ">
+
+                                        </div>
+                                    </div>
+                            @endunless
+
                             <div class="form_champ">
                                 <label for="cname" class="control-label col-lg-3">Numéro fixe</label>
                                 <div class="form_ajout">
@@ -498,13 +536,24 @@
 
                                 </div>
                             </div>
-                            <div class="form_champ">
-                                <label for="cname" class="control-label col-lg-3">Numéro portable *</label>
-                                <div class="form_ajout">
-                                    <input type="text" value="{{ Request::old('num_portable')?:'' }}" name="num_portable" class="form_ajout_input" placeholder="Entrez le numéro portable ">
 
-                                </div>
-                            </div>
+                                            @unless(\Auth::user()->teachers()->where('fonction','Administrateur')->first())
+                                                <div class="form_champ">
+                                                    <label for="cname" class="control-label col-lg-3">Numéro portable *</label>
+                                                    <div class="form_ajout">
+                                                        <input type="text" value="{{ \Auth::user()->tel_portable }}" name="num_portable" class="form_ajout_input" placeholder="Entrez le numéro portable ">
+
+                                                    </div>
+                                                </div>
+                                                @else
+                                                    <div class="form_champ">
+                                                        <label for="cname" class="control-label col-lg-3">Numéro portable *</label>
+                                                        <div class="form_ajout">
+                                                            <input type="text" value="{{ Request::old('num_portable')?:'' }}" name="num_portable" class="form_ajout_input" placeholder="Entrez le numéro portable ">
+
+                                                        </div>
+                                                    </div>
+                                            @endunless
 
 
 
@@ -836,7 +885,7 @@
                       success: function (data) {
                           $('#branche').prop('disabled','');
                           $('#branche').empty();
-                          $('#branche').prepend('<option selected>selectionnez une branche</option>');
+                          $('#branche').prepend('<option selected>sélectionnez une branche</option>');
                           $('#branche').append(data);
                       }
                   });
@@ -908,7 +957,7 @@
                       success: function (data) {
                           $('#niveau').prop('disabled', '');
                           $('#niveau').empty();
-                          $('#niveau').prepend('<option selected>selectionnez un niveau</option>');
+                          $('#niveau').prepend('<option selected>sélectionnez un niveau</option>');
                           $('#niveau').append(data);
                       }
                   });
@@ -957,7 +1006,7 @@
                       success: function (data) {
                           $('#classe').prop('disabled','');
                           $('#classe').empty();
-                          $('#classe').prepend('<option selected>selectionnez une classe</option>');
+                          $('#classe').prepend('<option selected>sélectionnez une classe</option>');
                           $('#classe').append(data);
                       }
                   });

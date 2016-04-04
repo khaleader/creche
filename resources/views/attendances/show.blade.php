@@ -5,6 +5,7 @@
   <!-- <link rel="stylesheet" href="{{ asset('js/fullcalendar/bootstrap-fullcalendar.css') }}"> -->
    <link rel="stylesheet" href="{{ asset('js/fullcalendar/fullcalendar.css') }}">
 <link rel="stylesheet" href="{{ asset('js/fullcalendar/fullcalendar.print.css') }}" media="print">
+    <!--<link rel="stylesheet" href="{{-- asset('js/fullcalendar/scheduler.css') --}}">-->
 
 
 
@@ -73,6 +74,7 @@
 <!--<srcipt src="{{  asset('js/external-dragging-calendar.js') }}"></srcipt> -->
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
     <script src="{{ asset('js\timepicki\timepicki.js') }}"></script>
+   <!-- <script src="{{-- asset('js\fullcalendar\scheduler.js') --}}"></script>-->
  <script>
    $(function(){
 
@@ -112,7 +114,7 @@
        var lefinal = '';
 
        $('#calendar').fullCalendar({
-          // selectOverlap:false,
+           //selectOverlap:false,
            header: {
                left: 'prev,next today',
                center: 'title',
@@ -129,6 +131,7 @@
            },
            droppable: true ,// this allows things to be dropped onto the calendar
                    events : <?php echo ($resultat) ? $resultat: "" ?>,
+
 
 
            drop: function(date, allDay) { // this function is called when something is dropped

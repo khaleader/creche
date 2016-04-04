@@ -32,7 +32,7 @@ class TeacherRequest extends Request
 
         return[
             'nom_teacher'=> 'required',
-            'date_naissance'=> 'required',
+            //'date_naissance'=> 'required',
             'fonction'=> 'onlyfonctions',
             'poste' => 'required_if:fonction,professeur|integer',
             'sexe'=> 'required',

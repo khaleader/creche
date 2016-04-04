@@ -21,14 +21,7 @@
                 </div>
             </section>
         </div>
-        <div class="col-md-3">
-            <section class="panel bloc2">
-                <div class="panel-body">
-                    <a href="{{ action('StatisticsController@archive') }}">
-                        <div class="bloc_info2"><img src="{{ asset('images/archivestats.png') }}" ><p>Archive</p></div></a>
-                </div>
-            </section>
-        </div>
+     
 
 
 

@@ -52,3 +52,5 @@
 <script src="{{ asset('js/scripts.js')}}"></script>
 <script src="{{ asset('js/sidebar-script.js') }}"></script>
 <!--script for this page-->
+<script src="{{ asset('js/bootbox/bootbox.min.js') }}"></script>
+@include('partials.blade-scripts')

@@ -92,6 +92,13 @@ $(document).ready(function(){
             'z-index': '0'
         });
     });
+    $('.sidebar-archive').hover(function(){
+        $('.sub-menu-stats').hide();
+        $('#main-content').css({
+            'position':'static',
+            'z-index': '0'
+        });
+    });
 
     $('.sub-menu-stats').mouseleave(function(){
         $('.sub-menu-stats').hide();

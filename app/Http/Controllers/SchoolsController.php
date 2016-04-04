@@ -32,7 +32,7 @@ class SchoolsController extends Controller
         $this->middleware('auth');
         $this->middleware('Famille',['only'=> 'editef','updatepassef','upimage']);
         $this->middleware('oblivius',['except'=> ['edit','update','updatepass','category','show_price_bills',
-            'price_bills_store','promotion',
+            'price_bills_store','promotion','gestion_users','check_gestion_users',
             'show_cat_bills','editef','updatepassef','upimage','upimageecole','profile','editer']]);
 
 
@@ -56,6 +56,83 @@ class SchoolsController extends Controller
 
        $total =  SchoolYear::countTotalYear();
         return view('schools.promotion',compact('total'));
+    }
+
+
+    // check password of admin
+    public function check_gestion_users()
+    {
+        if(\Request::ajax())
+        {
+            $pass = \Input::get('pass');
+            $rh_id = \Input::get('id_rh');
+                if(isset($pass) && !empty($pass))
+                {
+
+                    $user = \Auth::user()->teachers()
+                        ->where('fonction','Administrateur')->where('pass',$pass)->first();
+                    if($user)
+                    {
+                        echo 'oui';
+                    }else{
+                        echo 'no';
+                    }
+                }
+
+            // delete
+            if(isset($rh_id) && !empty($rh_id))
+            {
+              $rh_user =  \Auth::user()->teachers()
+                    ->where('fonction','rh')->where('id',$rh_id)->first();
+                $rh_user->pass = null;
+                $rh_user->save();
+                echo 'deleted';
+            }
+
+
+        }
+    }
+
+    public function gestion_users(Request $request, $id = null)
+    {
+          if(\Request::isMethod('get'))
+          {
+              if($id == \Auth::user()->id)
+              {
+                  return view('schools.gestion_schools');
+              }
+          }elseif(\Request::isMethod('post'))
+          {
+              $validator = Validator::make($request->all(),[
+                  'pass' => 'required|min:6|confirmed',
+              ],[
+                  'pass.required'=>'Le champ Clé d\'utilisation  est Requis',
+                  'pass.min' => 'Le champ Clé d\'utilisation doit avoir au minimum 6 caractères',
+                  'pass.confirmed' => "la confirmation n'est pas identique  ",
+
+              ]);
+
+              if($validator->passes())
+              {
+                  $rh = $request->rh;
+
+                 $user = \Auth::user()->teachers()
+                      ->where('id',$rh)
+                      ->first();
+                 if($user)
+                 {
+                     $user->pass = $request->pass;
+                     $user->save();
+                 }
+                  return redirect()->back()->with('success',"La Clé a bien été enregistré");
+
+              }else{
+                  return redirect()->back()->withErrors($validator);
+              }
+
+          }
+
+
     }
 
 
@@ -333,7 +410,7 @@ class SchoolsController extends Controller
            $user =  User::findOrFail(\Auth::user()->id);
              $user->password =  \Hash::make($request->password);
             $user->save();
-           return redirect()->back()->with('success','Le Mot De passe a bien été modifié !');
+           return redirect()->back()->with('success','Le Mot De pass a bien été modifié !');
         }else{
            return redirect()->back()->withErrors([
                'Le Mot de pass Actuel est incorrect'

@@ -24,7 +24,7 @@ class TeachersController extends Controller
      */
     public function index()
     {
-       $teachers = \Auth::user()->teachers()->paginate(10);
+       $teachers = \Auth::user()->teachers()->whereNotIn('fonction',['Administrateur'])->paginate(10);
        return view('teachers.index',compact('teachers'));
     }
 
@@ -44,10 +44,9 @@ class TeachersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TeacherRequest $request)
+    public function store(TeacherRequest  $request)
     {
-
-        if($request->fonction  == 'professeur')
+        if($request->fonction  == 'professeur' && !$request->admin)
         {
         $teacher = new Teacher();
         $teacher->nom_teacher = $request->nom_teacher;
@@ -68,12 +67,28 @@ class TeachersController extends Controller
         {
             $teacher->matters()->sync([$request->poste]);
         }
-        }else{
+        }elseif($request->fonction == 'rh' && !$request->admin){
             $teacher = new Teacher();
             $teacher->nom_teacher = $request->nom_teacher;
             $teacher->date_naissance = $request->date_naissance;
             $teacher->poste = 'Ressources Humains';
             $teacher->fonction = $request->fonction;
+            $teacher->sexe = $request->sexe;
+            $teacher->email = $request->email;
+            $teacher->num_fix = $request->num_fix;
+            $teacher->num_portable = $request->num_portable;
+            $teacher->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+            $teacher->adresse = $request->adresse;
+            $teacher->cin = $request->cin;
+            $teacher->salaire = $request->salaire;
+            $teacher->user_id = \Auth::user()->id;
+            $teacher->save();
+        }else{
+            $teacher = new Teacher();
+            $teacher->nom_teacher = $request->nom_teacher;
+            $teacher->date_naissance = $request->date_naissance;
+            $teacher->poste = 'Ressources Humains';
+            $teacher->fonction = 'Administrateur';
             $teacher->sexe = $request->sexe;
             $teacher->email = $request->email;
             $teacher->num_fix = $request->num_fix;

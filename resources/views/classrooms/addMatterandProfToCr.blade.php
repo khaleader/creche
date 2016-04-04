@@ -92,7 +92,7 @@
                             <label for="cname" class="control-label col-lg-3">Professeur</label>
                             <div class="form_ajout">
                                                 {!!  Form::select('teacher',
-                    App\Teacher::where('user_id',\Auth::user()->id)->
+                    \Auth::user()->teachers()->whereIn('fonction',['professeur'])->
                     lists('nom_teacher','id') ,null,['class'=>'form_ajout_input']) !!}
 
                             </div>

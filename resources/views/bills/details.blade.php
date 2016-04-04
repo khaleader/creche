@@ -136,7 +136,7 @@
 
 
             <div class="text-center invoice-btn">
-                <a href="{{  action('BillsController@show',[$bill->child->id]) }}" class="btn btn-success btn-lg">Retour</a>
+                <a href="{{  action('BillsController@index') }}" class="btn btn-success btn-lg">Retour</a>
                 <a href="{{  action('BillsController@imprimer',[$bill->id]) }}" target="_blank" class="btn btn-primary btn-lg"><i class="fa fa-print"></i>Imprimer</a>
             </div>
             <div class="row">

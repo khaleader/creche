@@ -36,7 +36,8 @@ Route::get('schools/editer/{id}','SchoolsController@editer');
 
 Route::post('schools/show_price_bills','SchoolsController@show_price_bills');
 Route::post('schools/price_bills_store','SchoolsController@price_bills_store');
-
+Route::post('schools/check_gestion_users','SchoolsController@check_gestion_users');
+Route::any('schools/gestion_users/{id?}','SchoolsController@gestion_users');
   /*
    * connexion login
    * */

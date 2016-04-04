@@ -178,37 +178,63 @@
                             success: function(data){
                                 if(data == 'oui')
                                 {
-                                    alertify.confirm('confirm')
-                                            .set({
-                                                'labels':{ok:'Oui', cancel:'Non'},
-                                                'message': 'ne pas demander le mot de pass une autre fois dans cette session ? ',
-                                                'transition': 'fade',
-                                                'onok': function(){
-                                                    $.cookie('reglercookie',1);
-                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    bootbox.dialog({
+                                        message: "Choisissez le mode de paiement",
+                                        title: "modes de paiement",
+                                        buttons: {
+                                            success: {
+                                                label: "Espèce",
+                                                className: "btn-success",
+                                                callback: function() {
                                                     $.ajax({
                                                         url: '{{  URL::action('BillsController@regler')}}',
-                                                        data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                                                        data: 'regler=' + $('#boxesregler').text()
+                                                        + '&mode=' + 'espèce'
+                                                        + '&_token=' + CSRF_TOKEN,
                                                         type: 'post',
                                                         success: function (data) {
-                                                            location.reload();
-                                                            // console.log(data);
-                                                        }
-                                                    });
-                                                },
-                                                'oncancel': function(){
-                                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                                                    $.ajax({
-                                                        url: '{{  URL::action('BillsController@regler')}}',
-                                                        data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
-                                                        type: 'post',
-                                                        success: function (data) {
-                                                            location.reload();
-                                                            // console.log(data);
+                                                            NotAskAgain();
                                                         }
                                                     });
                                                 }
-                                            }).show();
+                                            },
+                                            danger: {
+                                                label: "Virement",
+                                                className: "btn-danger",
+                                                callback: function() {
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text()
+                                                        + '&mode=' + 'Virement'
+                                                        + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            NotAskAgain();
+                                                        }
+                                                    });
+                                                }
+                                            },
+                                            main: {
+                                                label: "Chèque",
+                                                className: "btn-primary",
+                                                callback: function() {
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text()
+                                                        + '&mode=' + 'Chèque'
+                                                        + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            NotAskAgain();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+
+
+
                                 }else{
                                     alertify.alert('Mot de pass incorrect');
                                     return false;
@@ -220,18 +246,106 @@
                         'labels':{ok:'Oui', cancel:'Non'},
                     });
                 }else{
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
-                        url: '{{  URL::action('BillsController@regler')}}',
-                        data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
-                        type: 'post',
-                        success: function (data) {
-                            location.reload();
-                            // console.log(data);
+                    bootbox.dialog({
+                        message: "Choisissez le mode de paiement",
+                        title: "modes de paiement",
+                        buttons: {
+                            success: {
+                                label: "Espèce",
+                                className: "btn-success",
+                                callback: function() {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+                                        url: '{{  URL::action('BillsController@regler')}}',
+                                        data: 'regler=' + $('#boxesregler').text()
+                                        + '&mode=' + 'espèce'
+                                        + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            },
+                            danger: {
+                                label: "Virement",
+                                className: "btn-danger",
+                                callback: function() {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+                                        url: '{{  URL::action('BillsController@regler')}}',
+                                        data: 'regler=' + $('#boxesregler').text()
+                                        + '&mode=' + 'Virement'
+                                        + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            },
+                            main: {
+                                label: "Chèque",
+                                className: "btn-primary",
+                                callback: function() {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+
+                                        url: '{{  URL::action('BillsController@regler')}}',
+                                        data: 'regler=' + $('#boxesregler').text()
+                                        + '&mode=' + 'Chèque'
+                                        + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            }
                         }
                     });
                 }
             });
+
+
+            function NotAskAgain()
+            {
+
+                alertify.confirm('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'ne pas demander le mot de pass une autre fois dans cette session ? ',
+                            'transition': 'fade',
+                            'onok': function(event){
+                                $.cookie('reglercookie',1);
+                                location.reload();
+                                /*  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                 $.ajax({
+                                 url: '{{--  URL::action('BillsController@regler')--}}',
+                                 data: 'regler=' + $('#boxesregler').text() +
+                                 '&mode=' + type + '&_token=' + CSRF_TOKEN,
+                                 type: 'post',
+                                 success: function (data) {
+                                 location.reload();
+                                 // console.log(data);
+                                 }
+                                 });*/
+                            },
+                            'oncancel': function(){
+                                location.reload();
+                                /* var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                 $.ajax({
+                                 url: '{{--  URL::action('BillsController@regler')--}}',
+                                 data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                                 type: 'post',
+                                 success: function (data) {
+                                 location.reload();
+                                 // console.log(data);
+                                 }
+                                 });*/
+                            }
+                        }).show();
+            }
 
             // action non  pas régler une facture and make status 0
             $('#non-regler-bills').click(function () {

@@ -282,7 +282,8 @@ class ClassroomsController extends Controller
                 ]);
             }
             else{
-                $level->lesClasses()->sync([$cr->id]);
+                $classe->lesNiveaux()->sync([$level->id]);
+               // $level->lesClasses()->sync([$cr->id]);
             }
 
 

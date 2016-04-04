@@ -15,11 +15,13 @@
 
 
                 </div>
+                @if($teacher->date_naissance->diffInYears(\Carbon\Carbon::now()) !== Carbon\Carbon::now()->year)
                 <div class="age_date">
                     <div class="age"><span>{{ $teacher->date_naissance->diffInYears(\Carbon\Carbon::now()) }} Ans</span><div class="age_sep_date"></div></div>
                     <div class="date"><span>{{ $teacher->date_naissance->format('d-m-Y') }}</span></div>
 
                 </div>
+                    @endif
             </section>
           <!--  <section class="panel">
                 <a href="">

@@ -12,6 +12,7 @@ use App\Http\Requests\ajouterEnfantRequest;
 use App\PriceBill;
 use App\PromotionAdvance;
 use App\PromotionExceptional;
+use App\SchoolYear;
 use App\Transport;
 use App\User;
 use Carbon\Carbon;

@@ -42,7 +42,10 @@ class User extends Model implements AuthenticatableContract,
 
 
 
-
+   public function scopeUserId($query)
+   {
+       $query->where('user_id',\Auth::user()->id);
+   }
 
     public function isAdmin()
     {

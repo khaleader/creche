@@ -152,11 +152,23 @@
                     </div>
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Niveau global
+                            <?php $getGrade ='';
+                            $gradeName = '';
+                            ?>
                             @foreach($cr->lesNiveaux as $niv)
                                 <strong style="background-color: #337AB7" class="label label-primary">  {{  $niv->grade->name  }} </strong>
+                                <?php
+                                $getGrade =$niv->grade->id;
+                                $gradeName = $niv->grade->name;
+                                ?>
                             @endforeach
+
                             @foreach($cr->levels as $niv)
                                 <strong style="background-color: #337AB7" class="label label-primary">  {{  $niv->grade->name  }} </strong>
+                                    <?php
+                                $getGrade =$niv->grade->id;
+                                 $gradeName = $niv->grade->name;
+                                ?>
                             @endforeach
 
                         </label>
@@ -164,8 +176,9 @@
                             {!!
                             Form::select('grade',
                              App\Grade::where('user_id',\Auth::user()->id)->
-                             lists('name','id') ,null,['class'=>'form_ajout_input','id'=>'grade'])
+                             lists('name','id') ,$getGrade,['class'=>'form_ajout_input','id'=>'grade'])
                              !!}
+
 
                         </div>
                     </div>
@@ -182,24 +195,34 @@
                         </label>
                         <div class="form_ajout">
                             <select id="niveau" name="niveau" class="form_ajout_input">
-
+                                @foreach($cr->levels as $niv)
+                                    <option  selected value="{{ $niv->id }}"> {{ $niv->niveau }}</option>
+                                @endforeach
+                                    @foreach($cr->lesNiveaux as $niv)
+                                        <option  selected value="{{ $niv->id }}"> {{ $niv->niveau }}</option>
+                                    @endforeach
 
                             </select>
 
                         </div>
                     </div>
+                    @if($gradeName == 'Lycée')
                     <div class="form_champ" id="branche-bloc">
                         <label for="cname" class="control-label col-lg-3">Branche
+                            <?php $brancheId = ''; ?>
                             @foreach($cr->branches as $br)
                                 <strong style="background-color: #337AB7" class="label label-primary">  {{  $br->nom_branche  }} </strong>
+                                <?php $brancheId = $br->id;  ?>
                             @endforeach
                         </label>
+
                         <div class="form_ajout">
                             {!!  Form::select('branche',
-App\Branch::where('user_id',\Auth::user()->id)->
-lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !!}
+                        App\Branch::where('user_id',\Auth::user()->id)->
+                        lists('nom_branche','id') ,$brancheId,['class'=>'form_ajout_input','id'=>'branche']) !!}
                         </div>
                     </div>
+                    @endif
 
 
 
@@ -271,9 +294,9 @@ lists('nom_branche','id') ,null,['class'=>'form_ajout_input','id'=>'branche']) !
         });
 
       //  $('#branche').prepend("<option selected>sélectionnez s'il vous plait</option>");
-        $('#niveau').prop('disabled','disabled');
-        $('#grade').prepend("<option selected>sélectionnez s'il vous plait</option>");
-        $('#branche-bloc').hide();
+        //$('#niveau').prop('disabled','disabled');
+        $('#grade').prepend("<option >cliquez ici puis resélectionnez</option>");
+       // $('#branche-bloc').hide();
         $('#grade').on('change',function(){
             var grade_id = $(this).val();
             var grade_text =  $(this).find('option:selected').text();
