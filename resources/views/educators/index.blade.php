@@ -11,7 +11,7 @@
                     <div class="panel-body bloc_informations">
 
                         <img src="{{ asset('images/professeurs.png') }}" ><span class="count">
-      {{ \App\Teacher::where('user_id',\Auth::user()->id)->count() }}
+      {{ \Auth::user()->teachers()->whereIn('fonction',['professeur'])->count() }}
                         </span><p>Professeurs</p>
                     </div></a>
             </section>

@@ -13,6 +13,10 @@
             size: auto;   /* auto is the initial value */
             margin: 0;  /* this affects the margin in the printer settings */
         }
+        img{
+            width:200px !important;
+            height:142px !important;
+        }
     </style>
 
 </head>
@@ -22,10 +26,14 @@
     <div class="col-md-12">
         <section class="panel">
             <div class="panel-body invoice">
-                <div class="invoice-header">
+                <div class="invoice-header" style="height: 182px;">
                     <div class="invoice-title col-md-3 col-xs-2">
                         <!--<h1>Facture</h1>-->
-                        <img src="images/logo_école.png">
+                        @if(\Auth::user()->profile->logo)
+                            <img height="142" width="200" src="{{ asset('uploads/'.Auth::user()->profile->logo) }}">
+                        @else
+                            <img height="142" width="200" src="{{ asset('images/no_logo.png') }}">
+                        @endif
 
                     </div>
                     <div class="invoice-info col-md-9 col-xs-10">
@@ -56,8 +64,11 @@
                             Tél: {{  $bill->child->family->numero_portable }}<br>
                             Email : {{  $bill->child->family->email_responsable  }}
                         </p>
+
+
                     </div>
-                    <div class="col-md-4 col-sm-5 pull-right">
+
+                    <div class="col-md-4 col-sm-5 pull-right putInsideRight">
                         <div class="row">
                             <div class="col-md-4 col-sm-5 inv-label">N° Facture :{{  $bill->id }}</div>
                         </div>
@@ -72,10 +83,11 @@
                             <div class="col-md-4 col-sm-5 inv-non-reglee"><div class="icone_non_reglee"></div><span>Non réglée</span></div>
                         </div>
                         <br>
-
-
-
                     </div>
+
+
+
+
                 </div>
                 <div id="invoice_object"><p>Cher
                         @if($bill->child->family->responsable == 0)
@@ -143,7 +155,7 @@
                 <div class="row">
                     <div class="invoice_remarque">
                         <h3>Merci beaucoup !</h3>
-                        <p>école {{ Auth::user()->name }} </p></div></div>
+                        <p>école Hassania</p></div></div>
 
             </div>
 

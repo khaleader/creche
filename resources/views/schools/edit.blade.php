@@ -31,11 +31,11 @@
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail " ></div>
 
-                            {!! Form::open(['url' => action('SchoolsController@upimageecole'),'files' => true]) !!}
+                            {!! Form::open(['url' => action('SchoolsController@upimageecole'),'files' => true,'id'=>'FormImage']) !!}
                         @if($school->photo)
                             <div class="btn_upload">
                            <span class="btn btn-white btn-file">
-                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>  Modifier La Photo</span>
+                            <span class="fileupload-new"><i class="fa fa-paper-clip"></i>  Changer La Photo</span>
                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
                            <input type="file" class="default" name="photo" id="uploadFile" />
                            </span>
@@ -49,11 +49,52 @@
                            </span>
                                 </div>
                             @endif
-                            <button style="float:none; margin-left:33%" class="btn_form"
-                                    type="submit"  id="onlyphoto">Enregistrer</button>
                             {!! Form::close() !!}
 
                         </div>
+
+
+                    </div>
+                </div>
+            </section>
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="form-group last">
+
+                        {!! Form::open(['url' => action('ProfilesController@store'),'files' => true,'id'=>'FormLogo']) !!}
+                        @if(\Auth::user()->profile->logo)
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div class="fileupload-new  Photo_profile" >
+                                <img class="logo_school" src="{{ asset('uploads/'.Auth::user()->profile->logo) }}" alt="" />
+                            </div>
+                            <div class="fileupload-preview fileupload-exists thumbnail thumbnail_logo " ></div>
+
+                            <div class="btn_upload">
+                           <span class="btn btn-white btn-file">
+                           <span class="fileupload-new"><i class="fa fa-paper-clip"></i>Changer votre logo</span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input name="logo" type="file" class="default" />
+                           </span>
+                            </div>
+                        </div>
+                            @else
+                            <div class="fileupload fileupload-new" data-provides="fileupload">
+                                <div class="fileupload-new  Photo_profile" >
+                                    <img class="logo_school" src="{{ asset('images/no_logo.png') }}" alt="" />
+                                </div>
+                                <div class="fileupload-preview fileupload-exists thumbnail thumbnail_logo " ></div>
+
+                                <div class="btn_upload">
+                           <span class="btn btn-white btn-file">
+                           <span class="fileupload-new"><i class="fa fa-paper-clip"></i>Uploader votre logo</span>
+                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Changer</span>
+                           <input name="logo" type="file" class="default" />
+                           </span>
+                                </div>
+                            </div>
+                        @endif
+                            {!!  Form::close() !!}
+
 
 
                     </div>
@@ -732,6 +773,43 @@
                     'option', 'position', position
 
             );*/
+
+
+            $('input[name=logo]').on("change",function () {
+
+                var fileExtension = ['jpeg','jpg','png'];
+                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    // alert("Only '.jpeg','.jpg' formats are allowed.");
+                    alertify.alert(this.value);
+                    alertify.alert("Votre logo n'est pas valide");
+                    return false;
+                }
+                else {
+                  $('#FormLogo').submit();
+                }
+            });
+            $('input[name=photo]').on("change",function () {
+
+                var fileExtension = ['jpeg','jpg','png'];
+                if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+                    // alert("Only '.jpeg','.jpg' formats are allowed.");
+                    alertify.alert(this.value);
+                    alertify.alert("Votre Image n'est pas valide");
+                    return false;
+                }
+                else {
+                    $('#FormImage').submit();
+                }
+            });
+
+
+
+
+
+
+
+
+
         });
     </script>
     @stop

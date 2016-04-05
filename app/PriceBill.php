@@ -85,6 +85,7 @@ class PriceBill extends Model
 
     public static function getNiveauPrice($niveau)
     {
+
         $price = \Auth::user()->pricebills()->where('niveau',$niveau)->first();
         return $price->prix;
     }

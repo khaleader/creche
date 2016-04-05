@@ -27,4 +27,19 @@ class PromotionStatus extends Model
     }
 
 
+
+
+
+    public static function PromotionCase()
+    {
+        $status = PromotionStatus::where('user_id',\Auth::user()->id)->where('global',1)->first();
+        if($status)
+        {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }

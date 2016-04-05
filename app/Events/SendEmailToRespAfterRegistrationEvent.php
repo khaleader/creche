@@ -65,7 +65,7 @@ class SendEmailToRespAfterRegistrationEvent extends Event
 
         $user = new User();
         $user->nom_responsable = $this->nom_responsable;
-        $user->name = \Auth::user()->name;
+        $user->name = $this->nom_responsable;
         $user->type = 'famille';
         $user->email = $this->pseudo_compte_famille;
         $user->password = \Hash::make($this->mot_de_pass_temporaire_compte_famille);

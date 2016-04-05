@@ -50,6 +50,12 @@ Route::post('auth/login', ['as'=>'auth.login','uses'=>'Auth\AuthController@postL
 Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 
+/*   Profiles Controller **/
+
+Route::resource('profiles','ProfilesController');
+
+
+
 /********* ChildrenController         *****************/
 Route::match(['get','post'],'enfbyalph','ChildrenController@enfbyalph');
 Route::match(['get','post'],'ajouter_enfant','ChildrenController@create_enfant');

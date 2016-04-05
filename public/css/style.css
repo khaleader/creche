@@ -7626,3 +7626,60 @@ td.drop.droppable{
     margin-top: 2px;
     margin-right: 5px;
 }
+
+
+.promotion{
+    height: 50px;
+    background-color: #A9D86E;
+    border-radius: 3px;
+}
+.promotion img{
+    float: left;
+    margin-top: -5px;
+}
+
+.promotion span{
+    color: #fff;
+    font-size: 15px;
+    font-family: inherit;
+    margin-left: 15px;
+
+}
+
+.promotion_inactif{
+    height: 50px;
+    background-color: #d9534f;
+    border-radius: 3px;
+}
+.promotion_inactif img{
+    float: left;
+    margin-top: -5px;
+}
+
+.promotion_inactif span{
+    color: #fff;
+    font-size: 15px;
+    font-family: inherit;
+    margin-left: 15px;
+
+}
+
+.logo_school{
+    width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    vertical-align: middle;
+    height: 150px;
+    margin-bottom: 15px;
+
+}
+.thumbnail_logo{
+    border-radius: 0%;
+    border: none;
+    padding: 0px !important;
+    width: 150px;
+
+
+
+}

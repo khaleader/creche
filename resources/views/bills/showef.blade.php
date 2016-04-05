@@ -39,7 +39,7 @@
                                         </div></td>
                                     <td>{{ $bills->id }}</td>
                                     <td>{{  $bills->start->format('d-m-Y') }} </td>
-                                    <td>{{ $bills->somme }} Dhs</td>
+                                    <td>{{ $bills->somme }},00 Dhs</td>
                                     <td><span class="label {{ $bills->status == 0 ? 'label-danger' : 'label-success'  }} label-mini">
                                    {{ $bills->status == 0 ? 'Non Réglée ' : 'Réglée'  }}   </span>
                                     </td>

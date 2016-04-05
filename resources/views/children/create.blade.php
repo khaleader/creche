@@ -70,6 +70,25 @@
             </section>
 
   <!--  3 links nav -->
+             <?php $status =\App\PromotionStatus::PromotionCase();  ?>
+            @if($status)
+
+            <section class="panel">
+                <a href="{{ action('SchoolsController@promotion',[\Auth::user()->id]) }}">
+                    <div class="panel-body promotion">
+                        <img src="{{ asset('images/promotion.png') }}"><span>Promotion activée</span>
+                    </div></a>
+            </section>
+            @else
+
+            <section class="panel">
+                <a href="{{ action('SchoolsController@promotion',[\Auth::user()->id]) }}">
+                    <div class="panel-body promotion_inactif">
+                        <img src="{{ asset('images/promotion.png') }}"><span>Promotion désactivée</span>
+                    </div></a>
+            </section>
+            @endif
+
             <section class="panel">
                 <a href="{{ action('ChildrenController@index') }}">
                     <div class="panel-body bloc_informations">
@@ -104,6 +123,8 @@
             <!--  3 links nav -->
         </div>
         <div class="col-sm-9">
+
+
 
 
             <section class="panel">
@@ -1082,8 +1103,8 @@
                    });
                     @endif
 
-
               });
+
 
 
 
