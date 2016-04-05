@@ -2,7 +2,6 @@
 <script>
     $(document).ready(function() {
         $('#gestion-utilis').on('click',function(e){
-
             e.preventDefault();
             <?php  $admin=\Auth::user()->teachers()->where('fonction','Administrateur')
             ->whereNotNull('pass')->first(); ?>
@@ -17,6 +16,7 @@
                         if (data == 'oui') {
                           window.location = $('#gestion-utilis').attr('href');
                             $.cookie('admin',5);
+                            {{ Session::put('adminExistsWithPass',1)  }}
                         }
                         if(data == 'no')
                         {

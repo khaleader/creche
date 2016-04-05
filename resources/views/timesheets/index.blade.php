@@ -84,7 +84,23 @@
                                     </div>
                                 </div></td>
                             <td>{{ $ts->nom_classe }}</td>
-                            <td>{{ $ts->branche?:'--' }}</td>
+
+                            <td>
+                                @if($ts->branches->isEmpty())
+
+                              {{ '---' }}
+                               @else
+                                @foreach($ts->branches as $br)
+                                @if($br->nom_branche)
+
+                                {{ $br->nom_branche }}
+                              @else
+                               {{ '---' }}
+                               @endif
+                                @endforeach
+                                @endif
+                            </td>
+
                             <td>
                                 <a href="{{ action('TimesheetsController@delete',[$ts]) }}" class="actions_icons delete-ts">
                                     <i class="fa fa-trash-o liste_icons"></i></a>

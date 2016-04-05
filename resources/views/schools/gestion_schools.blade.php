@@ -7,6 +7,8 @@
     @include('partials.alert-success')
     @include('partials.alert-errors')
 
+
+
 <div class="row">
 
         <div class="col-sm-3">
@@ -118,6 +120,8 @@
 <div class="row"></div>
 
 
+
+
 @endsection
 
 @section('jquery')
@@ -138,16 +142,31 @@
                         {
                             location.reload();
                         }
-
                     }
                 });
             });
 
 
+
+            setInterval(function(){
+               <?php
+                if(\Auth::user()->teachers()->where('fonction','Administrateur')
+               ->whereNotNull('pass')->first())
+               {
+               ?>
+             if(!$.cookie('admin'))
+               {
+                   alertify.success("veuillez tapez la clé d'utilisation pour confirmer");
+                   window.location.href = '{{ action('HomeController@index') }}';
+               }
+                <?php
+                  }
+                ?>
+
+            },10000);
+
         });
-        $(window).unload(function(){
-            $.removeCookie('admin');
-        });
+
 
 
 

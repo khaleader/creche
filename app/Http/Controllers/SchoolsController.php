@@ -97,6 +97,7 @@ class SchoolsController extends Controller
     {
           if(\Request::isMethod('get'))
           {
+
               if($id == \Auth::user()->id)
               {
                   return view('schools.gestion_schools');

@@ -94,10 +94,14 @@ class PlansController extends Controller
                                 </td>';
 
                          echo '   <td>';
-                                foreach (Matter::where('id',$plan->matter_id)->first()->lesteachers  as $item)
+                                foreach (Matter::where('id',$plan->matter_id)->first()->lesteachers->unique()  as $item)
                                     echo $item->nom_teacher;
 
                        echo  '</td>';
+
+                       echo '<td>';
+                            echo $plan->dayname;
+                       echo '</td>';
 
                            echo '<td>';
                          echo substr(Carbon::parse($plan->time)->toTimeString(),0,-3);
@@ -159,7 +163,9 @@ class PlansController extends Controller
 
 
             $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->CurrentYear()
                 ->where('matter_id','!=',0)->get();
+
 
 
 
@@ -171,7 +177,7 @@ class PlansController extends Controller
                     ->where("dayname", $plan->dayname)
                     ->CurrentYear()
                     ->first();
-                if($salle->room_id == $room_id)
+                if($salle && $salle->room_id == $room_id)
                 {
                         echo '<tr>';
                         echo '    <td> ' . Classroom::where('id', $plan->classroom_id)->CurrentYear()->first()->nom_classe . '</td>';
@@ -182,10 +188,14 @@ class PlansController extends Controller
                                 </td>';
 
                         echo '   <td>';
-                        foreach (Matter::where('id', $plan->matter_id)->first()->lesteachers as $item)
+                        foreach (Matter::where('id', $plan->matter_id)->first()->lesteachers->unique() as $item)
                             echo $item->nom_teacher;
 
                         echo '</td>';
+                    echo '<td>';
+                    echo $plan->dayname;
+                    echo '</td>';
+
 
                         echo '<td>';
                         echo substr(Carbon::parse($plan->time)->toTimeString(), 0, -3);

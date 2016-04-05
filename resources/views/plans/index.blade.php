@@ -66,6 +66,7 @@
                             <th>La classe</th>
                             <th>Matière</th>
                             <th>Professeur</th>
+                            <th>Jour</th>
                             <th>Heure</th>
                             <th>Salle</th>
                             <th>Niveau</th>
@@ -86,11 +87,14 @@
                                <?php
                                 $matiere =\App\Matter::where('id',$plan->matter_id)
                                         ->first();
-                                foreach ( $matiere->lesteachers  as $item) {
+                                foreach ( $matiere->lesteachers->unique()  as $item) {
                                     echo $item->nom_teacher;
                                 }
                                 ?>
 
+                            </td>
+                            <td>
+                            {{ $plan->dayname }}
                             </td>
 
                             <td>{{ substr(\Carbon\Carbon::parse($plan->time)->toTimeString(),0,-3)  }}</td>
