@@ -383,6 +383,7 @@ class SchoolsController extends Controller
             $profile->identification_fiscale = $request->identification_fiscale;
             $profile->cnss = $request->cnss;
             $profile->rib = $request->rib;
+            $profile->ice = $request->ice;
             $profile->save();
              return redirect()->back()->with('success','Modifications réussies');
         }

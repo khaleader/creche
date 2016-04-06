@@ -57,12 +57,15 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-5 inv-label">Date : {{  $bill->start->toFormattedDateString() }}</div>
                         </div>
+                        @if($bill->status == 1)
                         <div class="row">
                             <div class="col-md-4 col-sm-5 inv-reglee"><div class="icone_reglee"></div><span>Réglée</span></div>
                         </div>
+                        @else
                         <div class="row">
                             <div class="col-md-4 col-sm-5 inv-non-reglee"><div class="icone_non_reglee"></div><span>Non réglée</span></div>
                         </div>
+                        @endif
                         <br>
                     </div>
 
@@ -136,7 +139,7 @@
                 <div class="row">
                     <div class="invoice_remarque">
                         <h3>Merci beaucoup !</h3>
-                        <p>école Hassania</p></div></div>
+                        <p>école {{ \Auth::user()->name }}</p></div></div>
 
             </div>
 
@@ -158,7 +161,7 @@
                         <li>RC : {{ Auth::user()->profile->registre_du_commerce }}</li>
                         <li>IF : {{ Auth::user()->profile->identification_fiscale }}</li>
                         <li>CNSS : {{ Auth::user()->profile->cnss }}</li>
-                        <li>ICE : </li>
+                        <li>ICE :  {{ Auth::user()->profile->ice }}</li>
 
 
                     </ul>

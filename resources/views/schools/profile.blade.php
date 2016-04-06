@@ -91,6 +91,11 @@
                         </tr>
                         <tr>
                             <td><span><strong>RIB :</strong> {{ \Auth::user()->profile->rib }} </span></td>
+
+                        </tr>
+                        <tr>
+                            <td><span><strong>ICE :</strong> {{ \Auth::user()->profile->ice }} </span></td>
+
                         </tr>
                         </tbody>
                     </table>

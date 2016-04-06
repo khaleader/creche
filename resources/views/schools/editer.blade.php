@@ -171,6 +171,16 @@
 
                             </div>
                         </div>
+                        <div class="form_champ">
+                            <label for="cname" class="control-label col-lg-3">ICE</label>
+                            <div class="form_ajout">
+                                <input value="{{ \Auth::user()->profile->ice }}"
+
+                                       type="text" name="ice" class="form_ajout_input"
+                                       placeholder="Entrez le ICE">
+
+                            </div>
+                        </div>
 
 
 

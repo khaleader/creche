@@ -15,7 +15,7 @@
             margin: 0;  /* this affects the margin in the printer settings */
         }
         img{
-            width:200px !important;
+            width:250px !important;
             height:142px !important;
         }
         .table-invoice thead tr th {
@@ -50,9 +50,9 @@
                     <div class="invoice-title col-md-3 col-xs-2">
                         <!--<h1>Facture</h1>-->
                         @if(\Auth::user()->profile->logo)
-                            <img height="142" width="200" src="{{ asset('uploads/'.Auth::user()->profile->logo) }}">
+                            <img height="142" width="300" src="{{ asset('uploads/'.Auth::user()->profile->logo) }}">
                         @else
-                            <img height="142" width="200" src="{{ asset('images/no_logo.png') }}">
+                            <img height="142" width="300" src="{{ asset('images/no_logo.png') }}">
                         @endif
 
                     </div>
@@ -96,12 +96,15 @@
                         <div class="row">
                             <div class="col-md-4 col-sm-5 inv-label">Date : {{  $bill->start->toFormattedDateString() }}</div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-5 inv-reglee"><div class="icone_reglee"></div><span>Réglée</span></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 col-sm-5 inv-non-reglee"><div class="icone_non_reglee"></div><span>Non réglée</span></div>
-                        </div>
+                        @if($bill->status == 1)
+                            <div class="row">
+                                <div class="col-md-4 col-sm-5 inv-reglee"><div class="icone_reglee"></div><span>Réglée</span></div>
+                            </div>
+                        @else
+                            <div class="row">
+                                <div class="col-md-4 col-sm-5 inv-non-reglee"><div class="icone_non_reglee"></div><span>Non réglée</span></div>
+                            </div>
+                        @endif
                         <br>
                     </div>
 
@@ -175,7 +178,7 @@
                 <div class="row">
                     <div class="invoice_remarque">
                         <h3>Merci beaucoup !</h3>
-                        <p>école Hassania</p></div></div>
+                        <p>école {{ \Auth::user()->name }}</p></div></div>
 
             </div>
 
@@ -193,7 +196,7 @@
                         <li>RC : {{ Auth::user()->profile->registre_du_commerce }}</li>
                         <li>IF : {{ Auth::user()->profile->identification_fiscale }}</li>
                         <li>CNSS : {{ Auth::user()->profile->cnss }}</li>
-                        <li>ICE : </li>
+                        <li>ICE :  {{ Auth::user()->profile->ice }}</li>
 
 
                     </ul>
