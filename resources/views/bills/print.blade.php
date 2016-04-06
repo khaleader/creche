@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
+
     <meta charset="UTF-8">
     <title>Print</title>
     <link rel="stylesheet" href="{{  asset('css/invoice-print.css') }}">
@@ -17,6 +18,20 @@
             width:200px !important;
             height:142px !important;
         }
+        .table-invoice thead tr th {
+            background: #e8e9f0 !important;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            vertical-align: middle;
+        }
+        .table-invoice tbody tr td {
+            background: #f5f6f9 !important;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            vertical-align: middle;
+        }
+
+
     </style>
 
 </head>
