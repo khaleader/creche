@@ -92,6 +92,8 @@ Route::post('children/getLevelWhenGradeIsChosen','ChildrenController@getLevelWhe
 // retourne la class de la crèche en ajax
 Route::post('children/getclassforcreche','ChildrenController@getclassforcreche');
 
+
+Route::any('children/changeClasse/{id?}','ChildrenController@changeClasse');
 Route::resource('children','ChildrenController');
 
 /**********************   FamiliesController *********************/

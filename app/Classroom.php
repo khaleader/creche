@@ -51,7 +51,7 @@ class Classroom extends Model
         return $this->belongsToMany(Branch::class,'branch_classroom_level');
     }
 
-
+   // for lycée
     public function levels()
     {
         return $this->belongsToMany(Level::class,'branch_classroom_level');

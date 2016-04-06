@@ -102,11 +102,11 @@
                         </tr>
                         <tr>
 
-                            <td><span><strong>Niveau : </strong>{{ $cr->niveau }} </span></td>
+                            <td><span><strong>Niveau : </strong>{{ \Auth::user()->leslevels()->where('id',$cr->niveau)->first()->niveau }} </span></td>
                         </tr>
                         <tr>
 
-                            <td><span><strong>Branche : </strong>{{ $cr->branche }} </span></td>
+                            <td><span><strong>Branche : </strong>{{ \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche  }} </span></td>
                         </tr>
                         </tbody>
                     </table>

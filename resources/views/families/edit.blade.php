@@ -50,13 +50,13 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Nom de l'homme</label>
                             <div class="form_ajout">
-                                <input type="text" disabled value="{{ $family->nom_pere }}" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
+                                <input type="text"  value="{{ $family->nom_pere }}" name="nom_pere" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
                             </div>
                         </div>
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Nom de la femme</label>
                             <div class="form_ajout">
-                                <input type="text" disabled value="{{ $family->nom_mere }}" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
+                                <input type="text"  value="{{ $family->nom_mere }}" name="nom_mere" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
                             </div>
                         </div>
                         <div class="form_champ">
@@ -88,13 +88,13 @@
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Numero fixe</label>
                             <div class="form_ajout">
-                                {!! Form::text('numero_fixe', $family->numero_fixe,['class'=>'form_ajout_input']) !!}
+                                {!! Form::text('numero_fixe', $family->numero_fixe,['class'=>'form_ajout_input','data-mask'=>'00000000000']) !!}
                             </div>
                         </div>
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Numero portable</label>
                             <div class="form_ajout">
-                                {!! Form::text('numero_portable', $family->numero_portable,['class'=>'form_ajout_input']) !!}
+                                {!! Form::text('numero_portable', $family->numero_portable,['class'=>'form_ajout_input','data-mask'=>'00000000000']) !!}
 
 
                             </div>
@@ -121,6 +121,7 @@
 @endsection
 
 @section('jquery')
+    <script src="{{ asset('js\jquery.mask.min.js') }}"></script>
     <script>
         $(document).ready(function(){
             $('div.pdp').hide();

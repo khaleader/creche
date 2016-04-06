@@ -60,6 +60,7 @@
                     <ul role="menu" class="dropdown-menu" style="left: 0;">
                         <li><a  href="{{ action('ChildrenController@edit',[$child->id]) }}">Modifier</a></li>
                         <li><a class="delete-child" href="{{ action('ChildrenController@delete',[$child->id]) }}">Supprimer</a></li>
+                        <li><a  href="{{ action('ChildrenController@changeClasse',[$child->id]) }}">Changer La Classe</a></li>
                     </ul>
                 </div>
 

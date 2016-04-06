@@ -51,14 +51,14 @@
                         <label for="cname" class="control-label col-lg-3">Nom de l'élève</label>
                         <div class="form_ajout">
 
-                            <input type="text" disabled value="{{ $child->nom_enfant }}" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
+                            <input type="text"  value="{{ $child->nom_enfant }}" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'enfant">
 
                         </div>
                     </div>
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Date de naissance</label>
                         <div class="form_ajout">
-                            <input disabled value="{{ \Carbon\Carbon::parse($child->date_naissance)->toDateString() }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
+                            <input  value="{{ \Carbon\Carbon::parse($child->date_naissance)->toDateString() }}" type="date" name="date_naissance" class="form_ajout_input foronlydate" placeholder="Entrez la date de naissance de l'enfant">
                             <div class="icone_input"><i class="fa fa-"></i></div>
                         </div>
                     </div>
@@ -78,63 +78,6 @@
 
                         </div>
                     </div>
-
-                    <div class="form_champ c">
-                        <label for="cname" class="control-label col-lg-3">Niveau Global * </label>
-                        <div class="form_ajout">
-                            <select id="grade" name="grade" class="form_ajout_input">
-                                <option selected>Sélectionnez</option>
-                                @foreach(\Auth::user()->grades as $grade)
-                                    <option data-value="{{ $grade->name }}" value="{{ $grade->id }}">{{ $grade->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="form_champ c" id="niveau-bloc">
-                        <label for="cname" class="control-label col-lg-3">Le Niveau * </label>
-                        <div class="form_ajout">
-                            <select id="niveau" name="niveau" class="form_ajout_input">
-
-
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="form_champ c">
-                        <label for="cname" class="control-label col-lg-3">La Classe * </label>
-                        <div class="form_ajout">
-                            <select id="classe" name="classe" class="form_ajout_input">
-
-
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <div class="form_champ c" id="branche-bloc">
-                        <label for="cname" class="control-label col-lg-3">La Branche * </label>
-                        <div class="form_ajout">
-                            <select id="branche" name="branche" class="form_ajout_input">
-
-                                <option selected>Choisissez une branche</option>
-                                @foreach(\Auth::user()->branches as $branch)
-                                    <option value="{{ $branch->id }}">{{ $branch->nom_branche }}</option>
-                                @endforeach
-
-                            </select>
-
-                        </div>
-                    </div>
-
-
-
-
-
-
-
 
 
                     <div class="form_champ">
@@ -163,7 +106,7 @@
                         <label for="cname" class="control-label col-lg-3">Nom du pére</label>
                         <div class="form_ajout">
 
-                            <input type="text" disabled   value="{{  $child->family->nom_pere }}" name="nom_mere" class="form_ajout_input" >
+                            <input type="text"   value="{{  $child->family->nom_pere }}" name="nom_pere" class="form_ajout_input" >
 
                         </div>
                     </div>
@@ -171,7 +114,7 @@
                         <label for="cname" class="control-label col-lg-3">Nom de la mère</label>
                         <div class="form_ajout">
 
-                                  <input type="text"  disabled  value="{{  $child->family->nom_mere }}" name="nom_mere" class="form_ajout_input" >
+                                  <input type="text"   value="{{  $child->family->nom_mere }}" name="nom_mere" class="form_ajout_input" >
 
                         </div>
                     </div>
@@ -204,13 +147,13 @@
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Numero fixe</label>
                         <div class="form_ajout">
-                            {!! Form::text('numero_fixe', $child->family->numero_fixe,['class'=>'form_ajout_input']) !!}
+                            {!! Form::text('numero_fixe', $child->family->numero_fixe,['class'=>'form_ajout_input','data-mask'=>'00000000000']) !!}
                         </div>
                     </div>
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Numero portable</label>
                         <div class="form_ajout">
-                            {!! Form::text('numero_portable', $child->family->numero_portable,['class'=>'form_ajout_input']) !!}
+                            {!! Form::text('numero_portable', $child->family->numero_portable,['class'=>'form_ajout_input','data-mask'=>'00000000000']) !!}
 
 
                         </div>
@@ -237,6 +180,7 @@
     @endsection
 
 @section('jquery')
+    <script src="{{ asset('js\jquery.mask.min.js') }}"></script>
     <script>
         $(document).ready(function(){
             $('div.pdp').hide();
@@ -271,166 +215,6 @@
                 $('option').parent('select[name=transport]').find('option[value="1"]').text('oui');
 
             }
-
-
-            $('#branche').prop('disabled','disabled');
-            $('#classe').on('change',function(){
-                var classe_id = $(this).val();
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('ChildrenController@getBranchWhenClassid')}}',
-                    data: 'classe_id=' + classe_id + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        $('#branche').prop('disabled','');
-                        $('#branche').empty();
-                        $('#branche').prepend('<option selected>selectionnez une branche</option>');
-                        $('#branche').append(data);
-                    }
-                });
-
-            });
-
-
-            $('#branche-bloc').hide();
-            $('#niveau').prop('disabled','disabled');
-            $('#grade').on('change',function() {
-                var grade_id = $(this).val();
-                var grade_text = $(this).find('option:selected').text();
-
-                if (grade_text == 'Crèche') {
-                    $('#branche-bloc').hide();
-                    $('#niveau-bloc').hide();
-                    $('#classe').prop('disabled', '');
-
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
-                        url: '{{  URL::action('ChildrenController@getclassforcreche')}}',
-                        data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
-                        type: 'post',
-                        success: function (data) {
-                            $('#classe').empty();
-                            $('#classe').prepend('<option selected>selectionnez une classe</option>');
-                            $('#classe').append(data);
-                        }
-                    });
-                } else {
-
-                    switch (grade_text) {
-                        case 'Primaire':
-                            $('#branche-bloc').hide();
-                            $('#niveau-bloc').show()
-                            $('#classe').prop('disabled', 'disabled');
-                            ;
-                            break;
-                        case 'Collège':
-                            $('#branche-bloc').hide();
-                            $('#niveau-bloc').show()
-                            $('#classe').prop('disabled', 'disabled');
-                            ;
-                            break;
-                        case 'Lycée':
-                            $('#branche-bloc').show();
-                            $('#niveau-bloc').show()
-                            $('#classe').prop('disabled', 'disabled');
-                            ;
-                            break;
-                        case 'Crèche' :
-                            $('#branche-bloc').hide();
-                            $('#niveau-bloc').hide();
-                            $('#classe').prop('disabled', '');
-                            ;
-                            break;
-                        case 'Maternelle' :
-                            $('#branche-bloc').hide();
-                            $('#niveau-bloc').show();
-                            $('#classe').prop('disabled', 'disabled');
-                            ;
-                            break;
-                    }
-                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                    $.ajax({
-                        url: '{{  URL::action('ChildrenController@getLevelWhenGradeIsChosen')}}',
-                        data: 'grade_id=' + grade_id + '&_token=' + CSRF_TOKEN,
-                        type: 'post',
-                        success: function (data) {
-                            $('#niveau').prop('disabled', '');
-                            $('#niveau').empty();
-                            $('#niveau').prepend('<option selected>selectionnez un niveau</option>');
-                            $('#niveau').append(data);
-                        }
-                    });
-                }
-            });
-
-            $('#classe').prop('disabled','disabled');
-            $('#niveau').on('change',function(){
-                var level_id = $(this).val();
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('ChildrenController@getClassroomWhenLevelId')}}',
-                    data: 'level_id=' + level_id + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        $('#classe').prop('disabled','');
-                        $('#classe').empty();
-                        $('#classe').prepend('<option selected>selectionnez une classe</option>');
-                        $('#classe').append(data);
-                    }
-                });
-
-            });
-
-            $('#niveau').click(function(){
-                $('#classe').empty();
-            });
-
-
-
-
-            $('#submit').click(function(){
-                var grade = $('#grade option:selected').text();
-                if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
-                {
-                    alertify.alert('vous devez choisir un niveau');
-                    return false;
-                }
-                if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
-                {
-                    alertify.alert('vous devez choisir une branche');
-                    return false;
-                }
-
-                if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
-                {
-                    alertify.alert('vous devez choisir un niveau');
-                    return false;
-                }
-                if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
-                {
-                    alertify.alert('vous devez choisir un niveau');
-                    return false;
-                }
-                if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
-                {
-                    alertify.alert('vous devez choisir un niveau');
-                    return false;
-                }
-                if(grade == 'Crèche' && !$.isNumeric($('#classe').val()))
-                {
-                    alertify.alert('vous devez choisir une classe');
-                    return false;
-                }
-                if($.isNumeric($('#niveau').val()) && !$.isNumeric($('#classe').val()))
-                {
-                    alertify.alert('vous devez choisir une classe');
-                    return false;
-                }
-
-
-
-            });
-
 
 
 

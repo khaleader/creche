@@ -446,6 +446,50 @@ class ChildrenController extends Controller
       return view('children.ajouter_enfant');
     }
 
+    // changer la classe pour un etudiant get and post
+    public function changeClasse(Request $request,$id = null)
+    {
+     if(\Request::isMethod('get'))
+     {
+         $child =\Auth::user()->children()->where('id',$id)->CurrentYear()->first();
+         return view('children.changeClasse',compact('child'));
+     }
+        if(\Request::isMethod('post'))
+        {
+           $validator = Validator::make($request->all(),[
+                'classe'=> 'required|numeric',
+            ],[
+               'classe.numeric' => "veuillez choisir une classe"
+           ]);
+            if(isset($request->branche) && !is_numeric($request->branche))
+            {
+                return redirect()->back()->withErrors(['veuillez choisir une branche']);
+            }
+
+            if($validator->passes())
+            {
+
+                $child = \Auth::user()->children()->where('id',$request->childId)->first();
+                $niveau =\Auth::user()->leslevels()->where('id',$request->niveauId)->first();
+                $child->classrooms()->sync([$request->classe]);
+                return redirect()->back()->with('success','Modifications réussies');
+            }else{
+                return redirect()->back()->withErrors($validator);
+            }
+
+
+
+
+
+
+        }
+    }
+
+
+
+
+
+
     /**
      * ajouter un enfant avec seulement l'id de parent
      * @param Request $request
@@ -678,17 +722,12 @@ class ChildrenController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
        $validator = Validator::make([
                $request->all(),
          //  'numero_fixe' =>$request->numero_fixe,
           // 'numero_portable' =>$request->numero_portable,
         //   'adresse' => $request->adresse,
            'photo' => $request->photo,
-           'classe' => $request->classe,
-           'niveau' => $request->niveau,
-           'grade' => $request->grade
 
         ],[
             // 'numero_fixe' => 'required',
@@ -698,7 +737,7 @@ class ChildrenController extends Controller
              //'classe' => 'required|integer',
             // 'branche' => 'integer',
             // 'niveau' => 'required_with:branche|integer',
-             'grade' => 'integer'
+            // 'grade' => 'integer'
         ],
             [
                // 'numero_fixe.required' => "Le tel fixe est requis",
@@ -708,29 +747,17 @@ class ChildrenController extends Controller
                // 'branche.integer' => "vous devez choisir une branche",
               //  'niveau.integer' => "vous devez choisir un niveau",
                // 'classe.integer' => "vous devez choisir une classe",
-                'grade.integer' => "vous devez choisir un niveau global",
+               // 'grade.integer' => "vous devez choisir un niveau global",
 
             ]);
            if($validator->passes())
             {
-                $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
+
                 $enfant = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
                 $enfant->nationalite =\DB::table('countries')->where('id',$request->nationalite)->first()->nom_fr_fr;
+                  $enfant->nom_enfant = $request->nom_enfant;
+                $enfant->date_naissance = $request->date_naissance;
                 $enfant->save();
-                if($niveau_global == 'Lycée')
-                {
-                    $enfant->branches()->sync([$request->branche]);
-                }
-                if($niveau_global == 'Maternelle' || $niveau_global == 'Primaire'
-                    || $niveau_global == 'Collège' || $niveau_global == 'Lycée')
-                {
-                    $enfant->levels()->sync([$request->niveau]);
-                }
-
-              /*  if($niveau_global == 'Crèche')
-                {
-                    $enfant->classrooms()->sync([$request->classe]);
-                }*/
 
 
                if($request->transport == 1)
@@ -747,14 +774,16 @@ class ChildrenController extends Controller
                }elseif($request->transport == 0)
                {
                    $child = Child::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+
                        $child->transport = $request->transport;
                        $child->save();
                }
-                $child->classrooms()->sync([$request->classe]);
                $family = Family::where('email_responsable',$request->em)->first();
                 $family->adresse = $request->adresse;
                 $family->numero_fixe  =$request->numero_fixe;
                 $family->numero_portable = $request->numero_portable;
+                $family->nom_pere = $request->nom_pere;
+                $family->nom_mere = $request->nom_mere;
                 $family->save();
 
                 $image = $request->photo;

@@ -421,15 +421,15 @@ class FamiliesController extends Controller
             'photo' => $request->photo
 
         ],[
-            'numero_fixe' => 'required',
-            'numero_portable'=> 'required',
-            'adresse'=> 'required',
+           // 'numero_fixe' => 'required',
+            //'numero_portable'=> 'required',
+            //'adresse'=> 'required',
             'photo' => 'image'
         ],
             [
-                'numero_fixe.required' => "Le tel fixe est requis",
-                'numero_portable.required' => "Le tel portable est requis",
-                'adresse.required' => "L'adresse est requis",
+                //'numero_fixe.required' => "Le tel fixe est requis",
+                //'numero_portable.required' => "Le tel portable est requis",
+                //'adresse.required' => "L'adresse est requis",
                 'photo.image' => "L'image doit etre de type valide JPEG\PNG"
 
             ]);
@@ -449,6 +449,8 @@ class FamiliesController extends Controller
                   $family->numero_fixe =$request->numero_fixe;
                   $family->numero_portable =$request->numero_portable;
                   $family->adresse =$request->adresse;
+                  $family->nom_mere = $request->nom_mere;
+                  $family->nom_pere = $request->nom_pere;
                   $family->save();
               }else{
                   $family = Family::findOrFail($id);
@@ -461,6 +463,8 @@ class FamiliesController extends Controller
                   $family->numero_fixe =$request->numero_fixe;
                   $family->numero_portable =$request->numero_portable;
                   $family->adresse =$request->adresse;
+                  $family->nom_mere = $request->nom_mere;
+                  $family->nom_pere = $request->nom_pere;
                   $family->photo = $filename;
                   $family->save();
               }

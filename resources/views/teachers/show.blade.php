@@ -23,18 +23,6 @@
                 </div>
                     @endif
             </section>
-          <!--  <section class="panel">
-                <a href="">
-                    <div class="panel-body paimenent_fiche_enfant">
-                        <i class="fa fa-money"></i><span>Paiement effectué</span>
-                    </div></a>
-            </section>
-            <section class="panel">
-                <a href="">
-                    <div class="panel-body absence_fiche_enfant">
-                        <i class="fa fa-calendar"></i><span>Pointages</span>
-                    </div></a>
-            </section> -->
         </div>
         <div class="col-sm-9">
             <section class="panel">
