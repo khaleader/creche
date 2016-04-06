@@ -30,6 +30,11 @@
             -webkit-border-radius: 5px;
             vertical-align: middle;
         }
+        .table-invoice {
+            margin-top: 30px !important;
+            border-spacing: 5px !important;
+            border-collapse: separate !important;
+        }
 
 
     </style>
