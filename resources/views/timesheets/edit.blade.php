@@ -130,17 +130,17 @@
             <table class="planning" style="width: 880px">
                 <tr>
                     <td class="blank"></td>
-                    <td class="title">08:00</td>
-                    <td class="title">09:00</td>
-                    <td class="title">10:00</td>
-                    <td class="title">11:00</td>
-                    <td class="title">12:00</td>
-                    <td class="title">13:00</td>
-                    <td class="title">14:00</td>
-                    <td class="title">15:00</td>
-                    <td class="title">16:00</td>
-                    <td class="title">17:00</td>
-                    <td class="title">18:00</td>
+                    <td class="title">8-9</td>
+                    <td class="title">9-10</td>
+                    <td class="title">10-11</td>
+                    <td class="title">11-12</td>
+                    <td class="title">12-13</td>
+                    <td class="title">13-14</td>
+                    <td class="title">14-15</td>
+                    <td class="title">15-16</td>
+                    <td class="title">16-17</td>
+                    <td class="title">17-18</td>
+                    <td class="title">18-19</td>
                 </tr>
                 <?php
                 $kda = App\Timesheet::where('classroom_id',$ts->classroom_id)
