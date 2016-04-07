@@ -79,8 +79,16 @@ class ChildrenController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(FormValidationChildFamilyRequest $request )
+    public function store(FormValidationChildFamilyRequest $request)
     {
+
+        $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
+
+        if($cr->children()->CurrentYear()->count() > $cr->capacite_classe)
+        {
+            return redirect()->back()->withErrors("la classe est saturée");
+        }
+
         // promotion Exceptional check
         if(PromotionExceptional::checkExceptionalPromotion())
         {
@@ -181,6 +189,7 @@ class ChildrenController extends Controller
                     //classe
                     $cr = Classroom::where('user_id', \Auth::user()->id)->where('id', $request->classe)->first();
                     $cr->children()->attach([$child->id]);
+
 
 
                     $bill = new Bill();

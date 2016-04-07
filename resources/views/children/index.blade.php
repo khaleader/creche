@@ -52,7 +52,7 @@
 
 
                     <div class="btn-group hidden-phone">
-                        <a style="font-size: 13px;" data-toggle="dropdown" href="#" class="btn mini blue">
+                        <a style="font-size: 13px;top: -1px;" data-toggle="dropdown" href="#" class="btn mini blue">
                             trier par Année
                             <i class="fa fa-angle-down "></i>
                         </a>
