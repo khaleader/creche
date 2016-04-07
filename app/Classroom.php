@@ -77,6 +77,11 @@ class Classroom extends Model
         $query->where('school_year_id',SchoolYear::getSchoolYearId());
     }
 
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
+    }
+
 
 
 

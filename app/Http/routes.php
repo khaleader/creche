@@ -94,6 +94,7 @@ Route::post('children/getclassforcreche','ChildrenController@getclassforcreche')
 
 
 Route::any('children/changeClasse/{id?}','ChildrenController@changeClasse');
+Route::get('children/{y1?}/{y2?}','ChildrenController@index');
 Route::resource('children','ChildrenController');
 
 /**********************   FamiliesController *********************/

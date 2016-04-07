@@ -225,7 +225,7 @@ class ClassroomsController extends Controller
         $validator = Validator::make([
             $request->all(),
             'nom_classe' =>$request->nom_classe,
-            'code_classe' =>$request->code_classe,
+           // 'code_classe' =>$request->code_classe,
             'capacite_classe' =>$request->capacite_classe,
             'niveau' =>$request->niveau,
             'branche' => $request->branche,
@@ -234,7 +234,7 @@ class ClassroomsController extends Controller
 
         ],[
             'nom_classe' => 'required',
-            'code_classe'=> 'required',
+           // 'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
             'select' => 'required',
             'grade' => 'required|integer',
@@ -242,7 +242,7 @@ class ClassroomsController extends Controller
         ],
             [
                 'nom_classe.required' => "le nom de la classe est requis",
-                'code_classe.required' => "le Code de la classe est requis",
+              //  'code_classe.required' => "le Code de la classe est requis",
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
                 'select.required' => 'Vous devez cocher au moins une matière',

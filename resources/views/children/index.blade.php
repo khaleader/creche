@@ -1,6 +1,12 @@
 ﻿@extends('layouts.default')
 @section('css')
     <style>
+        .c-new-ann_scol{
+            display: inline-block;
+        }
+
+
+
         @media print {
            .paiement span.label{
                background-color: #ffffff;
@@ -38,9 +44,25 @@
 
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading">
-                    Liste des élèves inscrits
-                    <div class="actions_btn">
+                <header class="panel-heading" style="padding: 6px 15px">
+                    <p style="display: inline-block;
+                    position: relative;
+                          top: 0.5px;
+                    ">Liste des élèves inscrits </p>
+
+
+                    <div class="btn-group hidden-phone">
+                        <a style="font-size: 13px;" data-toggle="dropdown" href="#" class="btn mini blue">
+                            trier par Année
+                            <i class="fa fa-angle-down "></i>
+                        </a>
+                        <ul class="dropdown-menu menu_actions bill-months branche">
+                               <li><a href="#">2015-2016</a> </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="actions_btn" style="padding-top: 7px">
                         <ul>
                             <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
                             <li><a id="exporter" href="{{ action('ChildrenController@exportEleve') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>

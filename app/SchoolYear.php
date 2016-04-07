@@ -72,8 +72,6 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
         if($sc)
         {
             return $sc->id;
-        }else{
-            return redirect()->action('SchoolsController@edit',[\Auth::user()->id]);
         }
     }
 
