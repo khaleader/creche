@@ -106,7 +106,13 @@
                         </tr>
                         <tr>
 
-                            <td><span><strong>Branche : </strong>{{ \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche  }} </span></td>
+                            <td><span><strong>Branche : </strong>
+                                 @if(\Auth::user()->branches()->where('id',$cr->branche)->first())
+                                    {{ \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche }}
+                                     @else
+                                     {{ '-----' }}
+                                     @endif
+                                </span></td>
                         </tr>
                         </tbody>
                     </table>

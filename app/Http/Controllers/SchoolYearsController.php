@@ -119,60 +119,50 @@ public function verifyRange()
         $yearNow = Carbon::now()->year;
         $year_prec =Carbon::now()->year - 1;
         $year_next = Carbon::now()->year + 1;
-        if($year1 == $year_prec && $year2 == $yearNow && Carbon::now()->month <= 6)
-        {
 
-        }
-         if($year1 == $yearNow && $year2 ==  $year_next && Carbon::now()->month < 6)
-         {
-             return redirect()->back()
-                 ->withErrors("Désolé vous ne pouvez pas commencer cette année scolaire en ce moment !");
-         }
         if($year1 > $yearNow && $year2  > $year_next)
         {
             return redirect()->back()
-                ->withErrors("Désolé vous ne pouvez pas commencer cette année scolaire en ce moment !");
+                ->withErrors("Désolé vous ne pouvez pas ajouter cette année scolaire en ce moment !");
         }
-
-
-          $ann_scol = $request->ann_scol;
-          $trim_semis = $request->TrimSemis;
-          $champ1start =Carbon::parse($request->champ1start);
-          $champ1end = Carbon::parse($request->champ1end);
-          $champ2start =Carbon::parse($request->champ2start);
-          $champ2end = Carbon::parse($request->champ2end);
-
-       if($trim_semis == 'Semis')
-       {
-           if($champ1start < $champ1end && $champ1end < $champ2start
-               && $champ2start < $champ2end &&
-               $champ1start->diffInMonths($champ2end) >=7
-               && $champ1start->year == $year1
-               && $champ2end->year == $year2
-           )
-           {
-
-           }else{
-               return redirect()->back()
-                   ->withErrors("l'enchainement des dates est incorrect
-                    ou durée totale est moins de 7 mois
-                    ou Correspondance avec l'année scolaire est incorrecte ");
-
-
-           }
-       }
-
+        $ann_scol = $request->ann_scol;
+        $trim_semis = $request->TrimSemis;
+        $champ1start =Carbon::parse($request->champ1start);
+        $champ1end = Carbon::parse($request->champ1end);
+        $champ2start =Carbon::parse($request->champ2start);
+        $champ2end = Carbon::parse($request->champ2end);
         if(!is_null($request->champ3start) && !is_null($request->champ3end))
         {
             $champ3start = Carbon::parse($request->champ3start);
             $champ3end = Carbon::parse($request->champ3end);
         }
 
+        // vérifier l'enchainement semistrielle
+        if($trim_semis == 'Semis')
+        {
+            if($champ1start < $champ1end && $champ1end < $champ2start
+                && $champ2start < $champ2end &&
+                $champ1start->diffInMonths($champ2end) >=8
+                && $champ1start->year == $year1
+                && $champ2end->year == $year2
+            )
+            {
+
+            }else{
+                return redirect()->back()
+                    ->withErrors("l'enchainement des dates est incorrect
+                    ou durée totale est moins de 8 mois
+                    ou Correspondance avec l'année scolaire est incorrecte ");
+
+
+            }
+        }
+        // vérifier l'enchainement trimistrielle
         if($trim_semis == 'Trim')
         {
             if($champ1start < $champ1end && $champ1end < $champ2start &&
                 $champ2start < $champ2end && $champ2end < $champ3start
-                && $champ3start < $champ3end  && $champ1start->diffInMonths($champ3end) >=7
+                && $champ3start < $champ3end  && $champ1start->diffInMonths($champ3end) >=8
                 && $champ1start->year == $year1
                 && $champ3end->year == $year2
             )
@@ -181,10 +171,59 @@ public function verifyRange()
             }else{
                 return redirect()->back()
                     ->withErrors("l'enchainement des dates est
-                    incorrect ou durée totale est moins de 7 mois ou
+                    incorrect ou durée totale est moins de 8 mois ou
                      Correspondance avec l'année scolaire est incorrecte");
             }
         }
+
+
+
+        // early inscription for Next Year
+        if(Carbon::now()->month >=1  && $year1 == $yearNow && $year2 == $year_next
+          && $champ1start->month == 9 || $champ1start->month == 10)
+        {
+            // si trouvé une mise à jour
+            $sc_year = SchoolYear::where('user_id',\Auth::user()->id)
+                ->where('ann_scol',$ann_scol)
+                ->first();
+            if($sc_year)
+            {
+                $sc_year->startch1 = $champ1start;
+                $sc_year->endch1 = $champ1end;
+                $sc_year->startch2 = $champ2start;
+                $sc_year->endch2 = $champ2end;
+                if($trim_semis == 'Trim')
+                {
+                    $sc_year->startch3 = $champ3start;
+                    $sc_year->endch3 = $champ3end;
+                }else{
+                    $sc_year->startch3 = null;
+                    $sc_year->endch3 = null;
+                }
+                $sc_year->type = $trim_semis;
+                $sc_year->current =0;
+                $sc_year->save();
+            }else{
+                // créer l'année scolaire pour l'année prochaine
+                $sc= new SchoolYear();
+                $sc->ann_scol = $ann_scol;
+                $sc->type = $trim_semis;
+                $sc->startch1 = $champ1start;
+                $sc->endch1 = $champ1end;
+                $sc->startch2 = $champ2start;
+                $sc->endch2 = $champ2end;
+                $sc->current = 0;
+                if($trim_semis == 'Trim')
+                {
+                    $sc->startch3 = $champ3start;
+                    $sc->endch3 = $champ3end;
+                }
+                $sc->user_id = \Auth::user()->id;
+                $sc->save();
+            }
+        }
+        if($year1 == $year_prec && $year2 == $yearNow && Carbon::now()->month <= 6)
+        {
           $sc_year = SchoolYear::where('user_id',\Auth::user()->id)
               ->where('ann_scol',$ann_scol)
               ->first();
@@ -203,10 +242,9 @@ public function verifyRange()
                   $sc_year->endch3 = null;
               }
               $sc_year->type = $trim_semis;
-
               $sc_year->save();
-          }else{
-              $sc= new SchoolYear();
+          }else {
+              $sc = new SchoolYear();
               $sc->ann_scol = $ann_scol;
               $sc->type = $trim_semis;
               $sc->startch1 = $champ1start;
@@ -214,43 +252,29 @@ public function verifyRange()
               $sc->startch2 = $champ2start;
               $sc->endch2 = $champ2end;
               $sc->current = 1;
-              if($trim_semis == 'Trim')
-              {
+              if ($trim_semis == 'Trim') {
                   $sc->startch3 = $champ3start;
                   $sc->endch3 = $champ3end;
-              }else{
-
               }
-
               $sc->user_id = \Auth::user()->id;
               $sc->save();
-              if($sc->id)
-              {
-                 $forCurrentYear = SchoolYear::where('user_id',\Auth::user()->id)
+             /* if ($sc->id) {
+                  $forCurrentYear = SchoolYear::where('user_id', \Auth::user()->id)
                       ->get();
-                  foreach($forCurrentYear as $ok)
-                  {
-                     $yes = SchoolYear::where('user_id',\Auth::user()->id)
-                         ->where('id','!=',$sc->id)->first();
-                      if($yes)
-                      {
-                          $yes->current =0;
+                  foreach ($forCurrentYear as $ok) {
+                      $yes = SchoolYear::where('user_id', \Auth::user()->id)
+                          ->where('id', '!=', $sc->id)->first();
+                      if ($yes) {
+                          $yes->current = 0;
                           $yes->save();
                       }
 
 
                   }
-              }
-
+              }*/
           }
-
+          }
         return redirect()->back()->with('success','Bien Enregistrés');
-
-
-
-
-
-
     }
 
 

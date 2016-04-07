@@ -101,7 +101,7 @@ class ClassroomsController extends Controller
         $validator = Validator::make([
             $request->all(),
             'nom_classe' =>$request->nom_classe,
-            'code_classe' =>$request->code_classe,
+            //'code_classe' =>$request->code_classe,
             'capacite_classe' =>$request->capacite_classe,
             'niveau' =>$request->niveau,
             'branche' => $request->branche,
@@ -110,14 +110,14 @@ class ClassroomsController extends Controller
 
         ],[
             'nom_classe' => 'required',
-            'code_classe'=> 'required',
+           // 'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
             'grade' => 'required|integer',
 
         ],
             [
                 'nom_classe.required' => "le nom de la classe est requis",
-                'code_classe.required' => "le Code de la classe est requis",
+               // 'code_classe.required' => "le Code de la classe est requis",
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
                 'niveau.integer' => "Le Niveau est requis",
@@ -136,7 +136,7 @@ class ClassroomsController extends Controller
             $cr->capacite_classe = $request->capacite_classe;
 
             $cr->niveau = $request->niveau;
-            $cr->school_year_id = SchoolYear::getSchoolYearId();
+            $cr->school_year_id = $request->ann_scol;
 
 
             if($niveau_global == 'Lycée')
@@ -152,7 +152,7 @@ class ClassroomsController extends Controller
            $ts = new Timesheet();
             $ts->user_id = \Auth::user()->id;
             $ts->classroom_id  = $cr->id;
-            $ts->school_year_id = SchoolYear::getSchoolYearId();
+            $ts->school_year_id = $request->ann_scol;
             $ts->save();
 
           $level = Level::find($request->niveau);

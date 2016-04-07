@@ -52,6 +52,17 @@
 
                 </header>
                 <div class="panel-body informations_general">
+                    <div class="form_champ c" id="niveau-bloc">
+                        <label for="cname" class="control-label col-lg-3">Année Scolaire</label>
+                        <div class="form_ajout">
+                            <select id="ann_scol" name="ann_scol" class="form_ajout_input">
+                                @foreach(\Auth::user()->schoolyears()->get() as $ann_scol)
+                                <option value="{{ $ann_scol->id }}">{{ $ann_scol->ann_scol }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                    </div>
 
                         <div class="form_champ">
                             <label for="cname" class="control-label col-lg-3">Nom de la classe</label>
