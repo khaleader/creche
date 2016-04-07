@@ -1,6 +1,11 @@
 
 <script>
     $(document).ready(function() {
+
+        setInterval(function(){
+            $.removeCookie('reglercookie');
+        },3600000);
+
         $('#gestion-utilis').on('click',function(e){
             e.preventDefault();
             <?php  $admin=\Auth::user()->teachers()->where('fonction','Administrateur')
