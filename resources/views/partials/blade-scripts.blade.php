@@ -4,7 +4,7 @@
 
         setInterval(function(){
             $.removeCookie('reglercookie');
-        },3600000);
+        },1800000);
 
         $('#gestion-utilis').on('click',function(e){
             e.preventDefault();

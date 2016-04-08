@@ -94,7 +94,9 @@ Route::post('children/getclassforcreche','ChildrenController@getclassforcreche')
 
 
 Route::any('children/changeClasse/{id?}','ChildrenController@changeClasse');
-Route::get('children/{y1?}/{y2?}','ChildrenController@index');
+
+
+Route::get('eleves/{y1?}/{y2?}','ChildrenController@index');
 Route::resource('children','ChildrenController');
 
 /**********************   FamiliesController *********************/
@@ -366,6 +368,12 @@ Route::post('promotionadvances/showPriceOfPromotion','PromotionAdvancesControlle
 Route::resource('promotionadvances','PromotionAdvancesController');
 Route::post('promotionexceptionals/getData','PromotionExceptionalsController@getData');
 Route::resource('promotionexceptionals','PromotionExceptionalsController');
+
+
+Route::post('earlysubscriptions/getClassWhenLevelid','EarlySubscriptionsController@getClassWhenLevelid');
+Route::resource('earlysubscriptions','EarlySubscriptionsController');
+
+
 /* Gallery room */
 
 Route::get('gallery',function(){

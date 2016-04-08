@@ -57,7 +57,7 @@
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions bill-months branche">
-                               <li><a href="#">2015-2016</a> </li>
+                               <li><a href="{{ url('eleves',['2016','2017']) }}">2016-2017</a> </li>
                         </ul>
                     </div>
 

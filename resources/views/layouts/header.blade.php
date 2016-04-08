@@ -21,21 +21,47 @@
               @endif
         </ul>
         <ul class="nav pull-right top-menu">
-            <li>
+
                 @if(Auth::user() && Auth::user()->isAdmin())
+                <li>
                 <a href="{{  action('ChildrenController@create') }}" class="inscription"
                    style="padding: 7px 15px;color:
                    #555555;background-color:#f1c435;font-weight:bold;color:#fff;
                    border-color:#f1c435;font-size: 13px;">Inscription
                 </a>
+                </li>
+                   <?php
+                   $ynow = \Carbon\Carbon::now()->year;
+                   $ynext = \Carbon\Carbon::now()->year + 1;
+                    $both =$ynow.'-'.$ynext;
+                    $month = \Carbon\Carbon::now()->month;
+                    $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+                    ?>
+                     @if($month  >= 1 &&  $month <=7 && $result)
+                    <li>
+                        <a href="{{  action('EarlySubscriptionsController@create') }}" class="inscription"
+                           style="padding: 7px 15px;color:
+                   #555555;background-color:#f1c435;font-weight:bold;color:#fff;
+                   border-color:#f1c435;font-size: 13px;">2016-2017
+                        </a>
+                    </li>
+
+
+                       @endif
+
+
+
                    @elseif(Auth::user() && Auth::user()->isOblivius())
-                    <a href="{{ action('SchoolsController@create') }}" class="inscription"
+                       <li>
+                     <a href="{{ action('SchoolsController@create') }}" class="inscription"
                        style="padding: 7px 15px;color:
                    #555555;background-color:#f1c435;font-weight:bold;color:#fff;
                    border-color:#f1c435;font-size: 13px;">Ajouter une école
-                    </a>
-                   @endif
-            </li>
+                     </a>
+                     </li>
+
+                @endif
+
             @if(Auth::user() && Auth::user()->isAdmin())
             <li>
                 {!! Form::open(['url' => action('FamiliesController@search'),'method'=> 'get']) !!}

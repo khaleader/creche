@@ -52,13 +52,24 @@ class ChildrenController extends Controller
      */
     public function index($year1 =null,$year2=null)
     {
-        $children = \Auth::user()->children()->CurrentYear()->paginate(10);
-        if(!$children->isEmpty())
+        if(isset($year1) && isset($year2))
         {
+            $both =$year1.'-'.$year2;
+            $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+            $children = \Auth::user()->children()->where('school_year_id',$result->id)->paginate(10);
             return view('children.index', compact('children'));
-        }else{
-            return view('children.index', compact('children'));
+
         }
+        else{
+            $children = \Auth::user()->children()->CurrentYear()->paginate(10);
+            if(!$children->isEmpty())
+            {
+                return view('children.index', compact('children'));
+            }else{
+                return view('children.index', compact('children'));
+            }
+        }
+
 
     }
 
@@ -698,14 +709,16 @@ class ChildrenController extends Controller
      */
     public function show($id)
     {
-       $child =  \Auth::user()->children()->where('id',$id)->first();
-        if($child)
-        {
-        return view('children.show',compact('child'));
 
-        }else{
-            return  response("Vous n'etes pas autorisé à voir cette page", 401);
-        }
+            $child =  \Auth::user()->children()->where('id',$id)->first();
+            if($child)
+            {
+                return view('children.show',compact('child'));
+            }else{
+                return  response("Vous n'etes pas autorisé à voir cette page", 401);
+            }
+
+
 
 
     }
