@@ -147,8 +147,12 @@
                                <!-- <a href="#"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
+                               @if(isset($year1) && isset($year2))
+                            <td class="no-print"><a href="{{ action('ClassroomsController@indexelc',[$cr,$ynow,$ynext]) }}"><div  class="btn_details">Détails</div></a></td>
+                             @else
+                                <td class="no-print"><a href="{{ action('ClassroomsController@indexelc',[$cr]) }}"><div  class="btn_details">Détails</div></a></td>
 
-                            <td class="no-print"><a href="{{ action('ClassroomsController@indexelc',[$cr]) }}"><div  class="btn_details">Détails</div></a></td>
+                            @endif
                         </tr>
                         @endforeach
                         </tbody>

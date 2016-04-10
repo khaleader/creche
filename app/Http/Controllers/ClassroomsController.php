@@ -45,7 +45,9 @@ class ClassroomsController extends Controller
           return view('classrooms.index')->with([
               'classrooms' => $classrooms,
               'branches' => $branches,
-              'niveaux' => $niveaux
+              'niveaux' => $niveaux,
+              'year1' => $year1,
+              'year2' => $year2
           ]);
       }else{
           $classrooms = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->paginate(10);
@@ -61,12 +63,23 @@ class ClassroomsController extends Controller
 
     }
 
-    public function indexelc($id)
+    public function indexelc($id,$year1=null,$year2= null)
     {
-        $cr =Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-        $id =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
-        $classroom = $cr->children()->CurrentYear()->paginate(10);
-        return view('classrooms.indexelc',compact('classroom','id'));
+        if(isset($year1) && isset($year2))
+        {
+            $both =$year1.'-'.$year2;
+            $cr =Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $id =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+            $classroom = $cr->children()->where('school_year_id',$result->id)->paginate(10);
+            return view('classrooms.indexelc',compact('classroom','id'));
+        }else{
+            $cr =Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $id =  Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
+            $classroom = $cr->children()->CurrentYear()->paginate(10);
+            return view('classrooms.indexelc',compact('classroom','id'));
+        }
+
     }
 
 

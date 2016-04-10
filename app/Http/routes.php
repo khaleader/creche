@@ -261,7 +261,7 @@ Route::resource('rooms','RoomsController');
 
 
 Route::post('classrooms/detach','ClassroomsController@detach'); // detach from the 3 relations cr-matter-teacher
-Route::get('classrooms/indexelc/{id}','ClassroomsController@indexelc'); // afficher les élèves d'une classe
+Route::get('classrooms/indexelc/{id}/{year1?}/{year2?}','ClassroomsController@indexelc'); // afficher les élèves d'une classe
 Route::post('classrooms/trierparniveau','ClassroomsController@trierparniveau'); //trier par niveau  ajax
 Route::post('classrooms/supprimer','ClassroomsController@supprimer'); //suppression ajax
 Route::get('classrooms/delete/{id}','ClassroomsController@delete'); // delete classe by click
