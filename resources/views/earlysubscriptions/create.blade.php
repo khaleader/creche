@@ -1054,7 +1054,7 @@
 
                 if($.trim($('input[name=nom_enfant]').val()).length == 0)
                 {
-                    alertify.alert('veuillez saisir le nom d\'enfant');
+                    alertify.alert("veuillez saisir le nom de l'élève ");
                     return false;
                 }
                 if($('input[name=date_naissance]').val() == "")
