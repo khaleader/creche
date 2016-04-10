@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/occasions/show.blade.php" afterPath="$PROJECT_DIR$/resources/views/occasions/show.blade.php" />
     </list>
     <ignored path="creche.iws" />
@@ -76,10 +75,10 @@
       <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4540146">
-              <caret line="245" column="47" selection-start-line="245" selection-start-column="47" selection-end-line="245" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.5810219">
+              <caret line="248" column="96" selection-start-line="248" selection-start-column="96" selection-end-line="248" selection-end-column="96" />
               <folding>
-                <marker date="1460312867175" expanded="true" signature="9357:9378" placeholder="..." />
+                <marker date="1460312974263" expanded="true" signature="9357:9378" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -1613,10 +1612,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4540146">
-          <caret line="245" column="47" selection-start-line="245" selection-start-column="47" selection-end-line="245" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.5810219">
+          <caret line="248" column="96" selection-start-line="248" selection-start-column="96" selection-end-line="248" selection-end-column="96" />
           <folding>
-            <marker date="1460312867175" expanded="true" signature="9357:9378" placeholder="..." />
+            <marker date="1460312974263" expanded="true" signature="9357:9378" placeholder="..." />
           </folding>
         </state>
       </provider>
