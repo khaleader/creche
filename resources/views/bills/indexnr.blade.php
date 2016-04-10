@@ -162,28 +162,208 @@
                 });
             });
 
+
+
+            // action régler une facture make status 1
             $('#regler-bills').click(function(){
                 var boxes;
                 $("input[name='select[]']").each(function(){
                     if($(this).is(':checked'))
                     {
+
                         var valeur = $(this).val();
                         // $(this).val(valeur).closest('tr').fadeOut();
                         boxes = $(this).val() + ',';
                         $('#boxesregler').append(boxes);
                     }
                 });
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                $.ajax({
-                    url: '{{  URL::action('BillsController@regler')}}',
-                    data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
-                    type: 'post',
-                    success: function (data) {
-                        location.reload();
-                        // console.log(data);
-                    }
-                });
+                if(boxes == null)
+                {
+                    alertify.alert("cocher d'abord !");
+                    return false;
+                }
+                if(!$.cookie('reglercookie'))
+                {
+                    alertify.prompt('tapez le mot de pass de confirmation','',function(e,value){
+                        var pass = value;
+                        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                        $.ajax({
+                            url: '{{  URL::action('BillsController@checkpassofregler')}}',
+                            data: 'pass=' + pass + '&_token=' + CSRF_TOKEN,
+                            type: 'post',
+                            success: function(data){
+                                if(data == 'oui')
+                                {
+                                    bootbox.dialog({
+                                        message: "Choisissez le mode de paiement",
+                                        title: "modes de paiement",
+                                        buttons: {
+                                            success: {
+                                                label: "Espèce",
+                                                className: "btn-success",
+                                                callback: function() {
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text()
+                                                        + '&mode=' + 'espèce'
+                                                        + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            NotAskAgain();
+                                                        }
+                                                    });
+                                                }
+                                            },
+                                            danger: {
+                                                label: "Virement",
+                                                className: "btn-danger",
+                                                callback: function() {
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text()
+                                                        + '&mode=' + 'Virement'
+                                                        + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            NotAskAgain();
+                                                        }
+                                                    });
+                                                }
+                                            },
+                                            main: {
+                                                label: "Chèque",
+                                                className: "btn-primary",
+                                                callback: function() {
+                                                    $.ajax({
+                                                        url: '{{  URL::action('BillsController@regler')}}',
+                                                        data: 'regler=' + $('#boxesregler').text()
+                                                        + '&mode=' + 'Chèque'
+                                                        + '&_token=' + CSRF_TOKEN,
+                                                        type: 'post',
+                                                        success: function (data) {
+                                                            NotAskAgain();
+                                                        }
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    });
+
+
+
+                                }else{
+                                    alertify.alert('Mot de pass incorrect');
+                                    return false;
+                                }
+                            }
+                        });
+                    }).set({
+                        'type':'password',
+                        'labels':{ok:'Oui', cancel:'Non'},
+                    });
+                }else{
+                    bootbox.dialog({
+                        message: "Choisissez le mode de paiement",
+                        title: "modes de paiement",
+                        buttons: {
+                            success: {
+                                label: "Espèce",
+                                className: "btn-success",
+                                callback: function() {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+                                        url: '{{  URL::action('BillsController@regler')}}',
+                                        data: 'regler=' + $('#boxesregler').text()
+                                        + '&mode=' + 'espèce'
+                                        + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            },
+                            danger: {
+                                label: "Virement",
+                                className: "btn-danger",
+                                callback: function() {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+                                        url: '{{  URL::action('BillsController@regler')}}',
+                                        data: 'regler=' + $('#boxesregler').text()
+                                        + '&mode=' + 'Virement'
+                                        + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            },
+                            main: {
+                                label: "Chèque",
+                                className: "btn-primary",
+                                callback: function() {
+                                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                    $.ajax({
+
+                                        url: '{{  URL::action('BillsController@regler')}}',
+                                        data: 'regler=' + $('#boxesregler').text()
+                                        + '&mode=' + 'Chèque'
+                                        + '&_token=' + CSRF_TOKEN,
+                                        type: 'post',
+                                        success: function (data) {
+                                            location.reload();
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
             });
+
+
+            function NotAskAgain()
+            {
+
+                alertify.confirm('confirm')
+                        .set({
+                            'labels':{ok:'Oui', cancel:'Non'},
+                            'message': 'ne pas demander le mot de pass une autre fois dans cette session ? ',
+                            'transition': 'fade',
+                            'onok': function(event){
+                                $.cookie('reglercookie',1);
+                                location.reload();
+                                /*  var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                 $.ajax({
+                                 url: '{{--  URL::action('BillsController@regler')--}}',
+                                 data: 'regler=' + $('#boxesregler').text() +
+                                 '&mode=' + type + '&_token=' + CSRF_TOKEN,
+                                 type: 'post',
+                                 success: function (data) {
+                                 location.reload();
+                                 // console.log(data);
+                                 }
+                                 });*/
+                            },
+                            'oncancel': function(){
+                                location.reload();
+                                /* var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                                 $.ajax({
+                                 url: '{{--  URL::action('BillsController@regler')--}}',
+                                 data: 'regler=' + $('#boxesregler').text() + '&_token=' + CSRF_TOKEN,
+                                 type: 'post',
+                                 success: function (data) {
+                                 location.reload();
+                                 // console.log(data);
+                                 }
+                                 });*/
+                            }
+                        }).show();
+            }
+
+
             $('#non-regler-bills').click(function () {
                 var boxes;
                 $("input[name='select[]']").each(function(){

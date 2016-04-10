@@ -811,11 +811,11 @@ class StatisticsController extends Controller
                     }
 
                     echo '  <tr>
-                             <td><div class="minimal single-row">
+                             <!--<td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
-                                </div></td>
+                                </div></td>-->
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>
@@ -845,11 +845,11 @@ class StatisticsController extends Controller
                     else
                         $photo = asset('images/no_avatar.jpg');
                     echo '  <tr>
-                                <td><div class="minimal single-row">
+                              <!--  <td><div class="minimal single-row">
                                     <div class="checkbox_liste ">
                                         <input value="'. $bill->id .'" type="checkbox"  name="select[]">
                                     </div>
-                                </div></td>
+                                </div></td>-->
                             <td>  ' . $bill->id . '</td>
                             <td><img class="avatar" src="'.$photo.'"></td>
                             <td>' . $bill->child->nom_enfant . '</td>

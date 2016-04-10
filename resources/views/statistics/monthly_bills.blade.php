@@ -12,22 +12,22 @@
 
             </header>
             <div class="liste_actions">
-                <div class="chk-all">
-                    <div class="pull-left mail-checkbox ">
-                        <input type="checkbox" class="select-all">
-                    </div>
+                <!--   <div class="chk-all">
+                        <!-- <div class="pull-left mail-checkbox ">
+                               <input type="checkbox" class="select-all">
+                           </div>
 
-                    <div class="btn-group">
-                        <a data-toggle="dropdown" href="#" class="btn mini all  ">
-                            Tous
+                            <div class="btn-group">
+                               <a data-toggle="dropdown" href="#" class="btn mini all  ">
+                                   Tous
 
-                        </a>
+                               </a>
 
-                    </div>
-                </div>
+                           </div>
+                     </div>-->
 
 
-                <div class="btn-group hidden-phone">
+               <!-- <div class="btn-group hidden-phone">
                     <a data-toggle="dropdown" href="#" class="btn mini blue">
                         Actions
                         <i class="fa fa-angle-down "></i>
@@ -36,7 +36,7 @@
                         <li><a id="regler-bills" href="#">Réglée</a></li>
                         <li><a id="non-regler-bills" href="#">Non Réglée</a></li>
                     </ul>
-                </div>
+                </div> -->
 
                 <span>Trier par :</span>
                 <div class="btn-group hidden-phone">
@@ -108,7 +108,7 @@
                 <table class="table  table-hover general-table table_enfants">
                     <thead>
                     <tr>
-                        <th></th>
+
                         <th>N° Facture</th>
                         <th></th>
                         <th> Nom complet</th>
@@ -125,11 +125,11 @@
                     @foreach($bills as $bill)
                         @unless($bill->child->deleted_at)
                             <tr>
-                                <td><div class="minimal single-row">
+                             <!--   <td><div class="minimal single-row">
                                         <div class="checkbox_liste ">
-                                            <input value="{{ $bill->id }}" type="checkbox"  name="select[]">
+                                            <input value="{{-- $bill->id --}}" type="checkbox"  name="select[]">
                                         </div>
-                                    </div></td>
+                                    </div></td> -->
                                 <td>{{  $bill->id  }}</td>
                                 <td><img class="avatar" src="{{  $bill->child->photo ? asset('uploads/'.$bill->child->photo):asset('images/avatar4.jpg') }}"></td>
                                 <td>{{ $bill->child->nom_enfant  }}</td>

@@ -99,7 +99,7 @@
                             <li><a valeur="12" href="#">Decembre</a></li>
                         </ul>
                     </div>
-                    <div class="btn-group hidden-phone">
+                   <!-- <div class="btn-group hidden-phone">
                         <a data-toggle="dropdown" href="#" class="btn mini blue">
                             Année
                             <i class="fa fa-angle-down "></i>
@@ -112,7 +112,7 @@
                             <li><a valeur="2019"  href="#">2019</a></li>
                             <li><a valeur="2020" href="#">2020</a></li>
                         </ul>
-                    </div>
+                    </div>-->
 
 
                 </div>
