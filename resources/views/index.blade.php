@@ -81,7 +81,7 @@ session_start();
                         <a href="{{ action('ChildrenController@indexef') }}">
                             <div class="bloc_info"><img src="images/enfants.png" ><span class="count">
                                     {{  App\Child::where('f_id',\Auth::user()->id)->count() }}
-                                </span><p>Enfants inscrits</p></div>
+                                </span><p>Élèves inscrits</p></div>
                         </a></div>
                 </section>
             </div>
@@ -113,7 +113,7 @@ session_start();
             <div class="panel-body">
                 <a href="{{ action('ChildrenController@index') }}">
                     <div class="bloc_info"><img src="{{  asset('images/enfants.png') }}" ><span class="count">
-                            {{   App\Child::where('user_id',\Auth::user()->id)->count() }}
+                            {{   App\Child::where('user_id',\Auth::user()->id)->CurrentYear()->count() }}
                         </span><p>Elèves inscrits</p></div>
                 </a></div>
         </section>
@@ -207,7 +207,7 @@ session_start();
                         <div class="bloc_info"><img src="{{ asset('images/factures.png') }}" >
                             <span class="count">
                                 <?php echo  App\Bill::where('status',0)
-                                        ->where('user_id',\Auth::user()->id)->count()  ?>
+                                        ->where('user_id',\Auth::user()->id)->CurrentYear()->count()  ?>
                             </span><p>Factures non réglées</p></div>
                     </a></div>
             </section>

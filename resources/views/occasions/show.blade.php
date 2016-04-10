@@ -247,7 +247,7 @@ $(function(){
             element.append("<span  style='display: inline-block' class='closeon'>X</span>");
             $(element).tooltip({
                 title: event.title + ' <br><i class="fa fa-clock-o fa-2x"> </i><br> &nbsp;&nbsp;'+
-                moment(event.start).format('LLL') + " Jusqu'au " +
+                moment(event.start).format('LLL') + " <br>Jusqu'au <br>" +
                 moment(event.end).format('LLL'),
                 placement : 'bottom',
                 html: true
