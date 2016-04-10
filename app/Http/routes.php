@@ -280,6 +280,7 @@ Route::post('classrooms/getlevel','ClassroomsController@getLevel'); // tri ajax
 
 
 Route::post('classrooms/getBranchWhenLevelIsChosen','ClassroomsController@getBranchWhenLevelIsChosen');
+Route::get('classes/{year1?}/{year2?}','ClassroomsController@index');
 Route::resource('classrooms','ClassroomsController');
 
 Route::post('matters/supprimer','MattersController@supprimer'); //suppression ajax

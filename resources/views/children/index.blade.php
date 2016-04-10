@@ -40,7 +40,13 @@
 
 @section('content')
     <div class="row">
-
+        <?php
+        $ynow = \Carbon\Carbon::now()->year;
+        $ynext = \Carbon\Carbon::now()->year + 1;
+        $both =$ynow.'-'.$ynext;
+        $month = \Carbon\Carbon::now()->month;
+        $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+        ?>
 
         <div class="col-sm-12">
             <section class="panel">
@@ -50,16 +56,17 @@
                           top: 0.5px;
                     ">Liste des élèves inscrits </p>
 
-
+                    @if($month  >= 1 &&  $month < 7 && $result)
                     <div class="btn-group hidden-phone">
                         <a style="font-size: 13px;top: -1px;" data-toggle="dropdown" href="#" class="btn mini blue">
-                            trier par Année
+                            Nouveaux inscrits
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions bill-months branche">
-                               <li><a href="{{ url('eleves',['2016','2017']) }}">2016-2017</a> </li>
+                               <li><a href="{{ url('eleves',['2016','2017']) }}">{{ $both }}</a> </li>
                         </ul>
                     </div>
+                    @endif
 
 
                     <div class="actions_btn" style="padding-top: 7px">

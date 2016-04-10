@@ -33,16 +33,32 @@ class ClassroomsController extends Controller
         $this->middleware('auth');
         $this->middleware('admin',['except'=>['indexef','showef']]);
     }
-    public function index()
+    public function index($year1 = null, $year2 = null)
     {
-        $classrooms = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->paginate(10);
-        $branches = Branch::where('user_id',\Auth::user()->id)->get();
-        $niveaux = Level::where('user_id',\Auth::user()->id)->get();
-        return view('classrooms.index')->with([
-            'classrooms' => $classrooms,
-            'branches' => $branches,
-            'niveaux' => $niveaux
-        ]);
+      if(isset($year1) && isset($year2))
+      {
+          $both =$year1.'-'.$year2;
+          $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+          $classrooms = \Auth::user()->classrooms()->where('school_year_id',$result->id)->paginate(10);
+          $branches = Branch::where('user_id',\Auth::user()->id)->get();
+          $niveaux = Level::where('user_id',\Auth::user()->id)->get();
+          return view('classrooms.index')->with([
+              'classrooms' => $classrooms,
+              'branches' => $branches,
+              'niveaux' => $niveaux
+          ]);
+      }else{
+          $classrooms = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->paginate(10);
+          $branches = Branch::where('user_id',\Auth::user()->id)->get();
+          $niveaux = Level::where('user_id',\Auth::user()->id)->get();
+          return view('classrooms.index')->with([
+              'classrooms' => $classrooms,
+              'branches' => $branches,
+              'niveaux' => $niveaux
+          ]);
+      }
+
+
     }
 
     public function indexelc($id)

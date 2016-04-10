@@ -3,11 +3,32 @@
 @section('content')
 
     <div class="row">
+
+        <?php
+        $ynow = \Carbon\Carbon::now()->year;
+        $ynext = \Carbon\Carbon::now()->year + 1;
+        $both =$ynow.'-'.$ynext;
+        $month = \Carbon\Carbon::now()->month;
+        $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+            ?>
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading">
-                    Liste des classes
-                    <div class="actions_btn">
+                <header class="panel-heading" style="padding: 6px 15px">
+                    <p style="display: inline-block;position: relative;top: 0.5px;">Liste des classes</p>
+                    @if($month  >= 1 &&  $month < 7 && $result)
+                    <div class="btn-group hidden-phone">
+                        <a style="font-size: 13px;top: -1px;" data-toggle="dropdown" href="#" class="btn mini blue">
+                            Nouveaux inscrits
+                            <i class="fa fa-angle-down "></i>
+                        </a>
+                        <ul class="dropdown-menu menu_actions bill-months branche">
+                            <li><a href="{{ url('classes',['2016','2017']) }}">{{ $both }}</a> </li>
+                        </ul>
+                    </div>
+                    @endif
+
+
+                    <div class="actions_btn" style="padding-top: 7px">
                         <ul>
                             <li><a href="{{ action('ClassroomsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
                            <li><a id="exporter" href="{{ action('ClassroomsController@exportExcel')}}"><img  src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
