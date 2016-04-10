@@ -1051,43 +1051,80 @@
 
 
             $('#submit').click(function(){
+
+                if($.trim($('input[name=nom_enfant]').val()).length == 0)
+                {
+                    alertify.alert('veuillez saisir le nom d\'enfant');
+                    return false;
+                }
+                if($('input[name=date_naissance]').val() == "")
+                {
+                    alertify.alert('veuillez saisir la date de naissance');
+                    return false;
+                }
+                if($.trim($('input[name=email_responsable]').val()).length == 0)
+                {
+                    alertify.alert('veuillez saisir un email');
+                    return false;
+                }
+                if($.trim($('input[name=nom_pere]').val()).length == 0)
+                {
+                    alertify.alert('veuillez saisir le nom du père');
+                    return false;
+                }
+                if($.trim($('input[name=nom_mere]').val()).length == 0)
+                {
+                    alertify.alert('veuillez saisir le nom de la mère');
+                    return false;
+                }
+                if(!$.isNumeric($('#grade').val()))
+                {
+                    alertify.alert('vous devez choisir un niveau global');
+                    return false;
+                }
                 var grade = $('#grade option:selected').text();
                 if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
                 {
-                    alertify.alert('vous devez choisir un niveau');
+                    alertify.alert('veuillez choisir un niveau');
+                    return false;
+                }
+                if($.isNumeric($('#niveau').val()) && !$.isNumeric($('#classe').val()))
+                {
+                    alertify.alert('veuillez choisir une classe');
                     return false;
                 }
                 if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
                 {
-                    alertify.alert('vous devez choisir une branche');
+                    alertify.alert('veuillez choisir une branche');
                     return false;
                 }
 
                 if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
                 {
-                    alertify.alert('vous devez choisir un niveau');
+                    alertify.alert('veuillez choisir un niveau');
                     return false;
                 }
                 if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
                 {
-                    alertify.alert('vous devez choisir un niveau');
+                    alertify.alert('veuillez choisir un niveau');
                     return false;
                 }
                 if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
                 {
-                    alertify.alert('vous devez choisir un niveau');
+                    alertify.alert('veuillez choisir un niveau');
                     return false;
                 }
                 if(grade == 'Crèche' && !$.isNumeric($('#classe').val()))
                 {
-                    alertify.alert('vous devez choisir une classe');
+                    alertify.alert('veuillez choisir une classe');
                     return false;
                 }
-                if($.isNumeric($('#niveau').val()) && !$.isNumeric($('#classe').val()))
+                if($.trim($('input[name=cin]').val()).length == 0)
                 {
-                    alertify.alert('vous devez choisir une classe');
+                    alertify.alert('veuillez saisir le numéro cin');
                     return false;
                 }
+
                 showLoader();
             });
 
@@ -1106,6 +1143,10 @@
             });
             @endif
 
+
+     $('a.inscription.btn.btn-default.dropdown-toggle').click(function(){
+                $(this).parent().toggleClass('open');
+            });
       });
 
 

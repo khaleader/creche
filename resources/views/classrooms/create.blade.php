@@ -57,7 +57,7 @@
                         <div class="form_ajout">
                             <select id="ann_scol" name="ann_scol" class="form_ajout_input">
                                 @foreach(\Auth::user()->schoolyears()->get() as $ann_scol)
-                                <option value="{{ $ann_scol->id }}">{{ $ann_scol->ann_scol }}</option>
+                                <option {{  $ann_scol->current == 1 ? 'selected': '' }} value="{{ $ann_scol->id }}">{{ $ann_scol->ann_scol }}</option>
                                 @endforeach
                             </select>
 

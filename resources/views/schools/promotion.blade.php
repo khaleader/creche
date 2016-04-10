@@ -30,12 +30,19 @@
 
         </div>
         <div class="col-sm-9" style="margin-bottom: 10px">
-            <div style="height: 28px;" class="switch-on switch-animate">
-                <span class="switch-left switch-success"></span>
-                <span class="switch-right switch-warning"></span>
-                <input type="checkbox" id="global-on-off" checked  data-on="success" data-off="warning">
+            <header class="panel-heading">
 
-            </div>
+                <div style="height: 28px;display: inline-block" class="switch-on switch-animate">
+                    <span class="switch-left switch-success"></span>
+                    <span class="switch-right switch-warning"></span>
+                    <input type="checkbox" id="global-on-off" checked  data-on="success" data-off="warning">
+
+                </div>
+               &nbsp;&nbsp; <h3 style="display: inline-block;
+margin: 0;
+    position: relative;
+    top: 4px;">Gestion des promotions</h3>
+            </header>
 
         </div>
 
@@ -50,7 +57,7 @@
 
 
                 <header class="panel-heading wht-bg">
-                    <h4 class="gen-case"> Gestion des promotions
+                    <h4 class="gen-case">
                     </h4>
                     <div class="btn-group dropdown_actions">
                         <div style="height: 28px" class="switch-animate switch-on"><span class="switch-left"></span>

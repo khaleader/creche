@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Attendance;
 use App\Bill;
 use App\Child;
+use App\Family;
 use App\Grade;
 use App\PriceBill;
 use App\PromotionStatus;
@@ -36,7 +37,12 @@ class HomeController extends Controller
 
 
 
-        $aboutfacture = SchoolYear::checkNextMonth();
+
+
+
+
+
+       $aboutfacture = SchoolYear::checkNextMonth();
        PromotionStatus::fillStatusesFirst();
       Grade::AddGradesAndLevels(\Auth::user()->id);
 

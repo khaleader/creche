@@ -46,7 +46,7 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
         $ok = \Auth::user()->schoolyears()->where('current', 1)->first();
         if ($ok) {
             if ($ok->type == 'Trim') {
-                if (Carbon::parse($next_month)->between($ok->startch1, $ok->endch3)) {
+                if (Carbon::parse($next_month)->between($ok->startch1, $ok->endch3) && Carbon::now()->month <= 5) {
                     $aboutfacture = 'yes';
                 } else {
                     $aboutfacture = 'no';
@@ -54,7 +54,7 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
                 return $aboutfacture;
             }
             if ($ok->type == 'Semis') {
-                if (Carbon::parse($next_month)->between($ok->startch1, $ok->endch2)) {
+                if (Carbon::parse($next_month)->between($ok->startch1, $ok->endch2) && Carbon::now()->month <= 5) {
                     $aboutfacture = 'yes';
                 } else {
                     $aboutfacture = 'no';

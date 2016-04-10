@@ -23,7 +23,9 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\GenarateBillsThreeMonths::class,
         \App\Console\Commands\GenerateBillsThreeMonthsNormal::class,
         \App\Console\Commands\GenarateBillsSixMonths::class,
-        \App\Console\Commands\GenerateBillsSixMonthsNormal::class
+        \App\Console\Commands\GenerateBillsSixMonthsNormal::class,
+        \App\Console\Commands\ManageYears::class,
+        \App\Console\Commands\SetNextYearCurrent::class,
 
 
     ];
@@ -45,6 +47,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('GenerateBills:ThreeMonthsNormal')->dailyAt('23:00');
         $schedule->command('GenerateBills:SixMonths')->dailyAt('23:00');
         $schedule->command('GenerateBills:SixMonthsNormal')->dailyAt('23:00');
+        $schedule->command('Manage:years')->daily();
+        $schedule->command('nextyear:current')->daily();
 
 
 

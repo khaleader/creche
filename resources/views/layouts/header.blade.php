@@ -17,37 +17,41 @@
             <li><a style="color: #687b8c" href="{{ url('/')  }}"><img src="{{ asset('images/tableau_de_bord.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Tableau de bord</a></li>
             @if(Auth::user() && Auth::user()->isAdmin())
             <li><a style="color: #687b8c" href="{{ action('PlansController@index')  }}"><img src="{{ asset('images/planning.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Planning</a></li>
-            <li><a style="color: #687b8c;" href="{{ url('help') }}"><img src="{{ asset('images/comment_ca_marche.png') }}" style="border-radius:0%;width:auto;margin-right:10px;">Besoin d'aide ?</a></li>
+
               @endif
         </ul>
         <ul class="nav pull-right top-menu">
+            <?php
+            $ynow = \Carbon\Carbon::now()->year;
+            $ynext = \Carbon\Carbon::now()->year + 1;
+            $both =$ynow.'-'.$ynext;
+            $month = \Carbon\Carbon::now()->month;
+            $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+             $current = \Auth::user()->schoolyears()->where('current',1)->first();
+               $fyears = explode('-',$current->ann_scol);
+            ?>
 
                 @if(Auth::user() && Auth::user()->isAdmin())
                 <li>
-                <a href="{{  action('ChildrenController@create') }}" class="inscription"
+                <a data-toggle="dropdown" href="#" class="inscription btn btn-default dropdown-toggle"
                    style="padding: 7px 15px;color:
                    #555555;background-color:#f1c435;font-weight:bold;color:#fff;
-                   border-color:#f1c435;font-size: 13px;">Inscription
-                </a>
+                   border-color:#f1c435;font-size: 13px;">Inscription  </a>
+                    <ul role="menu" class="dropdown-menu dropdown_inscription" style="margin-left: -126px;">
+                        @if($current)
+                        <li><a href="{{ action('ChildrenController@create') }}">Inscription {{ $fyears[0].'/'.$fyears[1] }}</a></li>
+                        @endif
+                        @if($month  >= 1 &&  $month < 7 && $result)
+                        <li><a href="{{ action('EarlySubscriptionsController@create') }}">Inscription {{ $ynow.'/'.$ynext}}</a></li>
+                        @endif
+                    </ul>
+
                 </li>
-                   <?php
-                   $ynow = \Carbon\Carbon::now()->year;
-                   $ynext = \Carbon\Carbon::now()->year + 1;
-                    $both =$ynow.'-'.$ynext;
-                    $month = \Carbon\Carbon::now()->month;
-                    $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
-                    ?>
-                     @if($month  >= 1 &&  $month <=7 && $result)
-                    <li>
-                        <a href="{{  action('EarlySubscriptionsController@create') }}" class="inscription"
-                           style="padding: 7px 15px;color:
-                   #555555;background-color:#f1c435;font-weight:bold;color:#fff;
-                   border-color:#f1c435;font-size: 13px;">2016-2017
-                        </a>
-                    </li>
 
 
-                       @endif
+
+
+
 
 
 
@@ -80,22 +84,30 @@
                 </a>
                 <ul class="dropdown-menu extended logout" style="margin: 1px 0px 0;">
                     @if(\Auth::user() && Auth::user()->isAdmin())
-                        <li><a href="{{ action('SchoolsController@profile',[\Auth::user()->id]) }}">Profil</a></li>
+                        <li><a href="{{ action('SchoolsController@profile',[\Auth::user()->id]) }}">
+                                <img class="dorpdown_icons" src="{{ asset('images/profil.png') }}">
+                                Profil</a></li>
                     @elseif(\Auth::user() && Auth::user()->isFamily())
-                        <li><a href="#">Profil</a></li>
+                        <li><a href="#"><img class="dorpdown_icons" src="{{ asset('images/profil.png') }}">Profil</a></li>
                      @endif
 
                     @if(\Auth::user() && Auth::user()->isAdmin())
-                    <li><a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">Paramètres</a></li>
-                   <li><a id="gestion-utilis" href="{{ action('SchoolsController@gestion_users',[\Auth::user()->id]) }}">Gestion Utilisateurs</a></li>
-                    <li><a href="{{ action('OccasionsController@show',[\Auth::user()->id]) }}">Evénements</a></li>
-                        <li><a href="{{  action('SchoolsController@promotion',[\Auth::user()->id]) }}">Promotions</a></li>
+                    <li><a href="{{ action('SchoolsController@edit',[\Auth::user()->id]) }}">
+                            <img class="dorpdown_icons" src="{{ asset('images/parametres.png') }}">Paramètres</a></li>
+                   <li><a id="gestion-utilis" href="{{ action('SchoolsController@gestion_users',[\Auth::user()->id]) }}">
+                           <img class="dorpdown_icons" src="{{ asset('images/users.png') }}">Gestion utilisateurs</a></li>
+                    <li><a href="{{ action('OccasionsController@show',[\Auth::user()->id]) }}">
+                            <img class="dorpdown_icons" src="{{ asset('images/days.png') }}">Événements</a></li>
+                        <li><a href="{{  action('SchoolsController@promotion',[\Auth::user()->id]) }}">
+                                <img class="dorpdown_icons" src="{{ asset('images/promo.png') }}">Promotions</a></li>
                     @elseif(\Auth::user() && Auth::user()->isFamily())
-                        <li><a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">Paramètres</a></li>
+                        <li><a href="{{ action('SchoolsController@editef',[\Auth::user()->id]) }}">
+                                <img class="dorpdown_icons" src="{{ asset('images/parametres.png') }}">Paramètres</a></li>
                     @endif
 
-
-                    <li><a href="{{  action('Auth\AuthController@getLogout') }}">Déconnexion</a></li>
+                     <li><a href="{{ url('help') }}"><img class="dorpdown_icons" src="{{ asset('images/help.png') }}">Besoin d'aide</a></li>
+                    <li><a href="{{  action('Auth\AuthController@getLogout') }}">
+                            <img class="dorpdown_icons" src="{{ asset('images/logout.png') }}">Déconnexion</a></li>
                 </ul>
             </li>
             <!-- user login dropdown end -->

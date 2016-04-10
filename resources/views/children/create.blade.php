@@ -160,7 +160,7 @@
                             <div class="form_champ c ">
                                 <label for="cname" class="control-label col-lg-3">Nom de l'élève * </label>
                                 <div class="form_ajout">
-                                    <input  value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
+                                    <input   value="{{ Request::old('nom_enfant')?:'' }}" type="text" name="nom_enfant" class="form_ajout_input" placeholder="Entrez le nom de l'élève">
                                 </div>
                             </div>
 
@@ -174,7 +174,7 @@
                             <div class="form_champ c">
                                 <label for="cname"  class="control-label col-lg-3">Date de naissance * </label>
                                 <div class="form_ajout">
-                                    <input   id="date_birth_child"
+                                    <input    id="date_birth_child"
                                            value="{{ Request::old('date_naissance')?:'' }}"
                                            type="date" name="date_naissance" class="form_ajout_input foronlydate" >
                                     <div class="icone_input"><i class="fa fa-"></i></div>
@@ -232,7 +232,7 @@
 
                             </label>
                             <div class="form_ajout">
-                                <input id="email_resp" completer data-suggest="true"
+                                <input  id="email_resp" completer data-suggest="true"
                                        data-source='<?php echo $output  ?>'
                                        value="{{ Request::old('email_responsable')?:'' }}"
                                        type="email" name="email_responsable" class="form_ajout_input"
@@ -251,7 +251,7 @@
                                     $out = array_values($array);
                                     $out = json_encode($out);
                                     ?>
-                                    <input id="nom_pere"  completer data-suggest="true"
+                                    <input  id="nom_pere"  completer data-suggest="true"
                                            data-source='<?php echo $out  ?>'
                                            value="{{ Request::old('nom_pere')?:'' }}"
                                            type="text" name="nom_pere" class="form_ajout_input"
@@ -267,7 +267,7 @@
                                     $out = array_values($array);
                                     $out = json_encode($out);
                                      ?>
-                                    <input value="{{ Request::old('nom_mere')?:'' }}"  completer data-suggest="true"
+                                    <input  value="{{ Request::old('nom_mere')?:'' }}"  completer data-suggest="true"
                                            data-source='<?php echo $out  ?>'
                                            type="text" name="nom_mere"
                                            class="form_ajout_input" placeholder="Entrez le nom de la mère">
@@ -1048,43 +1048,80 @@
 
 
                  $('#submit').click(function(){
+
+                     if($.trim($('input[name=nom_enfant]').val()).length == 0)
+                     {
+                         alertify.alert('veuillez saisir le nom d\'enfant');
+                         return false;
+                     }
+                     if($('input[name=date_naissance]').val() == "")
+                     {
+                         alertify.alert('veuillez saisir la date de naissance');
+                         return false;
+                     }
+                     if($.trim($('input[name=email_responsable]').val()).length == 0)
+                     {
+                         alertify.alert('veuillez saisir un email');
+                         return false;
+                     }
+                     if($.trim($('input[name=nom_pere]').val()).length == 0)
+                     {
+                         alertify.alert('veuillez saisir le nom du père');
+                         return false;
+                     }
+                     if($.trim($('input[name=nom_mere]').val()).length == 0)
+                     {
+                         alertify.alert('veuillez saisir le nom de la mère');
+                         return false;
+                     }
+                     if(!$.isNumeric($('#grade').val()))
+                     {
+                         alertify.alert('vous devez choisir un niveau global');
+                         return false;
+                     }
                      var grade = $('#grade option:selected').text();
                      if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
                      {
-                         alertify.alert('vous devez choisir un niveau');
+                         alertify.alert('veuillez choisir un niveau');
+                         return false;
+                     }
+                     if($.isNumeric($('#niveau').val()) && !$.isNumeric($('#classe').val()))
+                     {
+                         alertify.alert('veuillez choisir une classe');
                          return false;
                      }
                      if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
                      {
-                         alertify.alert('vous devez choisir une branche');
+                         alertify.alert('veuillez choisir une branche');
                          return false;
                      }
 
                      if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
                      {
-                         alertify.alert('vous devez choisir un niveau');
+                         alertify.alert('veuillez choisir un niveau');
                          return false;
                      }
                      if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
                      {
-                         alertify.alert('vous devez choisir un niveau');
+                         alertify.alert('veuillez choisir un niveau');
                          return false;
                      }
                      if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
                      {
-                         alertify.alert('vous devez choisir un niveau');
+                         alertify.alert('veuillez choisir un niveau');
                          return false;
                      }
                      if(grade == 'Crèche' && !$.isNumeric($('#classe').val()))
                      {
-                         alertify.alert('vous devez choisir une classe');
+                         alertify.alert('veuillez choisir une classe');
                          return false;
                      }
-                     if($.isNumeric($('#niveau').val()) && !$.isNumeric($('#classe').val()))
+                     if($.trim($('input[name=cin]').val()).length == 0)
                      {
-                         alertify.alert('vous devez choisir une classe');
+                         alertify.alert('veuillez saisir le numéro cin');
                          return false;
                      }
+
                           showLoader();
                  });
 
@@ -1098,11 +1135,13 @@
                       }else{
                           $('input[name=reduction]').parent().parent().show();
                       }
-
-
                    });
                     @endif
 
+
+                 $('a.inscription.btn.btn-default.dropdown-toggle').click(function(){
+                    $(this).parent().toggleClass('open');
+                    });
               });
 
 
