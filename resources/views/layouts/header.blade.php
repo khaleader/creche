@@ -28,6 +28,7 @@
             $month = \Carbon\Carbon::now()->month;
             $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
              $current = \Auth::user()->schoolyears()->where('current',1)->first();
+                if($current)
                $fyears = explode('-',$current->ann_scol);
             ?>
 
