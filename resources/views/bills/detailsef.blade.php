@@ -1,6 +1,8 @@
 @extends('layouts.default')
 
-
+@section('css')
+    <script src="{{ asset('js\moment\moment-with-locales.min.js') }}"></script>
+@stop
 
 
 @section('content')
@@ -60,7 +62,13 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-4 col-sm-5 inv-label">Date : {{  $bill->start->toFormattedDateString() }}</div>
+                            <div class="col-md-4 col-sm-5 inv-label">Date : <script>
+                                    moment.locale('fr');
+                                    var ok =  '{{ $bill->start }}';
+
+                                    document.write(moment(ok).format('LL'));
+                                </script>
+                            </div>
                         </div>
                         @if($bill->status == 1)
                             <div class="row">
