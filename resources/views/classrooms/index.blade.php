@@ -18,7 +18,7 @@
                     @if($month  >= 1 &&  $month < 7 && $result)
                     <div class="btn-group hidden-phone">
                         <a style="font-size: 13px;top: -1px;" data-toggle="dropdown" href="#" class="btn mini blue">
-                            Nouveaux inscrits
+                            Nouveaux Classes
                             <i class="fa fa-angle-down "></i>
                         </a>
                         <ul class="dropdown-menu menu_actions bill-months branche">
