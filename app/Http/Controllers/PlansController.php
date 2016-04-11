@@ -33,40 +33,50 @@ class PlansController extends Controller
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','lundi')->CurrentYear()->paginate(10);
+                ->where('dayname','lundi')->CurrentYear()
+                ->orderBy('time')
+                ->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isTuesday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','mardi')->CurrentYear()->paginate(10);
+                ->where('dayname','mardi')
+                ->CurrentYear()
+                ->orderBy('time')
+                ->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isWednesday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','mercredi')->CurrentYear()->paginate(10);
+                ->where('dayname','mercredi')->CurrentYear()
+                ->orderBy('time')->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isThursday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','jeudi')->CurrentYear()->paginate(10);
+                ->where('dayname','jeudi')->CurrentYear()
+                ->orderBy('time')->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isFriday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','vendredi')->CurrentYear()->paginate(10);
+                ->where('dayname','vendredi')->CurrentYear()
+                ->orderBy('time')->paginate(10);
             return view('plans.index',compact('plans'));
         }elseif(Carbon::now()->isSaturday())
         {
             $plans = Timesheet::where('user_id',\Auth::user()->id)
                 ->where('matter_id','!=',0)
-                ->where('dayname','samedi')->CurrentYear()->paginate(10);
+                ->where('dayname','samedi')->CurrentYear()
+                ->orderBy('time')->paginate(10);
             return view('plans.index',compact('plans'));
         }else{
-            $plans = Timesheet::where('user_id',\Auth::user()->id)->where('matter_id','!=',0)
+            $plans = Timesheet::where('user_id',\Auth::user()->id)
+                ->orderBy('time')->where('matter_id','!=',0)
                 ->CurrentYear()->paginate(10);
             return view('plans.index',compact('plans'));
         }
@@ -82,7 +92,7 @@ class PlansController extends Controller
         if(\Request::ajax())
         {
             $jour_text = \Input::get('jour_text');
-           $plans = Timesheet::where('user_id',\Auth::user()->id)->CurrentYear()->where('dayname',$jour_text)
+           $plans = Timesheet::where('user_id',\Auth::user()->id)->CurrentYear()->orderBy('time')->where('dayname',$jour_text)
                 ->where('matter_id','!=',0)->get();
             foreach ($plans as $plan) {
                 echo '<tr>';

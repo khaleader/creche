@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/indexnr.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/indexnr.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/statistics/monthly_bills.blade.php" afterPath="$PROJECT_DIR$/resources/views/statistics/monthly_bills.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PlansController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PlansController.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -237,14 +234,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indexnr.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="indexnr.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/bills/indexnr.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32262772">
+            <state vertical-scroll-proportion="-7.366667">
               <caret line="157" column="46" selection-start-line="157" selection-start-column="46" selection-end-line="157" selection-end-column="46" />
               <folding>
                 <element signature="e#8298#16947#0#HTML" expanded="false" />
                 <element signature="e#16999#18968#0#HTML" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlansController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlansController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2540146">
+              <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+              <folding>
+                <marker date="1460404600683" expanded="true" signature="3354:3525" placeholder="..." />
+                <marker date="1460404600683" expanded="true" signature="7160:7335" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -268,18 +278,6 @@
             <state vertical-scroll-proportion="-4.8333335">
               <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/occasions/show.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="17.033333">
-              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
-              <folding>
-                <marker date="1460313531918" expanded="true" signature="9357:9378" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -311,7 +309,6 @@
         <option value="$PROJECT_DIR$/resources/views/schools/gestion_schools.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/timesheets/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/plans/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PlansController.php" />
         <option value="$PROJECT_DIR$/resources/views/children/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/teachers/show.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/children/changeClasse.blade.php" />
@@ -356,6 +353,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/StatisticsController.php" />
         <option value="$PROJECT_DIR$/resources/views/bills/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/bills/indexnr.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PlansController.php" />
       </list>
     </option>
   </component>
@@ -1167,20 +1165,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2016_04_06_000914_add_ice_profile.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.97372264">
-          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/schools/profile.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5109489">
-          <caret line="94" column="29" selection-start-line="94" selection-start-column="29" selection-end-line="94" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/schools/editer.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5343066">
@@ -1892,11 +1876,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/bills/indexnr.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32262772">
+        <state vertical-scroll-proportion="-7.366667">
           <caret line="157" column="46" selection-start-line="157" selection-start-column="46" selection-end-line="157" selection-end-column="46" />
           <folding>
             <element signature="e#8298#16947#0#HTML" expanded="false" />
             <element signature="e#16999#18968#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Timesheet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2540146">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PlansController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2540146">
+          <caret line="92" column="9" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="9" />
+          <folding>
+            <marker date="1460404600683" expanded="true" signature="3354:3525" placeholder="..." />
+            <marker date="1460404600683" expanded="true" signature="7160:7335" placeholder="..." />
           </folding>
         </state>
       </provider>
