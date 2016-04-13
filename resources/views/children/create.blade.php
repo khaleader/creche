@@ -309,7 +309,7 @@
                             <div class="form_ajout">
                                 <select id="grade" name="grade" class="form_ajout_input">
                                     <option selected>Sélectionnez</option>
-                                    @foreach(\Auth::user()->grades as $grade)
+                                    @foreach(\Auth::user()->grades()->where('school_year_id',App\SchoolYear::getSchoolYearId())->get() as $grade)
                                         <option data-value="{{ $grade->name }}" value="{{ $grade->id }}">{{ $grade->name }}</option>
                                     @endforeach
                                 </select>

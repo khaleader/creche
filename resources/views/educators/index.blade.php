@@ -46,7 +46,7 @@
 
 
                                         {!!  Form::select('classe',
-         App\Classroom::where('user_id',\Auth::user()->id)->
+         App\Classroom::where('user_id',\Auth::user()->id)->where('school_year_id',App\SchoolYear::getSchoolYearId())->
          lists('nom_classe','id') ,null,['class'=>'form_ajout_input','id'=>'classe']) !!}
 
                                 </div>

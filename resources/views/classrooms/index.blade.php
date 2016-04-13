@@ -13,32 +13,39 @@
             ?>
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading" style="padding: 6px 15px">
-                    <p style="display: inline-block;position: relative;top: 0.5px;">Liste des classes</p>
-                    @if($month  >= 1 &&  $month < 7 && $result)
-                    <div class="btn-group hidden-phone">
-                        <a style="font-size: 13px;top: -1px;" data-toggle="dropdown" href="#" class="btn mini blue">
-                            Nouveaux Classes
-                            <i class="fa fa-angle-down "></i>
-                        </a>
-                        <ul class="dropdown-menu menu_actions bill-months branche">
-                            <li><a href="{{ url('classes',['2016','2017']) }}">{{ $both }}</a> </li>
-                        </ul>
+                <header class="panel-heading">
+                  Liste des classes
+                    <div class="liste_actions_header">
+
+                        @if($month  >= 1 &&  $month < 7 && $result)
+                            <div class="btn-group">
+                                <a href="#" class="btn btn-white">année</a>
+                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                                <ul role="menu" class="dropdown-menu" style="margin-left: -97px">
+                                    <a style="display: block;padding-left: 18px;" href="{{ url('classes',['2016','2017']) }}">{{ $both }} </a>
+
+
+                                </ul>
+                            </div>
+                        @endif
+
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                                Actions <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
+                                <li><a  href="{{ action('ClassroomsController@create') }}"><img src="{{ asset('images/add.png') }}">Ajouter</a></li>
+
+                                <li><a id="exporter" href="{{ action('ClassroomsController@exportExcel')}}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
+                                <li><a  id="pdf" href="{{ action('ClassroomsController@exportPdf')}}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
+                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
+
+                            </ul>
+                        </div>
                     </div>
-                    @endif
 
 
-                    <div class="actions_btn" style="padding-top: 7px">
-                        <ul>
-                            <li><a href="{{ action('ClassroomsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
-                           <li><a id="exporter" href="{{ action('ClassroomsController@exportExcel')}}"><img  src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
-                            <li><a id="pdf" href="{{ action('ClassroomsController@exportPdf')}}"><img  src="{{ asset('images/pdf-icon.png') }}">Exporter PDF</a></li>
 
-                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png') }}">Imprimer</a></li>
-                          <!--  <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
-                            <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li> -->
-                        </ul>
-                    </div>
+
                 </header>
                 <div class="liste_actions">
                     <div class="chk-all">
@@ -137,7 +144,7 @@
                             <td>{{  $cr->nom_classe }}</td>
                             <td>{{  $cr->code_classe }}</td>
                             <td>{{ $cr->capacite_classe }} élèves</td>
-                            <td> {{ $cr->children()->CurrentYear()->count() }}</td>
+                            <td> {{ $cr->children()->count() }}</td>
                             <td>{{  $cr->niveau ? \Auth::user()->leslevels()->where('id',$cr->niveau)->first()->niveau : '--' }}</td>
                             <td>{{  $cr->branche ? \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche : '--'  }}</td>
 

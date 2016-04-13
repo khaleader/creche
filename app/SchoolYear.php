@@ -88,4 +88,17 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
         return $year2[1];
     }
 
+
+    public function priceBills()
+    {
+        return $this->hasMany(PriceBill::class);
+    }
+    public function levels()
+    {
+        return $this->hasMany(Level::class);
+    }
+
+
+
+
 }

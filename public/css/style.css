@@ -7699,3 +7699,22 @@ td.drop.droppable{
     margin-right: 10px;
 
 }
+.liste_actions_header{
+    float: right;
+    margin-top: -8px;
+}
+.liste_actions_header .btn-default{
+    background-color: #8c97b1;
+    color: #fff;
+    border-color: #8c97b1 !important;
+    margin-left: 10px;
+}
+
+.liste_actions_header .btn-default img{
+    margin-right: 10px;
+
+}
+.dropdown-menu>li>a>img{
+    margin-right: 10px;
+
+}

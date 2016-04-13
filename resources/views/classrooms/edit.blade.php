@@ -173,12 +173,13 @@
 
                         </label>
                         <div class="form_ajout">
-                            {!!
-                            Form::select('grade',
-                             App\Grade::where('user_id',\Auth::user()->id)->
-                             lists('name','id') ,$getGrade,['class'=>'form_ajout_input','id'=>'grade'])
-                             !!}
+                            <select id="grade" name="grade" class="form_ajout_input">
+                                @foreach(\Auth::user()->grades()
+                                ->where('school_year_id',$cr->school_year_id)->get() as $grade)
 
+                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                @endforeach
+                            </select>
 
                         </div>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Child;
 use App\Classroom;
+use App\Grade;
 use App\Level;
 use App\Matter;
 use App\SchoolYear;
@@ -41,7 +42,8 @@ class ClassroomsController extends Controller
           $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
           $classrooms = \Auth::user()->classrooms()->where('school_year_id',$result->id)->paginate(10);
           $branches = Branch::where('user_id',\Auth::user()->id)->get();
-          $niveaux = Level::where('user_id',\Auth::user()->id)->get();
+          $niveaux = Level::where('user_id',\Auth::user()->id)
+              ->where('school_year_id',SchoolYear::getSchoolYearId())->get();
           return view('classrooms.index')->with([
               'classrooms' => $classrooms,
               'branches' => $branches,
@@ -52,7 +54,8 @@ class ClassroomsController extends Controller
       }else{
           $classrooms = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->paginate(10);
           $branches = Branch::where('user_id',\Auth::user()->id)->get();
-          $niveaux = Level::where('user_id',\Auth::user()->id)->get();
+          $niveaux = Level::where('user_id',\Auth::user()->id)
+              ->where('school_year_id',SchoolYear::getSchoolYearId())->get();
           return view('classrooms.index')->with([
               'classrooms' => $classrooms,
               'branches' => $branches,
@@ -331,7 +334,7 @@ class ClassroomsController extends Controller
         if(\Request::ajax()) {
             $niveau_id = \Input::get('niveau_id');
             $level = Level::where('user_id',\Auth::user()->id)->where('id', $niveau_id)->first();
-            foreach ($level->onbranches as $branch) {
+            foreach ($level->HasManyBranches as $branch) {
                 echo '<option value="' . $branch->id . '">' . $branch->nom_branche . '</option>';
 
             }
@@ -393,6 +396,19 @@ class ClassroomsController extends Controller
             echo 'deleted';
         }
     }
+
+
+    public function getGrades()
+    {
+        $school_year_id = \Input::get('scool_year_id');
+         $grades =\Auth::user()->grades()->where('school_year_id',$school_year_id)->get();
+        foreach ($grades as $grade) {
+            echo '<option value="'.$grade->id.'">'.$grade->name.'</option>';
+        }
+
+    }
+
+
 
     public function trierparniveau()
     {

@@ -550,6 +550,7 @@ class SchoolsController extends Controller
 
     public function price_bills_store(Request $request)
     {
+
         $trans = Transport::where('user_id',\Auth::user()->id)->first();
         if($trans)
         {
@@ -574,6 +575,7 @@ class SchoolsController extends Controller
         $checkPrice =  PriceBill::where('user_id',$user_id)
             ->where('niveau',$niveau_id)
             ->where('ann_scol',$ann_scol)
+            ->where('school_year_id',$request->school_year)
             ->first();
         if($checkPrice)
         {
@@ -585,6 +587,7 @@ class SchoolsController extends Controller
             $priceBill->prix = $price;
             $priceBill->ann_scol = $ann_scol;
             $priceBill->user_id = $user_id;
+            $priceBill->school_year_id = $request->school_year;
             $priceBill->save();
         }
         return redirect()->back()->with('success','Bien enregistré');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Branch;
+use App\SchoolYear;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,7 +28,9 @@ class BranchesController extends Controller
 
     public function index()
     {
-       $branches = Branch::where('user_id',\Auth::user()->id)->paginate(10);
+
+       $branches = Branch::where('user_id',\Auth::user()->id)
+           ->where('school_year_id',SchoolYear::getSchoolYearId())->paginate(10);
         return view('branches.index',compact('branches'));
     }
 

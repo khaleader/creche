@@ -45,7 +45,7 @@
 
                                 <span class="title">Niveaux</span>
                                 <span style="background-color: #84E07B" class="badge badge-success">
-                                            {{ \Auth::user()->leslevels()->count() }}
+                                            {{ \Auth::user()->leslevels()->where('school_year_id',\App\SchoolYear::getSchoolYearId())->count() }}
                                 </span>
                             </a>
                         </li>
@@ -54,7 +54,8 @@
 
                                 <span class="title">Branches</span>
                                 <span style="background-color: #FF809B" class="badge badge-success">
-                                            {{ \Auth::user()->branches()->count() }}
+                                            {{ \Auth::user()->branches()
+                                            ->where('school_year_id',\App\SchoolYear::getSchoolYearId())->count() }}
                                 </span>
                             </a>
                         </li>

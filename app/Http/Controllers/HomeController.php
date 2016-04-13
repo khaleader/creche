@@ -44,7 +44,7 @@ class HomeController extends Controller
 
        $aboutfacture = SchoolYear::checkNextMonth();
        PromotionStatus::fillStatusesFirst();
-      Grade::AddGradesAndLevels(\Auth::user()->id);
+
 
         $client = new Google_Client();
         $client->setClientId('548520090024-i8jmtdmdi5ijvj3mn2sbqe2u3a431gh6.apps.googleusercontent.com');

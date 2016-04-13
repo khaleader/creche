@@ -38,8 +38,8 @@
                         <label for="cname" class="control-label col-lg-3">Niveau global</label>
                         <div class="form_ajout">
                                         {!!  Form::select('grade',
-            App\Grade::where('user_id',\Auth::user()->id)->where('name','!=','Crèche')->
-            lists('name','id') ,null,['class'=>'form_ajout_input']) !!}
+            App\Grade::where('user_id',\Auth::user()->id)->where('name','!=','Crèche')->where('school_year_id',App\SchoolYear::getSchoolYearId())
+            ->lists('name','id') ,null,['class'=>'form_ajout_input']) !!}
 
                         </div>
                     </div>

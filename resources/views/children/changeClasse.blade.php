@@ -129,12 +129,13 @@
                         </thead>
                         <tbody>
                         @foreach($child->levels  as $level)
+
                             @foreach($level->classrooms as $cr)
                             <tr>
                                 <td>{{  $cr->nom_classe }}</td>
                                 <td>{{  $cr->code_classe }}</td>
                                 <td>{{ $cr->capacite_classe }} élèves</td>
-                                <td> {{ $cr->children()->CurrentYear()->count() }}</td>
+                                <td> {{ $cr->children()->count() }}</td>
                                 <td>{{  $cr->niveau ? \Auth::user()->leslevels()->where('id',$cr->niveau)->first()->niveau : '--' }}</td>
                                 <td>{{  $cr->branche ? \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche : '--'  }}</td>
 
@@ -156,7 +157,7 @@
                                     <td>{{  $cr->nom_classe }}</td>
                                     <td>{{  $cr->code_classe }}</td>
                                     <td>{{ $cr->capacite_classe }} élèves</td>
-                                    <td> {{ $cr->children()->CurrentYear()->count() }}</td>
+                                    <td> {{ $cr->children()->count() }}</td>
 
                                     <td>{{  $cr->niveau ? \Auth::user()->leslevels()->where('id',$cr->niveau)->first()->niveau : '--' }}</td>
                                     <td>{{  $cr->branche ? \Auth::user()->branches()->where('id',$cr->branche)->first()->nom_branche : '--'  }}</td>

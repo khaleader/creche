@@ -56,8 +56,9 @@
                         <label for="cname" class="control-label col-lg-3">Année Scolaire</label>
                         <div class="form_ajout">
                             <select id="ann_scol" name="ann_scol" class="form_ajout_input">
+                                <option selected>L'année Scolaire ?</option>
                                 @foreach(\Auth::user()->schoolyears()->get() as $ann_scol)
-                                <option {{  $ann_scol->current == 1 ? 'selected': '' }} value="{{ $ann_scol->id }}">{{ $ann_scol->ann_scol }}</option>
+                                <option  value="{{ $ann_scol->id }}">{{ $ann_scol->ann_scol }}</option>
                                 @endforeach
                             </select>
 
@@ -90,11 +91,9 @@
                     <div class="form_champ">
                         <label for="cname" class="control-label col-lg-3">Niveau global</label>
                         <div class="form_ajout">
-                       {!!
-                       Form::select('grade',
-                        App\Grade::where('user_id',\Auth::user()->id)->
-                        lists('name','id') ,null,['class'=>'form_ajout_input','id'=>'grade'])
-                        !!}
+                            <select id="grade" name="grade" class="form_ajout_input">
+
+                            </select>
 
                         </div>
                     </div>
@@ -147,7 +146,6 @@
 
         $('#branche').prepend("<option selected>quelle Branche ?</option>");
         $('#niveau').prop('disabled','disabled');
-        $('#grade').prepend("<option selected>Quel Niveau Global ?</option>");
         $('#branche-bloc').hide();
         $('#grade').on('change',function(){
             var grade_id = $(this).val();
@@ -222,6 +220,21 @@
                 alertify.alert('vous devez choisir un niveau');
                 return false;
             }
+        });
+
+        $('select#ann_scol').change(function(){
+            var scool_year_id = $(this).val();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('ClassroomsController@getGrades')}}',
+                data: 'scool_year_id=' + scool_year_id + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+                    $('#grade').empty().prepend('<option selected>Quelle Niveau Global ?</option>');
+                    $('#grade').append(data);
+
+                }
+            });
 
 
 

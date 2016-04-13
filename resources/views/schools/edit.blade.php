@@ -432,15 +432,26 @@
                         <div id="paiements" class="tab-pane">
                             <section class="panel">
                                 {!! Form::open(['url'=> action('SchoolsController@price_bills_store')]) !!}
+
+                                <div class="form_champ">
+                                    <label for="cname" class="control-label col-lg-3">Année scolaire</label>
+                                    <div class="form_ajout">
+                                        <select id="ann_scol_years" name="school_year" class="form_ajout_input">
+                                            <option>Année scolaire ?</option>
+                                            @foreach(Auth::user()->schoolyears()->get() as $yearschool)
+
+                                                <option value="{{ $yearschool->id }}">{{ $yearschool->ann_scol }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <div class="form_champ">
                                     <label for="cname" class="control-label col-lg-3">Les Niveaux</label>
                                     <div class="form_ajout">
                                         <select id="niveaux" name="niveau" class="form_ajout_input">
-                                            <option>Quel Niveau ?</option>
-                                            @foreach(Auth::user()->leslevels()->get() as $niveau)
 
-                                                <option value="{{ $niveau->id }}">{{ $niveau->niveau }}</option>
-                                            @endforeach
+
                                         </select>
                                     </div>
                                 </div>
@@ -801,6 +812,21 @@
                     $('#FormImage').submit();
                 }
             });
+
+        $('#ann_scol_years').change(function(){
+            var school_year_id =  $(this).val();
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                url: '{{  URL::action('SchoolYearsController@getLevels')}}',
+                data: 'school_year_id=' + school_year_id + '&_token=' + CSRF_TOKEN,
+                type: 'post',
+                success: function (data) {
+                 $('select[name=niveau]').empty().append(data);
+                }
+            });
+
+        });
+
 
 
 

@@ -47,4 +47,10 @@ class Level extends Model
   return $this->belongsToMany(Classroom::class);
  }
 
+
+ public function HasManyBranches()
+ {
+  return $this->hasMany(Branch::class);
+ }
+
 }

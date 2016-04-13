@@ -96,4 +96,10 @@ class PriceBill extends Model
     }
 
 
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
+    }
+
+
 }

@@ -50,32 +50,34 @@
 
         <div class="col-sm-12">
             <section class="panel">
-                <header class="panel-heading" style="padding: 6px 15px">
-                    <p style="display: inline-block;
-                    position: relative;
-                          top: 0.5px;
-                    ">Liste des élèves inscrits </p>
-
-                    @if($month  >= 1 &&  $month < 7 && $result)
-                    <div class="btn-group hidden-phone">
-                        <a style="font-size: 13px;top: -1px;" data-toggle="dropdown" href="#" class="btn mini blue">
-                            Nouveaux inscrits
-                            <i class="fa fa-angle-down "></i>
-                        </a>
-                        <ul class="dropdown-menu menu_actions bill-months branche">
-                               <li><a href="{{ url('eleves',['2016','2017']) }}">{{ $both }}</a> </li>
-                        </ul>
-                    </div>
-                    @endif
+                <header class="panel-heading" >
+                    Liste des élèves inscrits
 
 
-                    <div class="actions_btn" style="padding-top: 7px">
-                        <ul>
-                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                            <li><a id="exporter" href="{{ action('ChildrenController@exportEleve') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
-                            <li><a id="pdf" href="{{ action('ChildrenController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png') }}">Exporter PDF</a></li>
+                    <div class="liste_actions_header">
 
-                        </ul>
+                        @if($month  >= 1 &&  $month < 7 && $result)
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-white">année</a>
+                            <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: -97px">
+                                <a style="display: block;padding-left: 18px;" href="{{ url('eleves',['2016','2017']) }}">{{ $both }} </a>
+
+
+                            </ul>
+                        </div>
+                        @endif
+
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                               Actions <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
+                                <li><a id="exporter" href="{{ action('ChildrenController@exportEleve') }}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
+                                <li><a  id="pdf" href="{{ action('ChildrenController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
+                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
+
+                            </ul>
+                        </div>
                     </div>
 
                 </header>

@@ -23,17 +23,15 @@ class Grade extends Model
     }
 
 
-    public static function AddGradesAndLevels($user_id)
+    public static function AddGradesAndLevels($user_id,$school_year_id)
     {
          $admin = User::where('id',$user_id)->where('type','ecole')->first();
         if($admin)
         {
-        $grade =  Grade::where('user_id',$user_id)->first();
-        if(!$grade)
-        {
             $creche = new Grade();
             $creche->name = 'Crèche';
             $creche->user_id = $user_id;
+            $creche->school_year_id = $school_year_id;
             $creche->save();
 
             if($creche->id)
@@ -42,12 +40,14 @@ class Grade extends Model
                 $niveau->niveau ='Crèche';
                 $niveau->user_id = $user_id;
                 $niveau->grade_id = $creche->id;
+                $niveau->school_year_id = $school_year_id;
                 $niveau->save();
             }
 
             $mater = new Grade();
             $mater->name = 'Maternelle';
             $mater->user_id = $user_id;
+            $mater->school_year_id = $school_year_id;
             $mater->save();
             if($mater)
             {
@@ -55,18 +55,21 @@ class Grade extends Model
                         $niveau->niveau ='Petite Section';
                         $niveau->user_id = $user_id;
                         $niveau->grade_id = $mater->id;
+                        $niveau->school_year_id = $school_year_id;
                         $niveau->save();
 
                         $niveau = new Level();
                         $niveau->niveau = 'Moyenne Section';
                         $niveau->user_id = $user_id;
                         $niveau->grade_id = $mater->id;
+                        $niveau->school_year_id = $school_year_id;
                         $niveau->save();
 
                         $niveau = new Level();
                         $niveau->niveau = 'Grande Section';
                         $niveau->user_id = $user_id;
                         $niveau->grade_id = $mater->id;
+                        $niveau->school_year_id = $school_year_id;
                         $niveau->save();
 
             }
@@ -74,6 +77,7 @@ class Grade extends Model
             $sc = new Grade();
             $sc->name = 'Primaire';
             $sc->user_id = $user_id;
+            $sc->school_year_id = $school_year_id;
             $sc->save();
             if($sc)
             {
@@ -84,6 +88,7 @@ class Grade extends Model
                         $niveau->niveau = 'CE'.$i;
                         $niveau->user_id = $user_id;
                         $niveau->grade_id = $sc->id;
+                        $niveau->school_year_id = $school_year_id;
                         $niveau->save();
 
 
@@ -93,6 +98,7 @@ class Grade extends Model
             $col = new Grade();
             $col->name = 'Collège';
             $col->user_id = $user_id;
+            $col->school_year_id = $school_year_id;
             $col->save();
             if($col)
             {
@@ -105,12 +111,14 @@ class Grade extends Model
                         $niveau->niveau ='1ère année Collège';
                         $niveau->user_id = $user_id;
                         $niveau->grade_id = $col->id;
+                        $niveau->school_year_id = $school_year_id;
                         $niveau->save();
                     }elseif($i > 1){
                         $niveau = new Level();
                         $niveau->niveau = $i.'ème année Collège';
                         $niveau->user_id = $user_id;
                         $niveau->grade_id = $col->id;
+                        $niveau->school_year_id = $school_year_id;
                         $niveau->save();
                     }
 
@@ -124,6 +132,7 @@ class Grade extends Model
             $lyc = new Grade();
             $lyc->name = 'Lycée';
             $lyc->user_id = $user_id;
+            $lyc->school_year_id = $school_year_id;
             $lyc->save();
             if($lyc)
             {
@@ -131,10 +140,11 @@ class Grade extends Model
                 $niveau->niveau ='Tronc Commun';
                 $niveau->user_id = $user_id;
                 $niveau->grade_id = $lyc->id;
+                $niveau->school_year_id = $school_year_id;
                 $niveau->save();
                 if($niveau->id)
                 {
-                   $l = Level::where('niveau',$niveau->niveau)->where('user_id',$user_id)->first();
+                   $l = Level::where('id',$niveau->id)->where('user_id',$user_id)->first();
                     $branchesTc = [
                         'Tronc Commun Sciences',
                         'Tronc Commun Lettres et sciences humaines',
@@ -147,6 +157,8 @@ class Grade extends Model
                         $branche->nom_branche = $br;
                         $branche->code_branche = "";
                         $branche->user_id = $user_id;
+                        $branche->level_id = $niveau->id;
+                        $branche->school_year_id = $school_year_id;
                         $branche->save();
                         if($branche->id)
                         {
@@ -160,10 +172,11 @@ class Grade extends Model
                 $niveau->niveau = '1ère Baccalauréat';
                 $niveau->user_id = $user_id;
                 $niveau->grade_id = $lyc->id;
+                $niveau->school_year_id = $school_year_id;
                 $niveau->save();
                 if($niveau->id)
                 {
-                    $l = Level::where('niveau',$niveau->niveau)->where('user_id',$user_id)->first();
+                    $l = Level::where('id',$niveau->id)->where('user_id',$user_id)->first();
                     $branches1Bac = [
                         'Sciences mathématiques',
                         'Sciences expérimentales',
@@ -181,6 +194,8 @@ class Grade extends Model
                         $branche->nom_branche = $br;
                         $branche->code_branche = "";
                         $branche->user_id = $user_id;
+                        $branche->level_id = $niveau->id;
+                        $branche->school_year_id = $school_year_id;
                         $branche->save();
                         if($branche->id)
                         {
@@ -195,10 +210,11 @@ class Grade extends Model
                 $niveau->niveau = 'Baccalaureat';
                 $niveau->user_id = $user_id;
                 $niveau->grade_id = $lyc->id;
+                $niveau->school_year_id = $school_year_id;
                 $niveau->save();
                 if($niveau->id)
                 {
-                    $l = Level::where('niveau',$niveau->niveau)->where('user_id',$user_id)->first();
+                    $l = Level::where('id',$niveau->id)->where('user_id',$user_id)->first();
                     $branchesBac = [
                         'Bac Sciences mathématiques A',
                         'Bac Sciences Mathématiques B',
@@ -222,6 +238,8 @@ class Grade extends Model
                         $branche->nom_branche = $br;
                         $branche->code_branche = "";
                         $branche->user_id = $user_id;
+                        $branche->level_id = $niveau->id;
+                        $branche->school_year_id = $school_year_id;
                         $branche->save();
                         if($branche->id)
                         {
@@ -235,7 +253,7 @@ class Grade extends Model
 
             }
 
-            }
+
         }
 
 

@@ -476,7 +476,7 @@ class ChildrenController extends Controller
     {
      if(\Request::isMethod('get'))
      {
-         $child =\Auth::user()->children()->where('id',$id)->CurrentYear()->first();
+         $child =\Auth::user()->children()->where('id',$id)->first();
          return view('children.changeClasse',compact('child'));
      }
         if(\Request::isMethod('post'))

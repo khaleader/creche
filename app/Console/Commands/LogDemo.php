@@ -88,7 +88,7 @@ class LogDemo extends Command
 
                                 }
                                 $transportStatus == 0 ?
-                                    $facture->somme =  $taman : ($facture->somme = $taman + Transport::where('user_id',$getChild->user_id)->first()->somme);
+                                    $facture->somme =  $taman : $facture->somme = ($taman + Transport::where('user_id',$getChild->user_id)->first()->somme);
 
 
                                 $facture->nbrMois = $getChild->nbrMois;
@@ -134,7 +134,7 @@ class LogDemo extends Command
 
                                 }
                                 $transportStatus == 0 ?
-                                    $facture->somme =  $taman : ($facture->somme = $taman + Transport::where('user_id',$getChild->user_id)->first()->somme);
+                                    $facture->somme =  $taman : $facture->somme = ($taman + Transport::where('user_id',$getChild->user_id)->first()->somme);
 
 
                                 $facture->nbrMois = $getChild->nbrMois;

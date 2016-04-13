@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Grade;
 use App\Http\Requests\schoolYearsRequest;
 use App\SchoolYear;
 use App\Transport;
@@ -220,6 +221,8 @@ public function verifyRange()
                 }
                 $sc->user_id = \Auth::user()->id;
                 $sc->save();
+               Grade::AddGradesAndLevels(\Auth::user()->id,$sc->id);
+
             }
         }
         if($year1 == $year_prec && $year2 == $yearNow && Carbon::now()->month <= 6)
@@ -258,6 +261,12 @@ public function verifyRange()
               }
               $sc->user_id = \Auth::user()->id;
               $sc->save();
+              if($sc->id)
+              {
+                Grade::AddGradesAndLevels(\Auth::user()->id,$sc->id);
+              }
+
+
              /* if ($sc->id) {
                   $forCurrentYear = SchoolYear::where('user_id', \Auth::user()->id)
                       ->get();
@@ -268,8 +277,6 @@ public function verifyRange()
                           $yes->current = 0;
                           $yes->save();
                       }
-
-
                   }
               }*/
           }
@@ -277,9 +284,18 @@ public function verifyRange()
         return redirect()->back()->with('success','Bien Enregistrés');
     }
 
-
-
-
+    // get levels when choosing year in paiements
+    public function getLevels()
+    {
+        $school_year_id = \Input::get('school_year_id');
+         $school = \Auth::user()->schoolyears()->where('id',$school_year_id)->first();
+        if($school)
+        {
+            foreach ($school->levels as $level) {
+                echo '<option value="'.$level->id.'">'.$level->niveau.'</option>';
+            }
+        }
+    }
     /**
      * Display the specified resource.
      *
