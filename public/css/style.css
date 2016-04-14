@@ -3011,6 +3011,7 @@ ul.inbox-pagination li {
 .invoice p {
     color:#687b8c !important;
     margin-bottom: 0;
+    -webkit-print-color-adjust:exact !important;
 }
 
 .logo-print {
@@ -3073,6 +3074,8 @@ ul.amounts li.grand-total {
     font-size:24px;
     color:#73737b;
     font-weight:600;
+    -webkit-print-color-adjust:exact  !important;
+
 }
 .table-invoice {
     margin-top:30px;
@@ -3094,7 +3097,8 @@ ul.amounts li.grand-total {
 
 }
 .table-invoice thead tr th:first-child,.table-invoice tbody tr td:first-child {
-    text-align:center;
+    text-align:center !important;
+    -webkit-print-color-adjust:exact !important;
 }
 .table-invoice tbody tr td {
     background:#f5f6f9 !important;
@@ -7528,16 +7532,18 @@ td.drop.droppable{
 .invoice_remarque{
     margin-top: 38px;
     margin-left: 20px;
+    -webkit-print-color-adjust:exact !important;
 }
 .invoice_remarque h3{
     font-family: open Sans;
     color: #687b8c !important;
     font-size: 14px;
     font-weight: bold;
-    -webkit-print-color-adjust:exact;
+    -webkit-print-color-adjust:exact !important;
 }
 .invoice_remarque p{
     text-transform: capitalize;
+    -webkit-print-color-adjust:exact !important;
 }
 #invoice_footer{
     bottom: 0px;

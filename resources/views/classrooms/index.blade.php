@@ -10,6 +10,10 @@
         $both =$ynow.'-'.$ynext;
         $month = \Carbon\Carbon::now()->month;
         $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
+        if($result)
+        {
+            $tab = explode('-',$result->ann_scol);
+        }
             ?>
         <div class="col-sm-12">
             <section class="panel">
@@ -22,7 +26,7 @@
                                 <a href="#" class="btn btn-white">année</a>
                                 <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button"><span class="caret"></span></button>
                                 <ul role="menu" class="dropdown-menu" style="margin-left: -97px">
-                                    <a style="display: block;padding-left: 18px;" href="{{ url('classes',['2016','2017']) }}">{{ $both }} </a>
+                                    <a style="display: block;padding-left: 18px;" href="{{ url('classes',[$tab[0],$tab[1] }}">{{ $both }} </a>
 
 
                                 </ul>

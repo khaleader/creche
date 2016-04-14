@@ -46,6 +46,15 @@
             color: #fff !important;
             font-weight: bold !important;
         }
+
+            .invoice-to h2 {
+                margin:0;
+                font-size:24px;
+                color:#73737b !important;
+                font-weight:600;
+                -webkit-print-color-adjust:exact;
+
+            }
         }
 
 
