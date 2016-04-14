@@ -211,8 +211,14 @@
                             </td>
 
                             <td class="no-print">
-                                <a  class="delete-child actions_icons"   href="{{ action('ChildrenController@delete',[$child->id]) }}">
-                                    <i class="fa fa-trash-o liste_icons"></i></a>
+                                <a  class="delete-child actions_icons"  href="{{ action('ChildrenController@delete',[$child->id]) }}">
+                                    <i class="fa fa-trash-o liste_icons"></i>
+                                </a>
+                                &nbsp;
+                                <a  class= actions_icons"  href="{{ action('BillsController@show',[$child->id]) }}">
+                                    <i class="fa fa-money liste_icons"></i>
+                                </a>
+
                                <!-- <a class="archive-child" href="{{  action('ChildrenController@archive',[$child->id]) }}"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>

@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="ThemeBucket">
 
-    <title>Oblivius Petite Enfance </title>
+    <title>Oblivius School </title>
     <!--Core CSS -->
     <link rel="shortcut icon" type="image/png"  href="{{ asset('favicon.png') }}">
     <link href=" {{  asset('bs3/css/bootstrap.css') }}" rel="stylesheet">

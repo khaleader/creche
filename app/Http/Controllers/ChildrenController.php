@@ -631,6 +631,10 @@ class ChildrenController extends Controller
                             <td class="no-print">
                                 <a href="'.action('ChildrenController@delete',[$enfant]).'" class="actions_icons delete-child">
                                     <i class="fa fa-trash-o liste_icons"></i></a>
+                                        &nbsp;
+                                <a  class= actions_icons"  href="'.action('BillsController@show',[$enfant->id]) .'">
+                                    <i class="fa fa-money liste_icons"></i>
+                                </a>
                                <!-- <a class="archive-child" href="'.action('ChildrenController@archive',[$enfant]).'"><i class="fa fa-archive liste_icons"></i>
                                 </a>-->
                             </td>
