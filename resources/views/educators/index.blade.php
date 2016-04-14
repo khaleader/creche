@@ -1,6 +1,5 @@
 @extends('layouts.default')
 
-@include('partials.alert-errors')
 @section('content')
     @include('partials.alert-errors')
     @include('partials.alert-success')
@@ -82,7 +81,16 @@
                 $('#loader-to').hide();
             });
 
-            $('#classe').prepend('<option selected>selectionnez s\'il vous plait</option>');
+            $('button[type=submit]').click(function(){
+               if(!$.isNumeric($('#classe').val()))
+               {
+                   alertify.alert("veuillez selectionner une classe");
+                   return false;
+               }
+            });
+
+
+            $('#classe').prepend('<option selected>Sélectionnez s\'il vous plait</option>');
             $('#classe').change(function(){
                 $('tbody').empty();
                var value = $(this).val();

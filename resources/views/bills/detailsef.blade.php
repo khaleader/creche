@@ -94,7 +94,7 @@
                         @endif
 
 
-                        ,</br>Par la présente nous vous informons que la facture de votre enfant {{ $bill->child->nom_enfant }}, inscrit dans notre établissement, décrite ci dessous de la date {{  $bill->start->format('d-m-Y') }} au {{  $bill->end->format('d-m-Y') }} est désormais disponible.</p></div>
+                        ,</br>Par la présente nous vous informons que la facture de votre enfant {{ $bill->child->nom_enfant }}, inscrit dans notre établissement, décrite ci dessous de la date {{  $bill->start->format('d-m-Y') }} au {{  $bill->end->subDays(1)->format('d-m-Y')}}  est désormais disponible.</p></div>
                 <table class="table table-invoice" >
                     <thead>
                     <tr>

@@ -13,11 +13,20 @@ use Validator;
 
 class EducatorsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
        $cr = Classroom::find(8);
@@ -53,30 +62,55 @@ class EducatorsController extends Controller
     public function store(Request $request)
     {
 
+        $validator = Validator::make([
+            $request->all(),
+            'teacher' =>$request->teacher,
+            'matiere' =>$request->matiere,
+            'classe' =>$request->classe,
 
 
+        ], [
+            'teacher' => 'required',
+            'matiere' => 'required',
+            'classe' => 'required',
+        ],
+            [
+                'teacher.required' => "le prof est requis",
+                'matiere.required' => 'la matiere est requis',
+                'classe.required' => 'la classe est requis',
 
-        foreach($request->teacher as $t)
+            ]);
+        if($validator->passes())
         {
-          $array =  explode(',',$t);
-          $check =  DB::table('classroom_matter_teacher')
-                ->where('classroom_id',$request->classe)
-                ->where('teacher_id',$array[0])
-                ->where('matter_id',$array[1])
-                ->where('user_id',\Auth::user()->id)
-                ->first();
-            if(!$check)
+            foreach($request->teacher as $t)
             {
-                DB::table('classroom_matter_teacher')->insert([
-                    'classroom_id'=> $request->classe,
-                    'teacher_id' => $array[0],
-                    'matter_id' => $array[1],
-                    'user_id' => \Auth::user()->id
-                ]);
-            }
+                $array =  explode(',',$t);
+                $check =  DB::table('classroom_matter_teacher')
+                    ->where('classroom_id',$request->classe)
+                    ->where('teacher_id',$array[0])
+                    ->where('matter_id',$array[1])
+                    ->where('user_id',\Auth::user()->id)
+                    ->first();
+                if(!$check)
+                {
+                    DB::table('classroom_matter_teacher')->insert([
+                        'classroom_id'=> $request->classe,
+                        'teacher_id' => $array[0],
+                        'matter_id' => $array[1],
+                        'user_id' => \Auth::user()->id
+                    ]);
+                }
 
+            }
+            return redirect()->back()->with('success',"Répartition Réussie");
+        }else{
+            return redirect()->back()->withErrors($validator);
         }
-        return redirect()->back()->with('success',"Répartition Réussie");
+
+
+
+
+
     }
 
     public function enregistrer(Request $request)
@@ -207,7 +241,7 @@ class EducatorsController extends Controller
                     <label for="cname" class="control-label col-lg-3">'.$m->nom_matiere.'</label>
                     <input type="hidden" value="'.$m->id.'" name="matiere[]">
                     <div class="form_ajout">
-                        <select name="teacher[]" class="form_ajout_input">
+                        <select  name="teacher[]" class="form_ajout_input prof">
                         ';
                            foreach($m->teachers as $t)
                            {
