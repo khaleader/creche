@@ -26,11 +26,12 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
         {
             if($duree->type == 'Semis')
             {
-                $total =  $duree->startch1->diffInMonths($duree->endch2);
+
+                $total =  $duree->startch1->diffInMonths($duree->endch2) + 1;
             }
             if($duree->type == 'Trim')
             {
-                $total =  $duree->startch1->diffInMonths($duree->endch3);
+                $total =  $duree->startch1->diffInMonths($duree->endch3) + 1;
             }
             return $total;
         }

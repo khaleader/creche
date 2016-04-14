@@ -292,7 +292,7 @@
                                     <option value="1">Mensuel (1 Mois)</option>
                                     <option value="3">Trimestriel (3 Mois)</option>
                                     <option value="6">Semistriel (6 Mois)</option>
-                                    <option value="{{ \App\SchoolYear::countTotalYear() }}">{{ 'Annuel ('.\App\SchoolYear::countTotalYear(). 'Mois)' }}</option>
+                                    <option value="{{ \App\SchoolYear::countTotalYear() }}">{{ 'Annuel ('.\App\SchoolYear::countTotalYear(). ' Mois)' }}</option>
 
                                 </select>
                             </div>
