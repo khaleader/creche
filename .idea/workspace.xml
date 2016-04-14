@@ -4,7 +4,6 @@
     <list default="true" id="372a90fb-b9e0-4f04-a6ec-886b60721da5" name="Default" comment="just 'decreasing'">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/style.css" afterPath="$PROJECT_DIR$/public/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/bills/print.blade.php" afterPath="$PROJECT_DIR$/resources/views/bills/print.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/classrooms/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/classrooms/index.blade.php" />
     </list>
     <ignored path="creche.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-0.7457627">
-              <caret line="3071" column="0" selection-start-line="3071" selection-start-column="0" selection-end-line="3078" selection-end-column="1" />
+              <caret line="3032" column="0" selection-start-line="3032" selection-start-column="0" selection-end-line="3032" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -93,8 +92,8 @@
       <file leaf-file-name="print.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/bills/print.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.68175185">
-              <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.7240876">
+              <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -1257,16 +1256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.633333">
-          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-          <folding>
-            <marker date="1460630978014" expanded="true" signature="12097:12301" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/families/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.9333333">
@@ -1298,18 +1287,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/children/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.633333">
+          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
+          <folding>
+            <marker date="1460630978014" expanded="true" signature="12097:12301" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.7457627">
-          <caret line="3071" column="0" selection-start-line="3071" selection-start-column="0" selection-end-line="3078" selection-end-column="1" />
+          <caret line="3032" column="0" selection-start-line="3032" selection-start-column="0" selection-end-line="3032" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/bills/print.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.68175185">
-          <caret line="52" column="41" selection-start-line="52" selection-start-column="41" selection-end-line="52" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.7240876">
+          <caret line="59" column="41" selection-start-line="59" selection-start-column="41" selection-end-line="59" selection-end-column="41" />
           <folding />
         </state>
       </provider>

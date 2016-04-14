@@ -3030,7 +3030,7 @@ ul.inbox-pagination li {
     display:inline-block;
 }*/
 .inv-label {
-    color:#7f64b5;
+    color:#7f64b5 !important;
 }
 .itatic {
     font-style:italic;

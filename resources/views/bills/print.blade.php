@@ -55,6 +55,10 @@
                 -webkit-print-color-adjust:exact;
 
             }
+            .inv-label{
+                -webkit-print-color-adjust:exact;
+                color:#7f64b5 !important;
+            }
         }
 
 
