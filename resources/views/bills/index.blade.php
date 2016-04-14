@@ -30,13 +30,19 @@
             <section class="panel">
                 <header class="panel-heading">
                     Liste des factures
-                    <div class="actions_btn">
-                        <ul>
-                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                            <li><a id="exporter" href="{{ action('BillsController@exportExcel') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
-                            <li><a id="pdf" href="{{ action('BillsController@exportPdf') }}"><img  src="{{ asset('images/pdf-icon.png')  }}">Exporter PDF</a></li>
 
-                        </ul>
+                    <div class="liste_actions_header">
+
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                                Actions <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
+                                <li><a id="exporter" href="{{ action('BillsController@exportExcel') }}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
+                                <li><a  id="pdf" href="{{ action('BillsController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
+                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
+
+                            </ul>
+                        </div>
                     </div>
 
                 </header>

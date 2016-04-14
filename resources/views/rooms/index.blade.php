@@ -8,18 +8,23 @@
             <section class="panel">
                 <header class="panel-heading">
                     Liste des salles
-                    <div class="actions_btn">
-                        <ul>
-                            <li><a href="{{ action('RoomsController@create') }}"><img id="ajouter" src="{{ asset('images/ajouter.png') }}">Ajouter</a></li>
+                    <div class="liste_actions_header">
 
-                            <li><a id="exporter" href="{{ action('RoomsController@exportExcel') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter excel</a></li>
-                            <li><a id="pdf" href="{{ action('RoomsController@exportPdf') }}"><img  src="{{ asset('images/exporter.png')  }}">Exporter PDF</a></li>
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                                Actions <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
+                                <li><a href="{{ action('RoomsController@create') }}"><img src="{{ asset('images/add.png') }}">Ajouter</a></li>
+                                <li><a id="exporter" href="{{ action('RoomsController@exportExcel') }}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
+                                <li><a  id="pdf" href="{{ action('RoomsController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
+                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
 
-                           <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                              <!--   <li><a href="#"><img id="actuel" src="{{ asset('images/actuel.png')  }}">Actuel</a></li>
-                              <li><a href="#"><img id="archive" src="{{ asset('images/archive.png')  }}">Archive</a></li>-->
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
+
+
+
                 </header>
                 <div class="liste_actions">
                     <div class="chk-all">

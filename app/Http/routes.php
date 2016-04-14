@@ -113,6 +113,7 @@ Route::get('families/exportExcel/{ids?}','FamiliesController@exportExcel');
 // pdf export families/index
 Route::get('families/exportPdf/{ids?}','FamiliesController@exportPdf');
 
+Route::get('familles/{y1?}/{y2?}','FamiliesController@index');
 
 /* add child to family in families/show/id */
 

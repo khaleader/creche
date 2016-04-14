@@ -3090,6 +3090,8 @@ ul.amounts li.grand-total {
     border-radius:5px;
     -webkit-border-radius:5px;
     vertical-align:middle;
+    -webkit-print-color-adjust:exact;
+
 }
 .table-invoice thead tr th:first-child,.table-invoice tbody tr td:first-child {
     text-align:center;
@@ -3099,6 +3101,7 @@ ul.amounts li.grand-total {
     border-radius:5px;
     -webkit-border-radius:5px;
     vertical-align:middle;
+    -webkit-print-color-adjust:exact;
 }
 .invoice-block {
     text-align:right;
@@ -7597,6 +7600,7 @@ td.drop.droppable{
     display: inline-block;
     margin-top: 2px;
     margin-right: 5px;
+    -webkit-print-color-adjust:exact;
 
 
 }
@@ -7625,6 +7629,7 @@ td.drop.droppable{
     display: inline-block;
     margin-top: 2px;
     margin-right: 5px;
+    -webkit-print-color-adjust:exact;
 }
 
 

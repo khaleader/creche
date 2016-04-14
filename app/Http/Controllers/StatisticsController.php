@@ -213,8 +213,9 @@ class StatisticsController extends Controller
     {
 
        $matter_count = Matter::where('user_id',\Auth::user()->id)->count();
-        $branch_count = Branch::where('user_id',\Auth::user()->id)->count();
-        $level_count = Level::where('user_id',\Auth::user()->id)->count();
+        $branch_count =  \Auth::user()->branches()
+        ->where('school_year_id',\App\SchoolYear::getSchoolYearId())->count();
+        $level_count = \Auth::user()->leslevels()->where('school_year_id',\App\SchoolYear::getSchoolYearId())->count();
         $cr_count = Classroom::where('user_id',\Auth::user()->id)->CurrentYear()->count();
         $room_count = Room::where('user_id',\Auth::user()->id)->count();
 

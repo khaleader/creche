@@ -45,10 +45,19 @@ class FamiliesController extends Controller
      * @return \Illuminate\View\View
      */
 
-    public function index()
+    public function index($year1 =null,$year2=null)
     {
+     if(isset($year1) && isset($year2))
+     {
+            $both = $year1 . '-' . $year2;
+            $result = \Auth::user()->schoolyears()->where('ann_scol', $both)->first();
+            $families = \Auth::user()->families()->where('school_year_id', $result->id)->paginate(10);
+            return view('families.index',compact('families'));
+      }else{
+
        $families = \Auth::user()->families()->CurrentYear()->paginate(10);
        return view('families.index',compact('families'));
+     }
     }
 
 

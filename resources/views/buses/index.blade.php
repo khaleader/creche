@@ -7,15 +7,23 @@
             <section class="panel">
                 <header class="panel-heading">
                     Liste des autocars
-                    <div class="actions_btn">
-                        <ul>
-                            <li><a href="{{ action('BusesController@create') }}"><img id="ajouter" src="images/ajouter.png">Ajouter</a></li>
-                            <li><a id="imprimer" href="#"><img  src="{{ asset('images/imprimer.png')  }}">Imprimer</a></li>
-                            <li><a id="exporter" href="{{ action('BusesController@exportExcel') }}"><img id="exporter" src="{{ asset('images/exporter.png') }}">Exporter excel</a></li>
-                            <li><a id="pdf" href="{{ action('BusesController@exportPdf') }}"><img id="pdf" src="{{ asset('images/pdf-icon.png') }}">Exporter PDF</a></li>
+                    <div class="liste_actions_header">
 
-                        </ul>
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button">
+                                Actions <span class="caret"></span></button>
+                            <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
+                                <li><a href="{{ action('BusesController@create') }}"><img src="{{ asset('images/add.png') }}">Ajouter</a></li>
+                                <li><a id="exporter" href="{{ action('BusesController@exportExcel') }}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
+                                <li><a  id="pdf" href="{{ action('BusesController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
+                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
+
+                            </ul>
+                        </div>
                     </div>
+
+
+
                 </header>
                 <div class="liste_actions">
                     <div class="chk-all">

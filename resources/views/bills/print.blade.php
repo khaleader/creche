@@ -11,7 +11,8 @@
     <link href="{{ asset('css/style-responsive.css')  }}" rel="stylesheet"/>
     <script src="{{ asset('js\moment\moment-with-locales.min.js') }}"></script>
 
-    <style type="text/css" media="print">
+    <style type="text/css">
+        @media print{
         @page {
             size: auto;   /* auto is the initial value */
             margin: 0;  /* this affects the margin in the printer settings */
@@ -25,17 +26,26 @@
             border-radius: 5px;
             -webkit-border-radius: 5px;
             vertical-align: middle;
+            -webkit-print-color-adjust:exact;
         }
         .table-invoice tbody tr td {
             background: #f5f6f9 !important;
             border-radius: 5px;
             -webkit-border-radius: 5px;
             vertical-align: middle;
+            -webkit-print-color-adjust:exact;
         }
         .table-invoice {
             margin-top: 30px !important;
             border-spacing: 5px !important;
             border-collapse: separate !important;
+        }
+        ul.amounts li.grand-total{
+            -webkit-print-color-adjust:exact;
+            background: #7f64b5 !important;
+            color: #fff !important;
+            font-weight: bold !important;
+        }
         }
 
 

@@ -812,9 +812,23 @@
                     $('#FormImage').submit();
                 }
             });
+            if(localStorage.scYear)
+            {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+                $.ajax({
+                    url: '{{  URL::action('SchoolYearsController@getLevels')}}',
+                    data: 'school_year_id=' + localStorage.scYear+ '&_token=' + CSRF_TOKEN,
+                    type: 'post',
+                    success: function (data) {
+                        $('#ann_scol_years').val(localStorage.scYear).attr('selected','selected');
+                        $('select[name=niveau]').empty().append(data);
+                    }
+                });
+            }
 
         $('#ann_scol_years').change(function(){
             var school_year_id =  $(this).val();
+            localStorage.scYear = school_year_id;
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 url: '{{  URL::action('SchoolYearsController@getLevels')}}',

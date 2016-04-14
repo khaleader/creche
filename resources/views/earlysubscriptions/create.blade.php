@@ -95,7 +95,8 @@
                 <a href="{{ action('ChildrenController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{ asset('images/enfants.png') }}" >
-                        <span class="count"> &nbsp;{{   App\Child::where('user_id',\Auth::user()->id)->CurrentYear()->count() }}
+                        <span class="count"> &nbsp;{{   App\Child::where('user_id',\Auth::user()->id)->
+                        where('school_year_id',$nextyearid)->count() }}
                         </span><p>Elèves</p>
                     </div>
                 </a>
@@ -104,7 +105,8 @@
                 <a href="{{ action('FamiliesController@index') }}">
                     <div class="panel-body bloc_informations">
                         <img src="{{  asset('images/familles.png') }}" ><span class="count">&nbsp;
-                            {{  App\Family::where('user_id',\Auth::user()->id)->CurrentYear()->count() }}
+                            {{  App\Family::where('user_id',\Auth::user()->id)
+                            ->where('school_year_id',$nextyearid)->count() }}
                         </span><p>Familles</p>
                     </div>
                 </a>
@@ -143,8 +145,8 @@
                                 Ajouter un Elève
                             </a>
                         </li>
-                        <li>
-                            <a data-toggle="tab" href="#password">
+                        <li style="pointer-events: none">
+                            <a data-toggle="tab" href="#password" >
                                 Ajouter un professeur ou administrateur
                             </a>
                         </li>
