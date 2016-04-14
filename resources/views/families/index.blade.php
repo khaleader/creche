@@ -42,7 +42,11 @@
         $both =$ynow.'-'.$ynext;
         $month = \Carbon\Carbon::now()->month;
         $result = \Auth::user()->schoolyears()->where('ann_scol',$both)->first();
-          $tab = explode('-',$result->ann_scol);
+            if($result)
+                {
+                    $tab = explode('-',$result->ann_scol);
+                }
+
         ?>
 
         <div class="col-sm-12">

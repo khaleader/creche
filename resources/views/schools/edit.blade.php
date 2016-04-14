@@ -636,11 +636,17 @@
             });
 
             $('#submit-p').click(function(){
+                if(!$.isNumeric($('#ann_scol_years').val()))
+                {
+                    alertify.alert("l'année scolaire est requis");
+                    return false;
+                }
                 if(!$.isNumeric($('#niveaux').val()))
                 {
                     alertify.alert('Selectionnez Un Niveau !');
                     return false;
                 }
+
 
                if($.isNumeric($('#niveaux').val()) && $('#price').val() == 0)
                {
@@ -822,6 +828,7 @@
                     success: function (data) {
                         $('#ann_scol_years').val(localStorage.scYear).attr('selected','selected');
                         $('select[name=niveau]').empty().append(data);
+                        $('select[name=niveau]').prepend('<option>Quel Niveau ?</option>');
                     }
                 });
             }
