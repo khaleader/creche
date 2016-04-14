@@ -193,33 +193,41 @@
         });
 
         $('#submit').click(function(){
+            if(!$.isNumeric($('#ann_scol').val()))
+            {
+                alertify.alert('veuillez sélectionner une année scolaire');
+                return false;
+            }
+
             var grade = $('#grade option:selected').text();
             if(grade == 'Lycée'  &&  !$.isNumeric($('#niveau').val()))
             {
-                alertify.alert('vous devez choisir un niveau');
+                alertify.alert('veuillez choisir un niveau');
                 return false;
             }
             if(grade == 'Lycée'  &&  !$.isNumeric($('#branche').val()))
             {
-                alertify.alert('vous devez choisir une branche');
+                alertify.alert('veuillez choisir une branche');
                 return false;
             }
 
             if(grade == 'Collège' && !$.isNumeric($('#niveau').val()))
             {
-                alertify.alert('vous devez choisir un niveau');
+                alertify.alert('veuillez choisir un niveau');
                 return false;
             }
             if(grade == 'Primaire' && !$.isNumeric($('#niveau').val()))
             {
-                alertify.alert('vous devez choisir un niveau');
+                alertify.alert('veuillez choisir un niveau');
                 return false;
             }
             if(grade == 'Maternelle' && !$.isNumeric($('#niveau').val()))
             {
-                alertify.alert('vous devez choisir un niveau');
+                alertify.alert('veuillez choisir un niveau');
                 return false;
             }
+
+
         });
 
         $('select#ann_scol').change(function(){
