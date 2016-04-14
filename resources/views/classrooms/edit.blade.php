@@ -150,85 +150,47 @@
 
                         </div>
                     </div>
+                    <?php $getGrade ='';
+                    $gradeName = '';
+                    ?>
                     <div class="form_champ">
-                        <label for="cname" class="control-label col-lg-3">Niveau global
-                            <?php $getGrade ='';
-                            $gradeName = '';
-                            ?>
-                            @foreach($cr->lesNiveaux as $niv)
-                                <strong style="background-color: #337AB7" class="label label-primary">  {{  $niv->grade->name  }} </strong>
-                                <?php
-                                $getGrade =$niv->grade->id;
-                                $gradeName = $niv->grade->name;
-                                ?>
-                            @endforeach
-
-                            @foreach($cr->levels as $niv)
-                                <strong style="background-color: #337AB7" class="label label-primary">  {{  $niv->grade->name  }} </strong>
-                                    <?php
-                                $getGrade =$niv->grade->id;
-                                 $gradeName = $niv->grade->name;
-                                ?>
-                            @endforeach
-
-                        </label>
+                        <label for="cname" class="control-label col-lg-3">Niveau global</label>
                         <div class="form_ajout">
-                            <select id="grade" name="grade" class="form_ajout_input">
-                                @foreach(\Auth::user()->grades()
-                                ->where('school_year_id',$cr->school_year_id)->get() as $grade)
-
-                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
-                                @endforeach
-                            </select>
-
+                            @foreach($cr->lesNiveaux as $niv)
+                                <?php $gradeName = $niv->grade->name;  ?>
+                            <input readonly disabled type="text" value="{{ $niv->grade->name }}" name="capacite_classe" class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
+                             @endforeach
+                            @foreach($cr->levels as $niv)
+                                <?php $gradeName = $niv->grade->name;  ?>
+                                    <input readonly disabled type="text" value="{{ $niv->grade->name }}" name="capacite_classe" class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
+                            @endforeach
                         </div>
                     </div>
 
-                    <div class="form_champ c" id="niveau-bloc">
-                        <label for="cname" class="control-label col-lg-3">Le Niveau
+                    <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Niveau</label>
+                        <div class="form_ajout">
                             @foreach($cr->lesNiveaux as $niv)
-                               <strong style="background-color: #337AB7" class="label label-primary"> {{ $niv->niveau }}</strong>
+                                <input readonly disabled type="text" value="{{ $niv->niveau }}" class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
                             @endforeach
                             @foreach($cr->levels as $niv)
-                                <strong style="background-color: #337AB7" class="label label-primary"> {{ $niv->niveau }}</strong>
+                                <input readonly disabled type="text" value="{{ $niv->niveau }}"  class="form_ajout_input" placeholder="Entrez le nombre des élèves maximum">
                             @endforeach
-
-                        </label>
-                        <div class="form_ajout">
-                            <select id="niveau" name="niveau" class="form_ajout_input">
-                                @foreach($cr->levels as $niv)
-                                    <option  selected value="{{ $niv->id }}"> {{ $niv->niveau }}</option>
-                                @endforeach
-                                    @foreach($cr->lesNiveaux as $niv)
-                                        <option  selected value="{{ $niv->id }}"> {{ $niv->niveau }}</option>
-                                    @endforeach
-
-                            </select>
-
                         </div>
                     </div>
+
+
+
                     @if($gradeName == 'Lycée')
-                    <div class="form_champ" id="branche-bloc">
-                        <label for="cname" class="control-label col-lg-3">Branche
-                            <?php $brancheId = ''; ?>
-                            @foreach($cr->branches as $br)
-                                <strong style="background-color: #337AB7" class="label label-primary">  {{  $br->nom_branche  }} </strong>
-                                <?php $brancheId = $br->id;  ?>
-                            @endforeach
-                        </label>
-
+                    <div class="form_champ">
+                        <label for="cname" class="control-label col-lg-3">Branche</label>
                         <div class="form_ajout">
-                            {!!  Form::select('branche',
-                        App\Branch::where('user_id',\Auth::user()->id)->
-                        lists('nom_branche','id') ,$brancheId,['class'=>'form_ajout_input','id'=>'branche']) !!}
+                            @foreach($cr->branches as $br)
+                                <input readonly disabled type="text" value="{{ $br->nom_branche }}"  class="form_ajout_input">
+                            @endforeach
                         </div>
                     </div>
                     @endif
-
-
-
-
-
                     <button id="submit" class="btn_form" type="submit">Enregistrer</button>
                     <a  style="line-height:40px; text-align:center;margin-right: 10px;"
                         class="btn_form" href="{{ URL::action('ClassroomsController@show',[$cr]) }}">

@@ -269,7 +269,7 @@ class ClassroomsController extends Controller
            // 'code_classe'=> 'required',
             'capacite_classe' => 'required|integer',
             'select' => 'required',
-            'grade' => 'required|integer',
+           // 'grade' => 'required|integer',
 
         ],
             [
@@ -278,47 +278,22 @@ class ClassroomsController extends Controller
                 'capacite_classe.required' => "la capacité de la classe est requis",
                 'capacite_classe.integer' => "la capacité de la classe doit etre un nombre entier",
                 'select.required' => 'Vous devez cocher au moins une matière',
-                'grade.integer' => "Le Niveau Global est requis",
+               // 'grade.integer' => "Le Niveau Global est requis",
             ]);
 
         if($validator->passes())
         {
-            $niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
+            //$niveau_global =  \Auth::user()->grades()->where('id',$request->grade)->first()->name;
            $cr = Classroom::where('user_id',\Auth::user()->id)->where('id',$id)->first();
             $cr->nom_classe = $request->nom_classe;
             $cr->code_classe = $request->code_classe;
             $cr->capacite_classe = $request->capacite_classe;
-
-                $cr->niveau = $request->niveau;
-
-
-            if($niveau_global == 'Lycée')
-            {
-                $cr->branche = $request->branche;
-            }else{
-                $cr->branche ='';
-            }
 
             $cr->user_id = \Auth::user()->id;
             $cr->save();
 
             $classe =  Classroom::where('user_id',\Auth::user()->id)->where('id',$cr->id)->first();
             $classe->matters()->sync($request->select);
-
-            $level = Level::find($request->niveau);
-            if($niveau_global == 'Lycée')
-            {
-                DB::table('branch_classroom_level')->where('classroom_id', $cr->id)->update([
-                    'branch_id' => $request->branche,
-                    'level_id' => $level->id
-                ]);
-            }
-            else{
-                $classe->lesNiveaux()->sync([$level->id]);
-               // $level->lesClasses()->sync([$cr->id]);
-            }
-
-
             return redirect()->back()->with('success','Modifications réussies');
 
         }else{
