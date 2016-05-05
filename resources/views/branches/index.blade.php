@@ -15,8 +15,8 @@
                             <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
                                <!-- <li><a href="{{-- action('BranchesController@create') --}}"><img src="{{-- asset('images/add.png') --}}">Ajouter</a></li> -->
                                 <li><a id="exporter" href="{{ action('BranchesController@exportExcel') }}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
-                                <li><a  id="pdf" href="{{ action('BranchesController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
-                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
+                                <li><a  id="pdf" href="{{ action('BranchesController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Imprimer</a></li>
+                               <!-- <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li> -->
 
                             </ul>
                         </div>
@@ -76,6 +76,7 @@
                             <th>Branche</th>
                             <th>Code de la branche</th>
                             <th>Nombre d'élèves</th>
+                            <th>Année scolaire</th>
                             <th  class="no-print">Actions</th>
 
                         </tr>
@@ -95,6 +96,7 @@
                             <td>{{  $branch->code_branche }}</td>
 
                             <td>{{ $branch->children()->CurrentYear()->count() }}</td>
+                            <td>{{ $branch->schoolYear->ann_scol }}</td>
                             <td>
                                 <a  class="no-print delete-branch" href="{{  action('BranchesController@edit',[$branch]) }}" class="actions_icons delete-branch">
                                     <i class="fa fa-edit liste_icons"></i></a>

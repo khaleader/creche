@@ -76,6 +76,8 @@ protected $dates = ['startch1','endch1','startch2','endch2','startch3','endch3']
         }
     }
 
+
+
     public static function getFirstYear()
     {
        $year1 = \Auth::user()->schoolyears()->where('current',1)->first();

@@ -358,7 +358,7 @@
                     </td><td style="text-align: right; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; display: inline-block; width: 389px; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 30px; font-size: 14px; margin: 0; padding: 0;" align="right" valign="top"> <!-- Make sure the tags are directly next to each other -->
 
                         <a href="#" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #687b8c; text-decoration: underline;">oblivius.contact@gmail.com</a>
-                        <a href="http://petite-enfance.oblivius.fr/" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #687b8c; text-decoration: underline; display: inline-block; margin-left: 6px;">www.petite-enfance.obilivius.fr</a>
+                        <a href="http://schoolapp.oblivius.fr/" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #687b8c; text-decoration: underline; display: inline-block; margin-left: 6px;">www.schoolapp.obilivius.fr</a>
 
                     </td>
                 </tr></table></td>

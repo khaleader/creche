@@ -23,6 +23,7 @@
                             <th class="hidden-phone">Date d'inscription</th>
                             <th>Classe</th>
                             <th>Statut de paiement</th>
+                            <th>Année Scolaire</th>
                             <th>Actions</th>
                             <th></th>
                         </tr>
@@ -50,6 +51,7 @@
                                     <i class="fa fa-money"></i></span>
 
                                 </td>
+                                <td>{{ $c->schoolYear->ann_scol }}</td>
                                 <td>
                                     <a  class="delete-child"   href="{{ action('ChildrenController@delete',[$c->id]) }}" class="actions_icons">
                                         <i class="fa fa-trash-o liste_icons"></i></a>
@@ -83,6 +85,7 @@
                             <th> Nom du responsable</th>
                             <th class="hidden-phone">Nombre d'enfants</th>
                             <th>Statut de paiement</th>
+                            <th>Année Scolaire</th>
                             <th>Actions</th>
                             <th></th>
                         </tr>
@@ -122,6 +125,7 @@
                                     }
                                     ?>
                                 </td>
+                                <td>{{ $f->schoolYear->ann_scol }}</td>
 
                                 <td>
                                     <a  href="{{  action('FamiliesController@delete',[$f->id]) }}" class="actions_icons delete-family">

@@ -68,6 +68,11 @@ protected $dates = ['date_naissance','deleted_at','created_at'];
         return $this->belongsToMany(Branch::class);
     }
 
+    public function schoolYear()
+    {
+        return $this->belongsTo(SchoolYear::class);
+    }
+
 
 
 }

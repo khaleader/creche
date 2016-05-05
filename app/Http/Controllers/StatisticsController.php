@@ -39,15 +39,25 @@ class StatisticsController extends Controller
     {
         if(is_null($year1) && is_null($year2))
         {
-            $children =  \Auth::user()->children()->where('school_year_id','=',SchoolYear::getSchoolYearId())->orderBy('id','desc')->paginate(10);
+           $yearNow = Carbon::now()->year;
+            $yearNext = Carbon::now()->year + 1;
+            $children =  \Auth::user()->children()
+                ->where('school_year_id','!=',SchoolYear::getSchoolYearId())
+                ->orderBy('id','desc')->paginate(10);
             return view('statistics.archive',compact('children'));
         }else{
             $annee = $year1.'-'.$year2;
             $schoolYear = SchoolYear::where('user_id',\Auth::user()->id)
                 ->where('ann_scol',$annee)
-                ->where('current',1)->first();
-            $children =  \Auth::user()->children()->where('school_year_id',$schoolYear->id)->paginate(10);
-            return view('statistics.archive',compact("children","year1","year2"));
+                ->where('current',0)->first();
+            if($schoolYear)
+            {
+                $children =  \Auth::user()->children()->where('school_year_id',$schoolYear->id)->paginate(10);
+                return view('statistics.archive',compact("children","year1","year2"));
+            }else{
+                return redirect()->back();
+            }
+
         }
 
     }

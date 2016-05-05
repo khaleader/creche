@@ -53,4 +53,9 @@ class Level extends Model
   return $this->hasMany(Branch::class);
  }
 
+ public function schoolYear()
+ {
+  return $this->belongsTo(SchoolYear::class);
+ }
+
 }

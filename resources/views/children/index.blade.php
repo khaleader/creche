@@ -78,8 +78,8 @@
                                Actions <span class="caret"></span></button>
                             <ul role="menu" class="dropdown-menu" style="margin-left: -136px;">
                                 <li><a id="exporter" href="{{ action('ChildrenController@exportEleve') }}"><img src="{{ asset('images/excel.png') }}">Exporter Excel</a></li>
-                                <li><a  id="pdf" href="{{ action('ChildrenController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Exporter PDF</a></li>
-                                <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>
+                                <li><a  id="pdf" href="{{ action('ChildrenController@exportPdf') }}"><img src="{{ asset('images/pdf.png') }}">Imprimer</a></li>
+                               <!-- <li><a id="imprimer" href="#"><img src="{{ asset('images/imprimern.png')  }}">Imprimer</a></li>-->
 
                             </ul>
                         </div>
