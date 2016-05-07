@@ -338,10 +338,10 @@
         </td>
     </tr>
     <tr style="vertical-align: top; text-align: left; padding: 0 ;background-color:#fff; " align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #222222; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; margin: 0; padding: 10px; margin-bottom:15px;" align="left" valign="top">
-            <a class="cta" href="http://petite-enfance.oblivius.fr/" target="_blank" style="color:#ffffff; text-decoration: none;text-transform:uppercase;border-radius:30px; padding:15px; background-color:#f1c435; margin-bottom:40px;margin-left:175px;   font-weight:bold;">Connectez-vous dès maintenant</a>
+            <a class="cta" href="http://schoolapp.oblivius.fr/" target="_blank" style="color:#ffffff; text-decoration: none;text-transform:uppercase;border-radius:30px; padding:15px; background-color:#f1c435; margin-bottom:40px;margin-left:175px;   font-weight:bold;">Connectez-vous dès maintenant</a>
 
             <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 60 0 10px; padding: 0;" align="left">Cordialement,</p>
-            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">L'équipe Oblivius Petite Enfance</p>
+            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #687b8c; font-weight: normal; text-align: left; line-height: 19px; margin: 0 0 10px; padding: 0;" align="left">L'équipe Oblivius School</p>
 
 
         </td>

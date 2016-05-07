@@ -665,10 +665,15 @@
                 var TrimSemisType = $(this).val();
                 if (TrimSemisType == 'Trim') {
                     $('ul.trimestres > li').show();
+                    $('.trimestres > li:nth-child(1) > label').text('Trimestre 1');
+                    $('.trimestres > li:nth-child(2) > label').text('Trimestre 2');
+                    $('.trimestres > li:nth-child(3) > label').text('Trimestre 3');
                 }
                 if (TrimSemisType == 'Semis') {
                     $('ul.trimestres > li').show();
                     $('ul.trimestres  li:last-child').hide();
+                    $('.trimestres > li:nth-child(1) > label').text('Semestre 1');
+                    $('.trimestres > li:nth-child(2) > label').text('Semestre 2');
                 }
                 if (TrimSemisType == 0) {
                     $('ul.trimestres > li').hide();

@@ -41,6 +41,8 @@
                     <ul role="menu" class="dropdown-menu dropdown_inscription" style="margin-left: -126px;">
                         @if($current)
                         <li><a href="{{ action('ChildrenController@create') }}">Inscription {{ $fyears[0].'/'.$fyears[1] }}</a></li>
+                      @else
+                            <li><a href="{{ action('SchoolsController@edit',\Auth::user()->id) }}"></a></li>
                         @endif
                         @if($month  >= 1 &&  $month < 7 && $result)
                         <li><a href="{{ action('EarlySubscriptionsController@create') }}">Inscription {{ $ynow.'/'.$ynext}}</a></li>
