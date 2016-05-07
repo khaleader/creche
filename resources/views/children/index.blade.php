@@ -219,7 +219,7 @@
                                     <i class="fa fa-trash-o liste_icons"></i>
                                 </a>
                                 &nbsp;
-                                <a  class= actions_icons"  href="{{ action('BillsController@show',[$child->id]) }}">
+                                <a title="Factures"  class= actions_icons"  href="{{ action('BillsController@show',[$child->id]) }}">
                                     <i class="fa fa-money liste_icons"></i>
                                 </a>
 

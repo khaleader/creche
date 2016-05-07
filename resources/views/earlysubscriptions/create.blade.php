@@ -145,7 +145,7 @@
                                 Ajouter un Elève
                             </a>
                         </li>
-                        <li style="pointer-events: none">
+                        <li>
                             <a data-toggle="tab" href="#password" >
                                 Ajouter un professeur ou administrateur
                             </a>
